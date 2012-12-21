@@ -15,6 +15,7 @@
 
 <link rel="stylesheet" href="css/normalize.css">
 <link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/forms.css">
 <script src="js/vendor/modernizr-2.6.2.min.js"></script>
 <script type="text/javascript" src="js/ahah.js" ></script>
 </head>
@@ -61,7 +62,11 @@
         </ul>
       </dd>
     </dl>
-    <dl>
+ 
+    <fieldset class="field-type-text field-name-field-spout field-widget-text-textfield form-wrapper" id="edit-field-spout">
+      <div id="field-spout-add-more-wrapper">
+        <div class="form-item">
+   <dl>
       <dt>
         <label for="spout-type">Spout type</label>
       </dt>
@@ -95,18 +100,9 @@
         <label for="height-inches">Height in inches</label>
       </dt>
       <dd>
-        <textarea id="height-inches" class="required  number" name="height-inches" rows="5" cols="50">
-</textarea>
+        <input type="text" id="height-inches" class="required  number" name="height-inches" />
       </dd>
     </dl>
-    <div class="field-type-text field-name-field-spout field-widget-text-textfield form-wrapper" id="edit-field-spout">
-      <div id="field-spout-add-more-wrapper">
-        <div class="form-item">
-          <div class="text-format-wrapper">
-                    <div class="form-item form-type-textfield form-item-field-spout-value">
-                      <input class="text-full form-text" type="text" id="edit-field-spout-und-0-value" name="field_spout[und][0][value]" value="" size="60" maxlength="255">
-                    </div>
-          </div>
             
           <div class="description">Please enter each spout that you require by choosing the spout type and then entering the size of the bags to be filled in inches.</div>
           <div class="clearfix">
@@ -116,7 +112,7 @@
         </div>
       </div>
       <div id="field-spout-add-more-wrapper2"></div>
-    </div>
+    </fieldset>
     <div id="submit_buttons">
       <button type="reset">Reset</button>
       <button type="submit">Submit</button>
