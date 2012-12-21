@@ -102,46 +102,20 @@
     <div class="field-type-text field-name-field-spout field-widget-text-textfield form-wrapper" id="edit-field-spout">
       <div id="field-spout-add-more-wrapper">
         <div class="form-item">
-          <div class="tabledrag-toggle-weight-wrapper"> <a href="#" class="tabledrag-toggle-weight" title="Re-order rows by numerical weight instead of dragging.">Show row weights</a> </div>
-          <table id="field-spout-values" class="field-multiple-table sticky-enabled tabledrag-processed tableheader-processed sticky-table">
-            <thead>
-              <tr>
-                <th colspan="2" class="field-label"><label>Spout</label></th>
-                <th class="tabledrag-hide" style="display: none;">Order</th>
-              </tr>
-            </thead>
-            <tbody id="insertwrapper">
-              <tr class="draggable odd drag-previous">
-                <td class="field-multiple-drag"><a href="#" class="tabledrag-handle" title="Drag to re-order" style="">
-                  <div class="handle">&nbsp;</div>
-                  </a></td>
-                <td><div class="text-format-wrapper">
+          <div class="text-format-wrapper">
                     <div class="form-item form-type-textfield form-item-field-spout-value">
                       <input class="text-full form-text" type="text" id="edit-field-spout-und-0-value" name="field_spout[und][0][value]" value="" size="60" maxlength="255">
                     </div>
-                    <fieldset class="filter-wrapper form-wrapper" id="edit-field-spout-und-0-format">
-                      <div class="fieldset-wrapper">
-                        <input id="edit-field-spout-und-0-format--2" type="hidden" name="field_spout[und][0][format]" value="1">
-                      </div>
-                    </fieldset>
-                  </div></td>
-                <td class="delta-order tabledrag-hide" style="display: none;"><div class="form-item form-type-select form-item-field-spout-und-0--weight">
-                    <label class="element-invisible" for="edit-field-spout-und-0-weight">Weight for row 1</label>
-                    <select class="field_recipe_ingredients-delta-order form-select" id="edit-field-spout-und-0-weight" name="field_recipe_ingredients[und][0][_weight]">
-                      <option value="0" selected="selected">0</option>
-                    </select>
-                  </div></td>
-              </tr>
-            </tbody>
-          </table>
-     
+          </div>
+            
           <div class="description">Please enter each spout that you require by choosing the spout type and then entering the size of the bags to be filled in inches.</div>
           <div class="clearfix">
-          <a href="javascript:ahah('field-spout-value.html','insertwrapper');">Add another spout</a>
+          <a href="javascript:ahah('field-spout-value.html','field-spout-add-more-wrapper2');">Add another spout</a>
            
           </div>
         </div>
       </div>
+      <div id="field-spout-add-more-wrapper2"></div>
     </div>
     <div id="submit_buttons">
       <button type="reset">Reset</button>
