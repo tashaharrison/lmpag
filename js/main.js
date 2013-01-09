@@ -50,17 +50,18 @@ $(document)
 																	// field
 																	// being
 																	// added
-
+								var newSpoutID = 'spout-' + newNum;
 								// create the new element via clone(), and
 								// manipulate it's ID using newNum value
 								var newElem = $('#spout-' + num).clone().attr(
-										'id', 'spout-' + newNum);
+										'id', newSpoutID);
 
 								// manipulate the name/id values of the input
 								// inside the new element
 								newElem.children(':first').attr('id',
-										'name' + newNum).attr('name',
-										'name' + newNum);
+										newSpoutID).attr('name',
+												newSpoutID);
+
 
 								// insert the new element after the last
 								// "duplicatable" input field
