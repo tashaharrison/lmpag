@@ -2,7 +2,9 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
 
 <head>
 <meta charset="utf-8">
@@ -17,7 +19,6 @@
 <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/forms.css">
 <script src="js/vendor/modernizr-2.6.2.min.js"></script>
-<script type="text/javascript" src="js/ahah.js" ></script>
 </head>
 <body>
 <!--[if lt IE 7]>
@@ -26,91 +27,228 @@
 
 <!-- Add your site or application content here -->
 
+<div id="js-warning">
+  <p>Please note that because you have disabled Javascript in your browser or your browser doesn't support it, you will only be able to order a maximum of 5 spouts.</p>
+  <p>To order more please enable Javascript or contact us after you place you order with your addition instructions.</p>
+</div>
 <div class="reformed-form">
   <form method="post" name="logical-machines-price-accesory-guide" id="logical-machines-price-accesory-guide" action="reformed/formmail/formmail.php">
-    <dl>
-      <dt>
-        <label for="weight-hopper">Weigh Hopper</label>
-      </dt>
-      <dd>
-        <ul>
-          <li>
-            <input type="radio" id="small-weight-hopper" name="small-weight-hopper" value="small-weight-hopper" />
-            <label>Small Hopper</label>
-          </li>
-          <li>
-            <input type="radio" id="large-weight-hopper" name="large-weight-hopper" value="large-weight-hopper" />
-            <label>Large Hopper</label>
-          </li>
-        </ul>
-      </dd>
-    </dl>
-    <dl>
-      <dt>
-        <label for="discharge-funnel">Discharge Funnel</label>
-      </dt>
-      <dd>
-        <ul>
-          <li>
-            <input type="radio" id="small-discharge-funnel" name="small-discharge-funnel" value="small-discharge-funnel" />
-            <label>Small Funnel</label>
-          </li>
-          <li>
-            <input type="radio" id="small-steep-sided-funnel" name="small-steep-sided-funnel" value="small-steep-sided-funnel" />
-            <label>Small Steep Sided Funnel</label>
-          </li>
-        </ul>
-      </dd>
-    </dl>
- 
-    <fieldset class="field-type-text field-name-field-spout field-widget-text-textfield form-wrapper" id="edit-field-spout">
-      <div id="field-spout-add-more-wrapper">
-        <div class="form-item">
-   <dl>
-      <dt>
-        <label for="spout-type">Spout type</label>
-      </dt>
-      <dd>
-        <ul>
-          <li>
-            <input type="radio" class="required" id="spout-type-1" name="spout-type" value="flag-bag" />
-            <label>Flag bag</label>
-          </li>
-          <li>
-            <input type="radio" class="required" id="spout-type-2" name="spout-type" value="4-sided-bag" />
-            <label>4 sided bag</label>
-          </li>
-          <li>
-            <input type="radio" class="required" id="spout-type-3" name="spout-type" value="can-jar" />
-            <label>Can or Jar</label>
-          </li>
-        </ul>
-      </dd>
-    </dl>
-    <dl>
-      <dt>
-        <label for="width-inches">Width in inches</label>
-      </dt>
-      <dd>
-        <input type="text" id="width-inches" class="required  number" name="width-inches" />
-      </dd>
-    </dl>
-    <dl>
-      <dt>
-        <label for="height-inches">Height in inches</label>
-      </dt>
-      <dd>
-        <input type="text" id="height-inches" class="required  number" name="height-inches" />
-      </dd>
-    </dl>
-            
-          <div class="description">Please enter each spout that you require by choosing the spout type and then entering the size of the bags to be filled in inches.</div>
-          <div class="clearfix" id="field-spout-add-more-wrapper2">
-          <a href="javascript:ahah('field-spout-value.html','field-spout-add-more-wrapper2');">Add another spout</a>
+    <label for="weight-hopper">Weigh Hopper</label>
+    <ul>
+      <li>
+        <input type="radio" id="small-weight-hopper" name="small-weight-hopper" value="small-weight-hopper" />
+        <label>Small Hopper</label>
+      </li>
+      <li>
+        <input type="radio" id="large-weight-hopper" name="large-weight-hopper" value="large-weight-hopper" />
+        <label>Large Hopper</label>
+      </li>
+    </ul>
+    <label for="discharge-funnel">Discharge Funnel</label>
+    <ul>
+      <li>
+        <input type="radio" id="small-discharge-funnel" name="small-discharge-funnel" value="small-discharge-funnel" />
+        <label>Small Funnel</label>
+      </li>
+      <li>
+        <input type="radio" id="small-steep-sided-funnel" name="small-steep-sided-funnel" value="small-steep-sided-funnel" />
+        <label>Small Steep Sided Funnel</label>
+      </li>
+    </ul>
+    <ul class="field-type-text field-name-field-spout field-widget-text-textfield form-wrapper" id="edit-field-spout">
+      <li id="spout-1" class="clonedInput">
+        <fieldset class="form-item">
+          <legend>Spout 1</legend>
+          <label for="spout-type">Spout type</label>
+          <ul>
+            <li>
+              <input type="radio" class="required spout-type" id="spout-1-type-1" name="spout-1" value="flag-bag" />
+              <label for="spout-1-type-1">Flag bag</label>
+            </li>
+            <li>
+              <input type="radio" class="required spout-type" id="spout-1-type-2" name="spout-1" value="4-sided-bag" />
+              <label for="spout-1-type-2">4 sided bag</label>
+            </li>
+            <li>
+              <input type="radio" class="required spout-type" id="spout-1-type-3" name="spout-1" value="can-jar" />
+              <label for="spout-1-type-3">Can or Jar</label>
+            </li>
+          </ul>
+          <div class="description">
+            <p>Please enter each spout that you require by choosing the spout type and then entering the size of the bags to be filled in inches.</p>
           </div>
-        </div>
-      </div>
-    </fieldset>
+          <div class="dimensions" id="spout-1-dimensions">
+            <label for="spout-1-width-inches">Width in inches</label>
+            <input type="text" id="spout-1-width-inches" class="required  number" name="width-inches" />
+            <label for="spout-1-height-inches">Height in inches</label>
+            <input type="text" id="spout-1-height-inches" class="required  number" name="height-inches" />
+            <label for="spout-1-diameter-inches">Diameter in inches</label>
+            <input type="text" id="spout-1-diameter-inches" class="required  number" name="height-inches" /> <div class="description">
+              <p>Please enter:
+              
+              <ul>
+                <li>width in inches for a flat bag,</li>
+                <li>width in inches and </li>
+                <li>height in inches for a 4 sided bag and diameter in inches for a can or a jar.</li>
+              </ul>
+            </div>
+          </div>
+        </fieldset>
+      </li>
+      <li id="spout-2" class="clonedInput">
+        <fieldset class="form-item">
+          <legend>Spout 2</legend>
+          <label for="spout-type">Spout type</label>
+          <ul>
+            <li>
+              <input type="radio" class="required" id="spout-2-type-1" name="spout-2" value="flag-bag" />
+              <label>Flag bag</label>
+            </li>
+            <li>
+              <input type="radio" class="required" id="spout-2-type-2" name="spout-2" value="4-sided-bag" />
+              <label>4 sided bag</label>
+            </li>
+            <li>
+              <input type="radio" class="required" id="spout-2-type-3" name="spout-2" value="can-jar" />
+              <label>Can or Jar</label>
+            </li>
+          </ul>
+          <div class="description">
+            <p>Please enter each spout that you require by choosing the spout type and then entering the size of the bags to be filled in inches.</p>
+          </div>
+          <div class="dimensions" id="spout-2-dimensions">
+            <label for="spout-2-width-inches">Width in inches</label>
+            <input type="text" id="spout-2-width-inches" class="required  number" name="width-inches" />
+            <label for="spout-2-height-inches">Height in inches</label>
+            <input type="text" id="spout-2-height-inches" class="required  number" name="height-inches" />
+            <label for="spout-2-diameter-inches">Diameter in inches</label>
+            <input type="text" id="spout-2-diameter-inches" class="required  number" name="height-inches" /> <div class="description">
+              <p>Please enter:
+              
+              <ul>
+                <li>width in inches for a flat bag,</li>
+                <li>width in inches and </li>
+                <li>height in inches for a 4 sided bag and diameter in inches for a can or a jar.</li>
+              </ul>
+            </div>
+          </div>
+        </fieldset>
+      </li>
+      <li id="spout-3" class="clonedInput">
+        <fieldset class="form-item">
+          <legend>Spout 3</legend>
+          <label for="spout-type">Spout type</label>
+          <ul>
+            <li>
+              <input type="radio" class="required" id="spout-3-type-1" name="spout-3" value="flag-bag" />
+              <label>Flag bag</label>
+            </li>
+            <li>
+              <input type="radio" class="required" id="spout-3-type-2" name="spout-3" value="4-sided-bag" />
+              <label>4 sided bag</label>
+            </li>
+            <li>
+              <input type="radio" class="required" id="spout-3-type-3" name="spout-3" value="can-jar" />
+              <label>Can or Jar</label>
+            </li>
+          </ul>
+          <div class="description">
+            <p>Please enter each spout that you require by choosing the spout type and then entering the size of the bags to be filled in inches.</p>
+          </div>
+          <div class="dimensions" id="spout-3-dimensions">
+            <label for="spout-3-width-inches">Width in inches</label>
+            <input type="text" id="spout-3-width-inches" class="required  number" name="width-inches" />
+            <label for="spout-3-height-inches">Height in inches</label>
+            <input type="text" id="spout-3-height-inches" class="required  number" name="height-inches" />
+            <input type="text" id="spout-3-diameter-inches" class="required  number" name="height-inches" /> <div class="description">
+              <p>Please enter:
+              
+              <ul>
+                <li>width in inches for a flat bag,</li>
+                <li>width in inches and </li>
+                <li>height in inches for a 4 sided bag and diameter in inches for a can or a jar.</li>
+              </ul>
+            </div>
+          </div>
+        </fieldset>
+      </li>
+      <li id="spout-4" class="clonedInput">
+        <fieldset class="form-item">
+          <legend>Spout 4</legend>
+          <label for="spout-type">Spout type</label>
+          <ul>
+            <li>
+              <input type="radio" class="required" id="spout-4-type-1" name="spout-4" value="flag-bag" />
+              <label>Flag bag</label>
+            </li>
+            <li>
+              <input type="radio" class="required" id="spout-4-type-2" name="spout-4" value="4-sided-bag" />
+              <label>4 sided bag</label>
+            </li>
+            <li>
+              <input type="radio" class="required" id="spout-4-type-3" name="spout-4" value="can-jar" />
+              <label>Can or Jar</label>
+            </li>
+          </ul>
+          <div class="description">
+            <p>Please enter each spout that you require by choosing the spout type and then entering the size of the bags to be filled in inches.</p>
+          </div>
+          <div class="dimensions" id="spout-4-dimensions">
+            <label for="spout-4-width-inches">Width in inches</label>
+            <input type="text" id="spout-4-width-inches" class="required  number" name="width-inches" />
+            <label for="spout-4-height-inches">Height in inches</label>
+            <input type="text" id="spout-4-height-inches" class="required  number" name="height-inches" />
+            <input type="text" id="spout-4-diameter-inches" class="required  number" name="height-inches" /> <div class="description">
+              <p>Please enter:
+              
+              <ul>
+                <li>width in inches for a flat bag,</li>
+                <li>width in inches and </li>
+                <li>height in inches for a 4 sided bag and diameter in inches for a can or a jar.</li>
+              </ul>
+            </div>
+          </div>
+        </fieldset>
+      </li>
+      <li id="spout-5" class="clonedInput">
+        <fieldset class="form-item">
+          <legend>Spout 5</legend>
+          <label for="spout-type">Spout type</label>
+          <ul>
+            <li>
+              <input type="radio" class="required" id="spout-5-type-1" name="spout-5" value="flag-bag" />
+              <label>Flag bag</label>
+            </li>
+            <li>
+              <input type="radio" class="required" id="spout-5-type-2" name="spout-5" value="4-sided-bag" />
+              <label>4 sided bag</label>
+            </li>
+            <li>
+              <input type="radio" class="required" id="spout-5-type-3" name="spout-5" value="can-jar" />
+              <label>Can or Jar</label>
+            </li>
+          </ul>
+          <div class="description">
+            <p>Please enter each spout that you require by choosing the spout type and then entering the size of the bags to be filled in inches.</p>
+          </div>
+          <div class="dimensions" id="spout-5-dimensions">
+            <label for="spout-5-width-inches">Width in inches</label>
+            <input type="text" id="spout-5-width-inches" class="required  number" name="width-inches" />
+            <label for="spout-5-height-inches">Height in inches</label>
+            <input type="text" id="spout-5-height-inches" class="required  number" name="height-inches" />
+            <input type="text" id="spout-5-diameter-inches" class="required  number" name="height-inches" /> <div class="description">
+              <p>Please enter:
+              
+              <ul>
+                <li>width in inches for a flat bag,</li>
+                <li>width in inches and </li>
+                <li>height in inches for a 4 sided bag and diameter in inches for a can or a jar.</li>
+              </ul>
+            </div>
+          </div>
+        </fieldset>
+      </li>
+    </ul>
     <div id="submit_buttons">
       <button type="reset">Reset</button>
       <button type="submit">Submit</button>
@@ -121,6 +259,7 @@
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.3.min.js"><\/script>')</script> 
 <script src="js/plugins.js"></script> 
 <script src="js/main.js"></script> 
+<script src="js/addAnother.js"></script> 
 
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. --> 
 <script>
