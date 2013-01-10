@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	
+
 	// create the dynamic buttons and fields
 	var addSpoutButton = '<input type="button" id="btnAdd" value="add another spout" />';
 	var delSpoutButton = '<input type="button" id="btnDel" value="remove spout" />';

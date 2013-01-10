@@ -90,14 +90,69 @@ textarea {
 }
 
 /* ==========================================================================
-   Author's custom styles
+   Logical Machine's styles
    ========================================================================== */
 
+/*
+ * PAGE SECTIONS
+ * header#header {}
+ * section#section-content {}
+ * section#section-content nav#navigation {   }
+ * section#section-content article#main-content {   }
+ * section#section-content aside#sidebar {}
+ * footer#footer {}
+ */
+
+#navigation, #main-content, #sidebar {
+    float:left;
+}
+
+#main-content {  
+    width: 760px; 
+}
 
 
+form#logical-machines-price-accesory-guide {
+    
+}
 
+/*
+ * Pagination
+ */
 
+#step-1 {
+    
+}
 
+#step-2 {
+    
+}
+
+#step-3 {
+    
+}
+
+#step-4 {
+    
+}
+
+#step-5 {
+    
+}
+
+#hidden-accessories {
+    
+}
+
+/* 
+ * Fallback content
+ */
+
+#js-warning {
+    background-color: #F3DEDE;
+    border: 2px solid red;
+    padding: 14px 14px 0 14px;
+}
 
 
 
