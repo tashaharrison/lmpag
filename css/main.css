@@ -108,12 +108,27 @@ textarea {
 }
 
 #main-content {  
-    width: 760px; 
+    width: 380px; 
 }
 
 
 form#logical-machines-price-accesory-guide {
     
+}
+
+/*
+ * Sidebar
+ */
+
+#machine-image {
+    background: url(../img/s4-sprite.jpg) no-repeat 0 0 transparent;
+    height: 645px;
+    width: 400px;
+}
+#small-weight-hopper-image{
+    background: url(../img/accessories-sprite.jpg) no-repeat 0 0 transparent;
+    height: 645px;
+    width: 400px;
 }
 
 /*
@@ -142,6 +157,14 @@ form#logical-machines-price-accesory-guide {
 
 #hidden-accessories {
     
+}
+
+/*
+ * Form styles
+ */
+
+ul.field-type-radio {
+    list-style: none;
 }
 
 /* 

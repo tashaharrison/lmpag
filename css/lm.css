@@ -156,10 +156,14 @@ strong {
 }
 #h1-header {
     float: left;
-    width: 558px;
     height: 73px;
-    z-index: 2;
+    margin-top: 20px;
     overflow: visible;
+    width: 558px;
+    z-index: 2;
+}
+#h1-header h1 {
+    line-height: 0.9;
 }
 #footer {
     width: 960px;
