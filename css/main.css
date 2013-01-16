@@ -136,8 +136,6 @@ form#logical-machines-price-accesory-guide {
  * Pagination
  */
 
-#main-content #step-1, #step-2, #step-3, #step-4, #step-5 { display: none; }
-#main-content #step-1 { display: block; }
 #main-content .form { margin: 66px 72px 0 72px; }
 
 #step-1 {
