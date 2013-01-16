@@ -109,8 +109,9 @@ textarea {
 
 #main-content {  
     width: 380px; 
+    overflow: hidden;
+    position: relative;
 }
-
 
 form#logical-machines-price-accesory-guide {
     
@@ -134,6 +135,10 @@ form#logical-machines-price-accesory-guide {
 /*
  * Pagination
  */
+
+#main-content #step-1, #step-2, #step-3, #step-4, #step-5 { display: none; }
+#main-content #step-1 { display: block; }
+#main-content .form { margin: 66px 72px 0 72px; }
 
 #step-1 {
     
@@ -165,6 +170,28 @@ form#logical-machines-price-accesory-guide {
 
 ul.field-type-radio {
     list-style: none;
+    padding:0;
+}
+
+ul.field-type-radio > li {
+	margin-bottom: 10px;
+}
+
+.field-type-radio label {
+	border: 2px solid #DDDDDD;
+    display: block;
+    margin-top: -28px;
+    padding: 10px 11px 4px;
+}
+
+.field-type-radio input {
+	border: 2px solid #DDDDDD;
+	margin-left: 14px;
+}
+
+.field-type-radio input[type="radio"]:checked+label {
+	border:#AD0000 2px solid;
+	background-color:#ddd;
 }
 
 /* 
