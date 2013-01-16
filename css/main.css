@@ -109,7 +109,7 @@ textarea {
 }
 
 #main-content {  
-    width: 380px; 
+    width: 436px; 
     overflow: hidden;
     position: relative;
 }
@@ -122,12 +122,16 @@ form#logical-machines-price-accesory-guide {
  * Sidebar
  */
 
+#sidebar {
+	text-align: center;
+	padding-top: 20px;
+}
 #machine-image {
     background: url(../img/s4-sprite.jpg) no-repeat 0 0 transparent;
-    height: 645px;
-    width: 400px;
+    height: 554px;
+    width: 350px;
 }
-#small-weight-hopper-image{
+#small-weight-hopper-image {
     background: url(../img/accessories-sprite.jpg) no-repeat 0 0 transparent;
     height: 645px;
     width: 400px;
