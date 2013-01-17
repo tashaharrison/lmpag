@@ -79,6 +79,10 @@ textarea {
     resize: vertical;
 }
 
+h2 {
+	line-height:1.2;
+}
+
 /* ==========================================================================
    Chrome Frame prompt
    ========================================================================== */
@@ -115,7 +119,6 @@ textarea {
 }
 
 form#logical-machines-price-accesory-guide {
-    
 }
 
 /*
@@ -125,6 +128,14 @@ form#logical-machines-price-accesory-guide {
 #sidebar {
 	text-align: center;
 	padding-top: 20px;
+}
+.sticky{
+	position: fixed;
+	left: 610px;
+	top:0;
+}
+.sidebar-sticky-position {
+	top: 116px;
 }
 #machine-image {
     background: url(../img/s4-sprite.jpg) no-repeat 0 0 transparent;
@@ -180,10 +191,18 @@ ul.field-type-radio > li {
 	margin-bottom: 10px;
 }
 
+.field-type-radio h4 {
+	margin: 0 0 0 1.33em;
+}
+
+.field-type-radio p {
+	margin: 0.2em 0;
+}
+
 .field-type-radio label {
 	border: 2px solid #DDDDDD;
     display: block;
-    margin-top: -28px;
+    margin-top: -30px;
     padding: 10px 11px 4px;
 }
 
