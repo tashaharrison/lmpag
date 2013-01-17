@@ -142,12 +142,44 @@ form#logical-machines-price-accesory-guide {
     height: 554px;
     width: 350px;
 }
-#small-weight-hopper-image {
+.accessories-image {
     background: url(../img/accessories-sprite.jpg) no-repeat 0 0 transparent;
-    height: 645px;
-    width: 400px;
+    border:1px solid #FFFFFF !important;
+    float: left;
+    height:100px;
+    margin-bottom:10px;
+    margin-right:10px;
+    width:100px;
 }
-
+#small-weight-hopper-image {
+	height: 180px;
+	width: 160px;
+}
+#large-weight-hopper-image {
+	height: 200px;
+	width: 180px;
+	background-position: 6px -186px;	
+}
+#small-standard-discharge-funnel-image {
+	height: 180px;
+	width: 210px;
+	background-position: -166px -110px;	
+}
+#small-steep-discharge-funnel-image {
+	height: 112px;
+	width: 184px;
+	background-position: -166px 0px;
+}
+#large-standard-discharge-funnel-image {
+	height: 152px;
+	width: 190px;
+	background-position: -360px 0px;
+}
+#large-steep-discharge-funnel-image {
+	height: 190px;
+	width: 196px;
+	background-position: -362px -142px;
+}
 /*
  * Pagination
  */
@@ -186,34 +218,33 @@ ul.field-type-radio {
     list-style: none;
     padding:0;
 }
-
 ul.field-type-radio > li {
-	margin-bottom: 10px;
+	margin-bottom: 20px;
 }
-
 .field-type-radio h4 {
-	margin: 0 0 0 1.33em;
+	margin: 0 0 0.4em 1.33em;
 }
-
+.field-type-radio h5 {
+	margin: 1.67em 0 0;
+}
 .field-type-radio p {
 	margin: 0.2em 0;
 }
-
 .field-type-radio label {
-	border: 2px solid #DDDDDD;
+	border: 2px solid #0c4b81;
     display: block;
     margin-top: -30px;
-    padding: 10px 11px 4px;
+    padding: 11px 11px 4px;
 }
-
 .field-type-radio input {
-	border: 2px solid #DDDDDD;
 	margin-left: 14px;
 }
-
 .field-type-radio input[type="radio"]:checked+label {
-	border:#AD0000 2px solid;
-	background-color:#ddd;
+	border:#090 2px solid;
+	background-color:rgb(235, 255, 234);
+}
+.field-type-radio input[type="radio"]:checked+label .accessories-image {
+    border: 1px solid #B3B3B3 !important;
 }
 
 /* 
@@ -239,6 +270,10 @@ ul.field-type-radio > li {
 /* ==========================================================================
    Helper classes
    ========================================================================== */
+
+.clear {
+	clear:both;
+}
 
 /*
  * Image replacement
