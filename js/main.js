@@ -33,104 +33,124 @@ $(document)
 								.toggleClass('sticky', direction === 'down');
 					});
 
-					// Display the correct image for the machine
-					function switchMachineModelClass() {
-						var machineModel = $('input[name=machine-model]');
-						machineModel.click(function() {
-							$('.machine-model-description').hide();
-							$('#machine-image').removeClass('s-4 s-5 s-6 s-7');
-							if ($(this).val() == 'S-4') {
-								$('#s-4-description').show();
-								$('#machine-image').addClass('s-4');
-							} else if ($(this).val() == 'S-5') {
-								$('#s-5-description').show();
-								$('#machine-image').addClass('s-5');
-							} else if ($(this).val() == 'S-6') {
-								$('#s-6-description').show();
-								$('#machine-image').addClass('s-6');
-							} else {
-								$('#s-7-description').show();
-								$('#machine-image').addClass('s-7');
-							}
-							;
-						});
-					}
-
-					// Add the dimension fields appropriate to the type of spout
-					$('input[name=weight-hopper]')
-							.click(
-									function() {
-										$('#machine-image')
-												.removeClass(
-														'swh lwh ssdf sssdf lsdf lssdf');
-										if ($(this).val() == 'small-weight-hopper') {
-											$(
-													'.field-name-discharge-funnel > *')
-													.remove();
-											$('.field-name-discharge-funnel')
-													.append(
-															strSmallStdDischargeFunnelValue
-																	+ strSmallSteepDischargeFunnelValue);
-											$('#machine-image').addClass(
-													'swh ssdf');
-										} else {
-											$(
-													'.field-name-discharge-funnel > *')
-													.remove();
-											$('.field-name-discharge-funnel')
-													.append(
-															strLargeStdDischargeFunnelValue
-																	+ strLargeSteepDischargeFunnelValue);
-											$('#machine-image').addClass(
-													'lwh lsdf');
-
-										}
-										;
-										switchDischargeFunnelClass();
-									});
-
-					// Add the correct class to the machine image for the
-					// appropriate discharge funnel
-					function switchDischargeFunnelClass() {
-						var dischargeFunnel = $('input[name=discharge-funnel]');
-						dischargeFunnel
+					function radioSelect() {
+						var radioInputFields = $('input[name=machine-model],input[name=weight-hopper],input[name=discharge-funnel]');
+						// var machineImage = $('#machine-image');
+						radioInputFields
 								.click(function() {
-									$('#machine-image').removeClass(
-											'ssdf sssdf lsdf lssdf');
-									if ($(this).val() == 'small-standard-discharge-funnel') {
-										$('#machine-image').addClass('ssdf');
-									} else if ($(this).val() == 'small-steep-funnel') {
-										$('#machine-image').addClass('sssdf');
-									} else if ($(this).val() == 'large-standard-discharge-funnel') {
-										$('#machine-image').addClass('lsdf');
-									} else {
-										$('#machine-image').addClass('lssdf');
+
+									var fieldID = $(this);
+									var fieldValue = fieldID.val();
+									var machineImage = $('#machine-image');
+									var machineImageClass = '';
+
+									$('.machine-model-description').hide();
+
+									switch (fieldValue) {
+									case 'S-4':
+										$('#s-4-description').show();
+										machineImage
+												.removeClass('s-4 s-5 s-6 s-7');
+										machineImageClass = 's-4';
+										break;
+									case 'S-5':
+										$('#s-5-description').show();
+										machineImage
+												.removeClass('s-4 s-5 s-6 s-7');
+										machineImageClass = 's-5';
+										break;
+									case 'S-6':
+										$('#s-6-description').show();
+										machineImage
+												.removeClass('s-4 s-5 s-6 s-7');
+										typeMachineImageClass = 's-6';
+										break;
+									case 'S-7':
+										$('#s-7-description').show();
+										machineImage
+												.removeClass('s-4 s-5 s-6 s-7');
+										machineImageClass = 's-7';
+										break;
+									case 'small-weight-hopper':
+										$('.field-name-discharge-funnel > *')
+												.remove();
+										$('.field-name-discharge-funnel')
+												.append(
+														strSmallStdDischargeFunnelValue
+																+ strSmallSteepDischargeFunnelValue);
+										machineImage
+												.removeClass('swh lwh ssdf sssdf lsdf lssdf');
+										machineImageClass = 'swh ssdf';
+										break;
+									case 'large-weight-hopper':
+										$('.field-name-discharge-funnel > *')
+												.remove();
+										$('.field-name-discharge-funnel')
+												.append(
+														strLargeStdDischargeFunnelValue
+																+ strLargeSteepDischargeFunnelValue);
+										machineImage
+												.removeClass('swh lwh ssdf sssdf lsdf lssdf');
+										machineImageClass = 'lwh lsdf';
+										break;
+
+									return machineImageClass;
+								}
+
+									// Add the correct class to the machine image for the
+									// appropriate discharge funnel
+									function switchDischargeFunnelClass() {
+										var dischargeFunnel = $('input[name=discharge-funnel]');
+										dischargeFunnel
+												.click(function() {
+													machineImage.removeClass(
+															'ssdf sssdf lsdf lssdf');
+													if ($(this).val() == 'small-standard-discharge-funnel') {
+														machineImage.addClass('ssdf');
+													} else if ($(this).val() == 'small-steep-funnel') {
+														machineImage.addClass('sssdf');
+													} else if ($(this).val() == 'large-standard-discharge-funnel') {
+														machineImage.addClass('lsdf');
+													} else {
+														machineImage.addClass('lssdf');
+													}
+													;
+												});
 									}
-									;
-								});
+									switchDischargeFunnelClass();
+									
+								machineImage.addClass(machineImageClass);
+
+							});
+
 					}
-					switchDischargeFunnelClass();
+					radioSelect();
 
 					// Add the discharge funnel types appropriate to the type of
 					// hopper
-					$('input.spout-type').click(
-							function() {
-								if ($(this).val() == 'flag-bag') {
-									$('#spout-1-dimensions > *').remove();
-									$('#spout-1-dimensions').append(
-											strSpoutWidthFieldValue);
-								} else if ($(this).val() == '4-sided-bag') {
-									$('#spout-1-dimensions > *').remove();
-									$('#spout-1-dimensions').append(
-											strSpoutWidthFieldValue
-													+ strSpoutHeightFieldValue);
-								} else {
-									$('#spout-1-dimensions > *').remove();
-									$('#spout-1-dimensions').append(
-											strSpoutDiameterFieldValue);
-								}
-								;
-							});
+					$('input.spout-type')
+							.click(
+									function() {
+										if ($(this).val() == 'flag-bag') {
+											$('#spout-1-dimensions > *')
+													.remove();
+											$('#spout-1-dimensions').append(
+													strSpoutWidthFieldValue);
+										} else if ($(this).val() == '4-sided-bag') {
+											$('#spout-1-dimensions > *')
+													.remove();
+											$('#spout-1-dimensions')
+													.append(
+															strSpoutWidthFieldValue
+																	+ strSpoutHeightFieldValue);
+										} else {
+											$('#spout-1-dimensions > *')
+													.remove();
+											$('#spout-1-dimensions').append(
+													strSpoutDiameterFieldValue);
+										}
+										;
+									});
 
 					$('#btnAdd').click(
 							function() {
