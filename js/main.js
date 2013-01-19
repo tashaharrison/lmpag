@@ -17,6 +17,7 @@ $(document)
 					$(
 							'.clonedInput:not(:first-child), #spout-1-dimensions > *,#js-warning, .field-name-discharge-funnel>*')
 							.remove();
+					$('.machine-model-description').not('.machine-model-description:first').hide();
 					// insert the 'add another spout' button
 					$('#edit-field-spout').append(strAddSpoutButton);
 					// Insert the default content in field-name-discharge-funnel
@@ -81,6 +82,7 @@ $(document)
 										machineImage
 												.removeClass('swh lwh ssdf sssdf lsdf lssdf');
 										machineImageClass = 'swh ssdf';
+										radioSelect();
 										break;
 									case 'large-weight-hopper':
 										$('.field-name-discharge-funnel > *')
@@ -92,33 +94,34 @@ $(document)
 										machineImage
 												.removeClass('swh lwh ssdf sssdf lsdf lssdf');
 										machineImageClass = 'lwh lsdf';
+										radioSelect();
+										break;
+									case 'small-standard-discharge-funnel':
+										machineImage
+										.removeClass('ssdf sssdf lsdf lssdf');
+										machineImageClass = 'ssdf';
+										break;
+									case 'small-steep-funnel':
+										machineImage
+										.removeClass('ssdf sssdf lsdf lssdf');
+										machineImageClass = 'sssdf';
+										break;
+									case 'large-standard-discharge-funnel':
+										machineImage
+										.removeClass('ssdf sssdf lsdf lssdf');
+										machineImageClass = 'lsdf';
+										break;
+									case 'large-steep-funnel':
+										machineImage
+										.removeClass('ssdf sssdf lsdf lssdf');
+										machineImageClass = 'lssdf';
 										break;
 
 									return machineImageClass;
 								}
 
-									// Add the correct class to the machine image for the
-									// appropriate discharge funnel
-									function switchDischargeFunnelClass() {
-										var dischargeFunnel = $('input[name=discharge-funnel]');
-										dischargeFunnel
-												.click(function() {
-													machineImage.removeClass(
-															'ssdf sssdf lsdf lssdf');
-													if ($(this).val() == 'small-standard-discharge-funnel') {
-														machineImage.addClass('ssdf');
-													} else if ($(this).val() == 'small-steep-funnel') {
-														machineImage.addClass('sssdf');
-													} else if ($(this).val() == 'large-standard-discharge-funnel') {
-														machineImage.addClass('lsdf');
-													} else {
-														machineImage.addClass('lssdf');
-													}
-													;
-												});
-									}
-									switchDischargeFunnelClass();
-									
+
+
 								machineImage.addClass(machineImageClass);
 
 							});
