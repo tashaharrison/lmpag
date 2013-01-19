@@ -63,7 +63,7 @@ $(document)
 										$('#s-6-description').show();
 										machineImage
 												.removeClass('s-4 s-5 s-6 s-7');
-										typeMachineImageClass = 's-6';
+										machineImageClass = 's-6';
 										break;
 									case 'S-7':
 										$('#s-7-description').show();
