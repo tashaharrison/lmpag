@@ -342,7 +342,8 @@ form#logical-machines-price-accesory-guide {
  * Form styles
  */
 
-ul.field-type-radio {
+ul.field-type-radio,
+ul.field-type-textfield {
     list-style: none;
     padding:0;
 }

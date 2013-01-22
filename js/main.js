@@ -11,14 +11,15 @@ $(document)
 
 					// remove fallback form elements
 					$(
-							'.clonedInput:not(:first-child), #spout-1-dimensions > *,#js-warning, .default-discharge-funnel')
+							'.clonedInput:not(:first-child),#js-warning, .default-discharge-funnel')
 							.remove();
 					$('.machine-model-description').not(
 							'.machine-model-description:first').hide();
 					// insert the 'add another spout' button
 					$('#edit-field-spout').append(strAddSpoutButton);
 					// Insert the default content in field-name-discharge-funnel
-					$('.large-discharge-funnel').hide();
+					$('.large-discharge-funnel,.field-name-dimensions li')
+							.hide();
 					$('#small-standard-discharge-funnel').prop('checked', true);
 					$('.small-discharge-funnel, .large-discharge-funnel')
 							.removeClass('hidden');
@@ -33,12 +34,13 @@ $(document)
 					});
 
 					function radioSelect() {
-						var radioInputFields = $('input[name=machine-model],input[name=weight-hopper],input[name=discharge-funnel]');
+						var radioInputFields = $('input[name=machine-model],input[name=weight-hopper],input[name=discharge-funnel],input.spout-type');
 						// var machineImage = $('#machine-image');
 						radioInputFields
 								.click(function() {
 
 									var fieldID = $(this);
+									var spoutContainer = fieldID.closest('fieldset');
 									var fieldValue = fieldID.val();
 									var machineImage = $('#machine-image');
 									var machineImageClass = '';
@@ -116,6 +118,21 @@ $(document)
 												.removeClass('ssdf sssdf lsdf lssdf');
 										machineImageClass = 'lssdf';
 										break;
+									case 'flag-bag':
+										machineImageClass = 'spout';
+										spoutContainer.find('.field-name-dimensions li').hide();
+										spoutContainer.find('.spout-width-inches').show();
+										break;
+									case '4-sided-bag':
+										machineImageClass = 'spout';
+										spoutContainer.find('.field-name-dimensions li').hide();
+										spoutContainer.find('.spout-width-inches,.spout-height-inches').show();
+										break;
+									case 'can-jar':
+										machineImageClass = 'spout';
+										spoutContainer.find('.field-name-dimensions li').hide();
+										spoutContainer.find('.spout-diameter-inches').show();
+										break;
 
 									return machineImageClass;
 								}
@@ -126,33 +143,7 @@ $(document)
 
 					}
 					radioSelect();
-
-					// Add the discharge funnel types appropriate to the type of
-					// hopper
-					$('input.spout-type')
-							.click(
-									function() {
-										if ($(this).val() == 'flag-bag') {
-											$('#spout-1-dimensions > *')
-													.remove();
-											$('#spout-1-dimensions').append(
-													strSpoutWidthFieldValue);
-										} else if ($(this).val() == '4-sided-bag') {
-											$('#spout-1-dimensions > *')
-													.remove();
-											$('#spout-1-dimensions')
-													.append(
-															strSpoutWidthFieldValue
-																	+ strSpoutHeightFieldValue);
-										} else {
-											$('#spout-1-dimensions > *')
-													.remove();
-											$('#spout-1-dimensions').append(
-													strSpoutDiameterFieldValue);
-										}
-										;
-									});
-
+					
 					$('#btnAdd').click(
 							function() {
 								var num = $('.clonedInput').length;
