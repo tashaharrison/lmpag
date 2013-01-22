@@ -288,24 +288,24 @@ form#logical-machines-price-accesory-guide {
 	background-position: -166px 0px;
 }
 #small-standard-discharge-funnel-image {
-	height: 180px;
-	width: 210px;
-	background-position: -166px -110px;	
-}
-#small-steep-discharge-funnel-image {
 	height: 112px;
 	width: 184px;
 	background-position: -166px 0px;
 }
-#large-standard-discharge-funnel-image {
-	height: 152px;
-	width: 190px;
-	background-position: -360px 0px;
-}
-#large-steep-discharge-funnel-image {
+#small-steep-discharge-funnel-image {
 	height: 190px;
 	width: 196px;
 	background-position: -362px -142px;
+}
+#large-standard-discharge-funnel-image {
+	height: 180px;
+	width: 210px;
+	background-position: -166px -110px;	
+}
+#large-steep-discharge-funnel-image {
+	height: 152px;
+	width: 190px;
+	background-position: -360px 0px;
 }
 
 /*
