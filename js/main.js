@@ -175,36 +175,22 @@ $(document)
 										// elements
 										// inside the new element
 										var radioFieldID = 1;
-										newElem
-												.children('legend')
-												.html('Spout ' + newNum)
-												.next()
-												.attr('id', newSpoutTypeID)
-												.find('input')
-												.each(
-														function(radioFieldID) {
-															$(this)
-																	.attr(
-																			{
-																				'id' : newSpoutTypeID
-																						+ "-"
-																						+ radioFieldID++,
-																				'name' : newSpoutTypeID
-																			})
-																	.prop(
-																			'checked',
-																			false);
-														})
-												.next()
-												.each(
-														function(radioFieldID) {
-															$(this)
-																	.attr(
-																			'for',
-																			newSpoutTypeID
-																					+ "-"
-																					+ radioFieldID++);
-														});
+										newElem.children('legend').html(
+												'Spout ' + newNum).next().attr(
+												'id', newSpoutTypeID).find(
+												'input').attr(
+												{
+													"id" : function(arr) {
+														return newSpoutTypeID
+																+ "-" + arr
+													},
+													'name' : newSpoutTypeID
+												}).prop('checked', false)
+
+										.next().attr('for', function(arr) {
+											return newSpoutTypeID + "-" + arr
+										});
+
 										newElem
 												.children(
 														'.field-name-dimensions')
