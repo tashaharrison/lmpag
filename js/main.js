@@ -39,28 +39,30 @@ $(document)
 									var machineImage = $('#machine-image');
 									var machineImageClass = '';
 
-									$('.machine-model-description').hide();
-
 									switch (fieldValue) {
 									case 'S-4':
+										$('.machine-model-description').hide();
 										$('#s-4-description').show();
 										machineImage
 												.removeClass('s-4 s-5 s-6 s-7');
 										machineImageClass = 's-4';
 										break;
 									case 'S-5':
+										$('.machine-model-description').hide();
 										$('#s-5-description').show();
 										machineImage
 												.removeClass('s-4 s-5 s-6 s-7');
 										machineImageClass = 's-5';
 										break;
 									case 'S-6':
+										$('.machine-model-description').hide();
 										$('#s-6-description').show();
 										machineImage
 												.removeClass('s-4 s-5 s-6 s-7');
 										machineImageClass = 's-6';
 										break;
 									case 'S-7':
+										$('.machine-model-description').hide();
 										$('#s-7-description').show();
 										machineImage
 												.removeClass('s-4 s-5 s-6 s-7');
