@@ -2,26 +2,19 @@ $(document)
 		.ready(
 				function() {
 
-					// create the dynamic buttons and fields
-					var strAddSpoutButton = '<input type="button" id="btnAdd" value="add another spout" />';
-					var strDelSpoutButton = '<input type="button" id="btnDel" value="remove spout" />';
-					var strSpoutWidthFieldValue = '<label for="spout-2-width-inches">Width in inches</label><input type="text" id="spout-2-width-inches" class="required number" name="width-inches" />';
-					var strSpoutHeightFieldValue = '<label for="spout-2-height-inches">Height in inches</label><input type="text" id="spout-2-height-inches" class="required number" name="height-inches" />';
-					var strSpoutDiameterFieldValue = '<label for="spout-2-diameter-inches">Diameter in inches</label><input type="text" id="spout-2-diameter-inches" class="required number" name="height-inches" />';
-
 					// remove fallback form elements
-					$(
-							'.clonedInput:not(:first-child),#js-warning, .default-discharge-funnel')
+					$('.default-spout,#js-warning, .default-discharge-funnel')
 							.remove();
 					$('.machine-model-description').not(
 							'.machine-model-description:first').hide();
-					// insert the 'add another spout' button
-					$('#edit-field-spout').append(strAddSpoutButton);
+
 					// Insert the default content in field-name-discharge-funnel
-					$('.large-discharge-funnel,.field-name-dimensions li')
+					$(
+							'.large-discharge-funnel,.field-name-dimensions li,#btnDel')
 							.hide();
 					$('#small-standard-discharge-funnel').prop('checked', true);
-					$('.small-discharge-funnel, .large-discharge-funnel')
+					$(
+							'.small-discharge-funnel,.large-discharge-funnel,#btnAdd,#btnDel,.cloneSpout')
 							.removeClass('hidden');
 
 					// Add a waypoint to the sidebar
@@ -40,7 +33,8 @@ $(document)
 								.click(function() {
 
 									var fieldID = $(this);
-									var spoutContainer = fieldID.closest('fieldset');
+									var spoutContainer = fieldID
+											.closest('fieldset');
 									var fieldValue = fieldID.val();
 									var machineImage = $('#machine-image');
 									var machineImageClass = '';
@@ -120,18 +114,30 @@ $(document)
 										break;
 									case 'flag-bag':
 										machineImageClass = 'spout';
-										spoutContainer.find('.field-name-dimensions li').hide();
-										spoutContainer.find('.spout-width-inches').show();
+										spoutContainer.find(
+												'.field-name-dimensions li')
+												.hide();
+										spoutContainer.find(
+												'.spout-width-inches').show();
 										break;
 									case '4-sided-bag':
 										machineImageClass = 'spout';
-										spoutContainer.find('.field-name-dimensions li').hide();
-										spoutContainer.find('.spout-width-inches,.spout-height-inches').show();
+										spoutContainer.find(
+												'.field-name-dimensions li')
+												.hide();
+										spoutContainer
+												.find(
+														'.spout-width-inches,.spout-height-inches')
+												.show();
 										break;
 									case 'can-jar':
 										machineImageClass = 'spout';
-										spoutContainer.find('.field-name-dimensions li').hide();
-										spoutContainer.find('.spout-diameter-inches').show();
+										spoutContainer.find(
+												'.field-name-dimensions li')
+												.hide();
+										spoutContainer.find(
+												'.spout-diameter-inches')
+												.show();
 										break;
 
 									return machineImageClass;
@@ -143,52 +149,121 @@ $(document)
 
 					}
 					radioSelect();
-					
-					$('#btnAdd').click(
-							function() {
-								var num = $('.clonedInput').length;
-								var newNum = new Number(num + 1);
-								// the numeric ID of the new input field being
-								// added
-								var newSpoutID = 'spout-' + newNum;
-								// create the new element via clone(), and
-								// manipulate it's ID using newNum value
-								var newElem = $('#spout-' + num).clone().attr(
-										'id', newSpoutID);
 
-								// manipulate the name/id values of the input
-								// inside the new element
-								newElem.children(':first').attr('id',
-										newSpoutID).attr('name', newSpoutID);
+					$('#btnAdd')
+							.click(
+									function() {
+										var num = $('.cloneSpout').length;
+										var newNum = new Number(num + 1);
+										// the numeric ID of the new input field
+										// being
+										// added
+										var newSpoutID = 'spout-' + newNum;
+										var newSpoutTypeID = 'spout-' + newNum
+												+ "-type";
+										var newSpoutDimensionsID = 'spout-'
+												+ newNum + "-dimensions";
+										// create the new element via clone(),
+										// and
+										// manipulate it's ID using newNum value
+										var newElem = $('#spout-' + num)
+												.clone().attr('id', newSpoutID);
 
-								// insert the new element after the last
-								// "duplicatable" input field
-								$('#spout-' + num).after(newElem);
+										// manipulate the name/id values of the
+										// elements
+										// inside the new element
+										var radioFieldID = 1;
+										newElem
+												.children('legend')
+												.html('Spout ' + newNum)
+												.next()
+												.attr('id', newSpoutTypeID)
+												.find('input')
+												.each(
+														function(radioFieldID) {
+															$(this)
+																	.attr(
+																			{
+																				'id' : newSpoutTypeID
+																						+ "-"
+																						+ radioFieldID++,
+																				'name' : newSpoutTypeID
+																			})
+																	.prop(
+																			'checked',
+																			false);
+														})
+												.next()
+												.each(
+														function(radioFieldID) {
+															$(this)
+																	.attr(
+																			'for',
+																			newSpoutTypeID
+																					+ "-"
+																					+ radioFieldID++);
+														});
+										newElem
+												.children(
+														'.field-name-dimensions')
+												.attr('id',
+														newSpoutDimensionsID)
+												.find('li')
+												.hide()
+												.find(
+														'.spout-width-inches input')
+												.attr(
+														'id',
+														newSpoutID
+																+ "-width-inches")
+												.closest(
+														'.field-name-dimensions')
+												.find(
+														'.spout-height-inches input')
+												.attr(
+														'id',
+														newSpoutID
+																+ "-height-inches")
+												.closest(
+														'.field-name-dimensions')
+												.find(
+														'.spout-diameter-inches input')
+												.attr(
+														'id',
+														newSpoutID
+																+ "-diameter-inches");
 
-								// enable the "remove" button
-								$('#btnDel').attr('disabled', '');
+										// insert the new element after the last
+										// "duplicatable" input field
+										$('#spout-' + num).after(newElem);
 
-								// business rule: you can only add 5 names
-								/*
-								 * if (newNum == 5)
-								 * $('#btnAdd').attr('disabled','disabled');
-								 */
-							});
+										// enable the "remove" button
+										$('#btnDel').show().prop('disabled',
+												false);
+
+										// business rule: you can only add 5
+										// names
+										/*
+										 * if (newNum == 5)
+										 * $('#btnAdd').attr('disabled','disabled');
+										 */
+										radioSelect();
+									});
 
 					$('#btnDel').click(function() {
-						var num = $('.clonedInput').length;
+						var num = $('.cloneSpout').length;
 						// how many "duplicatable" input fields we currently
 						// have
 						$('#spout-' + num).remove();
 						// remove the last element
 
 						// enable the "add" button
-						$('#btnAdd').attr('disabled', '');
+						// $('#btnAdd').attr('disabled', '');
 
 						// if only one element remains, disable the "remove"
 						// button
 						if (num - 1 == 1)
-							$('#btnDel').attr('disabled', 'disabled');
+							$('#btnDel').hide().attr('disabled', 'disabled');
 					});
 
 				});

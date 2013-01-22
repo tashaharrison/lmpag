@@ -359,22 +359,22 @@
 									</p>
 								</div>
 								<div id="field-name-spout">
-									<fieldset id="spout-1" class="clonedInput">
+									<fieldset id="default-spout-1" class="default-spout">
 										<legend>
 											Spout 1
 										</legend>
-										<ul id="spout-1-type" class="field-type-radio field-name-spout-type">
+										<ul id="default-spout-1-type" class="field-type-radio field-name-spout-type">
 											<li>
-												<input type="radio" class="required spout-type" id="spout-1-type-1" name="spout-1-type" value="flag-bag" />
-												<label for="spout-1-type-1">Flag bag</label>
+												<input type="radio" class="required spout-type" id="default-spout-1-type-0" name="default-spout-1-type" value="flag-bag" />
+												<label for="default-spout-1-type-0">Flag bag</label>
 											</li>
 											<li>
-												<input type="radio" class="required spout-type" id="spout-1-type-2" name="spout-1-type" value="4-sided-bag" />
-												<label for="spout-1-type-2">4 sided bag</label>
+												<input type="radio" class="required spout-type" id="default-spout-1-type-1" name="default-spout-1-type" value="4-sided-bag" />
+												<label for="default-spout-1-type-1">4 sided bag</label>
 											</li>
 											<li>
-												<input type="radio" class="required spout-type" id="spout-1-type-3" name="spout-1-type" value="can-jar" />
-												<label for="spout-1-type-3">Can or Jar</label>
+												<input type="radio" class="required spout-type" id="default-spout-1-type-2" name="default-spout-1-type" value="can-jar" />
+												<label for="default-spout-1-type-2">Can or Jar</label>
 											</li>
 										</ul>
 										<div class="description">
@@ -382,18 +382,18 @@
 												Please enter each spout that you require by choosing the spout type and then entering the size of the bags to be filled in inches.
 											</p>
 										</div>
-										<ul id="spout-1-dimensions" class="field-type-textfield field-name-dimensions">
+										<ul id="default-spout-1-dimensions" class="field-type-textfield field-name-dimensions">
 											<li class="spout-width-inches">
-												<label for="spout-1-width-inches">Width in inches</label>
-												<input type="text" id="spout-1-width-inches" class="required number" name="width-inches" />
+												<label>Width in inches</label>
+												<input type="text" id="default-spout-1-width-inches" class="required number" name="width-inches" />
 											</li>
 											<li class="spout-height-inches">
-												<label for="spout-1-height-inches">Height in inches</label>
-												<input type="text" id="spout-1-height-inches" class="required number" name="height-inches" />
+												<label>Height in inches</label>
+												<input type="text" id="default-spout-1-height-inches" class="required number" name="height-inches" />
 											</li>
 											<li class="spout-diameter-inches">
-												<label for="spout-1-diameter-inches">Diameter in inches</label>
-												<input type="text" id="spout-1-diameter-inches" class="required number" name="height-inches" />
+												<label>Diameter in inches</label>
+												<input type="text" id="default-spout-1-diameter-inches" class="required number" name="height-inches" />
 											</li>
 										</ul>
 										<div class="description">
@@ -414,6 +414,48 @@
 										</div>
 
 									</fieldset>
+									
+									<fieldset id="spout-1" class="cloneSpout hidden">
+										<legend>
+											Spout 1
+										</legend>
+										<ul id="spout-1-type" class="field-type-radio field-name-spout-type">
+											<li>
+												<input type="radio" class="required spout-type" id="spout-1-type-0" name="spout-1-type" value="flag-bag" />
+												<label for="spout-1-type-0">Flag bag</label>
+											</li>
+											<li>
+												<input type="radio" class="required spout-type" id="spout-1-type-1" name="spout-1-type" value="4-sided-bag" />
+												<label for="spout-1-type-1">4 sided bag</label>
+											</li>
+											<li>
+												<input type="radio" class="required spout-type" id="spout-1-type-2" name="spout-1-type" value="can-jar" />
+												<label for="spout-1-type-2">Can or Jar</label>
+											</li>
+										</ul>
+										<div class="description">
+											<p>
+												Please enter each spout that you require by choosing the spout type and then entering the size of the bags to be filled in inches.
+											</p>
+										</div>
+										<ul id="spout-1-dimensions" class="field-type-textfield field-name-dimensions">
+											<li class="spout-width-inches">
+												<label>Width in inches</label>
+												<input type="text" id="spout-1-width-inches" class="required number" name="width-inches" />
+											</li>
+											<li class="spout-height-inches">
+												<label>Height in inches</label>
+												<input type="text" id="spout-1-height-inches" class="required number" name="height-inches" />
+											</li>
+											<li class="spout-diameter-inches">
+												<label>Diameter in inches</label>
+												<input type="text" id="spout-1-diameter-inches" class="required number" name="height-inches" />
+											</li>
+										</ul>
+
+									</fieldset>
+									<input type="button" id="btnAdd" value="add another spout" class="hidden" />
+									<input type="button" id="btnDel" value="remove spout" class="hidden" />
 								</div>
 							</div>
 							<div id="step-5">
@@ -465,7 +507,8 @@
 
 		<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 		<script>
-			var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']]; ( function(d, t) {
+			var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']];
+			( function(d, t) {
 					var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
 					g.src = ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
 					s.parentNode.insertBefore(g, s)
