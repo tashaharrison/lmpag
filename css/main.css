@@ -368,11 +368,16 @@ ul.field-type-radio > li {
 	margin-left: 14px;
 }
 .field-type-radio input[type="radio"]:checked+label {
-	border:#090 2px solid;
-	background-color:rgb(235, 255, 234);
+	border: #090 2px solid;
+	background-color: rgb(235, 255, 234);
 }
 .field-type-radio input[type="radio"]:checked+label .accessories-image {
     border: 1px solid #B3B3B3 !important;
+}
+#field-name-spout .field-type-radio label {
+	margin-top: -32px;
+    padding-bottom: 12px;
+    padding-left: 35px;
 }
 
 /* 
