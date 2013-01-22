@@ -161,13 +161,13 @@ form#logical-machines-price-accesory-guide {
 #sidebar .s-5.swh.ssdf.spout.front,
 #sidebar .s-6.swh.ssdf.spout.front,
 #sidebar .s-7.swh.ssdf.spout.front {
-    background-position: 0 0;	
+    background-position: -1400px 0;	
 }
 #sidebar .s-4.swh.sssdf.spout.front,
 #sidebar .s-5.swh.sssdf.spout.front,
 #sidebar .s-6.swh.sssdf.spout.front,
 #sidebar .s-7.swh.sssdf.spout.front {
-    background-position: 0 0;	
+    background-position: -2100px 0;	
 }
 
 #sidebar .s-4.swh.ssdf.side,
@@ -207,17 +207,17 @@ form#logical-machines-price-accesory-guide {
 #sidebar .s-7.lwh.lssdf.front {
     background-position: -1054px 0;	
 }
-#sidebar .s-4.lwh.lsdf.spout.front
+#sidebar .s-4.lwh.lsdf.spout.front,
 #sidebar .s-5.lwh.lsdf.spout.front,
 #sidebar .s-6.lwh.lsdf.spout.front,
 #sidebar .s-7.lwh.lsdf.spout.front {
-    background-position: 0 0;	
+    background-position: -1740px 11px;	
 }
 #sidebar .s-4.lwh.lssdf.spout.front,
 #sidebar .s-5.lwh.lssdf.spout.front,
 #sidebar .s-6.lwh.lssdf.spout.front,
 #sidebar .s-7.lwh.lssdf.spout.front {
-    background-position: 0 0;	
+    background-position: -2454px 0;	
 }
 
 #sidebar .s-4.lwh.lsdf.side,
