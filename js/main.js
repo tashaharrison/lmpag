@@ -8,22 +8,20 @@ $(document)
 					var strSpoutWidthFieldValue = '<label for="spout-2-width-inches">Width in inches</label><input type="text" id="spout-2-width-inches" class="required number" name="width-inches" />';
 					var strSpoutHeightFieldValue = '<label for="spout-2-height-inches">Height in inches</label><input type="text" id="spout-2-height-inches" class="required number" name="height-inches" />';
 					var strSpoutDiameterFieldValue = '<label for="spout-2-diameter-inches">Diameter in inches</label><input type="text" id="spout-2-diameter-inches" class="required number" name="height-inches" />';
-					var strSmallStdDischargeFunnelValue = '<li><input type="radio" id="small-standard-discharge-funnel" name="discharge-funnel" value="small-standard-discharge-funnel" checked="checked" /><label for="small-standard-discharge-funnel" class="clearfix"><h4>Small Standard Discharge Funnel</h4><div id="small-standard-discharge-funnel-image" class="accessories-image ir">Small Standard Discharge Funnel image</div><p>This is the standard funnel for use with the small weigh hopper. It is practical for most free-flowing materials.</p><p class="clear"><b>Price: </b>included on standard S-4</p></label></li>';
-					var strSmallSteepDischargeFunnelValue = '<li><input type="radio" id="small-steep-discharge-funnel" name="discharge-funnel" value="small-steep-funnel" /><label for="small-steep-discharge-funnel" class="clearfix"><h4>Small Steep-Sided Discharge Funnel</h4><div id="small-steep-discharge-funnel-image" class="accessories-image ir">Small Steep-Sided Discharge image</div><p>This steep sided funnel is used for fine powdered materials such as flour or other products that can stick to metal surfaces.</p><p class="clear"><b>Price: </b>$125 upcharge</p></label></li>';
-					var strLargeStdDischargeFunnelValue = '<li><input type="radio" id="large-standard-discharge-funnel" name="discharge-funnel" value="large-standard-discharge-funnel" checked="checked" /><label for="large-standard-discharge-funnel" class="clearfix"><h4>Large Standard Discharge Funnel</h4><div id="large-standard-discharge-funnel-image" class="accessories-image ir">Large Standard Discharge Funnel image</div><p>This is the standard funnel for use with the large weigh hopper. It works best with free flowing products.</p><p class="clear"><b>Price: </b>$150</p></label></li>';
-					var strLargeSteepDischargeFunnelValue = '<li><input type="radio" id="large-steep-discharge-funnel" name="discharge-funnel" value="large-steep-funnel" /><label for="large-steep-discharge-funnel" class="clearfix"><h4>Large Steep-Sided Discharge Funnel</h4><div id="large-steep-discharge-funnel-image" class="accessories-image ir">Large Steep-Sided Discharge image</div><p>This steep sided funnel is used for fine powdered materials such as flour or other products that can stick to metal surfaces.</p><p class="clear"><b>Price: </b>$400 upcharge</p></label></li>';
 
 					// remove fallback form elements
 					$(
-							'.clonedInput:not(:first-child), #spout-1-dimensions > *,#js-warning, .field-name-discharge-funnel>*')
+							'.clonedInput:not(:first-child), #spout-1-dimensions > *,#js-warning, .default-discharge-funnel')
 							.remove();
-					$('.machine-model-description').not('.machine-model-description:first').hide();
+					$('.machine-model-description').not(
+							'.machine-model-description:first').hide();
 					// insert the 'add another spout' button
 					$('#edit-field-spout').append(strAddSpoutButton);
 					// Insert the default content in field-name-discharge-funnel
-					$('.field-name-discharge-funnel').append(
-							strSmallStdDischargeFunnelValue
-									+ strSmallSteepDischargeFunnelValue);
+					$('.large-discharge-funnel').hide();
+					$('#small-standard-discharge-funnel').prop('checked', true);
+					$('.small-discharge-funnel, .large-discharge-funnel')
+							.removeClass('hidden');
 
 					// Add a waypoint to the sidebar
 					var mi_container = $('#sidebar');
@@ -73,54 +71,54 @@ $(document)
 										machineImageClass = 's-7';
 										break;
 									case 'small-weight-hopper':
-										$('.field-name-discharge-funnel > *')
-												.remove();
-										$('.field-name-discharge-funnel')
-												.append(
-														strSmallStdDischargeFunnelValue
-																+ strSmallSteepDischargeFunnelValue);
+										$('.small-discharge-funnel')
+												.show()
+												.find(
+														'#small-standard-discharge-funnel')
+												.prop('checked', true);
+										$('.large-discharge-funnel').hide()
+												.find('input').prop('checked',
+														false);
 										machineImage
 												.removeClass('swh lwh ssdf sssdf lsdf lssdf');
 										machineImageClass = 'swh ssdf';
-										radioSelect();
 										break;
 									case 'large-weight-hopper':
-										$('.field-name-discharge-funnel > *')
-												.remove();
-										$('.field-name-discharge-funnel')
-												.append(
-														strLargeStdDischargeFunnelValue
-																+ strLargeSteepDischargeFunnelValue);
+										$('.large-discharge-funnel')
+												.show()
+												.find(
+														'#large-standard-discharge-funnel')
+												.prop('checked', true);
+										$('.small-discharge-funnel').hide()
+												.find('input').prop('checked',
+														false);
 										machineImage
 												.removeClass('swh lwh ssdf sssdf lsdf lssdf');
 										machineImageClass = 'lwh lsdf';
-										radioSelect();
 										break;
 									case 'small-standard-discharge-funnel':
 										machineImage
-										.removeClass('ssdf sssdf lsdf lssdf');
+												.removeClass('ssdf sssdf lsdf lssdf');
 										machineImageClass = 'ssdf';
 										break;
 									case 'small-steep-funnel':
 										machineImage
-										.removeClass('ssdf sssdf lsdf lssdf');
+												.removeClass('ssdf sssdf lsdf lssdf');
 										machineImageClass = 'sssdf';
 										break;
 									case 'large-standard-discharge-funnel':
 										machineImage
-										.removeClass('ssdf sssdf lsdf lssdf');
+												.removeClass('ssdf sssdf lsdf lssdf');
 										machineImageClass = 'lsdf';
 										break;
 									case 'large-steep-funnel':
 										machineImage
-										.removeClass('ssdf sssdf lsdf lssdf');
+												.removeClass('ssdf sssdf lsdf lssdf');
 										machineImageClass = 'lssdf';
 										break;
 
 									return machineImageClass;
 								}
-
-
 
 								machineImage.addClass(machineImageClass);
 

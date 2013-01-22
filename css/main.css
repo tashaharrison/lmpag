@@ -277,6 +277,16 @@ form#logical-machines-price-accesory-guide {
 	width: 180px;
 	background-position: 6px -186px;	
 }
+#standard-discharge-funnel-image {
+	height: 180px;
+	width: 210px;
+	background-position: -166px -110px;	
+}
+#steep-discharge-funnel-image {
+	height: 112px;
+	width: 184px;
+	background-position: -166px 0px;
+}
 #small-standard-discharge-funnel-image {
 	height: 180px;
 	width: 210px;
