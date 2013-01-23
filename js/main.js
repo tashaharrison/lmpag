@@ -1,22 +1,25 @@
 $(document)
 		.ready(
 				function() {
+					
+					// Hide fallback content and delete button
+					$(
+							'.large-discharge-funnel,.field-name-dimensions li,#js-warning,#btnDel')
+							.hide();
 
-					// remove fallback form elements
+					// Remove fallback form elements
+					$('#js-warning').
 					$('.default-spout,#js-warning, .default-discharge-funnel')
 							.remove();
 					$('.machine-model-description').not(
 							'.machine-model-description:first').hide();
-
-					// Insert the default content in field-name-discharge-funnel
-					$(
-							'.large-discharge-funnel,.field-name-dimensions li,#btnDel')
-							.hide();
-					$('#small-standard-discharge-funnel').prop('checked', true);
+					// Remove .hidden class from js ready content
 					$(
 							'.small-discharge-funnel,.large-discharge-funnel,#btnAdd,#btnDel,.cloneSpout')
 							.removeClass('hidden');
-
+					//Check the default discharge funnel
+					$('#small-standard-discharge-funnel').prop('checked', true);
+					
 					// Add a waypoint to the sidebar
 					var mi_container = $('#sidebar');
 					// Remove the fixed positioning on the sidebar for fallback
