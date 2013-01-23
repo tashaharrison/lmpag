@@ -57,7 +57,6 @@ a.button:link {
   *padding-top: 2px; /* IE7 */
   *padding-bottom: 0px; /* IE7 */
   margin:4px;
-  margin-bottom: 16px;
 }
 button:hover,
 input[type="reset"]:hover,
