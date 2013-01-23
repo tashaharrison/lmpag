@@ -95,7 +95,7 @@
 					</div>
 					<form method="post" name="logical-machines-price-accesory-guide" id="logical-machines-price-accesory-guide" action="">
 						<div id="form-pages">
-							<div id="step-1">
+							<div id="step-1" class="step-container">
 								<div id="welcome-text">
 									<h2>Welcome to the Logical Machines
 									<br />
@@ -207,8 +207,9 @@
 											</div><!-- id="s-7-description" --> </label>
 									</li>
 								</ul>
+								<input class="step-submit next hidden" type="button" name="step-1-next" id="step-1-next" value="Next" />
 							</div><!-- id="step-1" -->
-							<div id="step-2">
+							<div id="step-2" class="step-container">
 								<h3>Select your Weigh Hopper</h3>
 								<p>
 									The <b>Weigh Hopper</b> is the scale portion of the unit which handles and weighs your products. Select a hopper by clicking its image.
@@ -243,8 +244,10 @@
 
 									</li>
 								</ul>
-							</div>
-							<div id="step-3">
+								<input class="step-submit prev hidden" type="button" name="step-2-prev" id="step-2-prev" value="Previous" />
+								<input class="step-submit next hidden" type="button" name="step-2-next" id="step-2-next" value="Next" />
+							</div><!-- id="step-2" -->
+							<div id="step-3" class="step-container">
 								<h3>Select your Discharge Funnel</h3>
 								<p>
 									The <b>Discharge Funnel</b> directs your product from the weigh hopper to the spout. Select a funnel by clicking its image.
@@ -344,8 +347,10 @@
 									</li>
 
 								</ul>
-							</div>
-							<div id="step-4">
+								<input class="step-submit prev hidden" type="button" name="step-3-prev" id="step-3-prev" value="Previous" />
+								<input class="step-submit next hidden" type="button" name="step-3-next" id="step-3-next" value="Next" />
+							</div><!-- id="step-3" -->
+							<div id="step-4" class="step-container">
 								<h3>Select your Spout</h3>
 								<p>
 									The spout attaches to the bottom of the discharge funnel and directs the materials into your container.
@@ -566,23 +571,22 @@
 									<input type="button" id="btnAdd" value="add another spout" class="hidden" />
 									<input type="button" id="btnDel" value="remove spout" class="hidden" />
 								</div>
-							</div>
-							<div id="step-5">
-								&nbsp;
+								<input class="step-submit prev hidden" type="button" name="step-4-prev" id="step-4-prev" value="Previous" />
+								<input class="step-submit next hidden" type="button" name="step-4-next" id="step-4-next" value="Next" />
+							</div><!-- id="step-4" -->
+							<div id="step-5" class="step-container">
+								<div id="submit_buttons">
+									<input class="step-submit prev hidden" type="button" name="step-5-prev" id="step-5-prev" value="Previous" />
+									<button type="submit">
+										Submit
+									</button>
+								</div>
 							</div>
 						</div>
-						<div id="hidden-accessories">
+						<div id="hidden-accessories-page">
 							&nbsp;
 						</div>
 
-						<div id="submit_buttons">
-							<button type="reset">
-								Reset
-							</button>
-							<button type="submit">
-								Submit
-							</button>
-						</div>
 					</form>
 				</article>
 				<aside id="sidebar" class="sticky sidebar-sticky-position clearfix">

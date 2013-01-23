@@ -4,7 +4,7 @@ $(document)
 
 					// Hide fallback content and delete button
 					$(
-							'.large-discharge-funnel,.field-name-dimensions li,#js-warning,#btnDel')
+							'.large-discharge-funnel,.field-name-dimensions li,#js-warning,#btnDel,#step-2,#step-3,#step-4,#step-5,#hidden-accessories-page')
 							.hide();
 
 					// Remove fallback form elements
@@ -14,7 +14,7 @@ $(document)
 							'.machine-model-description:first').hide();
 					// Remove .hidden class from js ready content
 					$(
-							'.small-discharge-funnel,.large-discharge-funnel,#btnAdd,#btnDel,#btnFront,#btnSide,.cloneSpout')
+							'.small-discharge-funnel,.large-discharge-funnel,#btnAdd,#btnDel,#btnFront,#btnSide,.cloneSpout,.step-submit')
 							.removeClass('hidden');
 					// Check the default discharge funnel
 					$('#small-standard-discharge-funnel').prop('checked', true);
@@ -144,12 +144,10 @@ $(document)
 												.show();
 										break;
 									case 'Front':
-										machineImage
-										.toggleClass('front side');
+										machineImage.toggleClass('front side');
 										break;
 									case 'Side':
-										machineImage
-										.toggleClass('front side');
+										machineImage.toggleClass('front side');
 										break;
 
 									return machineImageClass;
@@ -161,6 +159,15 @@ $(document)
 
 					}
 					radioSelect();
+
+					$('.step-submit').click(function() {
+						var stepContainer = $(this).closest('.step-container');
+						if ($(this).is('.next')) {
+							stepContainer.hide().next().show();
+						} else {
+							stepContainer.hide().prev().show();
+						}
+					});
 
 					$('#btnAdd')
 							.click(
