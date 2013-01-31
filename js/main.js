@@ -14,15 +14,15 @@ $(document)
 							'.machine-model-description:first').hide();
 					// Remove .hidden class from js ready content
 					$(
-							'.small-discharge-funnel,.large-discharge-funnel,#btnAdd,#btnDel,#btnFront,#btnSide,.cloneSpout,.step-submit')
+							'.small-discharge-funnel,.large-discharge-funnel,#btnAdd,#btnDel,#btnFront,#btnSide,.cloneSpout,.step-submit,#sidebar')
 							.removeClass('hidden');
 					// Check the default discharge funnel
 					$('#small-standard-discharge-funnel').prop('checked', true);
 
 					// Add a waypoint to the sidebar
 					var mi_container = $('#sidebar');
-					// Remove the fixed positioning on the sidebar for fallback
-					mi_container.removeClass('sticky sidebar-sticky-position');
+					// Remove the no-sidebar class for fallback
+					$('#main-content').removeClass('no-sidebar');
 					mi_container.waypoint(function(direction) {
 						mi_container
 								.toggleClass('sticky', direction === 'down');
@@ -156,11 +156,25 @@ $(document)
 
 					$('.step-submit').click(function() {
 						var stepContainer = $(this).closest('.step-container');
+						var nextContainerID = stepContainer.next().attr('id');
+						var prevContainerID = stepContainer.prev().attr('id');
+						$('#pag-navigation a').removeClass('active');
+
 						if ($(this).is('.next')) {
 							stepContainer.hide().next().show();
+							$('#pag-navigation a[href*=' + nextContainerID + ']').addClass('active');
 						} else {
 							stepContainer.hide().prev().show();
+							$('#pag-navigation a[href*=' + prevContainerID + ']').addClass('active');
 						}
+					});
+					
+					$('#pag-navigation a').click(function(){
+						var stepValue = $(this).attr('href');
+						$('#pag-navigation a').removeClass('active');
+						$(this).addClass('active');
+						$('.step-container').hide();
+						$(stepValue).show();
 					});
 
 					$('#btnAdd')

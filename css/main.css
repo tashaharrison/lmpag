@@ -108,17 +108,68 @@ h2 {
  * footer#footer {}
  */
 
-#navigation, #main-content, #sidebar {
+#main-navigation, #main-content, #sidebar,#pag-navigation {
     float:left;
 }
 
+#section-content {
+	border: 1px solid #911936;
+	float: left;
+	padding: 10px;
+}
+
 #main-content {  
-    width: 522px; 
+    width: 346px; 
     overflow: hidden;
     position: relative;
 }
+#main-content.no-sidebar {
+	width: 635px; 
+}
 
 form#logical-machines-price-accesory-guide {
+}
+
+/*
+ * Price & Accesory Guide Navigation
+ */
+#pag-navigation {
+	margin-left: 10px;
+}
+#pag-navigation ol {
+	margin: 0;
+	padding: 0;
+}
+#pag-navigation ol li {
+text-align: center;
+display: table;
+}
+#pag-navigation ol li a {
+	border-bottom: 1px solid #911936;
+	border-left: 1px solid #911936;
+	border-top: 1px solid #911936;
+	-webkit-border-radius: 20px 0px 0px 20px;
+        border-radius: 20px 0px 0px 20px;
+    color: #AAAAAA;
+	font-size: 1.2em;
+	font-weight: bold;
+	line-height: 1;
+	display: table-cell; 
+	vertical-align: middle;
+	height: 100px;
+	width: 100px;
+	padding: 6px;
+	margin-bottom:-1px;
+}
+#pag-navigation ol li a.active,
+#pag-navigation ol li a.active:hover {
+	color: #0c4b81;
+}
+#pag-navigation ol li a:hover {
+	color: #090;
+}
+#pag-navigation ol li a .list-no {
+	font-size: 2.4em;
 }
 
 /*
@@ -129,16 +180,13 @@ form#logical-machines-price-accesory-guide {
 	text-align: center;
 	padding-top: 20px;
 }
-.sticky{
+.sticky {
 	position: fixed;
-	left: 610px;
+	left: 654px;
 	top:0;
 }
-.sidebar-sticky-position {
-	top: 116px;
-}
 #machine-image {
-    height: 454px;
+    height: 452px;
     position:relative;
     width: 260px;
 }
