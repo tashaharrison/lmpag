@@ -44,27 +44,31 @@ $(document)
 									case 'S-4':
 										$('.machine-model-description').hide();
 										$('#s-4-description').show();
-										machineImage
-												.removeClass('s-4 s-5 s-6 s-7').addClass('s-4');
+										machineImage.removeClass(
+												's-4 s-5 s-6 s-7').addClass(
+												's-4');
 
 										break;
 									case 'S-5':
 										$('.machine-model-description').hide();
 										$('#s-5-description').show();
-										machineImage
-												.removeClass('s-4 s-5 s-6 s-7').addClass('s-5');
+										machineImage.removeClass(
+												's-4 s-5 s-6 s-7').addClass(
+												's-5');
 										break;
 									case 'S-6':
 										$('.machine-model-description').hide();
 										$('#s-6-description').show();
-										machineImage
-												.removeClass('s-4 s-5 s-6 s-7').addClass('s-6');
+										machineImage.removeClass(
+												's-4 s-5 s-6 s-7').addClass(
+												's-6');
 										break;
 									case 'S-7':
 										$('.machine-model-description').hide();
 										$('#s-7-description').show();
-										machineImage
-												.removeClass('s-4 s-5 s-6 s-7').addClass('s-7');
+										machineImage.removeClass(
+												's-4 s-5 s-6 s-7').addClass(
+												's-7');
 										break;
 									case 'small-weight-hopper':
 										$('.small-discharge-funnel')
@@ -75,8 +79,9 @@ $(document)
 										$('.large-discharge-funnel').hide()
 												.find('input').prop('checked',
 														false);
-										machineImage
-												.removeClass('smwh lrgwh std-fnl steep-fnl').addClass('smwh std-fnl');
+										machineImage.removeClass(
+												'smwh lrgwh std-fnl steep-fnl')
+												.addClass('smwh std-fnl');
 										break;
 									case 'large-weight-hopper':
 										$('.large-discharge-funnel')
@@ -87,21 +92,25 @@ $(document)
 										$('.small-discharge-funnel').hide()
 												.find('input').prop('checked',
 														false);
-										machineImage
-												.removeClass('smwh lrgwh std-fnl steep-fnl').addClass('lrgwh std-fnl');
+										machineImage.removeClass(
+												'smwh lrgwh std-fnl steep-fnl')
+												.addClass('lrgwh std-fnl');
 										break;
 									case 'small-steep-funnel':
 									case 'large-steep-funnel':
-										machineImage
-												.removeClass('std-fnl steep-fnl').addClass('steep-fnl');
+										machineImage.removeClass(
+												'std-fnl steep-fnl').addClass(
+												'steep-fnl');
 										break;
 									case 'small-standard-discharge-funnel':
 									case 'large-standard-discharge-funnel':
-										machineImage
-												.removeClass('std-fnl steep-fnl').addClass('std-fnl');
+										machineImage.removeClass(
+												'std-fnl steep-fnl').addClass(
+												'std-fnl');
 										break;
 									case 'flag-bag':
-										machineImage.find('.spout').removeClass('hidden');
+										machineImage.find('.spout')
+												.removeClass('hidden');
 										spoutContainer.find(
 												'.field-name-dimensions li')
 												.hide();
@@ -109,7 +118,8 @@ $(document)
 												'.spout-width-inches').show();
 										break;
 									case '4-sided-bag':
-										machineImage.find('.spout').removeClass('hidden');
+										machineImage.find('.spout')
+												.removeClass('hidden');
 										spoutContainer.find(
 												'.field-name-dimensions li')
 												.hide();
@@ -119,7 +129,8 @@ $(document)
 												.show();
 										break;
 									case 'can-jar':
-										machineImage.find('.spout').removeClass('hidden');
+										machineImage.find('.spout')
+												.removeClass('hidden');
 										spoutContainer.find(
 												'.field-name-dimensions li')
 												.hide();
@@ -128,16 +139,17 @@ $(document)
 												.show();
 										break;
 									case 'Front':
-										machineImage.removeClass('side').addClass('front');
+										machineImage.removeClass('side')
+												.addClass('front');
 										break;
 									case 'Side':
-										machineImage.removeClass('front').addClass('side');
+										machineImage.removeClass('front')
+												.addClass('side');
 										break;
 
-								}
+									}
 
-
-							});
+								});
 
 					}
 					radioSelect();
