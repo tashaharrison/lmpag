@@ -39,36 +39,32 @@ $(document)
 											.closest('fieldset');
 									var fieldValue = fieldID.val();
 									var machineImage = $('#machine-image');
-									var machineImageClass = '';
 
 									switch (fieldValue) {
 									case 'S-4':
 										$('.machine-model-description').hide();
 										$('#s-4-description').show();
 										machineImage
-												.removeClass('s-4 s-5 s-6 s-7');
-										machineImageClass = 's-4';
+												.removeClass('s-4 s-5 s-6 s-7').addClass('s-4');
+
 										break;
 									case 'S-5':
 										$('.machine-model-description').hide();
 										$('#s-5-description').show();
 										machineImage
-												.removeClass('s-4 s-5 s-6 s-7');
-										machineImageClass = 's-5';
+												.removeClass('s-4 s-5 s-6 s-7').addClass('s-5');
 										break;
 									case 'S-6':
 										$('.machine-model-description').hide();
 										$('#s-6-description').show();
 										machineImage
-												.removeClass('s-4 s-5 s-6 s-7');
-										machineImageClass = 's-6';
+												.removeClass('s-4 s-5 s-6 s-7').addClass('s-6');
 										break;
 									case 'S-7':
 										$('.machine-model-description').hide();
 										$('#s-7-description').show();
 										machineImage
-												.removeClass('s-4 s-5 s-6 s-7');
-										machineImageClass = 's-7';
+												.removeClass('s-4 s-5 s-6 s-7').addClass('s-7');
 										break;
 									case 'small-weight-hopper':
 										$('.small-discharge-funnel')
@@ -80,8 +76,7 @@ $(document)
 												.find('input').prop('checked',
 														false);
 										machineImage
-												.removeClass('swh lwh ssdf sssdf lsdf lssdf');
-										machineImageClass = 'swh ssdf';
+												.removeClass('smwh lrgwh std-fnl steep-fnl').addClass('smwh std-fnl');
 										break;
 									case 'large-weight-hopper':
 										$('.large-discharge-funnel')
@@ -93,31 +88,20 @@ $(document)
 												.find('input').prop('checked',
 														false);
 										machineImage
-												.removeClass('swh lwh ssdf sssdf lsdf lssdf');
-										machineImageClass = 'lwh lsdf';
-										break;
-									case 'small-standard-discharge-funnel':
-										machineImage
-												.removeClass('ssdf sssdf lsdf lssdf');
-										machineImageClass = 'ssdf';
+												.removeClass('smwh lrgwh std-fnl steep-fnl').addClass('lrgwh std-fnl');
 										break;
 									case 'small-steep-funnel':
-										machineImage
-												.removeClass('ssdf sssdf lsdf lssdf');
-										machineImageClass = 'sssdf';
-										break;
-									case 'large-standard-discharge-funnel':
-										machineImage
-												.removeClass('ssdf sssdf lsdf lssdf');
-										machineImageClass = 'lsdf';
-										break;
 									case 'large-steep-funnel':
 										machineImage
-												.removeClass('ssdf sssdf lsdf lssdf');
-										machineImageClass = 'lssdf';
+												.removeClass('std-fnl steep-fnl').addClass('steep-fnl');
+										break;
+									case 'small-standard-discharge-funnel':
+									case 'large-standard-discharge-funnel':
+										machineImage
+												.removeClass('std-fnl steep-fnl').addClass('std-fnl');
 										break;
 									case 'flag-bag':
-										machineImageClass = 'spout';
+										machineImage.find('.spout').removeClass('hidden');
 										spoutContainer.find(
 												'.field-name-dimensions li')
 												.hide();
@@ -125,7 +109,7 @@ $(document)
 												'.spout-width-inches').show();
 										break;
 									case '4-sided-bag':
-										machineImageClass = 'spout';
+										machineImage.find('.spout').removeClass('hidden');
 										spoutContainer.find(
 												'.field-name-dimensions li')
 												.hide();
@@ -135,7 +119,7 @@ $(document)
 												.show();
 										break;
 									case 'can-jar':
-										machineImageClass = 'spout';
+										machineImage.find('.spout').removeClass('hidden');
 										spoutContainer.find(
 												'.field-name-dimensions li')
 												.hide();
@@ -144,16 +128,14 @@ $(document)
 												.show();
 										break;
 									case 'Front':
-										machineImage.toggleClass('front side');
+										machineImage.removeClass('side').addClass('front');
 										break;
 									case 'Side':
-										machineImage.toggleClass('front side');
+										machineImage.removeClass('front').addClass('side');
 										break;
 
-									return machineImageClass;
 								}
 
-								machineImage.addClass(machineImageClass);
 
 							});
 

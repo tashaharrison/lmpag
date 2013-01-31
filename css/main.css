@@ -138,12 +138,179 @@ form#logical-machines-price-accesory-guide {
 	top: 116px;
 }
 #machine-image {
-    background-image: url(../img/s4-sprite.jpg);
-    background-repeat: no-repeat;
-    background-color: transparent;
-    height: 554px;
-    width: 350px;
+    height: 454px;
+    position:relative;
+    width: 260px;
 }
+#machine-image > * {
+	background-image:url("../img/sprite.png");
+	background-repeat:no-repeat;
+	background-color:transparent;
+	position:absolute;
+}
+.s-4.front .machine-bg {
+	width: 260px;
+	height: 454px;
+	background-position: -10px -10px;
+	top: 5px;
+	left: 4px;
+}
+.s-4.side .machine-bg {
+	width: 260px;
+	height: 454px;
+	background-position: -10px -465px;
+	top: 5px;
+	left: 1px;
+}
+/* Small weight hopper front */
+.s-4.front.smwh .weight-hopper {
+	width: 204px;
+	height: 67px;
+	background-position: -10px -1606px;
+	top: 139px;
+	left: 52px;
+}
+.s-4.front.smwh.std-fnl .funnel {
+	width: 209px;
+	height: 52px;
+	background-position: -10px -1683px;
+	top: 191px;
+	left: 47px;
+}
+.s-4.front.smwh.std-fnl .spout {
+	width: 186px;
+	height: 39px;
+	background-position: -10px -1859px;
+	top: 232px;
+	left: 70px;
+}
+.s-4.front.smwh.steep-fnl .funnel {
+	width: 206px;
+	height: 83px;
+	background-position: -10px -914px;
+	top: 191px;
+	left: 50px;
+}
+.s-4.front.smwh.steep-fnl .spout {
+	width: 186px;
+	height: 39px;
+	background-position: -10px -1859px;
+	top: 260px;
+	left: 70px;
+}
+/* Small weight hopper side */
+.s-4.side.smwh .weight-hopper {
+	width: 224px;
+	height: 50px;
+	background-position: -10px -1745px;
+	top: 152px;
+	left: 33px;
+}
+.s-4.side.smwh.std-fnl .funnel {
+	width: 232px;
+	height: 44px;
+	background-position: -10px -1805px;
+	top: 192px;
+	left: 24px;
+}
+.s-4.side.smwh.std-fnl .spout {
+	width: 229px;
+	height: 28px;
+	background-position: -10px -1908px;
+	top: 228px;
+	left: 27px;
+}
+.s-4.side.smwh.steep-fnl .funnel {
+	width: 233px;
+	height: 72px;
+	background-position: -10px -1443px;
+	top: 199px;
+	left: 23px;
+}
+.s-4.side.smwh.steep-fnl .spout {
+	width: 229px;
+	height: 28px;
+	background-position: -10px -1908px;
+	top: 263px;
+	left: 28px;
+}
+/* Large weight hopper front */
+.s-4.front.lrgwh .weight-hopper {
+	width: 212px;
+	height: 82px;
+	background-position: -10px -1007px;
+	top: 144px;
+	left: 44px;
+}
+.s-4.front.lrgwh.std-fnl .funnel {
+	width: 214px;
+	height: 76px;
+	background-position: -10px -1188px;
+	top: 217px;
+	left: 42px;
+}
+.s-4.front.lrgwh.std-fnl .spout {
+	width: 186px;
+	height: 39px;
+	background-position: -10px -1859px;
+	top: 280px;
+	left: 69px;
+}
+.s-4.front.lrgwh.steep-fnl .funnel {
+	width: 214px;
+	height: 76px;
+	background-position: -10px -1274px;
+	top: 217px;
+	left: 42px;
+}
+.s-4.front.lrgwh.steep-fnl .spout {
+	width: 186px;
+	height: 39px;
+	background-position: -10px -1859px;
+	top: 280px;
+	left: 69px;
+}
+/* Large weight hopper side */
+.s-4.side.lrgwh .weight-hopper {
+	width: 250px;
+	height: 79px;
+	background-position: -10px -1099px;
+	top: 144px;
+	left: 7px;
+}
+.s-4.side.lrgwh.std-fnl .funnel {
+	width: 250px;
+	height: 71px;
+	background-position: -10px -1525px;
+	top: 204px;
+	left: 8px;
+}
+.s-4.side.lrgwh.std-fnl .spout {
+	width: 229px;
+	height: 28px;
+	background-position: -10px -1908px;
+	top: 267px;
+	left: 15px;
+}
+.s-4.side.lrgwh.steep-fnl .funnel {
+	width: 250px;
+	height: 73px;
+	background-position: -10px -1360px;
+	top: 204px;
+	left: 8px;
+}
+.s-4.side.lrgwh.steep-fnl .spout {
+	width: 229px;
+	height: 28px;
+	background-position: -10px -1908px;
+	top: 270px;
+	left: 19px;
+}
+
+
+/*
+ * Code for having the full image for each variation
+ *
 
 #sidebar .s-4.swh.ssdf.front,
 #sidebar .s-5.swh.ssdf.front
@@ -254,13 +421,14 @@ background-position: -700px -555px;
 #sidebar .s-7 {
     background-position: 0 0;	
 }
+*/
 
 /*
  * Accessories images
  */
 
 .accessories-image {
-    background: url(../img/accessories-sprite.jpg) no-repeat 0 0 transparent;
+    background: url("../img/accessories-sprite.jpg") no-repeat 0 0 transparent;
     border:1px solid #FFFFFF !important;
     float: left;
     height:100px;
