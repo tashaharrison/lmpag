@@ -4,11 +4,11 @@ $(document)
 
 					// Hide fallback content and delete button
 					$(
-							'.large-discharge-funnel,.field-name-dimensions li,#js-warning,#btnDel,#step-2,#step-3,#step-4,#step-5,#hidden-accessories-page')
+							'.large-discharge-funnel,.field-name-dimensions li,#btnDel,#step-2,#step-3,#step-4,#step-5,#hidden-accessories-page')
 							.hide();
 
 					// Remove fallback form elements
-					$('.default-spout,#js-warning, .default-discharge-funnel')
+					$('.default-spout,.default-discharge-funnel')
 							.remove();
 					$('.machine-model-description').not(
 							'.machine-model-description:first').hide();
@@ -256,10 +256,9 @@ $(document)
 
 										// business rule: you can only add 5
 										// names
-										/*
-										 * if (newNum == 5)
-										 * $('#btnAdd').attr('disabled','disabled');
-										 */
+										  if (newNum == 3)
+										  $('#btnAdd').hide();
+										 
 										radioSelect();
 									});
 
@@ -271,7 +270,8 @@ $(document)
 						// remove the last element
 
 						// enable the "add" button
-						// $('#btnAdd').attr('disabled', '');
+						if (num == 3)
+						$('#btnAdd').show();
 
 						// if only one element remains, disable the "remove"
 						// button
