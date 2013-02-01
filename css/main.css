@@ -414,7 +414,23 @@ form#logical-machines-price-accesory-guide {
 }
 #step-5 {
 }
-#hidden-accessories {
+.bottom {
+	z-index:-10;
+}
+.step-container {
+	background-color: white;
+}
+#hidden-accessories-page {
+	border: 1px solid #911936;
+	-webkit-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow:  3px 10px 10px 2px #555555;
+    box-shadow:  3px 10px 10px 2px #555555;
+	display: block;
+	left: 10px;
+	padding:10px;
+	position: absolute;
+	top: 10px;
 }
 #hidden-accessories-page-btn {
 	background: url("../img/sprite.png") no-repeat -238px -914px transparent;
@@ -423,6 +439,9 @@ form#logical-machines-price-accesory-guide {
 	position: absolute;
 	right: 0;
 	width: 26px;
+}
+#btnClose {
+	float: right;
 }
 /*
  * Form styles

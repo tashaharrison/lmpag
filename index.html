@@ -630,8 +630,8 @@
 								</div>
 							</div>
 						</div>
-						<div id="hidden-accessories-page">
-							<input type="button" id="btnClose" value="Close" class="hidden" />
+						<div id="hidden-accessories-page" name="hidden-accessories-page"  class="step-container bottom">
+							<input type="button" id="btnClose" value="X" class="hidden" />
 							<h3>Accessory Page</h3>
 							<input type="button" id="btnContinue" value="Continue" class="hidden" />
 						</div>
@@ -683,8 +683,7 @@
 
 		<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 		<script>
-			var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']];
-			( function(d, t) {
+			var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']]; ( function(d, t) {
 					var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
 					g.src = ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
 					s.parentNode.insertBefore(g, s)

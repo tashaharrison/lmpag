@@ -10,11 +10,12 @@ $(document)
 					// Remove fallback form elements
 					$('.default-spout,.default-discharge-funnel,#btnQuote')
 							.remove();
+					$('.bottom').removeClass('bottom');
 					$('.machine-model-description').not(
 							'.machine-model-description:first').hide();
 					// Remove .hidden class from js ready content
 					$(
-							'.small-discharge-funnel,.large-discharge-funnel,#btnAdd,#btnDel,#btnFront,#btnSide,.cloneSpout,.step-submit,#sidebar,#btnPrint,#btnEmail')
+							'.small-discharge-funnel,.large-discharge-funnel,#btnAdd,#btnDel,#btnFront,#btnSide,.cloneSpout,.step-submit,#sidebar,#btnPrint,#btnEmail,#btnClose,#btnContinue')
 							.removeClass('hidden');
 					// Check the default discharge funnel
 					$('#small-standard-discharge-funnel').prop('checked', true);
@@ -175,6 +176,13 @@ $(document)
 						$(this).addClass('active');
 						$('.step-container').hide();
 						$(stepValue).show();
+					});
+					
+					$('#hidden-accessories-page-btn').click(function(){
+						$('#hidden-accessories-page').show();
+					});
+					$('#btnClose,#btnContinue').click(function(){
+						$(this).closest('.step-container').hide();
 					});
 
 					$('#btnAdd')
