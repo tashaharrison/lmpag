@@ -543,6 +543,9 @@ ul.field-name-spout-type input[type="radio"]:checked + label .can-or-jar-spout {
 	height: 74px;
 	background-position: -10px -809px;
 }
+ul.field-name-spout-type {
+	margin: 0;
+}
 ul.field-name-spout-type label {
 	border: none;
 	display:inline;

@@ -117,6 +117,9 @@ $(document)
 												.hide();
 										spoutContainer.find(
 												'.spout-width-inches').show();
+										spoutContainer.find(
+										'.description p')
+										.html("Please enter the size of the bags to be filled in inches");
 										break;
 									case '4-sided-bag':
 										machineImage.find('.spout')
@@ -128,6 +131,9 @@ $(document)
 												.find(
 														'.spout-width-inches,.spout-height-inches')
 												.show();
+										spoutContainer.find(
+										'.description p')
+										.html("Please enter the size of the bags to be filled in inches");
 										break;
 									case 'can-jar':
 										machineImage.find('.spout')
@@ -138,6 +144,9 @@ $(document)
 										spoutContainer.find(
 												'.spout-diameter-inches')
 												.show();
+										spoutContainer.find(
+										'.description p')
+										.html("Please enter the size of the bags to be filled in inches");
 										break;
 									case 'Front':
 										machineImage.removeClass('side')
@@ -219,10 +228,12 @@ $(document)
 													},
 													'name' : newSpoutTypeID
 												}).prop('checked', false)
-
 										.next().attr('for', function(arr) {
 											return newSpoutTypeID + "-" + arr
 										});
+										newElem.find(
+										'.description p')
+										.html("Please enter the spout type spout that you require by clicking on the image above.");
 
 										newElem
 												.children(
