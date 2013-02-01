@@ -115,7 +115,7 @@
 			</nav>
 			<section id="section-content" class="clearfix">
 				<article id="main-content" class="clearfix no-sidebar">
-					<!-- <div id="js-warning"><p>Please note that because you have disabled Javascript in your browser or your browser doesn't support it, you will only receive yourquote once you have submitted the form.</p></div> -->
+					<!-- <div id="js-warning"><p>Please note that because you have disabled Javascript in your browser or your browser doesn't support it, you will only receive your quote once you have submitted the form.</p></div> -->
 					<form method="post" name="logical-machines-price-accesory-guide" id="logical-machines-price-accesory-guide" action="">
 						<div id="form-pages">
 							<div id="step-1" class="step-container" name="step-1">
@@ -241,7 +241,7 @@
 									<li>
 										<input type="radio" id="small-weight-hopper" name="weight-hopper" value="small-weight-hopper" checked="checked"/>
 										<label for="small-weight-hopper" class="clearfix"> <h4>Small Weigh Hopper</h4>
-											<div id="small-weight-hopper-image" class="accessories-image ir">
+											<div id="weigh-hopper-sml" class="accessories-image ir">
 												Small Weigh Hopper image
 											</div>
 											<p>
@@ -255,7 +255,7 @@
 									<li>
 										<input type="radio" id="large-weight-hopper" name="weight-hopper" value="large-weight-hopper" />
 										<label for="large-weight-hopper" class="clearfix"><h4>Large Weigh Hopper</h4>
-											<div id="large-weight-hopper-image" class="accessories-image ir">
+											<div id="weigh-hopper-lrg" class="accessories-image ir">
 												Large Weigh Hopper image
 											</div>
 											<p>
@@ -279,7 +279,7 @@
 									<li class="default-discharge-funnel">
 										<input type="radio" id="standard-discharge-funnel" name="discharge-funnel" value="standard-discharge-funnel" checked="checked" />
 										<label for="standard-discharge-funnel" class="clearfix"><h4>Standard Discharge Funnel</h4>
-											<div id="standard-discharge-funnel-image" class="accessories-image ir">
+											<div id="funnel-std" class="accessories-image ir">
 												Standard Discharge Funnel image
 											</div>
 											<p>
@@ -299,7 +299,7 @@
 									<li class="default-discharge-funnel">
 										<input type="radio" id="steep-discharge-funnel" name="discharge-funnel" value="steep-funnel" />
 										<label for="steep-discharge-funnel" class="clearfix"><h4>Steep-Sided Discharge Funnel</h4>
-											<div id="steep-discharge-funnel-image" class="accessories-image ir">
+											<div id="funnel-std" class="accessories-image ir">
 												Steep-Sided Discharge image
 											</div>
 											<p>
@@ -319,7 +319,7 @@
 									<li class="small-discharge-funnel hidden">
 										<input type="radio" id="small-standard-discharge-funnel" name="discharge-funnel" value="small-standard-discharge-funnel" />
 										<label for="small-standard-discharge-funnel" class="clearfix"><h4>Small Standard Discharge Funnel</h4>
-											<div id="small-standard-discharge-funnel-image" class="accessories-image ir">
+											<div id="funnel-sml-std" class="accessories-image ir">
 												Small Standard Discharge Funnel image
 											</div>
 											<p>
@@ -332,7 +332,7 @@
 									<li class="small-discharge-funnel hidden">
 										<input type="radio" id="small-steep-discharge-funnel" name="discharge-funnel" value="small-steep-funnel" />
 										<label for="small-steep-discharge-funnel" class="clearfix"><h4>Small Steep-Sided Discharge Funnel</h4>
-											<div id="small-steep-discharge-funnel-image" class="accessories-image ir">
+											<div id="funnel-sml-steep" class="accessories-image ir">
 												Small Steep-Sided Discharge image
 											</div>
 											<p>
@@ -345,7 +345,7 @@
 									<li class="large-discharge-funnel hidden">
 										<input type="radio" id="large-standard-discharge-funnel" name="discharge-funnel" value="large-standard-discharge-funnel" />
 										<label for="large-standard-discharge-funnel" class="clearfix"><h4>Large Standard Discharge Funnel</h4>
-											<div id="large-standard-discharge-funnel-image" class="accessories-image ir">
+											<div id="funnel-lg-std" class="accessories-image ir">
 												Large Standard Discharge Funnel image
 											</div>
 											<p>
@@ -358,7 +358,7 @@
 									<li class="large-discharge-funnel hidden">
 										<input type="radio" id="large-steep-discharge-funnel" name="discharge-funnel" value="large-steep-funnel" />
 										<label for="large-steep-discharge-funnel" class="clearfix"><h4>Large Steep-Sided Discharge Funnel</h4>
-											<div id="large-steep-discharge-funnel-image" class="accessories-image ir">
+											<div id="funnel-lg-steep" class="accessories-image ir">
 												Large Steep-Sided Discharge image
 											</div>
 											<p>
@@ -599,15 +599,41 @@
 							</div><!-- id="step-4" -->
 							<div id="step-5" class="step-container" name="step-5">
 								<div id="submit_buttons">
+									<h3>You Order Summary</h3>
+									<table>
+										<thead>
+											<tr>
+												<th>Item</th><th>Description</th><th>Price</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Model S-4</td><td>Standard with small weigh hopper and small discharge funnel</td><td>$6,150</td>
+											</tr>
+											<tr>
+												<td>Small weight hopper</td><td>Standard weigh hopper</td><td>$0</td>
+											</tr>
+											<tr>
+												<td>Small Funnel</td><td>Standard sized funnel</td><td>$0</td>
+											</tr>
+											<tr>
+												<td colspan="2">Total Price:</td><td>$6,150</td>
+											</tr>
+										</tbody>
+									</table>
 									<input class="step-submit prev hidden" type="button" name="step-5-prev" id="step-5-prev" value="Previous" />
-									<button type="submit">
+									<input type="button" id="btnPrint" value="Print Quote" class="hidden" />
+									<input type="button" id="btnEmail" value="Email Quote" class="hidden" />
+									<button type="submit" id="btnQuote" value="Calculate Quote">
 										Submit
 									</button>
 								</div>
 							</div>
 						</div>
 						<div id="hidden-accessories-page">
-							&nbsp;
+							<input type="button" id="btnClose" value="Close" class="hidden" />
+							<h3>Accessory Page</h3>
+							<input type="button" id="btnContinue" value="Continue" class="hidden" />
 						</div>
 
 					</form>
@@ -633,6 +659,7 @@
 						</div>
 					</div>
 				</aside>
+				<a href="#hidden-accessories-page" class="ir">Add Accessories</a>
 			</section>
 			<footer id="footer" class="clearfix clear">
 				<hr>

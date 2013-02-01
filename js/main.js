@@ -8,13 +8,13 @@ $(document)
 							.hide();
 
 					// Remove fallback form elements
-					$('.default-spout,.default-discharge-funnel')
+					$('.default-spout,.default-discharge-funnel,#btnQuote')
 							.remove();
 					$('.machine-model-description').not(
 							'.machine-model-description:first').hide();
 					// Remove .hidden class from js ready content
 					$(
-							'.small-discharge-funnel,.large-discharge-funnel,#btnAdd,#btnDel,#btnFront,#btnSide,.cloneSpout,.step-submit,#sidebar')
+							'.small-discharge-funnel,.large-discharge-funnel,#btnAdd,#btnDel,#btnFront,#btnSide,.cloneSpout,.step-submit,#sidebar,#btnPrint,#btnEmail')
 							.removeClass('hidden');
 					// Check the default discharge funnel
 					$('#small-standard-discharge-funnel').prop('checked', true);
