@@ -15,13 +15,12 @@ button,
 input,
 select,
 textarea {
-    color: #222;
+	color: #222;
 }
-
 body {
 	font-family: Arial, Helvetica, sans-serif;
-    font-size: 0.9em;
-    line-height: 1.4;
+	font-size: 0.9em;
+	line-height: 1.4;
 }
 
 /*
@@ -31,69 +30,61 @@ body {
  */
 
 ::-moz-selection {
-    background: #b3d4fc;
-    text-shadow: none;
+ background: #b3d4fc;
+ text-shadow: none;
 }
-
 ::selection {
-    background: #b3d4fc;
-    text-shadow: none;
+	background: #b3d4fc;
+	text-shadow: none;
 }
-
 /*
  * A better looking default horizontal rule
  */
 
 hr {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid #ccc;
-    margin: 1em 0;
-    padding: 0;
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid #ccc;
+	margin: 1em 0;
+	padding: 0;
 }
-
 /*
  * Remove the gap between images and the bottom of their containers: h5bp.com/i/440
  */
 
 img {
-    vertical-align: middle;
+	vertical-align: middle;
 }
-
 /*
  * Remove default fieldset styles.
  */
 
 fieldset {
-    border: 0;
-    margin: 0;
-    padding: 0;
+	border: 0;
+	margin: 0;
+	padding: 0;
 }
-
 /*
  * Allow only vertical resizing of textareas.
  */
 
 textarea {
-    resize: vertical;
+	resize: vertical;
 }
-
 h2 {
-	line-height:1.2;
+	line-height: 1.2;
 }
-
 /* ==========================================================================
    Chrome Frame prompt
    ========================================================================== */
 
 .chromeframe {
-    margin: 0.2em 0;
-    background: #ccc;
-    color: #000;
-    padding: 0.2em 0;
+	margin: 0.2em 0;
+	background: #ccc;
+	color: #000;
+	padding: 0.2em 0;
 }
-
 /* ==========================================================================
    Logical Machine's styles
    ========================================================================== */
@@ -108,29 +99,28 @@ h2 {
  * footer#footer {}
  */
 
-#main-navigation, #main-content, #sidebar,#pag-navigation {
-    float:left;
+#main-navigation,
+#main-content,
+#sidebar,
+#pag-navigation {
+	float: left;
 }
-
 #section-content {
 	border: 1px solid #911936;
 	float: left;
 	padding: 10px;
 	position: relative;
 }
-
-#main-content {  
-    width: 346px; 
-    overflow: hidden;
-    position: relative;
+#main-content {
+	width: 346px;
+	overflow: hidden;
+	position: relative;
 }
 #main-content.no-sidebar {
-	width: 635px; 
+	width: 635px;
 }
-
 form#logical-machines-price-accesory-guide {
 }
-
 /*
  * Price & Accesory Guide Navigation
  */
@@ -142,25 +132,25 @@ form#logical-machines-price-accesory-guide {
 	padding: 0;
 }
 #pag-navigation ol li {
-text-align: center;
-display: table;
+	text-align: center;
+	display: table;
 }
 #pag-navigation ol li a {
 	border-bottom: 1px solid #911936;
 	border-left: 1px solid #911936;
 	border-top: 1px solid #911936;
 	-webkit-border-radius: 20px 0px 0px 20px;
-        border-radius: 20px 0px 0px 20px;
-    color: #AAAAAA;
+	border-radius: 20px 0px 0px 20px;
+	color: #AAAAAA;
 	font-size: 1.2em;
 	font-weight: bold;
 	line-height: 1;
-	display: table-cell; 
+	display: table-cell;
 	vertical-align: middle;
 	height: 100px;
 	width: 100px;
 	padding: 6px;
-	margin-bottom:-1px;
+	margin-bottom: -1px;
 }
 #pag-navigation ol li a.active,
 #pag-navigation ol li a.active:hover {
@@ -172,7 +162,6 @@ display: table;
 #pag-navigation ol li a .list-no {
 	font-size: 2.4em;
 }
-
 /*
  * Sidebar
  */
@@ -184,18 +173,18 @@ display: table;
 .sticky {
 	position: fixed;
 	left: 654px;
-	top:0;
+	top: 0;
 }
 #machine-image {
-    height: 452px;
-    position:relative;
-    width: 260px;
+	height: 452px;
+	position: relative;
+	width: 260px;
 }
 #machine-image > * {
-	background-image:url("../img/sprite.png");
-	background-repeat:no-repeat;
-	background-color:transparent;
-	position:absolute;
+	background-image: url("../img/sprite.png");
+	background-repeat: no-repeat;
+	background-color: transparent;
+	position: absolute;
 }
 .s-4.front .machine-bg {
 	width: 254px;
@@ -355,19 +344,18 @@ display: table;
 	top: 270px;
 	left: 19px;
 }
-
 /*
  * Accessories images
  */
 
 .accessories-image {
-    background: url("../img/sprite.png") no-repeat 0 0 transparent;
-    border:1px solid #FFFFFF !important;
-    float: left;
-    height:100px;
-    margin-bottom:10px;
-    margin-right:10px;
-    width:100px;
+	background: url("../img/sprite.png") no-repeat 0 0 transparent;
+	border: 1px solid #FFFFFF !important;
+	float: left;
+	height: 100px;
+	margin-bottom: 10px;
+	margin-right: 10px;
+	width: 100px;
 }
 #weigh-hopper-sml {
 	width: 78px;
@@ -409,54 +397,41 @@ display: table;
 	height: 81px;
 	background-position: -10px -1334px;
 }
-
 /*
  * Pagination
  */
 
-#main-content .form { margin: 66px 72px 0 72px; }
-
+#main-content .form {
+	margin: 66px 72px 0 72px;
+}
 #step-1 {
-    
 }
-
 #step-2 {
-    
 }
-
 #step-3 {
-    
 }
-
 #step-4 {
-    
 }
-
 #step-5 {
-    
 }
-
 #hidden-accessories {
-    
 }
-
 #hidden-accessories-page-btn {
-    background: url("../img/sprite.png") no-repeat -238px -914px transparent;
-    bottom: 0;
+	background: url("../img/sprite.png") no-repeat -238px -914px transparent;
+	bottom: 0;
 	height: 26px;
 	position: absolute;
 	right: 0;
 	width: 26px;
 }
-
 /*
  * Form styles
  */
 
 ul.field-type-radio,
 ul.field-type-textfield {
-    list-style: none;
-    padding:0;
+	list-style: none;
+	padding: 0;
 }
 ul.field-type-radio > li {
 	margin-bottom: 20px;
@@ -472,9 +447,9 @@ ul.field-type-radio > li {
 }
 .field-type-radio label {
 	border: 2px solid #0c4b81;
-    display: block;
-    margin-top: -30px;
-    padding: 11px 11px 4px;
+	display: block;
+	margin-top: -30px;
+	padding: 11px 11px 4px;
 }
 .field-type-radio input {
 	margin-left: 14px;
@@ -484,12 +459,12 @@ ul.field-type-radio > li {
 	background-color: rgb(235, 255, 234);
 }
 .field-type-radio input[type="radio"]:checked+label .accessories-image {
-    border: 1px solid #B3B3B3 !important;
+	border: 1px solid #B3B3B3 !important;
 }
 #field-name-spout .field-type-radio label {
 	margin-top: -32px;
-    padding-bottom: 12px;
-    padding-left: 35px;
+	padding-bottom: 12px;
+	padding-left: 35px;
 }
 #field-name-spout {
 	margin-bottom: 16px;
@@ -499,72 +474,56 @@ ul.field-type-radio > li {
  */
 
 #js-warning {
-    background-color: #F3DEDE;
-    border: 2px solid red;
-    padding: 14px 14px 0 14px;
+	background-color: #F3DEDE;
+	border: 2px solid red;
+	padding: 14px 14px 0 14px;
 }
-
-
-
-
-
-
-
-
-
-
-
 /* ==========================================================================
    Helper classes
    ========================================================================== */
 
 .clear {
-	clear:both;
+	clear: both;
 }
-
 /*
  * Image replacement
  */
 
 .ir {
-    background-color: transparent;
-    border: 0;
-    overflow: hidden;
+	background-color: transparent;
+	border: 0;
+	overflow: hidden;
     /* IE 6/7 fallback */
     *text-indent: -9999px;
 }
-
 .ir:before {
-    content: "";
-    display: block;
-    width: 0;
-    height: 100%;
+	content: "";
+	display: block;
+	width: 0;
+	height: 100%;
 }
-
 /*
  * Hide from both screenreaders and browsers: h5bp.com/u
  */
 
 .hidden {
-    display: none !important;
-    visibility: hidden;
+	display: none !important;
+	visibility: hidden;
 }
-
 /*
  * Hide only visually, but have it available for screenreaders: h5bp.com/v
  */
 
 .visuallyhidden {
-    border: 0;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
 }
-
 /*
  * Extends the .visuallyhidden class to allow the element to be focusable
  * when navigated to via the keyboard: h5bp.com/p
@@ -572,22 +531,20 @@ ul.field-type-radio > li {
 
 .visuallyhidden.focusable:active,
 .visuallyhidden.focusable:focus {
-    clip: auto;
-    height: auto;
-    margin: 0;
-    overflow: visible;
-    position: static;
-    width: auto;
+	clip: auto;
+	height: auto;
+	margin: 0;
+	overflow: visible;
+	position: static;
+	width: auto;
 }
-
 /*
  * Hide visually and from screenreaders, but maintain layout
  */
 
 .invisible {
-    visibility: hidden;
+	visibility: hidden;
 }
-
 /*
  * Clearfix: contain floats
  *
@@ -602,21 +559,19 @@ ul.field-type-radio > li {
 
 .clearfix:before,
 .clearfix:after {
-    content: " "; /* 1 */
-    display: table; /* 2 */
+	content: " "; /* 1 */
+	display: table; /* 2 */
 }
-
 .clearfix:after {
-    clear: both;
+	clear: both;
 }
-
 /*
  * For IE 6/7 only
  * Include this rule to trigger hasLayout and contain floats.
  */
 
 .clearfix {
-    *zoom: 1;
+ *zoom: 1;
 }
 
 /* ==========================================================================
@@ -626,12 +581,10 @@ ul.field-type-radio > li {
    ========================================================================== */
 
 @media only screen and (min-width: 35em) {
-    /* Style adjustments for viewports that meet the condition */
+/* Style adjustments for viewports that meet the condition */
 }
-
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
-       only screen and (min-resolution: 144dpi) {
-    /* Style adjustments for high resolution devices */
+ @media only screen and (-webkit-min-device-pixel-ratio: 1.5),  only screen and (min-resolution: 144dpi) {
+/* Style adjustments for high resolution devices */
 }
 
 /* ==========================================================================
@@ -640,68 +593,57 @@ ul.field-type-radio > li {
    ========================================================================== */
 
 @media print {
-    * {
-        background: transparent !important;
-        color: #000 !important; /* Black prints faster: h5bp.com/s */
-        box-shadow: none !important;
-        text-shadow: none !important;
-    }
-
-    a,
-    a:visited {
-        text-decoration: underline;
-    }
-
-    a[href]:after {
-        content: " (" attr(href) ")";
-    }
-
-    abbr[title]:after {
-        content: " (" attr(title) ")";
-    }
-
-    /*
+* {
+	background: transparent !important;
+	color: #000 !important; /* Black prints faster: h5bp.com/s */
+	box-shadow: none !important;
+	text-shadow: none !important;
+}
+a,
+ a:visited {
+	text-decoration: underline;
+}
+a[href]:after {
+	content: " (" attr(href) ")";
+}
+abbr[title]:after {
+	content: " (" attr(title) ")";
+}
+/*
      * Don't show links for images, or javascript/internal links
      */
 
-    .ir a:after,
-    a[href^="javascript:"]:after,
-    a[href^="#"]:after {
-        content: "";
-    }
-
-    pre,
-    blockquote {
-        border: 1px solid #999;
-        page-break-inside: avoid;
-    }
-
-    thead {
-        display: table-header-group; /* h5bp.com/t */
-    }
-
-    tr,
-    img {
-        page-break-inside: avoid;
-    }
-
-    img {
-        max-width: 100% !important;
-    }
-
-    @page {
-        margin: 0.5cm;
-    }
-
-    p,
-    h2,
-    h3 {
-        orphans: 3;
-        widows: 3;
-    }
-
-    h2,
-    h3 {
-        page-break-after: avoid;
-    }
+.ir a:after,
+ a[href^="javascript:"]:after,
+ a[href^="#"]:after {
+	content: "";
+}
+pre,
+ blockquote {
+	border: 1px solid #999;
+	page-break-inside: avoid;
+}
+thead {
+	display: table-header-group; /* h5bp.com/t */
+}
+tr,
+ img {
+	page-break-inside: avoid;
+}
+img {
+	max-width: 100% !important;
+}
+ @page {
+ margin: 0.5cm;
+}
+p,
+ h2,
+ h3 {
+	orphans: 3;
+	widows: 3;
+}
+h2,
+ h3 {
+	page-break-after: avoid;
+}
 }
