@@ -116,6 +116,7 @@ h2 {
 	border: 1px solid #911936;
 	float: left;
 	padding: 10px;
+	position: relative;
 }
 
 #main-content {  
@@ -553,6 +554,15 @@ background-position: -700px -555px;
 
 #hidden-accessories {
     
+}
+
+#hidden-accessories-page-btn {
+    background: url("../img/sprite.png") no-repeat -238px -914px transparent;
+    bottom: 0;
+	height: 26px;
+	position: absolute;
+	right: 0;
+	width: 26px;
 }
 
 /*
