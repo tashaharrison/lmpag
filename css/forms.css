@@ -227,7 +227,7 @@ fieldset {
 		-webkit-border-radius: 0;
 	margin: 1em 0;
 	padding: 0 10px 6px;
-		background-color: #F8F4F4;
+	background-color: #F8F4F4;
 	clear: both;
 }
 div.selector, div.selector span, div.checker span, div.radio span, div.uploader, div.uploader span.action, div.button, div.button span {

@@ -488,6 +488,7 @@ ul.field-type-radio > li {
 	margin-bottom: 16px;
 }
 .description {
+	clear:both;
 	color:#911936;
 }
 /* 
@@ -538,15 +539,12 @@ ul.field-name-spout-type input[type="radio"]:checked + label .can-or-jar-spout {
 	height: 235px;
 	background-position: -114px -757px;
 }
-.spout {
+.main-spout-image {
 	background-position: -20px -1010px;
 	float: right;
     height: 191px;
     margin: 0 20px;
     width: 125px;
-}
-#step-4 .description {
-	clear:none;
 }
 .four-sided-bag-spout-shape {
 	width: 144px;
@@ -601,6 +599,9 @@ ul.field-name-spout-type input {
 
 .clear {
 	clear: both;
+}
+.no-clear {
+	clear: none;
 }
 /*
  * Image replacement
