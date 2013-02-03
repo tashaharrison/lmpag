@@ -51,7 +51,7 @@ a.button:link {
   font: bold 15px/1.3 myriad-pro, Arial, Helvetica, sans-serif;
   outline: 0;
   overflow: visible;
-  padding: 4px 8px 2px;
+  padding: 4px 8px;
   text-shadow: none;
   width: auto;
   *padding-top: 2px; /* IE7 */
