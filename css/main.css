@@ -370,21 +370,13 @@ form#logical-machines-price-accesory-guide {
 	height: 126px;
 	background-position: -10px -914px;
 }
+#funnel-std,
 #funnel-sml-std {
 	width: 104px;
 	height: 60px;
 	background-position: -124px -1334px;
 }
-#steep-discharge-funnel-image {
-	height: 112px;
-	width: 184px;
-	background-position: -166px 0px;
-}
-#funnel-sml-std {
-	width: 104px;
-	height: 60px;
-	background-position: -124px -1334px;
-}
+#funnel-steep,
 #funnel-sml-steep {
 	width: 104px;
 	height: 106px;
