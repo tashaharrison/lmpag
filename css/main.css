@@ -546,20 +546,30 @@ ul.field-name-spout-type input[type="radio"]:checked + label .can-or-jar-spout {
 	height: 235px;
 	background-position: -114px -757px;
 }
+.spout {
+	background-position: -20px -1010px;
+	float: right;
+    height: 191px;
+    margin: 0 20px;
+    width: 125px;
+}
+#step-4 .description {
+	clear:none;
+}
 .four-sided-bag-spout-shape {
 	width: 144px;
 	height: 179px;
-	background-position: -20px -1010px;
+	background-position: -20px -1221px;
 }
 .can-or-jar-spout-shape {
 	width: 133px;
 	height: 132px;
-	background-position: -20px -1209px;
+	background-position: -20px -1420px;
 }
 .flat-bag-spout-shape {
 	width: 188px;
 	height: 74px;
-	background-position: -20px -1361px;
+	background-position: -20px -1572px;
 }
 ul.field-name-spout-type {
 	margin: 0;

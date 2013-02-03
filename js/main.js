@@ -15,7 +15,7 @@ $(document)
 							'.machine-model-description:first').hide();
 					// Remove .hidden class from js ready content
 					$(
-							'.small-discharge-funnel,.large-discharge-funnel,#btnAdd,#btnDel,#btnFront,#btnSide,.cloneSpout,.step-submit,#sidebar,#btnPrint,#btnEmail,#btnClose,#btnContinue,.order-summary')
+							'.small-discharge-funnel,.large-discharge-funnel,#btnAdd,#btnDel,#btnFront,#btnSide,.cloneSpout,.step-submit,#sidebar,#btnPrint,#btnEmail,#btnClose,#btnContinue,.order-summary,#hidden-accessories-page')
 							.removeClass('hidden');
 					// Check the default discharge funnel
 					$('#small-standard-discharge-funnel').prop('checked', true);
