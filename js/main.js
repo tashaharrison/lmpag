@@ -121,7 +121,7 @@ $(document)
 										spoutContainer.find('.spout-shape-images > .flat-bag-spout-shape').show();
 										spoutContainer.find(
 										'.description p')
-										.html("Please enter the size of the bags to be filled in inches");
+										.html("Enter the width of the bag opening (W).");
 										break;
 									case '4-sided-bag':
 										machineImage.find('.spout')
@@ -137,7 +137,7 @@ $(document)
 										spoutContainer.find('.spout-shape-images > .four-sided-bag-spout-shape').show();
 										spoutContainer.find(
 										'.description p')
-										.html("Please enter the size of the bags to be filled in inches");
+										.html("Looking down at the top of your bag, enter the dimensions (D1) and (D2) of the bag opening.");
 										break;
 									case 'can-jar':
 										machineImage.find('.spout')
@@ -152,7 +152,7 @@ $(document)
 										spoutContainer.find('.spout-shape-images > .can-or-jar-spout-shape').show();
 										spoutContainer.find(
 										'.description p')
-										.html("Please enter the size of the bags to be filled in inches");
+										.html("Enter the inside diameter of the bottle or can opening (D).");
 										break;
 									case 'Front':
 										machineImage.removeClass('side')
