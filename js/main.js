@@ -25,7 +25,7 @@ $(document)
 					// Remove the no-sidebar class for fallback
 					$('#main-content').removeClass('no-sidebar');
 					mi_container.waypoint(function(direction) {
-						mi_container
+						$('#machine-image-container')
 								.toggleClass('sticky', direction === 'down');
 					});
 

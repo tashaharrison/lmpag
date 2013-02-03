@@ -112,7 +112,7 @@ h2 {
 	position: relative;
 }
 #main-content {
-	width: 346px;
+	width: 360px;
 	overflow: hidden;
 	position: relative;
 }
@@ -167,16 +167,17 @@ form#logical-machines-price-accesory-guide {
  */
 
 #sidebar {
-	text-align: center;
-	padding-top: 20px;
+	text-align: center;	
+	width: 280px;
 }
 .sticky {
 	position: fixed;
-	left: 654px;
+	left: 667px;
 	top: 0;
 }
 #machine-image {
 	height: 452px;
+	margin-left: 10px;
 	position: relative;
 	width: 260px;
 }
@@ -185,6 +186,9 @@ form#logical-machines-price-accesory-guide {
 	background-repeat: no-repeat;
 	background-color: transparent;
 	position: absolute;
+}
+#machine-image-container {
+	width:280px;
 }
 .s-4.front .machine-bg {
 	width: 254px;

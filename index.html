@@ -720,23 +720,25 @@
 					</form>
 				</article>
 				<aside id="sidebar" class="clearfix hidden">
-					<input type="button" id="btnFront" value="Front" class="hidden" />
-					<input type="button" id="btnSide" value="Side" class="hidden" />
-					<p>
-						This is how YOUR customized machine will look
-					</p>
-					<div id="machine-image" class="ir s-4 smwh std-fnl front">
-						<div class="machine-bg">
-							&nbsp;
-						</div>
-						<div class="weight-hopper ">
-							&nbsp;
-						</div>
-						<div class="funnel">
-							&nbsp;
-						</div>
-						<div class="spout hidden">
-							&nbsp;
+					<div id="machine-image-container">
+						<input type="button" id="btnFront" value="Front" class="hidden" />
+						<input type="button" id="btnSide" value="Side" class="hidden" />
+						<p>
+							This is how YOUR customized machine will look
+						</p>
+						<div id="machine-image" class="ir s-4 smwh std-fnl front">
+							<div class="machine-bg">
+								&nbsp;
+							</div>
+							<div class="weight-hopper ">
+								&nbsp;
+							</div>
+							<div class="funnel">
+								&nbsp;
+							</div>
+							<div class="spout hidden">
+								&nbsp;
+							</div>
 						</div>
 					</div>
 				</aside>
@@ -764,7 +766,8 @@
 
 		<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 		<script>
-			var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']]; ( function(d, t) {
+			var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']];
+			( function(d, t) {
 					var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
 					g.src = ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
 					s.parentNode.insertBefore(g, s)
