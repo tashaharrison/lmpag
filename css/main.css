@@ -455,6 +455,13 @@ ul.field-type-textfield {
 	list-style: none;
 	padding: 0;
 }
+.default-spout ul.field-type-textfield {
+	margin-top:0;
+}
+.default-spout ul.field-type-textfield > li {
+	float:left;
+	margin-right:14px;
+}
 ul.field-type-radio > li {
 	margin-bottom: 20px;
 }
@@ -497,10 +504,17 @@ ul.field-type-radio > li {
 
 .spout-image {
 	background: url("../img/spout-sprite.png") no-repeat 0 0 transparent;
+	margin: 0 auto;
 }
 .default-spout .spout-shape-images .spout-image {
 	float:left;
 	margin-right:20px;
+}
+.field-name-dimensions {
+	float:left;
+}
+.field-name-dimensions input {
+	width: 120px;
 }
 .four-sided-bag-spout {
 	width: 97px;
