@@ -223,6 +223,7 @@ $(document)
 										// elements
 										// inside the new element
 										var radioFieldID = 1;
+										
 										newElem.children('legend').html(
 												'Spout ' + newNum).next().attr(
 												'id', newSpoutTypeID).find(
@@ -240,7 +241,7 @@ $(document)
 										newElem.find(
 										'.description p')
 										.html("Please enter the spout type spout that you require by clicking on the image above.");
-
+										newElem.find('.spout-shape-images > *').hide()
 										newElem
 												.children(
 														'.field-name-dimensions')
