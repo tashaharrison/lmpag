@@ -4,7 +4,7 @@ $(document)
 
 					// Hide fallback content and delete button
 					$(
-							'.large-discharge-funnel,.field-name-dimensions li,#btnDel,#step-2,#step-3,#step-4,#step-5,#hidden-accessories-page')
+							'.large-discharge-funnel,.field-name-dimensions li,#btnDel,#step-2,#step-3,#step-4,#step-5,#hidden-accessories-page,.spout-shape-images > *')
 							.hide();
 
 					// Remove fallback form elements
@@ -15,7 +15,7 @@ $(document)
 							'.machine-model-description:first').hide();
 					// Remove .hidden class from js ready content
 					$(
-							'.small-discharge-funnel,.large-discharge-funnel,#btnAdd,#btnDel,#btnFront,#btnSide,.cloneSpout,.step-submit,#sidebar,#btnPrint,#btnEmail,#btnClose,#btnContinue')
+							'.small-discharge-funnel,.large-discharge-funnel,#btnAdd,#btnDel,#btnFront,#btnSide,.cloneSpout,.step-submit,#sidebar,#btnPrint,#btnEmail,#btnClose,#btnContinue,.order-summary')
 							.removeClass('hidden');
 					// Check the default discharge funnel
 					$('#small-standard-discharge-funnel').prop('checked', true);
@@ -115,8 +115,10 @@ $(document)
 										spoutContainer.find(
 												'.field-name-dimensions li')
 												.hide();
+										spoutContainer.find('.spout-shape-images > *').hide()
 										spoutContainer.find(
 												'.spout-width-inches').show();
+										spoutContainer.find('.spout-shape-images > .flat-bag-spout-shape').show();
 										spoutContainer.find(
 										'.description p')
 										.html("Please enter the size of the bags to be filled in inches");
@@ -127,10 +129,12 @@ $(document)
 										spoutContainer.find(
 												'.field-name-dimensions li')
 												.hide();
+										spoutContainer.find('.spout-shape-images > *').hide()
 										spoutContainer
 												.find(
 														'.spout-width-inches,.spout-height-inches')
 												.show();
+										spoutContainer.find('.spout-shape-images > .four-sided-bag-spout-shape').show();
 										spoutContainer.find(
 										'.description p')
 										.html("Please enter the size of the bags to be filled in inches");
@@ -141,9 +145,11 @@ $(document)
 										spoutContainer.find(
 												'.field-name-dimensions li')
 												.hide();
+										spoutContainer.find('.spout-shape-images > *').hide()
 										spoutContainer.find(
 												'.spout-diameter-inches')
 												.show();
+										spoutContainer.find('.spout-shape-images > .can-or-jar-spout-shape').show();
 										spoutContainer.find(
 										'.description p')
 										.html("Please enter the size of the bags to be filled in inches");

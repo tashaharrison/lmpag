@@ -449,6 +449,17 @@
 												</li>
 											</ul>
 										</div>
+										<div class="spout-shape-images">
+											<div class="spout-image flat-bag-spout-shape ir">
+												Flag bag spout shape image
+											</div>
+											<div class="spout-image four-sided-bag-spout-shape ir">
+												4 sided bag spout shape image
+											</div>
+											<div class="spout-image can-or-jar-spout-shape ir">
+												Can or Jar spout shape image
+											</div>
+										</div>
 									</fieldset>
 
 									<fieldset id="default-spout-2" class="default-spout">
@@ -512,6 +523,17 @@
 													height in inches for a 4 sided bag and diameter in inches for a can or a jar.
 												</li>
 											</ul>
+										</div>
+										<div class="spout-shape-images">
+											<div class="spout-image flat-bag-spout-shape ir">
+												Flag bag spout shape image
+											</div>
+											<div class="spout-image four-sided-bag-spout-shape ir">
+												4 sided bag spout shape image
+											</div>
+											<div class="spout-image can-or-jar-spout-shape ir">
+												Can or Jar spout shape image
+											</div>
 										</div>
 									</fieldset>
 
@@ -577,6 +599,17 @@
 												</li>
 											</ul>
 										</div>
+										<div class="spout-shape-images">
+											<div class="spout-image flat-bag-spout-shape ir">
+												Flag bag spout shape image
+											</div>
+											<div class="spout-image four-sided-bag-spout-shape ir">
+												4 sided bag spout shape image
+											</div>
+											<div class="spout-image can-or-jar-spout-shape ir">
+												Can or Jar spout shape image
+											</div>
+										</div>
 									</fieldset>
 
 									<fieldset id="spout-1" class="cloneSpout hidden">
@@ -625,7 +658,17 @@
 												<input type="text" id="spout-1-diameter-inches" class="required number" name="height-inches" />
 											</li>
 										</ul>
-
+										<div class="spout-shape-images">
+											<div class="spout-image flat-bag-spout-shape ir">
+												Flag bag spout shape image
+											</div>
+											<div class="spout-image four-sided-bag-spout-shape ir">
+												4 sided bag spout shape image
+											</div>
+											<div class="spout-image can-or-jar-spout-shape ir">
+												Can or Jar spout shape image
+											</div>
+										</div>
 									</fieldset>
 									<input type="button" id="btnAdd" value="add another spout" class="hidden" />
 									<input type="button" id="btnDel" value="remove spout" class="hidden" />
@@ -634,7 +677,7 @@
 								<input class="step-submit next hidden" type="button" name="step-4-next" id="step-4-next" value="Next" />
 							</div><!-- id="step-4" -->
 							<div id="step-5" class="step-container" name="step-5">
-								<div id="submit_buttons">
+								<div id="order-summary" class="hidden">
 									<h3>You Order Summary</h3>
 									<table>
 										<thead>
@@ -657,6 +700,8 @@
 											</tr>
 										</tbody>
 									</table>
+								</div>
+								<div id="submit_buttons">
 									<input class="step-submit prev hidden" type="button" name="step-5-prev" id="step-5-prev" value="Previous" />
 									<input type="button" id="btnPrint" value="Print Quote" class="hidden" />
 									<input type="button" id="btnEmail" value="Email Quote" class="hidden" />
@@ -719,8 +764,7 @@
 
 		<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 		<script>
-			var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']];
-			( function(d, t) {
+			var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']]; ( function(d, t) {
 					var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
 					g.src = ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
 					s.parentNode.insertBefore(g, s)

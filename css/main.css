@@ -498,6 +498,10 @@ ul.field-type-radio > li {
 .spout-image {
 	background: url("../img/spout-sprite.png") no-repeat 0 0 transparent;
 }
+.default-spout .spout-shape-images .spout-image {
+	float:left;
+	margin-right:20px;
+}
 .four-sided-bag-spout {
 	width: 97px;
 	height: 235px;
@@ -531,17 +535,17 @@ ul.field-name-spout-type input[type="radio"]:checked + label .can-or-jar-spout {
 .four-sided-bag-spout-shape {
 	width: 144px;
 	height: 179px;
-	background-position: -10px -478px;
+	background-position: -20px -1010px;
 }
 .can-or-jar-spout-shape {
 	width: 133px;
 	height: 132px;
-	background-position: -10px -667px;
+	background-position: -20px -1209px;
 }
 .flat-bag-spout-shape {
 	width: 188px;
 	height: 74px;
-	background-position: -10px -809px;
+	background-position: -20px -1361px;
 }
 ul.field-name-spout-type {
 	margin: 0;
@@ -556,7 +560,7 @@ ul.field-name-spout-type > li {
 }
 ul.field-name-spout-type input[type="radio"]:checked + label {
 	border: none;
-	background-color: none;
+	background-color: transparent;
 }
 ul.field-name-spout-type h4 {
 	margin: 0 0 0.4em 0;
