@@ -354,7 +354,6 @@ form#logical-machines-price-accesory-guide {
 
 .accessories-image {
 	background: url("../img/sprite.png") no-repeat 0 0 transparent;
-	border: 1px solid #FFFFFF !important;
 	float: left;
 	height: 100px;
 	margin-bottom: 10px;
@@ -480,9 +479,6 @@ ul.field-type-radio > li {
 .field-type-radio input[type="radio"]:checked+label {
 	border: #090 2px solid;
 	background-color: rgb(235, 255, 234);
-}
-.field-type-radio input[type="radio"]:checked+label .accessories-image {
-	border: 1px solid #B3B3B3 !important;
 }
 #field-name-spout .field-type-radio label {
 	margin-top: -32px;
