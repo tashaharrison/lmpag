@@ -2,31 +2,45 @@ $(document)
 		.ready(
 				function() {
 
+					// Define machine object
+					function machine(machineName, machineType, machinePrice) {
+						this.machineName = machineName;
+						this.machineType = machineType;
+						this.machinePrice = machinePrice;
+					}
+					// Create instances of the machine object and assign
+					// properties
+					machineS4 = new machine("S-4", "Weigh Fill System", 6150);
+
 					// Hide fallback content and delete button
 					$(
 							'.large-discharge-funnel,.field-name-dimensions li,#btnDel,#step-2,#step-3,#step-4,#step-5,#hidden-accessories-page,.spout-shape-images > *')
 							.hide();
-
 					// Remove fallback form elements
 					$('.default-spout,.default-discharge-funnel,#btnQuote')
 							.remove();
+					// .bottom class puts a negative z-index on the hidden
+					// accessories page so that it loads underneath the rest of
+					// the content. This removes that class on load.
 					$('.bottom').removeClass('bottom');
+					// Hide all but the first machine model description
 					$('.machine-model-description').not(
 							'.machine-model-description:first').hide();
-					// Remove .hidden class from js ready content
+					// Remove .hidden class from JS ready content
 					$(
 							'.small-discharge-funnel,.large-discharge-funnel,#btnAdd,#btnDel,#btnFront,#btnSide,.cloneSpout,.step-submit,#sidebar,#btnPrint,#btnEmail,#btnClose,#btnContinue,.order-summary,#hidden-accessories-page')
 							.removeClass('hidden');
-					// Check the default discharge funnel
+					// Check the default discharge funnel field
 					$('#small-standard-discharge-funnel').prop('checked', true);
 
 					// Add a waypoint to the sidebar
 					var mi_container = $('#sidebar');
 					// Remove the no-sidebar class for fallback
 					$('#main-content').removeClass('no-sidebar');
+					// Set the .sticky class when waypoint is reached
 					mi_container.waypoint(function(direction) {
-						$('#machine-image-container')
-								.toggleClass('sticky', direction === 'down');
+						$('#machine-image-container').toggleClass('sticky',
+								direction === 'down');
 					});
 
 					function radioSelect() {
@@ -115,13 +129,19 @@ $(document)
 										spoutContainer.find(
 												'.field-name-dimensions li')
 												.hide();
-										spoutContainer.find('.spout-shape-images > *').hide()
+										spoutContainer.find(
+												'.spout-shape-images > *')
+												.hide()
 										spoutContainer.find(
 												'.spout-width-inches').show();
-										spoutContainer.find('.spout-shape-images > .flat-bag-spout-shape').show();
-										spoutContainer.find(
-										'.description p')
-										.html("Enter the width of the bag opening (W).");
+										spoutContainer
+												.find(
+														'.spout-shape-images > .flat-bag-spout-shape')
+												.show();
+										spoutContainer
+												.find('.description p')
+												.html(
+														"Enter the width of the bag opening (W).");
 										break;
 									case '4-sided-bag':
 										machineImage.find('.spout')
@@ -129,15 +149,21 @@ $(document)
 										spoutContainer.find(
 												'.field-name-dimensions li')
 												.hide();
-										spoutContainer.find('.spout-shape-images > *').hide()
+										spoutContainer.find(
+												'.spout-shape-images > *')
+												.hide()
 										spoutContainer
 												.find(
 														'.spout-width-inches,.spout-height-inches')
 												.show();
-										spoutContainer.find('.spout-shape-images > .four-sided-bag-spout-shape').show();
-										spoutContainer.find(
-										'.description p')
-										.html("Looking down at the top of your bag, enter the dimensions (D1) and (D2) of the bag opening.");
+										spoutContainer
+												.find(
+														'.spout-shape-images > .four-sided-bag-spout-shape')
+												.show();
+										spoutContainer
+												.find('.description p')
+												.html(
+														"Looking down at the top of your bag, enter the dimensions (D1) and (D2) of the bag opening.");
 										break;
 									case 'can-jar':
 										machineImage.find('.spout')
@@ -145,14 +171,20 @@ $(document)
 										spoutContainer.find(
 												'.field-name-dimensions li')
 												.hide();
-										spoutContainer.find('.spout-shape-images > *').hide()
+										spoutContainer.find(
+												'.spout-shape-images > *')
+												.hide()
 										spoutContainer.find(
 												'.spout-diameter-inches')
 												.show();
-										spoutContainer.find('.spout-shape-images > .can-or-jar-spout-shape').show();
-										spoutContainer.find(
-										'.description p')
-										.html("Enter the inside diameter of the bottle or can opening (D).");
+										spoutContainer
+												.find(
+														'.spout-shape-images > .can-or-jar-spout-shape')
+												.show();
+										spoutContainer
+												.find('.description p')
+												.html(
+														"Enter the inside diameter of the bottle or can opening (D).");
 										break;
 									case 'Front':
 										machineImage.removeClass('side')
@@ -170,33 +202,43 @@ $(document)
 					}
 					radioSelect();
 
-					$('.step-submit').click(function() {
-						var stepContainer = $(this).closest('.step-container');
-						var nextContainerID = stepContainer.next().attr('id');
-						var prevContainerID = stepContainer.prev().attr('id');
-						$('#pag-navigation a').removeClass('active');
+					$('.step-submit').click(
+							function() {
+								var stepContainer = $(this).closest(
+										'.step-container');
+								var nextContainerID = stepContainer.next()
+										.attr('id');
+								var prevContainerID = stepContainer.prev()
+										.attr('id');
+								$('#pag-navigation a').removeClass('active');
 
-						if ($(this).is('.next')) {
-							stepContainer.hide().next().show();
-							$('#pag-navigation a[href*=' + nextContainerID + ']').addClass('active');
-						} else {
-							stepContainer.hide().prev().show();
-							$('#pag-navigation a[href*=' + prevContainerID + ']').addClass('active');
-						}
-					});
-					
-					$('#pag-navigation a').click(function(){
+								if ($(this).is('.next')) {
+									stepContainer.hide().next().show();
+									$(
+											'#pag-navigation a[href*='
+													+ nextContainerID + ']')
+											.addClass('active');
+								} else {
+									stepContainer.hide().prev().show();
+									$(
+											'#pag-navigation a[href*='
+													+ prevContainerID + ']')
+											.addClass('active');
+								}
+							});
+
+					$('#pag-navigation a').click(function() {
 						var stepValue = $(this).attr('href');
 						$('#pag-navigation a').removeClass('active');
 						$(this).addClass('active');
 						$('.step-container').hide();
 						$(stepValue).show();
 					});
-					
-					$('#hidden-accessories-page-btn').click(function(){
+
+					$('#hidden-accessories-page-btn').click(function() {
 						$('#hidden-accessories-page').show();
 					});
-					$('#btnClose,#btnContinue').click(function(){
+					$('#btnClose,#btnContinue').click(function() {
 						$(this).closest('.step-container').hide();
 					});
 
@@ -223,25 +265,36 @@ $(document)
 										// elements
 										// inside the new element
 										var radioFieldID = 1;
-										
-										newElem.children('legend').html(
-												'Spout ' + newNum).next().attr(
-												'id', newSpoutTypeID).find(
-												'input').attr(
-												{
-													"id" : function(arr) {
-														return newSpoutTypeID
-																+ "-" + arr
-													},
-													'name' : newSpoutTypeID
-												}).prop('checked', false)
-										.next().attr('for', function(arr) {
-											return newSpoutTypeID + "-" + arr
-										});
-										newElem.find(
-										'.description p')
-										.html("Please enter the spout type spout that you require by clicking on the image above.");
-										newElem.find('.spout-shape-images > *').hide()
+
+										newElem
+												.children('legend')
+												.html('Spout ' + newNum)
+												.next()
+												.attr('id', newSpoutTypeID)
+												.find('input')
+												.attr(
+														{
+															"id" : function(arr) {
+																return newSpoutTypeID
+																		+ "-"
+																		+ arr
+															},
+															'name' : newSpoutTypeID
+														})
+												.prop('checked', false)
+												.next()
+												.attr(
+														'for',
+														function(arr) {
+															return newSpoutTypeID
+																	+ "-" + arr
+														});
+										newElem
+												.find('.description p')
+												.html(
+														"Please enter the spout type spout that you require by clicking on the image above.");
+										newElem.find('.spout-shape-images > *')
+												.hide()
 										newElem
 												.children(
 														'.field-name-dimensions')
@@ -282,9 +335,9 @@ $(document)
 
 										// business rule: you can only add 5
 										// names
-										  if (newNum == 3)
-										  $('#btnAdd').hide();
-										 
+										if (newNum == 3)
+											$('#btnAdd').hide();
+
 										radioSelect();
 									});
 
@@ -297,7 +350,7 @@ $(document)
 
 						// enable the "add" button
 						if (num == 3)
-						$('#btnAdd').show();
+							$('#btnAdd').show();
 
 						// if only one element remains, disable the "remove"
 						// button
