@@ -127,10 +127,8 @@ select:focus,
 select:active,
 textarea:focus,
 textarea:active {
-	-moz-box-shadow: #AD0000 0 0 7px;
-	-webkit-box-shadow: #AD0000 0 0 7px;
-	box-shadow: #AD0000 0 0 7px;
 	z-index: 1; /* For Opera */
+	background-color:#090;
 }
 input[type="file"]:focus,
 input[type="file"]:active,
