@@ -583,7 +583,13 @@ ul.field-name-spout-type input {
 	margin-left: 0;
 	margin-bottom:10px;
 }
+/* 
+ * Order summary page
+ */
 
+#order-summary {
+	margin-bottom:14px;
+}
 /* 
  * Fallback content
  */
