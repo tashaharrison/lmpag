@@ -10,7 +10,12 @@ $(document)
 					}
 					// Create instances of the machine object and assign
 					// properties
-					machineS4 = new machine("S-4", "Weigh Fill System", 6150);
+					machineS4 = new machine("S-4", "Weigh/Fill System", 6150);
+					machineS5 = new machine("S-5", "Bulk Fill System", 5450);
+					machineS6 = new machine("S-6", "Cascading Weigh FIller",
+							9950);
+					machineS7 = new machine("S-7", "Dual-Lane Weigh FIller",
+							12000);
 
 					// Hide fallback content and delete button
 					$(
@@ -28,7 +33,7 @@ $(document)
 							'.machine-model-description:first').hide();
 					// Remove .hidden class from JS ready content
 					$(
-							'.small-discharge-funnel,.large-discharge-funnel,#btnAdd,#btnDel,#btnFront,#btnSide,.cloneSpout,.step-submit,#sidebar,#btnPrint,#btnEmail,#btnClose,#btnContinue,.order-summary,#hidden-accessories-page')
+							'.small-discharge-funnel,.large-discharge-funnel,#btnAdd,#btnDel,#btnFront,#btnSide,.cloneSpout,.step-submit,#sidebar,#btnPrint,#btnEmail,#btnClose,#btnContinue,.order-summary,#hidden-accessories-page,#machine-title')
 							.removeClass('hidden');
 					// Check the default discharge funnel field
 					$('#small-standard-discharge-funnel').prop('checked', true);
@@ -62,7 +67,12 @@ $(document)
 										machineImage.removeClass(
 												's-4 s-5 s-6 s-7').addClass(
 												's-4');
-
+										machineImage
+												.next('#machine-title')
+												.html(
+														machineS4.machineName
+																+ " "
+																+ machineS4.machineType);
 										break;
 									case 'S-5':
 										$('.machine-model-description').hide();
@@ -70,6 +80,12 @@ $(document)
 										machineImage.removeClass(
 												's-4 s-5 s-6 s-7').addClass(
 												's-5');
+										machineImage
+												.next('#machine-title')
+												.html(
+														machineS5.machineName
+																+ " "
+																+ machineS5.machineType);
 										break;
 									case 'S-6':
 										$('.machine-model-description').hide();
@@ -77,6 +93,12 @@ $(document)
 										machineImage.removeClass(
 												's-4 s-5 s-6 s-7').addClass(
 												's-6');
+										machineImage
+												.next('#machine-title')
+												.html(
+														machineS6.machineName
+																+ " "
+																+ machineS6.machineType);
 										break;
 									case 'S-7':
 										$('.machine-model-description').hide();
@@ -84,6 +106,12 @@ $(document)
 										machineImage.removeClass(
 												's-4 s-5 s-6 s-7').addClass(
 												's-7');
+										machineImage
+												.next('#machine-title')
+												.html(
+														machineS7.machineName
+																+ " "
+																+ machineS7.machineType);
 										break;
 									case 'small-weight-hopper':
 										$('.small-discharge-funnel')
