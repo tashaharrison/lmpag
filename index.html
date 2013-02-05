@@ -152,8 +152,8 @@
 								<h4>Please begin by selecting your model.</h4>
 								<ul class="field-type-radio field-name-machine-model">
 									<li>
-										<input type="radio" id="s-4" class="radio" name="machine-model" value="S-4" checked="checked" />
-										<label for="s-4"> <h4><span class="machineName">S-4</span> <span class="machineType">Weigh/Fill System</span></h4>
+										<input type="radio" id="s4" class="radio active" name="machine-model" value="S-4" checked="checked" />
+										<label for="s4"> <h4><span class="machineName">S-4</span> <span class="machineType">Weigh/Fill System</span></h4>
 											<div class="machine-model-description">
 												<p>
 													The standard S-4 includes the small weigh hopper, small discharge funnel, Logical Controller II and one spout. It comes fully assembled and ready to operate.
@@ -200,34 +200,46 @@
 														600-800 fills/hour
 													</li>
 												</ul>
-											</div><!-- id="s-4-description" --></label>
+												<p class="clear">
+													<b>Price: </b><span class="price">$<span class="amount">6150</span></span>
+												</p>
+											</div><!-- class="machine-model-description" --></label>
 									</li>
 									<li>
-										<input type="radio" id="s-5" name="machine-model" value="S-5" />
-										<label for="s-5"> <h4><span class="machineName">S-5</span> <span class="machineType">Weigh/Fill System</span></h4>
+										<input type="radio" id="s5" name="machine-model" value="S-5" />
+										<label for="s5"> <h4><span class="machineName">S-5</span> <span class="machineType">Weigh/Fill System</span></h4>
 											<div class="machine-model-description">
 												<p>
 													The standard S-5 includes... It comes fully assembled and ready to operate.
 												</p>
-											</div><!-- id="s-5-description" --> </label>
+												<p class="clear">
+													<b>Price: </b><span class="price">$<span class="amount">5450</span></span>
+												</p>
+											</div><!-- class="machine-model-description" --> </label>
 									</li>
 									<li>
-										<input type="radio" id="s-6" name="machine-model" value="S-6" />
-										<label for="s-6"> <h4><span class="machineName">S-6</span> <span class="machineType">Weigh/Fill System</span></h4>
+										<input type="radio" id="s6" name="machine-model" value="S-6" />
+										<label for="s6"> <h4><span class="machineName">S-6</span> <span class="machineType">Weigh/Fill System</span></h4>
 											<div class="machine-model-description">
 												<p>
 													The standard S-6 includes... It comes fully assembled and ready to operate.
 												</p>
-											</div><!-- id="s-5-description" --> </label>
+												<p class="clear">
+													<b>Price: </b><span class="price">$<span class="amount">9950</span></span>
+												</p>
+											</div><!-- class="machine-model-description" --> </label>
 									</li>
 									<li>
-										<input type="radio" id="s-7" name="machine-model" value="S-7" />
-										<label for="s-7"> <h4><span class="machineName">S-7</span> <span class="machineType">Weigh/Fill System</span></h4>
+										<input type="radio" id="s7" name="machine-model" value="S-7" />
+										<label for="s7"> <h4><span class="machineName">S-7</span> <span class="machineType">Weigh/Fill System</span></h4>
 											<div class="machine-model-description">
 												<p>
 													The standard S-7 includes... It comes fully assembled and ready to operate.
 												</p>
-											</div><!-- id="s-7-description" --> </label>
+												<p class="clear">
+													<b>Price: </b><span class="price">$<span class="amount">12000</span></span>
+												</p>
+											</div><!-- class="machine-model-description" --> </label>
 									</li>
 								</ul>
 								<button type="button" class="step-submit next hidden" name="step-1-next" id="step-1-next" value="Next">
@@ -241,7 +253,7 @@
 								</p>
 								<ul class="field-type-radio field-name-weight-hopper">
 									<li>
-										<input type="radio" id="small-weight-hopper" name="weight-hopper" value="small-weight-hopper" checked="checked"/>
+										<input type="radio" id="small-weight-hopper" class="active" name="weight-hopper" value="small-weight-hopper" checked="checked"/>
 										<label for="small-weight-hopper" class="clearfix"> <h4>Small Weigh Hopper</h4>
 											<div id="weigh-hopper-sml" class="accessories-image ir">
 												Small Weigh Hopper image
@@ -283,7 +295,7 @@
 								</p>
 								<ul class="field-type-radio field-name-discharge-funnel">
 									<li class="default-discharge-funnel">
-										<input type="radio" id="standard-discharge-funnel" name="discharge-funnel" value="standard-discharge-funnel" checked="checked" />
+										<input type="radio" id="standard-discharge-funnel" class="active" name="discharge-funnel" value="standard-discharge-funnel" checked="checked" />
 										<label for="standard-discharge-funnel" class="clearfix"><h4>Standard Discharge Funnel</h4>
 											<div id="funnel-std" class="accessories-image ir">
 												Standard Discharge Funnel image
@@ -764,7 +776,7 @@
 						<p>
 							This is how YOUR customized machine will look
 						</p>
-						<div id="machine-image" class="ir s-4 smwh std-fnl front">
+						<div id="machine-image" class="ir s4 smwh std-fnl front">
 							<div class="machine-bg">
 								&nbsp;
 							</div>
@@ -779,7 +791,9 @@
 							</div>
 						</div>
 						<h3 id="machine-title" class="hidden">S-4 Weigh/Fill System</h3>
-						<p id="cost-container">Price as configured: <span class="price">$<span class="amount">6150</span></span></p>
+						<p id="cost-container">
+							Price as configured: <span class="price">$<span class="amount">6150</span></span>
+						</p>
 					</div>
 				</aside>
 				<a href="#hidden-accessories-page" id="hidden-accessories-page-btn" class="ir">Add Accessories</a>
@@ -799,18 +813,18 @@
 
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 		<script>
-			window.jQuery || document.write('<script src="js/vendor/jquery-1.8.3.min.js"><\/script>')
+            window.jQuery || document.write('<script src="js/vendor/jquery-1.8.3.min.js"><\/script>')
 		</script>
 		<script src="js/plugins.js"></script>
 		<script src="js/main.js"></script>
 
 		<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 		<script>
-			var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']]; ( function(d, t) {
-					var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
-					g.src = ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
-					s.parentNode.insertBefore(g, s)
-				}(document, 'script'));
+            var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']]; ( function(d, t) {
+                    var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+                    g.src = ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+                    s.parentNode.insertBefore(g, s)
+                }(document, 'script'));
 		</script>
 	</body>
 </html>

@@ -1,389 +1,244 @@
-$(document)
-		.ready(
-				function() {
+$(document).ready(function() {
 
-					// Define machine object
-					function machine(machineName, machineType, machinePrice) {
-						this.machineName = machineName;
-						this.machineType = machineType;
-						this.machinePrice = machinePrice;
-					}
-					// Create instances of the machine object and assign
-					// properties
-					machineS4 = new machine("S-4", "Weigh/Fill System", 6150);
-					machineS5 = new machine("S-5", "Bulk Fill System", 5450);
-					machineS6 = new machine("S-6", "Cascading Weigh FIller",
-							9950);
-					machineS7 = new machine("S-7", "Dual-Lane Weigh FIller",
-							12000);
+    // Declare global variables
+    var machineModelDesc = $('.machine-model-description'), machineImage = $('#machine-image'), nextMachineImage = $('#machine-image').next('#machine-title'), btnAdd = $('#btnAdd'), s4Machine = $('label[for="s4"]');
+    s4MachineName = s4Machine.find('.machineName').html(), s4MachineType = s4Machine.find('.machineType').html(), s4MachinePrice = s4Machine.find('.amount').html()
 
-					// Hide fallback content and delete button
-					$(
-							'.large-discharge-funnel,.field-name-dimensions li,#btnDel,#step-2,#step-3,#step-4,#step-5,#hidden-accessories-page,.spout-shape-images > *')
-							.hide();
-					// Remove fallback form elements
-					$('.default-spout,.default-discharge-funnel,#btnQuote')
-							.remove();
-					// .bottom class puts a negative z-index on the hidden
-					// accessories page so that it loads underneath the rest of
-					// the content. This removes that class on load.
-					$('.bottom').removeClass('bottom');
-					// Hide all but the first machine model description
-					$('.machine-model-description').not(
-							'.machine-model-description:first').hide();
-					// Remove .hidden class from JS ready content
-					$(
-							'.small-discharge-funnel,.large-discharge-funnel,#btnAdd,#btnDel,#btnFront,#btnSide,.cloneSpout,.step-submit,#sidebar,#btnPrint,#btnEmail,#btnClose,#btnContinue,.order-summary,#hidden-accessories-page,#machine-title,#order-summary')
-							.removeClass('hidden');
-					// Check the default discharge funnel field
-					$('#small-standard-discharge-funnel').prop('checked', true);
+    s5Machine = $('label[for="s5"]');
+    s5MachineName = s5Machine.find('.machineName').html(), s5MachineType = s5Machine.find('.machineType').html(), s5MachinePrice = s5Machine.find('.amount').html()
 
-					// Add a waypoint to the sidebar
-					var mi_container = $('#sidebar');
-					// Remove the no-sidebar class for fallback
-					$('#main-content').removeClass('no-sidebar');
-					// Set the .sticky class when waypoint is reached
-					mi_container.waypoint(function(direction) {
-						$('#machine-image-container').toggleClass('sticky',
-								direction === 'down');
-					});
+    s6Machine = $('label[for="s6"]');
+    s6MachineName = s6Machine.find('.machineName').html(), s6MachineType = s6Machine.find('.machineType').html(), s6MachinePrice = s6Machine.find('.amount').html()
 
-					function radioSelect() {
-						var radioInputFields = $('input[name=machine-model],input[name=weight-hopper],input[name=discharge-funnel],input.spout-type,#btnFront,#btnSide');
-						// var machineImage = $('#machine-image');
-						radioInputFields
-								.click(function() {
+    s7Machine = $('label[for="s7"]');
+    s7MachineName = s7Machine.find('.machineName').html(), s7MachineType = s7Machine.find('.machineType').html(), s7MachinePrice = s7Machine.find('.amount').html();
 
-									var fieldID = $(this);
-									var spoutContainer = fieldID
-											.closest('fieldset');
-									var fieldValue = fieldID.val();
-									var machineImage = $('#machine-image');
+    //  $('.field-name-machine-model input').each(function(index) {
+    //      var machineID = $(this).attr('id');
+    //  });
 
-									switch (fieldValue) {
-									case 'S-4':
-										$('.machine-model-description').hide();
-										$('#s-4-description').show();
-										machineImage.removeClass(
-												's-4 s-5 s-6 s-7').addClass(
-												's-4');
-										machineImage
-												.next('#machine-title')
-												.html(
-														machineS4.machineName
-																+ " "
-																+ machineS4.machineType);
-										break;
-									case 'S-5':
-										$('.machine-model-description').hide();
-										$('#s-5-description').show();
-										machineImage.removeClass(
-												's-4 s-5 s-6 s-7').addClass(
-												's-5');
-										machineImage
-												.next('#machine-title')
-												.html(
-														machineS5.machineName
-																+ " "
-																+ machineS5.machineType);
-										break;
-									case 'S-6':
-										$('.machine-model-description').hide();
-										$('#s-6-description').show();
-										machineImage.removeClass(
-												's-4 s-5 s-6 s-7').addClass(
-												's-6');
-										machineImage
-												.next('#machine-title')
-												.html(
-														machineS6.machineName
-																+ " "
-																+ machineS6.machineType);
-										break;
-									case 'S-7':
-										$('.machine-model-description').hide();
-										$('#s-7-description').show();
-										machineImage.removeClass(
-												's-4 s-5 s-6 s-7').addClass(
-												's-7');
-										machineImage
-												.next('#machine-title')
-												.html(
-														machineS7.machineName
-																+ " "
-																+ machineS7.machineType);
-										break;
-									case 'small-weight-hopper':
-										$('.small-discharge-funnel')
-												.show()
-												.find(
-														'#small-standard-discharge-funnel')
-												.prop('checked', true);
-										$('.large-discharge-funnel').hide()
-												.find('input').prop('checked',
-														false);
-										machineImage.removeClass(
-												'smwh lrgwh std-fnl steep-fnl')
-												.addClass('smwh std-fnl');
-										break;
-									case 'large-weight-hopper':
-										$('.large-discharge-funnel')
-												.show()
-												.find(
-														'#large-standard-discharge-funnel')
-												.prop('checked', true);
-										$('.small-discharge-funnel').hide()
-												.find('input').prop('checked',
-														false);
-										machineImage.removeClass(
-												'smwh lrgwh std-fnl steep-fnl')
-												.addClass('lrgwh std-fnl');
-										break;
-									case 'small-steep-funnel':
-									case 'large-steep-funnel':
-										machineImage.removeClass(
-												'std-fnl steep-fnl').addClass(
-												'steep-fnl');
-										break;
-									case 'small-standard-discharge-funnel':
-									case 'large-standard-discharge-funnel':
-										machineImage.removeClass(
-												'std-fnl steep-fnl').addClass(
-												'std-fnl');
-										break;
-									case 'flag-bag':
-										machineImage.find('.spout')
-												.removeClass('hidden');
-										spoutContainer.find(
-												'.field-name-dimensions li')
-												.hide();
-										spoutContainer.find(
-												'.spout-shape-images > *')
-												.hide()
-										spoutContainer.find(
-												'.spout-width-inches').show();
-										spoutContainer
-												.find(
-														'.spout-shape-images > .flat-bag-spout-shape')
-												.show();
-										spoutContainer
-												.find('.description p')
-												.html(
-														"Enter the width of the bag opening (W).");
-										break;
-									case '4-sided-bag':
-										machineImage.find('.spout')
-												.removeClass('hidden');
-										spoutContainer.find(
-												'.field-name-dimensions li')
-												.hide();
-										spoutContainer.find(
-												'.spout-shape-images > *')
-												.hide()
-										spoutContainer
-												.find(
-														'.spout-width-inches,.spout-height-inches')
-												.show();
-										spoutContainer
-												.find(
-														'.spout-shape-images > .four-sided-bag-spout-shape')
-												.show();
-										spoutContainer
-												.find('.description p')
-												.html(
-														"Looking down at the top of your bag, enter the dimensions (D1) and (D2) of the bag opening.");
-										break;
-									case 'can-jar':
-										machineImage.find('.spout')
-												.removeClass('hidden');
-										spoutContainer.find(
-												'.field-name-dimensions li')
-												.hide();
-										spoutContainer.find(
-												'.spout-shape-images > *')
-												.hide()
-										spoutContainer.find(
-												'.spout-diameter-inches')
-												.show();
-										spoutContainer
-												.find(
-														'.spout-shape-images > .can-or-jar-spout-shape')
-												.show();
-										spoutContainer
-												.find('.description p')
-												.html(
-														"Enter the inside diameter of the bottle or can opening (D).");
-										break;
-									case 'Front':
-										machineImage.removeClass('side')
-												.addClass('front');
-										break;
-									case 'Side':
-										machineImage.removeClass('front')
-												.addClass('side');
-										break;
+    // Create instances of the machine object and assign
+    // properties
+    //  machineS4 = {
+    //      machineName : $('input '),
+    //      machineType : "Weigh/Fill System",
+    //      machinePrice : 6150
+    //  };
 
-									}
+    // Hide fallback content and delete button
+    $('.large-discharge-funnel,.field-name-dimensions li,#btnDel,#step-2,#step-3,#step-4,#step-5,#hidden-accessories-page,.spout-shape-images > *').hide();
+    // Remove fallback form elements
+    $('.default-spout,.default-discharge-funnel,#btnQuote').remove();
+    // .bottom class puts a negative z-index on the hidden
+    // accessories page so that it loads underneath the rest of
+    // the content. This removes that class on load.
+    $('.bottom').removeClass('bottom');
+    // Hide all but the first machine model description
+    machineModelDesc.not('.machine-model-description:first').hide();
+    // Remove .hidden class from JS ready content
+    $('.small-discharge-funnel,.large-discharge-funnel,#btnAdd,#btnDel,#btnFront,#btnSide,.cloneSpout,.step-submit,#sidebar,#btnPrint,#btnEmail,#btnClose,#btnContinue,.order-summary,#hidden-accessories-page,#machine-title,#order-summary').removeClass('hidden');
+    // Check the default discharge funnel field
+    $('#small-standard-discharge-funnel').prop('checked', true).addClass('active');
 
-								});
+    // Add a waypoint to the sidebar
+    var mi_container = $('#sidebar');
+    // Remove the no-sidebar class for fallback
+    $('#main-content').removeClass('no-sidebar');
+    // Set the .sticky class when waypoint is reached
+    mi_container.waypoint(function(direction) {
+        $('#machine-image-container').toggleClass('sticky', direction === 'down');
+    });
 
-					}
-					radioSelect();
+    function radioSelect() {
+        var radioInputFields = $('input[name=machine-model],input[name=weight-hopper],input[name=discharge-funnel],input.spout-type,#btnFront,#btnSide');
 
-					$('.step-submit').click(
-							function() {
-								var stepContainer = $(this).closest(
-										'.step-container');
-								var nextContainerID = stepContainer.next()
-										.attr('id');
-								var prevContainerID = stepContainer.prev()
-										.attr('id');
-								$('#pag-navigation a').removeClass('active');
+        radioInputFields.click(function(e) {
+            var fieldID = $(this), inputVal = fieldID.closest('ul.field-type-radio').find('.active').val(), objectVal = fieldID.val();
 
-								if ($(this).is('.next')) {
-									stepContainer.hide().next().show();
-									$(
-											'#pag-navigation a[href*='
-													+ nextContainerID + ']')
-											.addClass('active');
-								} else {
-									stepContainer.hide().prev().show();
-									$(
-											'#pag-navigation a[href*='
-													+ prevContainerID + ']')
-											.addClass('active');
-								}
-							});
+            if (inputVal === objectVal) {
+                e.preventDefault();
+                //add this to prevent default click behaviour
+            } else {
+                var fieldValue = fieldID.val(), spoutContainer = fieldID.closest('fieldset'), grandTotalContainer = $('#cost-container .amount'), grandTotal = parseInt(grandTotalContainer.text(), 10), price = parseInt(fieldID.next('label').find(".amount").text(), 10), siblingAmounts = 0;
+                radioName = fieldID.attr("name");
 
-					$('#pag-navigation a').click(function() {
-						var stepValue = $(this).attr('href');
-						$('#pag-navigation a').removeClass('active');
-						$(this).addClass('active');
-						$('.step-container').hide();
-						$(stepValue).show();
-					});
+                $("input[name='" + radioName + "'].active").not(fieldID).each(function() {
+                    siblingAmounts += parseInt($(this).next("label").find(".amount").text(), 10);
+                });
+                fieldID.toggleClass("active");
+                $("input[name='" + radioName + "']").not(fieldID).removeClass("active");
+                if (fieldID.hasClass("active")) {
+                    grandTotal -= siblingAmounts;
+                    grandTotal += price;
+                } else {
+                    grandTotal -= price;
+                }
+                grandTotalContainer.html(grandTotal);
 
-					$('#hidden-accessories-page-btn').click(function() {
-						$('#hidden-accessories-page').show();
-					});
-					$('#btnClose,#btnContinue').click(function() {
-						$(this).closest('.step-container').hide();
-					});
+                switch (fieldValue) {
+                    case 'S-4':
+                        machineModelDesc.hide();
+                        s4Machine.find('.machine-model-description').show();
+                        machineImage.removeClass('s4 s5 s6 s7').addClass('s4');
+                        nextMachineImage.html(s4MachineName + " " + s4MachineType);
+                        break;
+                    case 'S-5':
+                        machineModelDesc.hide();
+                        s5Machine.find('.machine-model-description').show();
+                        machineImage.removeClass('s4 s5 s6 s7').addClass('s5');
+                        nextMachineImage.html(s5MachineName + " " + s5MachineType);
+                        break;
+                    case 'S-6':
+                        machineModelDesc.hide();
+                        s6Machine.find('.machine-model-description').show();
+                        machineImage.removeClass('s4 s5 s6 s7').addClass('s6');
+                        nextMachineImage.html(s6MachineName + " " + s6MachineType);
+                        break;
+                    case 'S-7':
+                        machineModelDesc.hide();
+                        s7Machine.find('.machine-model-description').show();
+                        machineImage.removeClass('s4 s5 s6 s7').addClass('s7');
+                        nextMachineImage.html(s7MachineName + " " + s7MachineType);
+                        break;
+                    case 'small-weight-hopper':
+                        $('.small-discharge-funnel').show().find('#small-standard-discharge-funnel').prop('checked', true);
+                        $('.large-discharge-funnel').hide().find('input').prop('checked', false);
+                        machineImage.removeClass('smwh lrgwh std-fnl steep-fnl').addClass('smwh std-fnl');
+                        break;
+                    case 'large-weight-hopper':
+                        $('.large-discharge-funnel').show().find('#large-standard-discharge-funnel').prop('checked', true);
+                        $('.small-discharge-funnel').hide().find('input').prop('checked', false);
+                        machineImage.removeClass('smwh lrgwh std-fnl steep-fnl').addClass('lrgwh std-fnl');
+                        break;
+                    case 'small-steep-funnel':
+                    case 'large-steep-funnel':
+                    case 'small-standard-discharge-funnel':
+                    case 'large-standard-discharge-funnel':
+                        machineImage.toggleClass('std-fnl steep-fnl');
+                        break;
+                    case 'flag-bag':
+                        machineImage.find('.spout').removeClass('hidden');
+                        spoutContainer.find('.field-name-dimensions li').hide();
+                        spoutContainer.find('.spout-shape-images > *').hide()
+                        spoutContainer.find('.spout-width-inches').show();
+                        spoutContainer.find('.spout-shape-images > .flat-bag-spout-shape').show();
+                        spoutContainer.find('.description p').html("Enter the width of the bag opening (W).");
+                        break;
+                    case '4-sided-bag':
+                        machineImage.find('.spout').removeClass('hidden');
+                        spoutContainer.find('.field-name-dimensions li').hide();
+                        spoutContainer.find('.spout-shape-images > *').hide()
+                        spoutContainer.find('.spout-width-inches,.spout-height-inches').show();
+                        spoutContainer.find('.spout-shape-images > .four-sided-bag-spout-shape').show();
+                        spoutContainer.find('.description p').html("Looking down at the top of your bag, enter the dimensions (D1) and (D2) of the bag opening.");
+                        break;
+                    case 'can-jar':
+                        machineImage.find('.spout').removeClass('hidden');
+                        spoutContainer.find('.field-name-dimensions li').hide();
+                        spoutContainer.find('.spout-shape-images > *').hide()
+                        spoutContainer.find('.spout-diameter-inches').show();
+                        spoutContainer.find('.spout-shape-images > .can-or-jar-spout-shape').show();
+                        spoutContainer.find('.description p').html("Enter the inside diameter of the bottle or can opening (D).");
+                        break;
+                    case 'Front':
+                        machineImage.removeClass('side').addClass('front');
+                        break;
+                    case 'Side':
+                        machineImage.removeClass('front').addClass('side');
+                        break;
+                }
+            }
+        });
 
-					$('#btnAdd')
-							.click(
-									function() {
-										var num = $('.cloneSpout').length;
-										var newNum = new Number(num + 1);
-										// the numeric ID of the new input field
-										// being
-										// added
-										var newSpoutID = 'spout-' + newNum;
-										var newSpoutTypeID = 'spout-' + newNum
-												+ "-type";
-										var newSpoutDimensionsID = 'spout-'
-												+ newNum + "-dimensions";
-										// create the new element via clone(),
-										// and
-										// manipulate it's ID using newNum value
-										var newElem = $('#spout-' + num)
-												.clone().attr('id', newSpoutID);
+    }
 
-										// manipulate the name/id values of the
-										// elements
-										// inside the new element
-										var radioFieldID = 1;
+    radioSelect();
 
-										newElem
-												.children('legend')
-												.html('Spout ' + newNum)
-												.next()
-												.attr('id', newSpoutTypeID)
-												.find('input')
-												.attr(
-														{
-															"id" : function(arr) {
-																return newSpoutTypeID
-																		+ "-"
-																		+ arr
-															},
-															'name' : newSpoutTypeID
-														})
-												.prop('checked', false)
-												.next()
-												.attr(
-														'for',
-														function(arr) {
-															return newSpoutTypeID
-																	+ "-" + arr
-														});
-										newElem
-												.find('.description p')
-												.html(
-														"Please enter the spout type spout that you require by clicking on the image above.");
-										newElem.find('.spout-shape-images > *')
-												.hide()
-										newElem
-												.children(
-														'.field-name-dimensions')
-												.attr('id',
-														newSpoutDimensionsID)
-												.find('li')
-												.hide()
-												.find(
-														'.spout-width-inches input')
-												.attr(
-														'id',
-														newSpoutID
-																+ "-width-inches")
-												.closest(
-														'.field-name-dimensions')
-												.find(
-														'.spout-height-inches input')
-												.attr(
-														'id',
-														newSpoutID
-																+ "-height-inches")
-												.closest(
-														'.field-name-dimensions')
-												.find(
-														'.spout-diameter-inches input')
-												.attr(
-														'id',
-														newSpoutID
-																+ "-diameter-inches");
+    $('.step-submit').click(function() {
+        var stepContainer = $(this).closest('.step-container'), nextContainerID = stepContainer.next().attr('id'), prevContainerID = stepContainer.prev().attr('id');
+        $('#pag-navigation a').removeClass('active');
 
-										// insert the new element after the last
-										// "duplicatable" input field
-										$('#spout-' + num).after(newElem);
+        if ($(this).is('.next')) {
+            stepContainer.hide().next().show();
+            $('#pag-navigation a[href*=' + nextContainerID + ']').addClass('active');
+        } else {
+            stepContainer.hide().prev().show();
+            $('#pag-navigation a[href*=' + prevContainerID + ']').addClass('active');
+        }
+    });
 
-										// enable the "remove" button
-										$('#btnDel').show().prop('disabled',
-												false);
+    $('#pag-navigation a').click(function() {
+        var stepValue = $(this).attr('href');
+        $('#pag-navigation a').removeClass('active');
+        $(this).addClass('active');
+        $('.step-container').hide();
+        $(stepValue).show();
+    });
 
-										// business rule: you can only add 5
-										// names
-										if (newNum == 3)
-											$('#btnAdd').hide();
+    $('#hidden-accessories-page-btn').click(function() {
+        $('#hidden-accessories-page').show();
+    });
+    $('#btnClose,#btnContinue').click(function() {
+        $(this).closest('.step-container').hide();
+    });
 
-										radioSelect();
-									});
+    btnAdd.click(function() {
+        var num = $('.cloneSpout').length, newNum = new Number(num + 1),
+        // the numeric ID of the new input field
+        // being
+        // added
+        newSpoutID = 'spout-' + newNum, newSpoutTypeID = 'spout-' + newNum + "-type", newSpoutDimensionsID = 'spout-' + newNum + "-dimensions",
+        // create the new element via clone(),
+        // and
+        // manipulate it's ID using newNum value
+        newElem = $('#spout-' + num).clone().attr('id', newSpoutID),
+        // manipulate the name/id values of the
+        // elements
+        // inside the new element
+        radioFieldID = 1;
 
-					$('#btnDel').click(function() {
-						var num = $('.cloneSpout').length;
-						// how many "duplicatable" input fields we currently
-						// have
-						$('#spout-' + num).remove();
-						// remove the last element
+        newElem.children('legend').html('Spout ' + newNum).next().attr('id', newSpoutTypeID).find('input').attr({
+            "id" : function(arr) {
+                return newSpoutTypeID + "-" + arr
+            },
+            'name' : newSpoutTypeID
+        }).prop('checked', false).next().attr('for', function(arr) {
+            return newSpoutTypeID + "-" + arr
+        });
+        newElem.find('.description p').html("Please enter the spout type spout that you require by clicking on the image above.");
+        newElem.find('.spout-shape-images > *').hide()
+        newElem.children('.field-name-dimensions').attr('id', newSpoutDimensionsID).find('li').hide().find('.spout-width-inches input').attr('id', newSpoutID + "-width-inches").closest('.field-name-dimensions').find('.spout-height-inches input').attr('id', newSpoutID + "-height-inches").closest('.field-name-dimensions').find('.spout-diameter-inches input').attr('id', newSpoutID + "-diameter-inches");
 
-						// enable the "add" button
-						if (num == 3)
-							$('#btnAdd').show();
+        // insert the new element after the last
+        // "duplicatable" input field
+        $('#spout-' + num).after(newElem);
 
-						// if only one element remains, disable the "remove"
-						// button
-						if (num - 1 == 1)
-							$('#btnDel').hide().attr('disabled', 'disabled');
-					});
+        // enable the "remove" button
+        $('#btnDel').show().prop('disabled', false);
 
-				});
+        // business rule: you can only add 5
+        // names
+        if (newNum == 3)
+            btnAdd.hide();
+
+        radioSelect();
+    });
+
+    $('#btnDel').click(function() {
+        var num = $('.cloneSpout').length;
+        // how many "duplicatable" input fields we currently
+        // have
+        $('#spout-' + num).remove();
+        // remove the last element
+
+        // enable the "add" button
+        if (num == 3)
+            btnAdd.show();
+
+        // if only one element remains, disable the "remove"
+        // button
+        if (num - 1 == 1)
+            $('#btnDel').hide().attr('disabled', 'disabled');
+    });
+
+});

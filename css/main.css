@@ -205,14 +205,14 @@ form#logical-machines-price-accesory-guide {
 .amount {
 
 }
-.s-4.front .machine-bg {
+.s4.front .machine-bg {
 	width: 254px;
 	height: 445px;
 	background-position: -10px -10px;
 	top: 5px;
 	left: 3px;
 }
-.s-4.side .machine-bg {
+.s4.side .machine-bg {
 	width: 256px;
 	height: 439px;
 	background-position: -10px -465px;
@@ -220,35 +220,35 @@ form#logical-machines-price-accesory-guide {
 	left: 1px;
 }
 /* Small weight hopper front */
-.s-4.smwh.front .weight-hopper {
+.s4.smwh.front .weight-hopper {
 	width: 205px;
 	height: 67px;
 	background-position: -10px -1926px;
 	top: 139px;
 	left: 52px;
 }
-.s-4.smwh.std-fnl.front .funnel {
+.s4.smwh.std-fnl.front .funnel {
 	width: 210px;
 	height: 52px;
 	background-position: -10px -2003px;
 	top: 191px;
 	left: 47px;
 }
-.s-4.smwh.std-fnl.front .spout {
+.s4.smwh.std-fnl.front .spout {
 	width: 187px;
 	height: 39px;
 	background-position: -10px -2179px;
 	top: 232px;
 	left: 70px;
 }
-.s-4.smwh.steep-fnl.front .funnel {
+.s4.smwh.steep-fnl.front .funnel {
 	width: 207px;
 	height: 83px;
 	background-position: -10px -1149px;
 	top: 191px;
 	left: 50px;
 }
-.s-4.smwh.steep-fnl.front .spout {
+.s4.smwh.steep-fnl.front .spout {
 	width: 187px;
 	height: 39px;
 	background-position: -10px -2179px;
@@ -256,35 +256,35 @@ form#logical-machines-price-accesory-guide {
 	left: 70px;
 }
 /* Small weight hopper side */
-.s-4.smwh.side .weight-hopper {
+.s4.smwh.side .weight-hopper {
 	width: 225px;
 	height: 51px;
 	background-position: -10px -2065px;
 	top: 152px;
 	left: 33px;
 }
-.s-4.smwh.std-fnl.side .funnel {
+.s4.smwh.std-fnl.side .funnel {
 	width: 233px;
 	height: 43px;
 	background-position: -10px -2126px;
 	top: 192px;
 	left: 24px;
 }
-.s-4.smwh.std-fnl.side .spout {
+.s4.smwh.std-fnl.side .spout {
 	width: 230px;
 	height: 28px;
 	background-position: -10px -2228px;
 	top: 228px;
 	left: 27px;
 }
-.s-4.smwh.steep-fnl.side .funnel {
+.s4.smwh.steep-fnl.side .funnel {
 	width: 233px;
 	height: 73px;
 	background-position: -10px -1682px;
 	top: 188px;
 	left: 24px;
 }
-.s-4.smwh.steep-fnl.side .spout {
+.s4.smwh.steep-fnl.side .spout {
 	width: 230px;
 	height: 28px;
 	background-position: -10px -2228px;
@@ -292,35 +292,35 @@ form#logical-machines-price-accesory-guide {
 	left: 28px;
 }
 /* Large weight hopper front */
-.s-4.lrgwh.front .weight-hopper {
+.s4.lrgwh.front .weight-hopper {
 	width: 214px;
 	height: 82px;
 	background-position: -10px -1242px;
 	top: 144px;
 	left: 43px;
 }
-.s-4.lrgwh.std-fnl.front .funnel {
+.s4.lrgwh.std-fnl.front .funnel {
 	width: 215px;
 	height: 74px;
 	background-position: -10px -1598px;
 	top: 218px;
 	left: 42px;
 }
-.s-4.lrgwh.std-fnl.front .spout {
+.s4.lrgwh.std-fnl.front .spout {
 	width: 187px;
 	height: 39px;
 	background-position: -10px -2179px;
 	top: 280px;
 	left: 69px;
 }
-.s-4.lrgwh.steep-fnl.front .funnel {
+.s4.lrgwh.steep-fnl.front .funnel {
 	width: 215px;
 	height: 75px;
 	background-position: -10px -1513px;
 	top: 218px;
 	left: 42px;
 }
-.s-4.lrgwh.steep-fnl.front .spout {
+.s4.lrgwh.steep-fnl.front .spout {
 	width: 187px;
 	height: 39px;
 	background-position: -10px -2179px;
@@ -328,35 +328,35 @@ form#logical-machines-price-accesory-guide {
 	left: 69px;
 }
 /* Large weight hopper side */
-.s-4.lrgwh.side .weight-hopper {
+.s4.lrgwh.side .weight-hopper {
 	width: 250px;
 	height: 78px;
 	background-position: -10px -1425px;
 	top: 144px;
 	left: 7px;
 }
-.s-4.lrgwh.std-fnl.side .funnel {
+.s4.lrgwh.std-fnl.side .funnel {
 	width: 250px;
 	height: 70px;
 	background-position: -10px -1846px;
 	top: 205px;
 	left: 8px;
 }
-.s-4.lrgwh.std-fnl.side .spout {
+.s4.lrgwh.std-fnl.side .spout {
 	width: 230px;
 	height: 28px;
 	background-position: -10px -2228px;
 	top: 267px;
 	left: 15px;
 }
-.s-4.lrgwh.steep-fnl.side .funnel {
+.s4.lrgwh.steep-fnl.side .funnel {
 	width: 250px;
 	height: 71px;
 	background-position: -10px -1765px;
 	top: 205px;
 	left: 8px;
 }
-.s-4.lrgwh.steep-fnl.side .spout {
+.s4.lrgwh.steep-fnl.side .spout {
 	width: 230px;
 	height: 28px;
 	background-position: -10px -2228px;
