@@ -153,8 +153,8 @@
 								<ul class="field-type-radio field-name-machine-model">
 									<li>
 										<input type="radio" id="s-4" class="radio" name="machine-model" value="S-4" checked="checked" />
-										<label for="s-4"> <h4>S-4 Weigh/Fill System</h4>
-											<div id="s-4-description" class="machine-model-description">
+										<label for="s-4"> <h4><span class="machineName">S-4</span> <span class="machineType">Weigh/Fill System</span></h4>
+											<div class="machine-model-description">
 												<p>
 													The standard S-4 includes the small weigh hopper, small discharge funnel, Logical Controller II and one spout. It comes fully assembled and ready to operate.
 												</p>
@@ -204,8 +204,8 @@
 									</li>
 									<li>
 										<input type="radio" id="s-5" name="machine-model" value="S-5" />
-										<label for="s-5"> <h4>S-5 Weigh/Fill System</h4>
-											<div id="s-5-description" class="machine-model-description">
+										<label for="s-5"> <h4><span class="machineName">S-5</span> <span class="machineType">Weigh/Fill System</span></h4>
+											<div class="machine-model-description">
 												<p>
 													The standard S-5 includes... It comes fully assembled and ready to operate.
 												</p>
@@ -213,8 +213,8 @@
 									</li>
 									<li>
 										<input type="radio" id="s-6" name="machine-model" value="S-6" />
-										<label for="s-6"> <h4>S-6 Weigh/Fill System</h4>
-											<div id="s-6-description" class="machine-model-description">
+										<label for="s-6"> <h4><span class="machineName">S-6</span> <span class="machineType">Weigh/Fill System</span></h4>
+											<div class="machine-model-description">
 												<p>
 													The standard S-6 includes... It comes fully assembled and ready to operate.
 												</p>
@@ -222,8 +222,8 @@
 									</li>
 									<li>
 										<input type="radio" id="s-7" name="machine-model" value="S-7" />
-										<label for="s-7"> <h4>S-7 Weigh/Fill System</h4>
-											<div id="s-7-description" class="machine-model-description">
+										<label for="s-7"> <h4><span class="machineName">S-7</span> <span class="machineType">Weigh/Fill System</span></h4>
+											<div class="machine-model-description">
 												<p>
 													The standard S-7 includes... It comes fully assembled and ready to operate.
 												</p>
@@ -250,7 +250,7 @@
 												The small weigh hopper comes standard on the S-4. Its 250 cubic inch capacity handles net weights from a few grams to 3 lbs.
 											</p>
 											<p class="clear">
-												<b>Price: </b>included on standard S-4
+												<b>Price:<span class="price">$<span class="amount">0</span> </span></b>included on standard S-4
 											</p></label>
 
 									</li>
@@ -264,7 +264,7 @@
 												For larger volumes, the large weigh hopper's 650 cubic inch capacity handles net weights from 2 oz. to 10 lbs.
 											</p>
 											<p class="clear">
-												<b>Price: </b>$100 upcharge
+												<b>Price: </b><span class="price">$<span class="amount">100</span> upcharge</span>
 											</p></label>
 
 									</li>
@@ -294,11 +294,11 @@
 											<p class="clear">
 												<b>Price with Small Weigh Hopper: </b>
 												<br/>
-												included on standard S-4
+												<span class="price">$<span class="amount">0</span> </span>included on standard S-4
 												<br />
 												<b>Price with Large Weigh Hopper: </b>
 												<br/>
-												$150
+												<span class="price">$<span class="amount">150</span></span>
 											</p></label>
 
 									</li>
@@ -314,11 +314,11 @@
 											<p class="clear">
 												<b>Price with Small Weigh Hopper: </b>
 												<br/>
-												$125 upcharge
+												<span class="price">$<span class="amount">125</span></span> upcharge
 												<br />
 												<b>Price with Large Weigh Hopper: </b>
 												<br/>
-												$400 upcharge
+												<span class="price">$<span class="amount">400</span></span> upcharge
 											</p></label>
 
 									</li>
@@ -332,7 +332,7 @@
 												This is the standard funnel for use with the small weigh hopper. It is practical for most free-flowing materials.
 											</p>
 											<p class="clear">
-												<b>Price: </b>included on standard S-4
+												<b>Price: </b><span class="price">$<span class="amount">0</span> </span>included on standard S-4
 											</p></label>
 									</li>
 									<li class="small-discharge-funnel hidden">
@@ -345,7 +345,7 @@
 												This steep sided funnel is used for fine powdered materials such as flour or other products that can stick to metal surfaces.
 											</p>
 											<p class="clear">
-												<b>Price: </b>$125 upcharge
+												<b>Price: </b><span class="price">$<span class="amount">125</span></span> upcharge
 											</p></label>
 									</li>
 									<li class="large-discharge-funnel hidden">
@@ -358,7 +358,7 @@
 												This is the standard funnel for use with the large weigh hopper. It works best with free flowing products.
 											</p>
 											<p class="clear">
-												<b>Price: </b>$150
+												<b>Price: </b><span class="price">$<span class="amount">150</span></span>
 											</p></label>
 									</li>
 									<li class="large-discharge-funnel hidden">
@@ -371,7 +371,7 @@
 												This steep sided funnel is used for fine powdered materials such as flour or other products that can stick to metal surfaces.
 											</p>
 											<p class="clear">
-												<b>Price: </b>$400 upcharge
+												<b>Price: </b><span class="price">$<span class="amount">400</span></span> upcharge
 											</p></label>
 									</li>
 
@@ -779,6 +779,7 @@
 							</div>
 						</div>
 						<h3 id="machine-title" class="hidden">S-4 Weigh/Fill System</h3>
+						<p id="cost-container">Price as configured: <span class="price">$<span class="amount">6150</span></span></p>
 					</div>
 				</aside>
 				<a href="#hidden-accessories-page" id="hidden-accessories-page-btn" class="ir">Add Accessories</a>
