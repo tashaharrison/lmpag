@@ -50,7 +50,7 @@ $(document).ready(function() {
     });
 
     function radioSelect() {
-        var radioInputFields = $('input[name=machine-model],input[name=weight-hopper],input[name=discharge-funnel],input.spout-type,#btnFront,#btnSide');
+        var radioInputFields = $('input[name=machine-model],input[name=weight-hopper],input[name=discharge-funnel],input.spout-type');
 
         radioInputFields.click(function(e) {
             var fieldID = $(this), inputVal = fieldID.closest('ul.field-type-radio').find('.active').val(), objectVal = fieldID.val();
@@ -140,19 +140,21 @@ $(document).ready(function() {
                         spoutContainer.find('.spout-shape-images > .can-or-jar-spout-shape').show();
                         spoutContainer.find('.description p').html("Enter the inside diameter of the bottle or can opening (D).");
                         break;
-                    case 'Front':
-                        machineImage.removeClass('side').addClass('front');
-                        break;
-                    case 'Side':
-                        machineImage.removeClass('front').addClass('side');
-                        break;
                 }
             }
         });
 
     }
-
     radioSelect();
+
+$('#btnFront,#btnSide').click(function() {
+    btnDirection = $(this).val();
+    if (btnDirection === 'Front') {
+        machineImage.addClass('front').removeClass('side');
+    } else {
+        machineImage.addClass('side').removeClass('front');
+    }
+});
 
     $('.step-submit').click(function() {
         var stepContainer = $(this).closest('.step-container'), nextContainerID = stepContainer.next().attr('id'), prevContainerID = stepContainer.prev().attr('id');
