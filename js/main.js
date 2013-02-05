@@ -106,7 +106,7 @@ $(document).ready(function() {
                         machineImage.removeClass('smwh lrgwh std-fnl steep-fnl').addClass('smwh std-fnl');
                         break;
                     case 'large-weight-hopper':
-                        $('.large-discharge-funnel').show().find('#large-standard-discharge-funnel').prop('checked', true);
+                        $('.large-discharge-funnel').show().find('#large-standard-discharge-funnel').prop('checked', false);
                         $('.small-discharge-funnel').hide().find('input').prop('checked', false);
                         machineImage.removeClass('smwh lrgwh std-fnl steep-fnl').addClass('lrgwh std-fnl');
                         break;
