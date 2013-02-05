@@ -145,16 +145,17 @@ $(document).ready(function() {
         });
 
     }
+
     radioSelect();
 
-$('#btnFront,#btnSide').click(function() {
-    btnDirection = $(this).val();
-    if (btnDirection === 'Front') {
-        machineImage.addClass('front').removeClass('side');
-    } else {
-        machineImage.addClass('side').removeClass('front');
-    }
-});
+    $('#btnFront,#btnSide').click(function() {
+        btnDirection = $(this).val();
+        if (btnDirection === 'Front') {
+            machineImage.addClass('front').removeClass('side');
+        } else {
+            machineImage.addClass('side').removeClass('front');
+        }
+    });
 
     $('.step-submit').click(function() {
         var stepContainer = $(this).closest('.step-container'), nextContainerID = stepContainer.next().attr('id'), prevContainerID = stepContainer.prev().attr('id');
