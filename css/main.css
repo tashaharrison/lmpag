@@ -190,6 +190,21 @@ form#logical-machines-price-accesory-guide {
 #machine-image-container {
 	width:280px;
 }
+#machine-title {
+	margin: 4px 0;
+}
+#cost-container {
+	border: 3px solid #0c4b81;
+	color:#0c4b81;
+	padding:10px;
+}
+.price {
+	color:#AD0000;
+	font-weight:bold;
+}
+.amount {
+
+}
 .s-4.front .machine-bg {
 	width: 254px;
 	height: 445px;
