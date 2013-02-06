@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
     // Declare global variables
-    var $machineModelDesc = $('.machine-model-description'), $machineImage = $('#machine-image'), $nextMachineImage = $('#machine-image').next('#machine-title'), $btnAdd = $('#$btnAdd'),
+    var $machineModelDesc = $('.machine-model-description'), $machineImage = $('#machine-image'), $nextMachineImage = $('#machine-image').next('#machine-title'), $btnAdd = $('#btnAdd'), $btnDel = $('#btnDel'),
     // S-4 Machine attributes
     $s4Machine = $('label[for="s4"]'), s4MachineName = $s4Machine.find('.machineName').text(), s4MachineType = $s4Machine.find('.machineType').text(), s4MachinePrice = $s4Machine.find('.amount').text()
     // S-5Machine attributes
@@ -34,7 +34,7 @@ $(document).ready(function() {
     // Hide all but the first machine model description
     $machineModelDesc.not('.machine-model-description:first').hide();
     // Remove .hidden class from JS ready content
-    $('.small-discharge-funnel,.large-discharge-funnel,#$btnAdd,#btnDel,#btnFront,#btnSide,.cloneSpout,.step-submit,#sidebar,#btnPrint,#btnEmail,#btnClose,#btnContinue,.order-summary,#hidden-accessories-page,#machine-title,#order-summary').removeClass('hidden');
+    $('.small-discharge-funnel,.large-discharge-funnel,#btnAdd,#btnDel,#btnFront,#btnSide,.cloneSpout,.step-submit,#sidebar,#btnPrint,#btnEmail,#btnClose,#btnContinue,.order-summary,#hidden-accessories-page,#machine-title,#order-summary').removeClass('hidden');
     // Check the default discharge funnel field
     $('#small-standard-discharge-funnel').prop('checked', true).addClass('active');
 
@@ -141,7 +141,6 @@ $(document).ready(function() {
                 }
             }
         });
-
     }
 
     radioSelect();
@@ -197,7 +196,6 @@ $(document).ready(function() {
         // elements
         // inside the new element
         radioFieldID = 1;
-
         newElem.children('legend').html('Spout ' + newNum).next().attr('id', newSpoutTypeID).find('input').attr({
             "id" : function(arr) {
                 return newSpoutTypeID + "-" + arr
@@ -215,7 +213,7 @@ $(document).ready(function() {
         $('#spout-' + num).after(newElem);
 
         // enable the "remove" button
-        $('#btnDel').show().prop('disabled', false);
+        $btnDel.show().prop('disabled', false);
 
         // business rule: you can only add 5
         // names
@@ -225,7 +223,7 @@ $(document).ready(function() {
         radioSelect();
     });
 
-    $('#btnDel').click(function() {
+    $btnDel.click(function() {
         var num = $('.cloneSpout').length;
         // how many "duplicatable" input fields we currently
         // have
@@ -239,7 +237,7 @@ $(document).ready(function() {
         // if only one element remains, disable the "remove"
         // button
         if (num - 1 == 1)
-            $('#btnDel').hide().attr('disabled', 'disabled');
+            $btnDel.hide().attr('disabled', 'disabled');
     });
 
 });
