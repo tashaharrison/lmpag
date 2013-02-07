@@ -149,10 +149,14 @@ $(document).ready(function() {
 
     function calculateSpoutSize() {
         $('.btnCalculate').click(function() {
-            var num = $('.cloneSpout').length;
+            
+            var num = $('.cloneSpout').length, $spoutContainer = $(this).closest('fieldset');
             if (num < 3) {
                 $btnAdd.show();
             }
+            $spoutContainer.find('.field-type-radio').hide();
+            $spoutContainer.find('.description').hide();
+            
         });
     }
 
