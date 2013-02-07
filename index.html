@@ -153,7 +153,7 @@
 								<ul class="field-type-radio field-name-machine-model">
 									<li>
 										<input type="radio" id="s4" class="radio active" name="machine-model" value="S-4" checked="checked" />
-										<label for="s4"> <h4><span class="machineName">S-4</span> <span class="machineType">Weigh/Fill System</span></h4>
+										<label for="s4"> <h4><span class="machineName">S-4</span><span class="machineType">Weigh/Fill System</span></h4>
 											<div class="machine-model-description">
 												<p>
 													The standard S-4 includes the small weigh hopper, small discharge funnel, Logical Controller II and one spout. It comes fully assembled and ready to operate.
@@ -207,7 +207,7 @@
 									</li>
 									<li>
 										<input type="radio" id="s5" name="machine-model" value="S-5" />
-										<label for="s5"> <h4><span class="machineName">S-5</span> <span class="machineType">Weigh/Fill System</span></h4>
+										<label for="s5"> <h4><span class="machineName">S-5</span><span class="machineType">Weigh/Fill System</span></h4>
 											<div class="machine-model-description">
 												<p>
 													The standard S-5 includes... It comes fully assembled and ready to operate.
@@ -219,7 +219,7 @@
 									</li>
 									<li>
 										<input type="radio" id="s6" name="machine-model" value="S-6" />
-										<label for="s6"> <h4><span class="machineName">S-6</span> <span class="machineType">Weigh/Fill System</span></h4>
+										<label for="s6"> <h4><span class="machineName">S-6</span><span class="machineType">Weigh/Fill System</span></h4>
 											<div class="machine-model-description">
 												<p>
 													The standard S-6 includes... It comes fully assembled and ready to operate.
@@ -231,7 +231,7 @@
 									</li>
 									<li>
 										<input type="radio" id="s7" name="machine-model" value="S-7" />
-										<label for="s7"> <h4><span class="machineName">S-7</span> <span class="machineType">Weigh/Fill System</span></h4>
+										<label for="s7"> <h4><span class="machineName">S-7</span><span class="machineType">Weigh/Fill System</span></h4>
 											<div class="machine-model-description">
 												<p>
 													The standard S-7 includes... It comes fully assembled and ready to operate.
@@ -651,21 +651,21 @@
 												<label for="spout-1-type-0">
 													<div class="spout-image flat-bag-spout ir">
 														Flag bag spout image
-													</div><h4>Flag bag</h4></label>
+													</div><h4>Flag bag</h4> </label>
 											</li>
 											<li>
 												<input type="radio" class="required spout-type" id="spout-1-type-1" name="spout-1-type" value="4-sided-bag" />
 												<label for="spout-1-type-1">
 													<div class="spout-image four-sided-bag-spout ir">
 														4 sided bag spout image
-													</div><h4>4 sided bag</h4></label>
+													</div><h4>4 sided bag</h4> </label>
 											</li>
 											<li>
 												<input type="radio" class="required spout-type" id="spout-1-type-2" name="spout-1-type" value="can-jar" />
 												<label for="spout-1-type-2">
 													<div class="spout-image can-or-jar-spout ir">
 														Bottle or Jar spout image
-													</div><h4>Bottle or Jar</h4></label>
+													</div><h4>Bottle or Jar</h4> </label>
 											</li>
 										</ul>
 										<div class="description">
@@ -698,11 +698,14 @@
 												Bottle or Jar spout shape image
 											</div>
 										</div>
+										<button type="button" value="Calculate" class="btnCalculate">
+											Calculate
+										</button>
 									</fieldset>
-									<button type="button" id="btnAdd" value="add another spout" class="hidden">
+									<button type="button" id="btnAdd" value="Add another spout" class="hidden">
 										add another spout
 									</button>
-									<button type="button" id="btnDel" value="remove spout" class="hidden">
+									<button type="button" id="btnDel" value="Remove spout" class="hidden">
 										remove spout
 									</button>
 								</div>
@@ -820,7 +823,8 @@
 
 		<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 		<script>
-            var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']]; ( function(d, t) {
+            var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']];
+            ( function(d, t) {
                     var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
                     g.src = ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
                     s.parentNode.insertBefore(g, s)
