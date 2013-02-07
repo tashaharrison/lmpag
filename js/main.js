@@ -149,9 +149,9 @@ $(document).ready(function() {
 
     function calculateSpoutSize() {
         $('.btnCalculate').click(function() {
-            var num = $('.cloneSpout').length
-            if(num < 3) {
-            $btnAdd.show();
+            var num = $('.cloneSpout').length;
+            if (num < 3) {
+                $btnAdd.show();
             }
         });
     }
@@ -174,7 +174,6 @@ $(document).ready(function() {
         }
         $grandTotalContainer.html(grandTotal);
     }
-
 
     $('#btnFront,#btnSide').click(function() {
         btnDirection = $(this).val();
