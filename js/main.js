@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
     // Declare global variables
-    var $machineModelDesc = $('.machine-model-description'), $machineImage = $('#machine-image'), $nextMachineImage = $('#machine-image').next('#machine-title'), $btnAdd = $('#btnAdd'), $btnDel = $('#btnDel'),
+    var $machineModelDesc = $('.machine-model-description'), $machineImage = $('#machine-image'), $nextMachineImage = $('#machine-image').next('#machine-title'), $btnAdd = $('#btnAdd'), $btnDel = $('#btnDel'), $grandTotalContainer = $('#cost-container .amount'), grandTotal = parseInt($grandTotalContainer.text(), 10),
     // S-4 Machine attributes
     $s4Machine = $('label[for="s4"]'), s4MachineName = $s4Machine.find('.machineName').text(), s4MachineType = $s4Machine.find('.machineType').text(), s4MachinePrice = $s4Machine.find('.amount').text()
     // S-5Machine attributes
@@ -23,8 +23,8 @@ $(document).ready(function() {
     //      machinePrice : 6150
     //  };
 
-    // Hide fallback content and delete button
-    $('.large-discharge-funnel,.field-name-dimensions li,#btnDel,#step-2,#step-3,#step-4,#step-5,#hidden-accessories-page,.spout-shape-images > *').hide();
+    // Hide fallback content, add and delete button
+    $('.large-discharge-funnel,.field-name-dimensions li,#step-2,#step-3,#step-4,#step-5,#hidden-accessories-page,.spout-shape-images > *,#btnAdd,#btnDel,.btnCalculate').hide();
     // Remove fallback form elements
     $('.default-spout,.default-discharge-funnel,#btnQuote').remove();
     // .bottom class puts a negative z-index on the hidden
@@ -48,32 +48,19 @@ $(document).ready(function() {
     });
 
     function radioSelect() {
-        var $radioInputFields = $('input[name=machine-model],input[name=weight-hopper],input[name=discharge-funnel],input.spout-type');
+        var $radioInputFields = $('input[name=machine-model],input[name=weight-hopper],input[name=discharge-funnel]');
 
         $radioInputFields.click(function(e) {
-            var $fieldID = $(this), inputVal = $fieldID.closest('ul.field-type-radio').find('.active').val(), objectVal = $fieldID.val();
+            var $fieldID = $(this), inputVal = $fieldID.closest('ul.field-type-radio').find('.active').attr('id'), objectVal = $fieldID.attr('id');
 
-            if (inputVal === objectVal) {
+            if (inputVal == objectVal) {
                 e.preventDefault();
                 //add this to prevent default click behaviour
             } else {
-                var fieldValue = $fieldID.val(), $spoutContainer = $fieldID.closest('fieldset'), $grandTotalContainer = $('#cost-container .amount'), grandTotal = parseInt($grandTotalContainer.text(), 10), price = parseInt($fieldID.next('label').find(".amount").text(), 10), siblingAmounts = 0;
-                radioName = $fieldID.attr("name");
 
-                $("input[name='" + radioName + "'].active").not($fieldID).each(function() {
-                    siblingAmounts += parseInt($(this).next("label").find(".amount").text(), 10);
-                });
-                $fieldID.toggleClass("active");
-                $("input[name='" + radioName + "']").not($fieldID).removeClass("active");
-                if ($fieldID.hasClass("active")) {
-                    grandTotal -= siblingAmounts;
-                    grandTotal += price;
-                } else {
-                    grandTotal -= price;
-                }
-                $grandTotalContainer.html(grandTotal);
+                var fieldVal = $fieldID.val(), radioName = $fieldID.attr("name");
 
-                switch (fieldValue) {
+                switch (fieldVal) {
                     case 'S-4':
                         $machineModelDesc.hide();
                         $s4Machine.find('.machine-model-description').show();
@@ -114,36 +101,80 @@ $(document).ready(function() {
                     case 'large-standard-discharge-funnel':
                         $machineImage.toggleClass('std-fnl steep-fnl');
                         break;
-                    case 'flag-bag':
-                        $machineImage.find('.spout').removeClass('hidden');
-                        $spoutContainer.find('.field-name-dimensions li').hide();
-                        $spoutContainer.find('.spout-shape-images > *').hide()
-                        $spoutContainer.find('.spout-width-inches').show();
-                        $spoutContainer.find('.spout-shape-images > .flat-bag-spout-shape').show();
-                        $spoutContainer.find('.description p').html("Enter the width of the bag opening (W).");
-                        break;
-                    case '4-sided-bag':
-                        $machineImage.find('.spout').removeClass('hidden');
-                        $spoutContainer.find('.field-name-dimensions li').hide();
-                        $spoutContainer.find('.spout-shape-images > *').hide()
-                        $spoutContainer.find('.spout-width-inches,.spout-height-inches').show();
-                        $spoutContainer.find('.spout-shape-images > .four-sided-bag-spout-shape').show();
-                        $spoutContainer.find('.description p').html("Looking down at the top of your bag, enter the dimensions (D1) and (D2) of the bag opening.");
-                        break;
-                    case 'can-jar':
-                        $machineImage.find('.spout').removeClass('hidden');
-                        $spoutContainer.find('.field-name-dimensions li').hide();
-                        $spoutContainer.find('.spout-shape-images > *').hide()
-                        $spoutContainer.find('.spout-diameter-inches').show();
-                        $spoutContainer.find('.spout-shape-images > .can-or-jar-spout-shape').show();
-                        $spoutContainer.find('.description p').html("Enter the inside diameter of the bottle or can opening (D).");
-                        break;
+
                 }
+                calculateTotal($fieldID);
             }
         });
     }
 
     radioSelect();
+
+    function spoutSelect() {
+        $('input.spout-type').click(function() {
+            var $fieldID = $(this), fieldVal = $fieldID.val(), $spoutContainer = $fieldID.closest('fieldset');
+
+            $spoutContainer.find('.btnCalculate').show();
+            // Toggle active class
+            $spoutContainer.find('input.active').removeClass('active');
+            $fieldID.addClass('active');
+            // Show the spout image
+            $machineImage.find('.spout').removeClass('hidden');
+            // Hide all the dimensions fields and images
+            $spoutContainer.find('.field-name-dimensions li').hide();
+            $spoutContainer.find('.spout-shape-images > *').hide();
+
+            switch (fieldVal) {
+                case 'flag-bag':
+                    $spoutContainer.find('.spout-width-inches').show();
+                    $spoutContainer.find('.spout-shape-images > .flat-bag-spout-shape').show();
+                    $spoutContainer.find('.description p').html("Enter the width of the bag opening (W).");
+                    break;
+                case '4-sided-bag':
+                    $spoutContainer.find('.spout-width-inches,.spout-height-inches').show();
+                    $spoutContainer.find('.spout-shape-images > .four-sided-bag-spout-shape').show();
+                    $spoutContainer.find('.description p').html("Looking down at the top of your bag, enter the dimensions (D1) and (D2) of the bag opening.");
+                    break;
+                case 'can-jar':
+                    $spoutContainer.find('.spout-diameter-inches').show();
+                    $spoutContainer.find('.spout-shape-images > .can-or-jar-spout-shape').show();
+                    $spoutContainer.find('.description p').html("Enter the inside diameter of the bottle or can opening (D).");
+                    break;
+            }
+
+        });
+    }
+
+    spoutSelect();
+
+    function calculateSpoutSize() {
+        $('.btnCalculate').click(function() {
+            var num = $('.cloneSpout').length
+            if(num < 3) {
+            $btnAdd.show();
+            }
+        });
+    }
+
+    calculateSpoutSize();
+
+    function calculateTotal($fieldID) {
+        var price = parseInt($fieldID.next('label').find(".amount").text(), 10), siblingAmounts = 0, radioName = $fieldID.attr("name");
+
+        $("input[name='" + radioName + "'].active").not($fieldID).each(function() {
+            siblingAmounts += parseInt($(this).next("label").find(".amount").text(), 10);
+        });
+        $fieldID.toggleClass("active");
+        $("input[name='" + radioName + "']").not($fieldID).removeClass("active");
+        if ($fieldID.hasClass("active")) {
+            grandTotal -= siblingAmounts;
+            grandTotal += price;
+        } else {
+            grandTotal -= price;
+        }
+        $grandTotalContainer.html(grandTotal);
+    }
+
 
     $('#btnFront,#btnSide').click(function() {
         btnDirection = $(this).val();
@@ -201,13 +232,12 @@ $(document).ready(function() {
                 return newSpoutTypeID + "-" + arr
             },
             'name' : newSpoutTypeID
-        }).prop('checked', false).next().attr('for', function(arr) {
+        }).prop('checked', false).removeClass('active').next().attr('for', function(arr) {
             return newSpoutTypeID + "-" + arr
         });
         newElem.find('.description p').html("Please enter the spout type spout that you require by clicking on the image above.");
         newElem.find('.spout-shape-images > *').hide()
         newElem.children('.field-name-dimensions').attr('id', newSpoutDimensionsID).find('li').hide().find('.spout-width-inches input').attr('id', newSpoutID + "-width-inches").closest('.field-name-dimensions').find('.spout-height-inches input').attr('id', newSpoutID + "-height-inches").closest('.field-name-dimensions').find('.spout-diameter-inches input').attr('id', newSpoutID + "-diameter-inches");
-
         // insert the new element after the last
         // "duplicatable" input field
         $('#spout-' + num).after(newElem);
@@ -217,27 +247,34 @@ $(document).ready(function() {
 
         // business rule: you can only add 5
         // names
-        if (newNum == 3)
-            $btnAdd.hide();
+        $btnAdd.hide();
 
-        radioSelect();
+        spoutSelect();
+        calculateSpoutSize();
+
     });
 
     $btnDel.click(function() {
+        // Check the number of spouts
         var num = $('.cloneSpout').length;
-        // how many "duplicatable" input fields we currently
-        // have
+
+        if ($('#spout-' + num + ' input').hasClass('active')) {
+            price = parseInt($('#spout-' + num + ' input.active + label .amount').text(), 10);
+            grandTotal -= price;
+            $grandTotalContainer.html(grandTotal);
+        }
+
+        // Remove the last spout
         $('#spout-' + num).remove();
-        // remove the last element
 
-        // enable the "add" button
-        if (num == 3)
+        // Show the "add" button
+        if (num == 3) {
             $btnAdd.show();
-
-        // if only one element remains, disable the "remove"
-        // button
-        if (num - 1 == 1)
+        }
+        // Disable the "remove" button
+        if (num - 1 == 1) {
             $btnDel.hide().attr('disabled', 'disabled');
+        }
     });
 
 });
