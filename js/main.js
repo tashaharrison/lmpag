@@ -1,5 +1,7 @@
 $(document).ready(function() {
-
+    
+    $("#logical-machines-price-accesory-guide").validate();
+    
     // Declare global variables
     var $machineModelDesc = $('.machine-model-description'), $machineImage = $('#machine-image'), $nextMachineImage = $('#machine-image').next('#machine-title'), $btnAdd = $('#btnAdd'), $btnDel = $('#btnDel'), $grandTotalContainer = $('#cost-container .amount'), grandTotal = parseInt($grandTotalContainer.text(), 10),
     // S-4 Machine attributes
@@ -151,12 +153,15 @@ $(document).ready(function() {
         $('.btnCalculate').click(function() {
             
             var num = $('.cloneSpout').length, $spoutContainer = $(this).closest('fieldset');
+            var dimensionVal = $spoutContainer.find('.field-type-textfield input').filter(":visible").val();
+            
+            if (dimensionVal !== "") {
             if (num < 3) {
                 $btnAdd.show();
             }
             $spoutContainer.find('.field-type-radio').hide();
             $spoutContainer.find('.description').hide();
-            
+            }
         });
     }
 
