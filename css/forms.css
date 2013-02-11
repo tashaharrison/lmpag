@@ -63,8 +63,8 @@ input[type="reset"]:hover,
 input[type="submit"]:hover,
 input[type="button"]:hover,
 .more-link a:hover {
-	background: #AD0000;
-	color: #FFFFFF;
+	background: #B3FFB3;
+	color: #000000;
 	font-weight: bold;
 }
 button {
@@ -106,6 +106,7 @@ input[type="week"] {
 	font-size: 14px;
 	font-family: myriad-pro, Arial, Helvetica, sans-serif;
 	height: 2em;
+	margin-bottom:8px;
  *padding-top: 2px; /* IE7 */
  *padding-bottom: 1px; /* IE7 */
  *height: auto; /* IE7 */
@@ -120,15 +121,21 @@ input.placeholder_text, textarea.placeholder_text, input:-moz-placeholder, texta
  color: #888;
 }
 button:focus,
-button:active,
+button:active {
+	z-index: 1; /* For Opera */
+	background-color:rgb(175, 206, 233);
+}
 input:focus,
 input:active,
 select:focus,
 select:active,
 textarea:focus,
 textarea:active {
-	z-index: 1; /* For Opera */
-	background-color:#090;
+    z-index: 1; /* For Opera */
+    background-color:#B3FFB3;
+}
+input.error {
+    background-color:rgb(255, 213, 213);
 }
 input[type="file"]:focus,
 input[type="file"]:active,
@@ -172,6 +179,10 @@ textarea[disabled] {
 	color: #888;
 	cursor: default;
 }
+#fieldNameSpout .btnCalculate {
+    clear:both;
+    display:block;
+}
 textarea,
 select[size],
 select[multiple] {
@@ -190,6 +201,16 @@ select[multiple] {
 }
 label {
 	margin-right: 10px;
+}
+label.error {
+	display: block;
+	background-color: #AD0000;
+	color: white;
+	padding: 4px 8px;
+	width: 104px;
+	margin-top:-8px;
+	margin-bottom:8px;
+	font-size: 0.9em;
 }
 legend {
 	background-color: #FFFFFF;

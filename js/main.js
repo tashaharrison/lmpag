@@ -1,7 +1,20 @@
 $(document).ready(function() {
-    
-    $("#logical-machines-price-accesory-guide").validate();
-    
+
+    $("#logical-machines-price-accesory-guide").validate({
+        rules : {
+            dimensionInches : {
+                required : true,
+                number : true,
+            }
+        },
+        messages : {
+            dimensionInches : {
+                required : "This is a required field.",
+                number : "Please enter a number.",
+            }
+        }
+    });
+
     // Declare global variables
     var $machineModelDesc = $('.machine-model-description'), $machineImage = $('#machine-image'), $nextMachineImage = $('#machine-image').next('#machine-title'), $btnAdd = $('#btnAdd'), $btnDel = $('#btnDel'), $grandTotalContainer = $('#cost-container .amount'), grandTotal = parseInt($grandTotalContainer.text(), 10),
     // S-4 Machine attributes
@@ -149,24 +162,6 @@ $(document).ready(function() {
 
     spoutSelect();
 
-    function calculateSpoutSize() {
-        $('.btnCalculate').click(function() {
-            
-            var num = $('.cloneSpout').length, $spoutContainer = $(this).closest('fieldset');
-            var dimensionVal = $spoutContainer.find('.field-type-textfield input').filter(":visible").val();
-            
-            if (dimensionVal !== "") {
-            if (num < 3) {
-                $btnAdd.show();
-            }
-            $spoutContainer.find('.field-type-radio').hide();
-            $spoutContainer.find('.description').hide();
-            }
-        });
-    }
-
-    calculateSpoutSize();
-
     function calculateTotal($fieldID) {
         var price = parseInt($fieldID.next('label').find(".amount").text(), 10), siblingAmounts = 0, radioName = $fieldID.attr("name");
 
@@ -183,6 +178,7 @@ $(document).ready(function() {
         }
         $grandTotalContainer.html(grandTotal);
     }
+
 
     $('#btnFront,#btnSide').click(function() {
         btnDirection = $(this).val();
@@ -221,34 +217,52 @@ $(document).ready(function() {
         $(this).closest('.step-container').hide();
     });
 
+    function calculateSpoutSize() {
+        $('.btnCalculate').click(function() {
+
+            var num = $('.cloneSpout').length, $spoutContainer = $(this).closest('fieldset');
+            var dimensionFields = $spoutContainer.find('.field-type-textfield input').filter(":visible");
+
+            if (dimensionFields.valid()) {
+                if (num < 3) {
+                    $btnAdd.show();
+                }
+                $spoutContainer.find('.field-type-radio').hide();
+                $spoutContainer.find('.description').hide();
+            }
+        });
+    }
+
+    calculateSpoutSize();
+
     $btnAdd.click(function() {
         var num = $('.cloneSpout').length, newNum = new Number(num + 1),
         // the numeric ID of the new input field
         // being
         // added
-        newSpoutID = 'spout-' + newNum, newSpoutTypeID = 'spout-' + newNum + "-type", newSpoutDimensionsID = 'spout-' + newNum + "-dimensions",
+        newSpoutID = 'spout' + newNum, newSpoutTypeID = 'spout' + newNum + "type", newSpoutDimensionsID = 'spout' + newNum + "dimensions",
         // create the new element via clone(),
         // and
         // manipulate it's ID using newNum value
-        newElem = $('#spout-' + num).clone().attr('id', newSpoutID),
+        newElem = $('#spout' + num).clone().attr('id', newSpoutID),
         // manipulate the name/id values of the
         // elements
         // inside the new element
         radioFieldID = 1;
         newElem.children('legend').html('Spout ' + newNum).next().attr('id', newSpoutTypeID).find('input').attr({
             "id" : function(arr) {
-                return newSpoutTypeID + "-" + arr
+                return newSpoutTypeID + arr
             },
             'name' : newSpoutTypeID
         }).prop('checked', false).removeClass('active').next().attr('for', function(arr) {
-            return newSpoutTypeID + "-" + arr
+            return newSpoutTypeID + arr
         });
         newElem.find('.description p').html("Please enter the spout type spout that you require by clicking on the image above.");
         newElem.find('.spout-shape-images > *').hide()
         newElem.children('.field-name-dimensions').attr('id', newSpoutDimensionsID).find('li').hide().find('.spout-width-inches input').attr('id', newSpoutID + "-width-inches").closest('.field-name-dimensions').find('.spout-height-inches input').attr('id', newSpoutID + "-height-inches").closest('.field-name-dimensions').find('.spout-diameter-inches input').attr('id', newSpoutID + "-diameter-inches");
         // insert the new element after the last
         // "duplicatable" input field
-        $('#spout-' + num).after(newElem);
+        $('#spout' + num).after(newElem);
 
         // enable the "remove" button
         $btnDel.show().prop('disabled', false);
@@ -266,14 +280,14 @@ $(document).ready(function() {
         // Check the number of spouts
         var num = $('.cloneSpout').length;
 
-        if ($('#spout-' + num + ' input').hasClass('active')) {
-            price = parseInt($('#spout-' + num + ' input.active + label .amount').text(), 10);
+        if ($('#spout' + num + ' input').hasClass('active')) {
+            price = parseInt($('#spout' + num + ' input.active + label .amount').text(), 10);
             grandTotal -= price;
             $grandTotalContainer.html(grandTotal);
         }
 
         // Remove the last spout
-        $('#spout-' + num).remove();
+        $('#spout' + num).remove();
 
         // Show the "add" button
         if (num == 3) {

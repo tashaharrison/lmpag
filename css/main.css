@@ -188,6 +188,7 @@ form#logical-machines-price-accesory-guide {
 	position: absolute;
 }
 #machine-image-container {
+    background-color:#FFFFFF;
 	width:280px;
 }
 #machine-title {
@@ -196,6 +197,7 @@ form#logical-machines-price-accesory-guide {
 #cost-container {
 	border: 3px solid #0c4b81;
 	color:#0c4b81;
+	margin-bottom:10px;
 	padding:10px;
 }
 .price {
@@ -494,12 +496,12 @@ ul.field-type-radio > li {
 	border: #090 2px solid;
 	background-color: rgb(235, 255, 234);
 }
-#field-name-spout .field-type-radio label {
+#fieldNameSpout .field-type-radio label {
 	margin-top: -32px;
 	padding-bottom: 12px;
 	padding-left: 35px;
 }
-#field-name-spout {
+#fieldNameSpout {
 	margin-bottom: 16px;
 }
 .description {
@@ -520,6 +522,7 @@ ul.field-type-radio > li {
 }
 .field-name-dimensions {
 	float:left;
+	width:120px;
 }
 .field-name-dimensions input {
 	width: 120px;
