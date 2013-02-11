@@ -39,7 +39,7 @@ $(document).ready(function() {
     //  };
 
     // Hide fallback content, add and delete button
-    $('.large-discharge-funnel,.field-name-dimensions li,#step-2,#step-3,#step-4,#step-5,#hidden-accessories-page,.spout-shape-images > *,#btnAdd,#btnDel,.btnCalculate').hide();
+    $('.large-discharge-funnel,.field-name-dimensions li,#step-2,#step-3,#step-4,#step-5,#hidden-accessories-page,.spout-shape-images > *,#btnAdd,#btnDel,.btnCalculate,.spoutCalculation,.flatBagDesc,.fourSidedBagDesc,.canJarDesc').hide();
     // Remove fallback form elements
     $('.default-spout,.default-discharge-funnel,#btnQuote').remove();
     // .bottom class puts a negative z-index on the hidden
@@ -138,22 +138,23 @@ $(document).ready(function() {
             // Hide all the dimensions fields and images
             $spoutContainer.find('.field-name-dimensions li').hide();
             $spoutContainer.find('.spout-shape-images > *').hide();
+            $spoutContainer.find('p').hide();
 
             switch (fieldVal) {
                 case 'flag-bag':
                     $spoutContainer.find('.spout-width-inches').show();
                     $spoutContainer.find('.spout-shape-images > .flat-bag-spout-shape').show();
-                    $spoutContainer.find('.description p').html("Enter the width of the bag opening (W).");
+                    $spoutContainer.find('.description .flatBagDesc').show();
                     break;
                 case '4-sided-bag':
                     $spoutContainer.find('.spout-width-inches,.spout-height-inches').show();
                     $spoutContainer.find('.spout-shape-images > .four-sided-bag-spout-shape').show();
-                    $spoutContainer.find('.description p').html("Looking down at the top of your bag, enter the dimensions (D1) and (D2) of the bag opening.");
+                    $spoutContainer.find('.description .fourSidedBagDesc').show();
                     break;
                 case 'can-jar':
                     $spoutContainer.find('.spout-diameter-inches').show();
                     $spoutContainer.find('.spout-shape-images > .can-or-jar-spout-shape').show();
-                    $spoutContainer.find('.description p').html("Enter the inside diameter of the bottle or can opening (D).");
+                    $spoutContainer.find('.description .canJarDesc').show();
                     break;
             }
 
@@ -220,15 +221,54 @@ $(document).ready(function() {
     function calculateSpoutSize() {
         $('.btnCalculate').click(function() {
 
-            var num = $('.cloneSpout').length, $spoutContainer = $(this).closest('fieldset');
-            var dimensionFields = $spoutContainer.find('.field-type-textfield input').filter(":visible");
+            var num = $('.cloneSpout').length, $spoutContainer = $(this).closest('fieldset'),
+            // The selected spout type
+            $spoutSelected = $spoutContainer.find('.field-name-spout-type input:checked'), spoutSelectedVal = $spoutSelected.val(), spoutSelectedTitle = $spoutSelected.next('label').find('h4').text();
+            // Spout dimension values
+            dimensionFieldWidth = $spoutContainer.find('#spout1WidthInches').val(), dimensionFieldHeight = $spoutContainer.find('#spout1HeightInches').val(), dimensionFieldDiameter = $spoutContainer.find('#spout1DiameterInches').val(),
+            // Visisble dimension fields
+            $dimensionFieldsVisible = $spoutContainer.find('.field-type-textfield input').filter(":visible");
 
-            if (dimensionFields.valid()) {
+            if ($dimensionFieldsVisible.valid()) {
+
+                var spoutSize = 0;
+                switch (spoutSelectedVal) {
+                    case 'flag-bag':
+                        if (dimensionFieldWidth < 2) {
+                            spoutSize = 0.75;
+                        } else if (dimensionFieldWidth >= 2 && 2.4 >= dimensionFieldWidth) {
+                            spoutSize = 1;
+                        } else if (dimensionFieldWidth >= 2.5 && 2.9 >= dimensionFieldWidth) {
+                            spoutSize = 1.25;
+                        } else if (dimensionFieldWidth >= 3 && 3.5 >= dimensionFieldWidth) {
+                            spoutSize = 1.5;
+                        } else if (dimensionFieldWidth >= 3.6 && 3.9 >= dimensionFieldWidth) {
+                            spoutSize = 1.75;
+                        } else if (dimensionFieldWidth >= 4 && 4.9 >= dimensionFieldWidth) {
+                            spoutSize = 2;
+                        } else if (dimensionFieldWidth >= 5 && 5.9 >= dimensionFieldWidth) {
+                            spoutSize = 2.5;
+                        } else if (dimensionFieldWidth >= 6 && 6.5 >= dimensionFieldWidth) {
+                            spoutSize = 3;
+                        } else {
+                            spoutSize = 3.5;
+                        }
+                        break;
+                    case '4-sided-bag':
+                        alert(dimensionFieldWidth + " " + dimensionFieldHeight);
+                        break;
+                    case 'can-jar':
+                        alert(dimensionFieldDiameter);
+                        break;
+                }
+                $spoutContainer.find('.spoutCalculation').show().find('.spout-name').text(spoutSelectedTitle).next('.spout-size').text(spoutSize);
                 if (num < 3) {
                     $btnAdd.show();
                 }
-                $spoutContainer.find('.field-type-radio').hide();
-                $spoutContainer.find('.description').hide();
+                $(this).hide();
+                $spoutContainer.find('.field-name-spout-type,.description').hide();
+                $dimensionFieldsVisible.prop("disabled", true);
+                $btnDel.show().prop('disabled', false);
             }
         });
     }
@@ -257,7 +297,7 @@ $(document).ready(function() {
         }).prop('checked', false).removeClass('active').next().attr('for', function(arr) {
             return newSpoutTypeID + arr
         });
-        newElem.find('.description p').html("Please enter the spout type spout that you require by clicking on the image above.");
+        newElem.find('.description p.spout-selection').show();
         newElem.find('.spout-shape-images > *').hide()
         newElem.children('.field-name-dimensions').attr('id', newSpoutDimensionsID).find('li').hide().find('.spout-width-inches input').attr('id', newSpoutID + "-width-inches").closest('.field-name-dimensions').find('.spout-height-inches input').attr('id', newSpoutID + "-height-inches").closest('.field-name-dimensions').find('.spout-diameter-inches input').attr('id', newSpoutID + "-diameter-inches");
         // insert the new element after the last
@@ -278,24 +318,31 @@ $(document).ready(function() {
 
     $btnDel.click(function() {
         // Check the number of spouts
-        var num = $('.cloneSpout').length;
+        var num = $('.cloneSpout').length, $spoutField = $("#spout" + num);
 
-        if ($('#spout' + num + ' input').hasClass('active')) {
-            price = parseInt($('#spout' + num + ' input.active + label .amount').text(), 10);
-            grandTotal -= price;
-            $grandTotalContainer.html(grandTotal);
+        //if ($('#spout' + num + ' input').hasClass('active')) {
+        //    price = parseInt($('#spout' + num + ' input.active + label .amount').text(), 10);
+        //    grandTotal -= price;
+        //    $grandTotalContainer.html(grandTotal);
+        //}
+
+        // Disable the "remove" button
+        if (num == 1) {
+            //$btnDel.hide().attr('disabled', 'disabled');
+            $spoutField.find('.field-name-spout-type').show().find('input').prop('checked', false);
+            $spoutField.find('.description').show().find('p').hide().filter('.spout-selection').show();
+            $spoutField.find('.field-name-dimensions li').hide().find('input').prop('disabled', false).val("");
+            $spoutField.find('.spout-shape-images > *').hide();
+            $spoutField.find('.spoutCalculation').hide()
+            $btnAdd.hide();
+            $btnDel.hide();
+        } else {
+            // Remove the last spout
+            $('#spout' + num).remove();
         }
-
-        // Remove the last spout
-        $('#spout' + num).remove();
-
         // Show the "add" button
         if (num == 3) {
             $btnAdd.show();
-        }
-        // Disable the "remove" button
-        if (num - 1 == 1) {
-            $btnDel.hide().attr('disabled', 'disabled');
         }
     });
 
