@@ -297,9 +297,13 @@ $(document).ready(function() {
         }).prop('checked', false).removeClass('active').next().attr('for', function(arr) {
             return newSpoutTypeID + arr
         });
-        newElem.find('.description p.spout-selection').show();
+
         newElem.find('.spout-shape-images > *').hide()
         newElem.children('.field-name-dimensions').attr('id', newSpoutDimensionsID).find('li').hide().find('.spout-width-inches input').attr('id', newSpoutID + "-width-inches").closest('.field-name-dimensions').find('.spout-height-inches input').attr('id', newSpoutID + "-height-inches").closest('.field-name-dimensions').find('.spout-diameter-inches input').attr('id', newSpoutID + "-diameter-inches");
+        newElem.find('.field-name-spout-type').show().find('input').prop('checked', false);
+        newElem.find('.description').show().find('p').hide().filter('.spout-selection').show();
+        newElem.find('.field-name-dimensions li input').prop('disabled', false).val("");
+        newElem.find('.spoutCalculation').hide()
         // insert the new element after the last
         // "duplicatable" input field
         $('#spout' + num).after(newElem);
