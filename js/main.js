@@ -11,7 +11,7 @@ $(document).ready(function() {
     // S-6 Machine attributes
     $s6Machine = $('label[for="s6"]'), s6MachineName = $s6Machine.find('.machineName').text(), s6MachineType = $s6Machine.find('.machineType').text(), s6MachinePrice = $s6Machine.find('.amount').text()
     // S-7 Machine attributes
-    s7Machine = $('label[for="s7"]'), s7MachineName = s7Machine.find('.machineName').text(), s7MachineType = s7Machine.find('.machineType').text(), s7MachinePrice = s7Machine.find('.amount').text();
+    $s7Machine = $('label[for="s7"]'), s7MachineName = $s7Machine.find('.machineName').text(), s7MachineType = $s7Machine.find('.machineType').text(), s7MachinePrice = $s7Machine.find('.amount').text();
 
     //  $('.field-name-machine-model input').each(function(index) {
     //      var machineID = $(this).attr('id');
@@ -83,7 +83,7 @@ $(document).ready(function() {
                         break;
                     case 'S-7':
                         $machineModelDesc.hide();
-                        s7Machine.find('.machine-model-description').show();
+                        $s7Machine.find('.machine-model-description').show();
                         $machineImage.removeClass('s4 s5 s6 s7').addClass('s7');
                         $nextMachineImage.html(s7MachineName + " " + s7MachineType);
                         break;
