@@ -25,25 +25,48 @@ $(document).ready(function() {
     // Declare global variables
     var $machineModelDesc = $('.machine-model-description'), $machineImage = $('#machine-image'), $nextMachineImage = $('#machine-image').next('#machine-title'), $btnAdd = $('#btnAdd'), $btnDel = $('#btnDel'), $grandTotalContainer = $('#cost-container .amount'), grandTotal = parseInt($grandTotalContainer.text(), 10),
     // S-4 Machine attributes
-    $s4Machine = $('label[for="s4"]'), s4MachineName = $s4Machine.find('.machineName').text(), s4MachineType = $s4Machine.find('.machineType').text(), s4MachinePrice = $s4Machine.find('.amount').text()
+    $s4Machine = $('label[for="s4"]'),
+    // s4MachineName = $s4Machine.find('.machineName').text(), s4MachineType = $s4Machine.find('.machineType').text(), s4MachineDesc = $s4Machine.find('.description p:first').text(), s4MachinePrice = $s4Machine.find('.amount').text(),
     // S-5Machine attributes
-    $s5Machine = $('label[for="s5"]'), s5MachineName = $s5Machine.find('.machineName').text(), s5MachineType = $s5Machine.find('.machineType').text(), s5MachinePrice = $s5Machine.find('.amount').text()
+    $s5Machine = $('label[for="s5"]'),
+    // s5MachineName = $s5Machine.find('.machineName').text(), s5MachineType = $s5Machine.find('.machineType').text(), s5MachineDesc = $s5Machine.find('.description p:first').text(), s5MachinePrice = $s5Machine.find('.amount').text(),
     // S-6 Machine attributes
-    $s6Machine = $('label[for="s6"]'), s6MachineName = $s6Machine.find('.machineName').text(), s6MachineType = $s6Machine.find('.machineType').text(), s6MachinePrice = $s6Machine.find('.amount').text()
+    $s6Machine = $('label[for="s6"]'),
+    // s6MachineName = $s6Machine.find('.machineName').text(), s6MachineType = $s6Machine.find('.machineType').text(), s6MachineDesc = $s6Machine.find('.description p:first').text(), s6MachinePrice = $s6Machine.find('.amount').text(),
     // S-7 Machine attributes
-    $s7Machine = $('label[for="s7"]'), s7MachineName = $s7Machine.find('.machineName').text(), s7MachineType = $s7Machine.find('.machineType').text(), s7MachinePrice = $s7Machine.find('.amount').text();
+    $s7Machine = $('label[for="s7"]');
+    // s7MachineName = $s7Machine.find('.machineName').text(), s7MachineType = $s7Machine.find('.machineType').text(), s7MachineDesc = $s7Machine.find('.description p:first').text(), s7MachinePrice = $s7Machine.find('.amount').text();
 
-    //  $('.field-name-machine-model input').each(function(index) {
-    //      var machineID = $(this).attr('id');
-    //  });
+    $('.field-name-machine-model input').each(function(index) {
+        var machineID = $(this).attr('id');
+    });
 
-    // Create instances of the machine object and assign
-    // properties
-    //  machineS4 = {
-    //      machineName : $('input '),
-    //      machineType : "Weigh/Fill System",
-    //      machinePrice : 6150
-    //  };
+    //Create instances of the machine object and assign
+    //properties
+    machineS4 = {
+        machineName : $s4Machine.find('.machineName').text(),
+        machineType : $s4Machine.find('.machineType').text(),
+        machineDesc : $s4Machine.find('.description p:first').text(),
+        machinePrice : $s4Machine.find('.amount').text()
+    };
+    machineS5 = {
+        machineName : $s5Machine.find('.machineName').text(),
+        machineType : $s5Machine.find('.machineType').text(),
+        machineDesc : $s5Machine.find('.description p:first').text(),
+        machinePrice : $s5Machine.find('.amount').text()
+    };
+    machineS6 = {
+        machineName : $s6Machine.find('.machineName').text(),
+        machineType : $s6Machine.find('.machineType').text(),
+        machineDesc : $s6Machine.find('.description p:first').text(),
+        machinePrice : $s6Machine.find('.amount').text()
+    };
+    machineS7 = {
+        machineName : $s7Machine.find('.machineName').text(),
+        machineType : $s7Machine.find('.machineType').text(),
+        machineDesc : $s7Machine.find('.description p:first').text(),
+        machinePrice : $s7Machine.find('.amount').text()
+    };
 
     // Hide fallback content, add and delete button
     $('.large-discharge-funnel,.field-name-dimensions li,#step-2,#step-3,#step-4,#step-5,#hidden-accessories-page,.spout-shape-images > *,#btnAdd,#btnDel,.btnCalculate,.spoutCalculation,.flatBagDesc,.fourSidedBagDesc,.canJarDesc').hide();
@@ -87,25 +110,25 @@ $(document).ready(function() {
                         $machineModelDesc.hide();
                         $s4Machine.find('.machine-model-description').show();
                         $machineImage.removeClass('s4 s5 s6 s7').addClass('s4');
-                        $nextMachineImage.html(s4MachineName + " " + s4MachineType);
+                        $nextMachineImage.html(machineS4.machineName + " " + machineS4.machineType);
                         break;
                     case 'S-5':
                         $machineModelDesc.hide();
                         $s5Machine.find('.machine-model-description').show();
                         $machineImage.removeClass('s4 s5 s6 s7').addClass('s5');
-                        $nextMachineImage.html(s5MachineName + " " + s5MachineType);
+                        $nextMachineImage.html(machineS5.machineName + " " + machineS5.machineType);
                         break;
                     case 'S-6':
                         $machineModelDesc.hide();
                         $s6Machine.find('.machine-model-description').show();
                         $machineImage.removeClass('s4 s5 s6 s7').addClass('s6');
-                        $nextMachineImage.html(s6MachineName + " " + s6MachineType);
+                        $nextMachineImage.html(machineS6.machineName + " " + machineS6.machineType);
                         break;
                     case 'S-7':
                         $machineModelDesc.hide();
                         $s7Machine.find('.machine-model-description').show();
                         $machineImage.removeClass('s4 s5 s6 s7').addClass('s7');
-                        $nextMachineImage.html(s7MachineName + " " + s7MachineType);
+                        $nextMachineImage.html(machineS7.machineName + " " + machineS7.machineType);
                         break;
                     case 'small-weight-hopper':
                         $('.small-discharge-funnel').show().find('#small-standard-discharge-funnel').prop('checked', true);
@@ -225,8 +248,12 @@ $(document).ready(function() {
     });
 
     function showValues() {
-        var str = $("form").serialize();
-        $("#results").text(str);
+
+        var fields = $(":input").serializeArray();
+        $("#results").empty();
+        $.each(fields, function(i, field) {
+            $("#results").append("<tr><td>" + field.name + "</td><td>" + field.value + "</td></tr>");
+        });
     }
 
 
@@ -252,6 +279,7 @@ $(document).ready(function() {
                 var spoutSize = 0;
                 switch (spoutSelectedVal) {
                     case 'flag-bag':
+                        hg
                         if (dimensionFieldWidth < 2) {
                             spoutSize = 0.75;
                         } else if (dimensionFieldWidth >= 2 && 2.4 >= dimensionFieldWidth) {
