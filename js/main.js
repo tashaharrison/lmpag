@@ -157,7 +157,7 @@ $(document).ready(function() {
                 //add this to prevent default click behaviour
             } else {
 
-                var fieldVal = $fieldID.val(), radioName = $fieldID.attr("name");
+                var fieldVal = $fieldID.val();
 
                 switch (fieldVal) {
                     case 'S-4':
