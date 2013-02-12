@@ -30,46 +30,14 @@ $(document).ready(function() {
      *  Declare global variables
      */
 
-    var $machineModelDesc = $('.machine-model-description'), $machineImage = $('#machine-image'), $nextMachineImage = $('#machine-image').next('#machine-title'), $btnAdd = $('#btnAdd'), $btnDel = $('#btnDel'), $grandTotalContainer = $('#cost-container .amount'), grandTotal = parseInt($grandTotalContainer.text(), 10),
-    // S-4 Machine attributes
-    $s4Machine = $('label[for="s4"]'),
-    // s4MachineName = $s4Machine.find('.machineName').text(), s4MachineType = $s4Machine.find('.machineType').text(), s4MachineDesc = $s4Machine.find('.description p:first').text(), s4MachinePrice = $s4Machine.find('.amount').text(),
-    // S-5Machine attributes
-    $s5Machine = $('label[for="s5"]'),
-    // s5MachineName = $s5Machine.find('.machineName').text(), s5MachineType = $s5Machine.find('.machineType').text(), s5MachineDesc = $s5Machine.find('.description p:first').text(), s5MachinePrice = $s5Machine.find('.amount').text(),
-    // S-6 Machine attributes
-    $s6Machine = $('label[for="s6"]'),
-    // s6MachineName = $s6Machine.find('.machineName').text(), s6MachineType = $s6Machine.find('.machineType').text(), s6MachineDesc = $s6Machine.find('.description p:first').text(), s6MachinePrice = $s6Machine.find('.amount').text(),
-    // S-7 Machine attributes
-    $s7Machine = $('label[for="s7"]');
-    // s7MachineName = $s7Machine.find('.machineName').text(), s7MachineType = $s7Machine.find('.machineType').text(), s7MachineDesc = $s7Machine.find('.description p:first').text(), s7MachinePrice = $s7Machine.find('.amount').text();
+    var $defaultMachine = $('.field-name-machine-model label:first'), $machineModelDesc = $('.machine-model-description'), $machineImage = $('#machine-image'), $nextMachineImage = $('#machine-image').next('#machine-title'), $btnAdd = $('#btnAdd'), $btnDel = $('#btnDel'), $grandTotalContainer = $('#cost-container .amount'), grandTotal = parseInt($grandTotalContainer.text(), 10);
 
-    $('.field-name-machine-model label').each(function(index) {
-        var machineID = $(this).attr('id');
-    });
-
-    //Create instances of the machine object and assign
-    //properties
-    var machineS4 = {
-        machineName : $s4Machine.find('.machineName').text(),
-        machineType : $s4Machine.find('.machineType').text(),
-        machineDesc : $s4Machine.find('.description p:first').text(),
-        machinePrice : $s4Machine.find('.amount').text()
-    }, machineS5 = {
-        machineName : $s5Machine.find('.machineName').text(),
-        machineType : $s5Machine.find('.machineType').text(),
-        machineDesc : $s5Machine.find('.description p:first').text(),
-        machinePrice : $s5Machine.find('.amount').text()
-    }, machineS6 = {
-        machineName : $s6Machine.find('.machineName').text(),
-        machineType : $s6Machine.find('.machineType').text(),
-        machineDesc : $s6Machine.find('.description p:first').text(),
-        machinePrice : $s6Machine.find('.amount').text()
-    }, machineS7 = {
-        machineName : $s7Machine.find('.machineName').text(),
-        machineType : $s7Machine.find('.machineType').text(),
-        machineDesc : $s7Machine.find('.description p:first').text(),
-        machinePrice : $s7Machine.find('.amount').text()
+    //Create an instance of the machine object and default assign properties
+    var machine = {
+        name : $defaultMachine.find('.machineName').text(),
+        type : $defaultMachine.find('.machineType').text(),
+        description : $defaultMachine.find('.machine-model-description p:first').text(),
+        price : $defaultMachine.find('.amount').text()
     };
 
     /*
@@ -135,11 +103,12 @@ $(document).ready(function() {
     // Retreive form values for display on summary
     function showValues() {
 
-        var fields = $(":input").serializeArray();
-        $("#results").empty();
-        $.each(fields, function(i, field) {
-            $("#results").append("<tr><td>" + field.name + "</td><td>" + field.value + "</td></tr>");
-        });
+        $("#results").empty().append("<tr><td>" + machine.name + " " + machine.type + "</td><td>" + machine.description + "</td></tr>")
+        /*var fields = $(":input").serializeArray();
+         $("#results").empty();
+         $.each(fields, function(i, field) {
+         $("#results").append("<tr><td>" + field.name + "</td><td>" + field.value + "</td></tr>");
+         });*/
     }
 
     /*
@@ -150,7 +119,7 @@ $(document).ready(function() {
         var $radioInputFields = $('input[name=machine-model],input[name=weight-hopper],input[name=discharge-funnel]');
 
         $radioInputFields.click(function(e) {
-            var $fieldID = $(this), inputVal = $fieldID.closest('ul.field-type-radio').find('.active').attr('id'), objectVal = $fieldID.attr('id');
+            var $fieldID = $(this), inputVal = $fieldID.closest('ul.field-type-radio').find('.active').attr('id'), objectVal = $fieldID.attr('id'), $fieldLabel = $(this).next('label');
 
             if (inputVal == objectVal) {
                 e.preventDefault();
@@ -159,30 +128,37 @@ $(document).ready(function() {
 
                 var fieldVal = $fieldID.val();
 
+                if ($fieldID.is('input[name=machine-model]')) {
+                    machine['name'] = $fieldLabel.find('.machineName').text();
+                    machine['type'] = $fieldLabel.find('.machineType').text();
+                    machine['description'] = $fieldLabel.find('.machine-model-description p:first').text();
+                    machine['price'] = $fieldLabel.find('.amount').text();
+                }
+
                 switch (fieldVal) {
                     case 'S-4':
                         $machineModelDesc.hide();
-                        $s4Machine.find('.machine-model-description').show();
+                        $fieldLabel.find('.machine-model-description').show();
                         $machineImage.removeClass('s4 s5 s6 s7').addClass('s4');
-                        $nextMachineImage.html(machineS4.machineName + " " + machineS4.machineType);
+                        $nextMachineImage.html(machine.name + " " + machine.type);
                         break;
                     case 'S-5':
                         $machineModelDesc.hide();
-                        $s5Machine.find('.machine-model-description').show();
+                        $fieldLabel.find('.machine-model-description').show();
                         $machineImage.removeClass('s4 s5 s6 s7').addClass('s5');
-                        $nextMachineImage.html(machineS5.machineName + " " + machineS5.machineType);
+                        $nextMachineImage.html(machine.name + " " + machine.type);
                         break;
                     case 'S-6':
                         $machineModelDesc.hide();
-                        $s6Machine.find('.machine-model-description').show();
+                        $fieldLabel.find('.machine-model-description').show();
                         $machineImage.removeClass('s4 s5 s6 s7').addClass('s6');
-                        $nextMachineImage.html(machineS6.machineName + " " + machineS6.machineType);
+                        $nextMachineImage.html(machine.name + " " + machine.type);
                         break;
                     case 'S-7':
                         $machineModelDesc.hide();
-                        $s7Machine.find('.machine-model-description').show();
+                        $fieldLabel.find('.machine-model-description').show();
                         $machineImage.removeClass('s4 s5 s6 s7').addClass('s7');
-                        $nextMachineImage.html(machineS7.machineName + " " + machineS7.machineType);
+                        $nextMachineImage.html(machine.name + " " + machine.type);
                         break;
                     case 'small-weight-hopper':
                         $('.small-discharge-funnel').show().find('#small-standard-discharge-funnel').prop('checked', true);
