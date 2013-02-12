@@ -303,6 +303,9 @@ $(document).ready(function() {
                 $spoutContainer.find('.field-name-spout-type,.description').hide();
                 $dimensionFieldsVisible.prop("disabled", true);
                 $btnDel.show().prop('disabled', false);
+                // price = parseInt($('#spout' + num + ' input.active + label .amount').text(), 10);
+                grandTotal += 150;
+                $grandTotalContainer.html(grandTotal);
             }
         });
     }
@@ -358,11 +361,9 @@ $(document).ready(function() {
         // Check the number of spouts
         var num = $('.cloneSpout').length, $spoutField = $("#spout" + num);
 
-        //if ($('#spout' + num + ' input').hasClass('active')) {
-        //    price = parseInt($('#spout' + num + ' input.active + label .amount').text(), 10);
-        //    grandTotal -= price;
-        //    $grandTotalContainer.html(grandTotal);
-        //}
+        // price = parseInt($('#spout' + num + ' input.active + label .amount').text(), 10);
+        grandTotal -= 150;
+        $grandTotalContainer.html(grandTotal);
 
         // Disable the "remove" button
         if (num == 1) {
