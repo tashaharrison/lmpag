@@ -29,7 +29,7 @@ $(document).ready(function() {
     /*
      *  Declare global variables
      */
-     
+
     var $machineModelDesc = $('.machine-model-description'), $machineImage = $('#machine-image'), $nextMachineImage = $('#machine-image').next('#machine-title'), $btnAdd = $('#btnAdd'), $btnDel = $('#btnDel'), $grandTotalContainer = $('#cost-container .amount'), grandTotal = parseInt($grandTotalContainer.text(), 10),
     // S-4 Machine attributes
     $s4Machine = $('label[for="s4"]'),
@@ -74,10 +74,10 @@ $(document).ready(function() {
         machineDesc : $s7Machine.find('.description p:first').text(),
         machinePrice : $s7Machine.find('.amount').text()
     };
-    
+
     /*
-     *  Document ready JS
-     */
+    *  Document ready JS
+    */
 
     // Hide fallback content, add and delete button
     $('.large-discharge-funnel,.field-name-dimensions li,#step-2,#step-3,#step-4,#step-5,#hidden-accessories-page,.spout-shape-images > *,#btnAdd,#btnDel,.btnCalculate,.spoutCalculation,.flatBagDesc,.fourSidedBagDesc,.canJarDesc').hide();
@@ -104,10 +104,10 @@ $(document).ready(function() {
     });
 
     /*
-     *  General functions
-     */
+    *  General functions
+    */
 
-    // Calculate the grand total 
+    // Calculate the grand total
     function calculateTotal($fieldID) {
         var price = parseInt($fieldID.next('label').find(".amount").text(), 10), siblingAmounts = 0, radioName = $fieldID.attr("name");
 
@@ -213,8 +213,8 @@ $(document).ready(function() {
     radioSelect();
 
     /*
-     *  'Select spouts' page
-     */ 
+    *  'Select spouts' page
+    */
 
     // React to the selection of the spout type
     function spoutSelect() {
