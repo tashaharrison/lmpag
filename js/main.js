@@ -127,7 +127,7 @@ $(document).ready(function() {
 
     // Change the machine image between front and side view
     $('#btnFront,#btnSide').click(function() {
-        btnDirection = $(this).val();
+        var btnDirection = $(this).val();
         if (btnDirection === 'Front') {
             $machineImage.addClass('front').removeClass('side');
         } else {
