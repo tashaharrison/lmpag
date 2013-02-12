@@ -1,5 +1,9 @@
 $(document).ready(function() {
 
+    /*
+     *  Validation criteria
+     */
+
     var dimensionValidationRules = {
         required : true,
         number : true,
@@ -22,7 +26,10 @@ $(document).ready(function() {
         }
     });
 
-    // Declare global variables
+    /*
+     *  Declare global variables
+     */
+     
     var $machineModelDesc = $('.machine-model-description'), $machineImage = $('#machine-image'), $nextMachineImage = $('#machine-image').next('#machine-title'), $btnAdd = $('#btnAdd'), $btnDel = $('#btnDel'), $grandTotalContainer = $('#cost-container .amount'), grandTotal = parseInt($grandTotalContainer.text(), 10),
     // S-4 Machine attributes
     $s4Machine = $('label[for="s4"]'),
@@ -37,7 +44,7 @@ $(document).ready(function() {
     $s7Machine = $('label[for="s7"]');
     // s7MachineName = $s7Machine.find('.machineName').text(), s7MachineType = $s7Machine.find('.machineType').text(), s7MachineDesc = $s7Machine.find('.description p:first').text(), s7MachinePrice = $s7Machine.find('.amount').text();
 
-    $('.field-name-machine-model input').each(function(index) {
+    $('.field-name-machine-model label').each(function(index) {
         var machineID = $(this).attr('id');
     });
 
@@ -67,6 +74,10 @@ $(document).ready(function() {
         machineDesc : $s7Machine.find('.description p:first').text(),
         machinePrice : $s7Machine.find('.amount').text()
     };
+    
+    /*
+     *  Document ready JS
+     */
 
     // Hide fallback content, add and delete button
     $('.large-discharge-funnel,.field-name-dimensions li,#step-2,#step-3,#step-4,#step-5,#hidden-accessories-page,.spout-shape-images > *,#btnAdd,#btnDel,.btnCalculate,.spoutCalculation,.flatBagDesc,.fourSidedBagDesc,.canJarDesc').hide();
@@ -91,6 +102,52 @@ $(document).ready(function() {
     $mi_container.waypoint(function(direction) {
         $('#machine-image-container').toggleClass('sticky', direction === 'down');
     });
+
+    /*
+     *  General functions
+     */
+
+    // Calculate the grand total 
+    function calculateTotal($fieldID) {
+        var price = parseInt($fieldID.next('label').find(".amount").text(), 10), siblingAmounts = 0, radioName = $fieldID.attr("name");
+
+        $("input[name='" + radioName + "'].active").not($fieldID).each(function() {
+            siblingAmounts += parseInt($(this).next("label").find(".amount").text(), 10);
+        });
+        $fieldID.toggleClass("active");
+        $("input[name='" + radioName + "']").not($fieldID).removeClass("active");
+        if ($fieldID.hasClass("active")) {
+            grandTotal -= siblingAmounts;
+            grandTotal += price;
+        } else {
+            grandTotal -= price;
+        }
+        $grandTotalContainer.html(grandTotal);
+    }
+
+    // Change the machine image between front and side view
+    $('#btnFront,#btnSide').click(function() {
+        btnDirection = $(this).val();
+        if (btnDirection === 'Front') {
+            $machineImage.addClass('front').removeClass('side');
+        } else {
+            $machineImage.addClass('side').removeClass('front');
+        }
+    });
+
+    // Retreive form values for display on summary
+    function showValues() {
+
+        var fields = $(":input").serializeArray();
+        $("#results").empty();
+        $.each(fields, function(i, field) {
+            $("#results").append("<tr><td>" + field.name + "</td><td>" + field.value + "</td></tr>");
+        });
+    }
+
+    /*
+     *  Pages 1 - 3 selection actions
+     */
 
     function radioSelect() {
         var $radioInputFields = $('input[name=machine-model],input[name=weight-hopper],input[name=discharge-funnel]');
@@ -155,6 +212,11 @@ $(document).ready(function() {
 
     radioSelect();
 
+    /*
+     *  'Select spouts' page
+     */ 
+
+    // React to the selection of the spout type
     function spoutSelect() {
         $('input.spout-type').click(function() {
             var $fieldID = $(this), fieldVal = $fieldID.val(), $spoutContainer = $fieldID.closest('fieldset');
@@ -193,77 +255,7 @@ $(document).ready(function() {
 
     spoutSelect();
 
-    function calculateTotal($fieldID) {
-        var price = parseInt($fieldID.next('label').find(".amount").text(), 10), siblingAmounts = 0, radioName = $fieldID.attr("name");
-
-        $("input[name='" + radioName + "'].active").not($fieldID).each(function() {
-            siblingAmounts += parseInt($(this).next("label").find(".amount").text(), 10);
-        });
-        $fieldID.toggleClass("active");
-        $("input[name='" + radioName + "']").not($fieldID).removeClass("active");
-        if ($fieldID.hasClass("active")) {
-            grandTotal -= siblingAmounts;
-            grandTotal += price;
-        } else {
-            grandTotal -= price;
-        }
-        $grandTotalContainer.html(grandTotal);
-    }
-
-
-    $('#btnFront,#btnSide').click(function() {
-        btnDirection = $(this).val();
-        if (btnDirection === 'Front') {
-            $machineImage.addClass('front').removeClass('side');
-        } else {
-            $machineImage.addClass('side').removeClass('front');
-        }
-    });
-
-    $('.step-submit').click(function() {
-        var $stepContainer = $(this).closest('.step-container'), nextStepContainerID = $stepContainer.next().attr('id'), prevStepContainerID = $stepContainer.prev().attr('id');
-        $('#pag-navigation a').removeClass('active');
-
-        if ($(this).is('.next')) {
-            $stepContainer.hide().next().show();
-            $('#pag-navigation a[href*=' + nextStepContainerID + ']').addClass('active');
-        } else {
-            $stepContainer.hide().prev().show();
-            $('#pag-navigation a[href*=' + prevStepContainerID + ']').addClass('active');
-        }
-        if ($(this).is('#step-4-next')) {
-            showValues();
-        }
-    });
-
-    $('#pag-navigation a').click(function() {
-        var stepValue = $(this).attr('href');
-        $('#pag-navigation a').removeClass('active');
-        $(this).addClass('active');
-        $('.step-container').hide();
-        $(stepValue).show();
-        if (stepValue === "#step-5") {
-            showValues();
-        }
-    });
-
-    function showValues() {
-
-        var fields = $(":input").serializeArray();
-        $("#results").empty();
-        $.each(fields, function(i, field) {
-            $("#results").append("<tr><td>" + field.name + "</td><td>" + field.value + "</td></tr>");
-        });
-    }
-
-
-    $('#hidden-accessories-page-btn').click(function() {
-        $('#hidden-accessories-page').show();
-    });
-    $('#btnClose,#btnContinue').click(function() {
-        $(this).closest('.step-container').hide();
-    });
-
+    // Calculate the size of the spout based on the container
     function calculateSpoutSize() {
         $('.btnCalculate').click(function() {
 
@@ -279,7 +271,6 @@ $(document).ready(function() {
                 var spoutSize = 0;
                 switch (spoutSelectedVal) {
                     case 'flag-bag':
-                        hg
                         if (dimensionFieldWidth < 2) {
                             spoutSize = 0.75;
                         } else if (dimensionFieldWidth >= 2 && 2.4 >= dimensionFieldWidth) {
@@ -321,6 +312,7 @@ $(document).ready(function() {
 
     calculateSpoutSize();
 
+    // Buttons for adding a deleting spouts
     $btnAdd.click(function() {
         var num = $('.cloneSpout').length, newNum = new Number(num + 1),
         // the numeric ID of the new input field
@@ -394,6 +386,48 @@ $(document).ready(function() {
         if (num == 3) {
             $btnAdd.show();
         }
+    });
+
+    /*
+     *  Navigation
+     */
+
+    $('.step-submit').click(function() {
+        var $stepContainer = $(this).closest('.step-container'), nextStepContainerID = $stepContainer.next().attr('id'), prevStepContainerID = $stepContainer.prev().attr('id');
+        $('#pag-navigation a').removeClass('active');
+
+        if ($(this).is('.next')) {
+            $stepContainer.hide().next().show();
+            $('#pag-navigation a[href*=' + nextStepContainerID + ']').addClass('active');
+        } else {
+            $stepContainer.hide().prev().show();
+            $('#pag-navigation a[href*=' + prevStepContainerID + ']').addClass('active');
+        }
+        if ($(this).is('#step-4-next')) {
+            showValues();
+        }
+    });
+
+    $('#pag-navigation a').click(function() {
+        var stepValue = $(this).attr('href');
+        $('#pag-navigation a').removeClass('active');
+        $(this).addClass('active');
+        $('.step-container').hide();
+        $(stepValue).show();
+        if (stepValue === "#step-5") {
+            showValues();
+        }
+    });
+
+    /*
+     *  Hidden accessories page
+     */
+
+    $('#hidden-accessories-page-btn').click(function() {
+        $('#hidden-accessories-page').show();
+    });
+    $('#btnClose,#btnContinue').click(function() {
+        $(this).closest('.step-container').hide();
     });
 
 });
