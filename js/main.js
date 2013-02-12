@@ -261,7 +261,7 @@ $(document).ready(function() {
 
             var num = $('.cloneSpout').length, $spoutContainer = $(this).closest('fieldset'),
             // The selected spout type
-            $spoutSelected = $spoutContainer.find('.field-name-spout-type input:checked'), spoutSelectedVal = $spoutSelected.val(), spoutSelectedTitle = $spoutSelected.next('label').find('h4').text();
+            $spoutSelected = $spoutContainer.find('.field-name-spout-type input:checked'), spoutSelectedVal = $spoutSelected.val(), spoutSelectedTitle = $spoutSelected.next('label').find('h4').text(),
             // Spout dimension values
             dimensionFieldWidth = $spoutContainer.find('#spout1WidthInches').val(), dimensionFieldHeight = $spoutContainer.find('#spout1HeightInches').val(), dimensionFieldDiameter = $spoutContainer.find('#spout1DiameterInches').val(),
             // Visisble dimension fields
@@ -314,7 +314,7 @@ $(document).ready(function() {
 
     // Buttons for adding a deleting spouts
     $btnAdd.click(function() {
-        var num = $('.cloneSpout').length, newNum = new Number(num + 1),
+        var num = $('.cloneSpout').length, newNum = +num + 1,
         // the numeric ID of the new input field
         // being
         // added
@@ -322,26 +322,25 @@ $(document).ready(function() {
         // create the new element via clone(),
         // and
         // manipulate it's ID using newNum value
-        newElem = $('#spout' + num).clone().attr('id', newSpoutID),
+        newElem = $('#spout' + num).clone().attr('id', newSpoutID);
         // manipulate the name/id values of the
         // elements
         // inside the new element
-        radioFieldID = 1;
         newElem.children('legend').html('Spout ' + newNum).next().attr('id', newSpoutTypeID).find('input').attr({
             "id" : function(arr) {
-                return newSpoutTypeID + arr
+                return newSpoutTypeID + arr;
             },
             'name' : newSpoutTypeID
         }).prop('checked', false).removeClass('active').next().attr('for', function(arr) {
-            return newSpoutTypeID + arr
+            return newSpoutTypeID + arr;
         });
 
-        newElem.find('.spout-shape-images > *').hide()
+        newElem.find('.spout-shape-images > *').hide();
         newElem.children('.field-name-dimensions').attr('id', newSpoutDimensionsID).find('li').hide().find('.spout-width-inches input').attr('id', newSpoutID + "-width-inches").closest('.field-name-dimensions').find('.spout-height-inches input').attr('id', newSpoutID + "-height-inches").closest('.field-name-dimensions').find('.spout-diameter-inches input').attr('id', newSpoutID + "-diameter-inches");
         newElem.find('.field-name-spout-type').show().find('input').prop('checked', false);
         newElem.find('.description').show().find('p').hide().filter('.spout-selection').show();
         newElem.find('.field-name-dimensions li input').prop('disabled', false).val("");
-        newElem.find('.spoutCalculation').hide()
+        newElem.find('.spoutCalculation').hide();
         // insert the new element after the last
         // "duplicatable" input field
         $('#spout' + num).after(newElem);
@@ -375,7 +374,7 @@ $(document).ready(function() {
             $spoutField.find('.description').show().find('p').hide().filter('.spout-selection').show();
             $spoutField.find('.field-name-dimensions li').hide().find('input').prop('disabled', false).val("");
             $spoutField.find('.spout-shape-images > *').hide();
-            $spoutField.find('.spoutCalculation').hide()
+            $spoutField.find('.spoutCalculation').hide();
             $btnAdd.hide();
             $btnDel.hide();
         } else {
