@@ -50,25 +50,22 @@ $(document).ready(function() {
 
     //Create instances of the machine object and assign
     //properties
-    machineS4 = {
+    var machineS4 = {
         machineName : $s4Machine.find('.machineName').text(),
         machineType : $s4Machine.find('.machineType').text(),
         machineDesc : $s4Machine.find('.description p:first').text(),
         machinePrice : $s4Machine.find('.amount').text()
-    };
-    machineS5 = {
+    }, machineS5 = {
         machineName : $s5Machine.find('.machineName').text(),
         machineType : $s5Machine.find('.machineType').text(),
         machineDesc : $s5Machine.find('.description p:first').text(),
         machinePrice : $s5Machine.find('.amount').text()
-    };
-    machineS6 = {
+    }, machineS6 = {
         machineName : $s6Machine.find('.machineName').text(),
         machineType : $s6Machine.find('.machineType').text(),
         machineDesc : $s6Machine.find('.description p:first').text(),
         machinePrice : $s6Machine.find('.amount').text()
-    };
-    machineS7 = {
+    }, machineS7 = {
         machineName : $s7Machine.find('.machineName').text(),
         machineType : $s7Machine.find('.machineType').text(),
         machineDesc : $s7Machine.find('.description p:first').text(),
