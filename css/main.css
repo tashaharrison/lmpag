@@ -197,7 +197,7 @@ form#logical-machines-price-accesory-guide {
 #cost-container {
 	border: 3px solid #0c4b81;
 	color:#0c4b81;
-	margin-bottom:10px;
+	margin-left:10px;
 	padding:10px;
 }
 .price {
@@ -254,7 +254,7 @@ form#logical-machines-price-accesory-guide {
 	width: 187px;
 	height: 39px;
 	background-position: -10px -2179px;
-	top: 260px;
+	top: 253px;
 	left: 70px;
 }
 /* Small weight hopper side */
