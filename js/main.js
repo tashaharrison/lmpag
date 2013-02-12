@@ -1,17 +1,24 @@
 $(document).ready(function() {
 
+    var dimensionValidationRules = {
+        required : true,
+        number : true,
+    };
+    var dimensionValidationMessages = {
+        required : "This is a required field.",
+        number : "Please enter a number.",
+    };
+
     $("#logical-machines-price-accesory-guide").validate({
         rules : {
-            dimensionInches : {
-                required : true,
-                number : true,
-            }
+            widthInches : dimensionValidationRules,
+            heightInches : dimensionValidationRules,
+            diameterInches : dimensionValidationRules
         },
         messages : {
-            dimensionInches : {
-                required : "This is a required field.",
-                number : "Please enter a number.",
-            }
+            widthInches : dimensionValidationMessages,
+            heightInches : dimensionValidationMessages,
+            diameterInches : dimensionValidationMessages
         }
     });
 
@@ -201,6 +208,9 @@ $(document).ready(function() {
             $stepContainer.hide().prev().show();
             $('#pag-navigation a[href*=' + prevStepContainerID + ']').addClass('active');
         }
+        if ($(this).is('#step-4-next')) {
+            showValues();
+        }
     });
 
     $('#pag-navigation a').click(function() {
@@ -209,7 +219,16 @@ $(document).ready(function() {
         $(this).addClass('active');
         $('.step-container').hide();
         $(stepValue).show();
+        if (stepValue === "#step-5") {
+            showValues();
+        }
     });
+
+    function showValues() {
+        var str = $("form").serialize();
+        $("#results").text(str);
+    }
+
 
     $('#hidden-accessories-page-btn').click(function() {
         $('#hidden-accessories-page').show();
@@ -230,7 +249,6 @@ $(document).ready(function() {
             $dimensionFieldsVisible = $spoutContainer.find('.field-type-textfield input').filter(":visible");
 
             if ($dimensionFieldsVisible.valid()) {
-
                 var spoutSize = 0;
                 switch (spoutSelectedVal) {
                     case 'flag-bag':
