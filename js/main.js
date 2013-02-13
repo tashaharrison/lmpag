@@ -129,7 +129,7 @@ $(document).ready(function() {
     // Retreive form values for display on summary
     function showValues() {
 
-        $("#results").empty().append("<tr><td>" + machine.name + " " + machine.type + "</td><td>" + machine.description + "</td></tr>")
+        $("#results").empty().append("<tr><td>" + machine.name + " " + machine.type + "</td><td>" + machine.description + "</td><td>$" + machine.price + "</td></tr>")
         /*var fields = $(":input").serializeArray();
          $("#results").empty();
          $.each(fields, function(i, field) {
