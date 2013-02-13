@@ -429,6 +429,7 @@ form#logical-machines-price-accesory-guide {
 .bottom {
 	z-index:-10;
 }
+#hidden-accessories-page,
 .step-container {
 	background-color: white;
 }

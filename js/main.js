@@ -71,6 +71,25 @@ $(document).ready(function() {
         $('#machine-image-container').toggleClass('sticky', direction === 'down');
     });
 
+    // Create a div on each page for the pager button
+    $('.step-container').each(function() {
+        containerID = $(this).attr('id');
+        $('<div/>', {
+            id : containerID + '-pager',
+            class : 'step-pager'
+        }).appendTo($(this));
+
+    })
+    // Create pager buttons and add them to the created div
+    $('.step-pager').not(':first').append($('<button/>', {
+        class : 'prev',
+        type : 'button',
+    }).text('Previous step'));
+    $('.step-pager').not(':last').append($('<button/>', {
+        class : 'next',
+        type : 'button',
+    }).text('Next step'));
+
     /*
     *  General functions
     */
@@ -287,7 +306,7 @@ $(document).ready(function() {
         var num = $('fieldset.field-spout').length, newNum = +num + 1,
         // the numeric ID of the new input field being added
         newSpoutID = 'spout' + newNum, newSpoutIDUpper = newSpoutID.capitalise(), newSpoutTypeID = "type" + newSpoutIDUpper,
-        
+
         // create the new element via clone() give it the new ID using newNum value
         newElem = $('#spout' + num).clone().attr('id', newSpoutID);
         // manipulate the name/id values of the spout type inputs inside the new element
@@ -299,7 +318,7 @@ $(document).ready(function() {
         }).prop('checked', false).removeClass('active').next().attr('for', function(arr) {
             return "type" + arr + newSpoutIDUpper;
         });
-        
+
         // Reset the field descriptions
         newElem.find('.description').show().find('p').hide().filter('.spout-selection').show();
         // Reset the dimension fields
@@ -352,7 +371,7 @@ $(document).ready(function() {
      *  Navigation
      */
 
-    $('.step-submit').click(function() {
+    $('.step-pager button').click(function() {
         var $stepContainer = $(this).closest('.step-container'), nextStepContainerID = $stepContainer.next().attr('id'), prevStepContainerID = $stepContainer.prev().attr('id');
         $('#pag-navigation a').removeClass('active');
 
@@ -363,7 +382,7 @@ $(document).ready(function() {
             $stepContainer.hide().prev().show();
             $('#pag-navigation a[href*=' + prevStepContainerID + ']').addClass('active');
         }
-        if ($(this).is('#step-4-next')) {
+        if ($(this).is('#step-4-pager button')) {
             showValues();
         }
     });
