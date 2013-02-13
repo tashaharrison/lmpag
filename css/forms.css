@@ -179,7 +179,7 @@ textarea[disabled] {
 	color: #888;
 	cursor: default;
 }
-#fieldNameSpout .btnCalculate {
+.btnCalculate {
     clear:both;
     display:block;
 }
@@ -200,7 +200,6 @@ select[multiple] {
 	margin-left: 4px;
 }
 label {
-	margin-right: 10px;
 }
 label.error {
 	display: block;

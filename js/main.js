@@ -15,14 +15,16 @@ $(document).ready(function() {
 
     $("#logical-machines-price-accesory-guide").validate({
         rules : {
-            widthInches : dimensionValidationRules,
-            heightInches : dimensionValidationRules,
-            diameterInches : dimensionValidationRules
+            width : dimensionValidationRules,
+            d1 : dimensionValidationRules,
+            d2 : dimensionValidationRules,
+            diameter : dimensionValidationRules
         },
         messages : {
-            widthInches : dimensionValidationMessages,
-            heightInches : dimensionValidationMessages,
-            diameterInches : dimensionValidationMessages
+            width : dimensionValidationMessages,
+            d1 : dimensionValidationMessages,
+            d2 : dimensionValidationRules,
+            diameter : dimensionValidationMessages
         }
     });
 
@@ -46,9 +48,9 @@ $(document).ready(function() {
     */
 
     // Hide fallback content, add and delete button
-    $('.large-discharge-funnel,.field-name-dimensions li,#step-2,#step-3,#step-4,#step-5,#hidden-accessories-page,.spout-shape-images > *,#btnAdd,#btnDel,.btnCalculate,.spoutCalculation,.flatBagDesc,.fourSidedBagDesc,.canJarDesc').hide();
+    $('.large-discharge-funnel,.field-name-dimensions li,#step-2,#step-3,#step-4,#step-5,#hidden-accessories-page,.container-shape-images > *,#btnAdd,#btnDel,.btnCalculate,.spout-calculation,.flatBagDesc,.fourSidedBagDesc,.canJarDesc').hide();
     // Remove fallback form elements
-    $('.default-spout,.default-discharge-funnel,#btnQuote').remove();
+    $('.default-field-spout,.default-discharge-funnel,#btnQuote').remove();
     // .bottom class puts a negative z-index on the hidden
     // accessories page so that it loads underneath the rest of
     // the content. This removes that class on load.
@@ -56,7 +58,7 @@ $(document).ready(function() {
     // Hide all but the first machine model description
     $machineModelDesc.not('.machine-model-description:first').hide();
     // Remove .hidden class from JS ready content
-    $('.small-discharge-funnel,.large-discharge-funnel,#btnAdd,#btnDel,#btnFront,#btnSide,.cloneSpout,.step-submit,#sidebar,#btnPrint,#btnEmail,#btnClose,#btnContinue,.order-summary,#hidden-accessories-page,#machine-title,#order-summary').removeClass('hidden');
+    $('.small-discharge-funnel,.large-discharge-funnel,#btnAdd,#btnDel,#btnFront,#btnSide,.field-spout,.step-submit,#sidebar,#btnPrint,#btnEmail,#btnClose,#btnContinue,.order-summary,#hidden-accessories-page,#machine-title,#order-summary').removeClass('hidden');
     // Check the default discharge funnel field
     $('#small-standard-discharge-funnel').prop('checked', true).addClass('active');
 
@@ -73,6 +75,10 @@ $(document).ready(function() {
     *  General functions
     */
 
+    // Capitalise first letter of a variable
+    String.prototype.capitalise = function() {
+        return this.charAt(0).toUpperCase() + this.slice(1);
+    }
     // Calculate the grand total
     function calculateTotal($fieldID) {
         var price = parseInt($fieldID.next('label').find(".amount").text(), 10), siblingAmounts = 0, radioName = $fieldID.attr("name");
@@ -178,7 +184,7 @@ $(document).ready(function() {
 
     // React to the selection of the spout type
     function spoutSelect() {
-        $('input.spout-type').click(function() {
+        $('.field-name-spout-type input').click(function() {
             var $fieldID = $(this), fieldVal = $fieldID.val(), $spoutContainer = $fieldID.closest('fieldset');
 
             $spoutContainer.find('.btnCalculate').show();
@@ -189,24 +195,24 @@ $(document).ready(function() {
             $machineImage.find('.spout').removeClass('hidden');
             // Hide all the dimensions fields and images
             $spoutContainer.find('.field-name-dimensions li').hide();
-            $spoutContainer.find('.spout-shape-images > *').hide();
+            $spoutContainer.find('.container-shape-images > *').hide();
             $spoutContainer.find('p').hide();
 
             switch (fieldVal) {
                 case 'flag-bag':
-                    $spoutContainer.find('.spout-width-inches').show();
-                    $spoutContainer.find('.spout-shape-images > .flat-bag-spout-shape').show();
                     $spoutContainer.find('.description .flatBagDesc').show();
+                    $spoutContainer.find('.field-name-dimensions .width').show();
+                    $spoutContainer.find('.container-shape-images .flat-bag-shape').show();
                     break;
                 case '4-sided-bag':
-                    $spoutContainer.find('.spout-width-inches,.spout-height-inches').show();
-                    $spoutContainer.find('.spout-shape-images > .four-sided-bag-spout-shape').show();
                     $spoutContainer.find('.description .fourSidedBagDesc').show();
+                    $spoutContainer.find('.field-name-dimensions .d1, .field-name-dimensions .d2').show();
+                    $spoutContainer.find('.container-shape-images > .four-sided-bag-shape').show();
                     break;
                 case 'can-jar':
-                    $spoutContainer.find('.spout-diameter-inches').show();
-                    $spoutContainer.find('.spout-shape-images > .can-or-jar-spout-shape').show();
                     $spoutContainer.find('.description .canJarDesc').show();
+                    $spoutContainer.find('.field-name-dimensions .diameter').show();
+                    $spoutContainer.find('.container-shape-images .can-or-jar-shape').show();
                     break;
             }
 
@@ -219,11 +225,11 @@ $(document).ready(function() {
     function calculateSpoutSize() {
         $('.btnCalculate').click(function() {
 
-            var num = $('.cloneSpout').length, $spoutContainer = $(this).closest('fieldset'),
+            var num = $('fieldset.field-spout').length, $spoutContainer = $(this).closest('fieldset'),
             // The selected spout type
             $spoutSelected = $spoutContainer.find('.field-name-spout-type input:checked'), spoutSelectedVal = $spoutSelected.val(), spoutSelectedTitle = $spoutSelected.next('label').find('h4').text(),
             // Spout dimension values
-            dimensionFieldWidth = $spoutContainer.find('#spout1WidthInches').val(), dimensionFieldHeight = $spoutContainer.find('#spout1HeightInches').val(), dimensionFieldDiameter = $spoutContainer.find('#spout1DiameterInches').val(),
+            dimensionFieldWidth = $spoutContainer.find('.width').val(), dimensionFieldD1 = $spoutContainer.find('.d1').val(), dimensionFieldD2 = $spoutContainer.find('.d2').val(), dimensionFieldDiameter = $spoutContainer.find('.diameter').val(),
             // Visisble dimension fields
             $dimensionFieldsVisible = $spoutContainer.find('.field-type-textfield input').filter(":visible");
 
@@ -252,13 +258,13 @@ $(document).ready(function() {
                         }
                         break;
                     case '4-sided-bag':
-                        alert(dimensionFieldWidth + " " + dimensionFieldHeight);
+                        alert(dimensionFieldD1 + " " + dimensionFieldD2);
                         break;
                     case 'can-jar':
                         alert(dimensionFieldDiameter);
                         break;
                 }
-                $spoutContainer.find('.spoutCalculation').show().find('.spout-name').text(spoutSelectedTitle).next('.spout-size').text(spoutSize);
+                $spoutContainer.find('.spout-calculation').show().find('.spout-name').text(spoutSelectedTitle).next('.spout-size').text(spoutSize);
                 if (num < 3) {
                     $btnAdd.show();
                 }
@@ -277,42 +283,36 @@ $(document).ready(function() {
 
     // Buttons for adding a deleting spouts
     $btnAdd.click(function() {
-        var num = $('.cloneSpout').length, newNum = +num + 1,
-        // the numeric ID of the new input field
-        // being
-        // added
-        newSpoutID = 'spout' + newNum, newSpoutTypeID = 'spout' + newNum + "type", newSpoutDimensionsID = 'spout' + newNum + "dimensions",
-        // create the new element via clone(),
-        // and
-        // manipulate it's ID using newNum value
+        // Find out the amount of existing fields and add the next number
+        var num = $('fieldset.field-spout').length, newNum = +num + 1,
+        // the numeric ID of the new input field being added
+        newSpoutID = 'spout' + newNum, newSpoutIDUpper = newSpoutID.capitalise(), newSpoutTypeID = "type" + newSpoutIDUpper,
+        
+        // create the new element via clone() give it the new ID using newNum value
         newElem = $('#spout' + num).clone().attr('id', newSpoutID);
-        // manipulate the name/id values of the
-        // elements
-        // inside the new element
-        newElem.children('legend').html('Spout ' + newNum).next().attr('id', newSpoutTypeID).find('input').attr({
+        // manipulate the name/id values of the spout type inputs inside the new element
+        newElem.find('legend').html('Spout ' + newNum).next().show().find('input').attr({
             "id" : function(arr) {
-                return newSpoutTypeID + arr;
+                return "type" + arr + newSpoutIDUpper;
             },
             'name' : newSpoutTypeID
         }).prop('checked', false).removeClass('active').next().attr('for', function(arr) {
-            return newSpoutTypeID + arr;
+            return "type" + arr + newSpoutIDUpper;
         });
-
-        newElem.find('.spout-shape-images > *').hide();
-        newElem.children('.field-name-dimensions').attr('id', newSpoutDimensionsID).find('li').hide().find('.spout-width-inches input').attr('id', newSpoutID + "-width-inches").closest('.field-name-dimensions').find('.spout-height-inches input').attr('id', newSpoutID + "-height-inches").closest('.field-name-dimensions').find('.spout-diameter-inches input').attr('id', newSpoutID + "-diameter-inches");
-        newElem.find('.field-name-spout-type').show().find('input').prop('checked', false);
+        
+        // Reset the field descriptions
         newElem.find('.description').show().find('p').hide().filter('.spout-selection').show();
-        newElem.find('.field-name-dimensions li input').prop('disabled', false).val("");
-        newElem.find('.spoutCalculation').hide();
-        // insert the new element after the last
-        // "duplicatable" input field
+        // Reset the dimension fields
+        newElem.find('.field-name-dimensions li').hide().find('input').prop('disabled', false).val("");
+        // Hide container shape images
+        newElem.find('.container-shape-images > *').hide();
+        // Hide spout calculation result
+        newElem.find('.spout-calculation').hide();
+
+        // Insert the new element after the last spout
         $('#spout' + num).after(newElem);
-
-        // enable the "remove" button
+        // enable the "remove" button and hide the 'add' button
         $btnDel.show().prop('disabled', false);
-
-        // business rule: you can only add 5
-        // names
         $btnAdd.hide();
 
         spoutSelect();
@@ -322,7 +322,7 @@ $(document).ready(function() {
 
     $btnDel.click(function() {
         // Check the number of spouts
-        var num = $('.cloneSpout').length, $spoutField = $("#spout" + num);
+        var num = $('fieldset.field-spout').length, $spoutField = $("#spout" + num);
 
         // price = parseInt($('#spout' + num + ' input.active + label .amount').text(), 10);
         grandTotal -= 150;
@@ -334,8 +334,8 @@ $(document).ready(function() {
             $spoutField.find('.field-name-spout-type').show().find('input').prop('checked', false);
             $spoutField.find('.description').show().find('p').hide().filter('.spout-selection').show();
             $spoutField.find('.field-name-dimensions li').hide().find('input').prop('disabled', false).val("");
-            $spoutField.find('.spout-shape-images > *').hide();
-            $spoutField.find('.spoutCalculation').hide();
+            $spoutField.find('.container-shape-images > *').hide();
+            $spoutField.find('.spout-calculation').hide();
             $btnAdd.hide();
             $btnDel.hide();
         } else {
