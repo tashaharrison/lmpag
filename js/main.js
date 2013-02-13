@@ -283,7 +283,7 @@ $(document).ready(function() {
                         alert(dimensionFieldDiameter);
                         break;
                 }
-                $spoutContainer.find('.spout-calculation').show().find('.spout-name').text(spoutSelectedTitle).next('.spout-size').text(spoutSize);
+                $spoutContainer.find('.spout-calculation').show().find('.spout-size').text(spoutSize);
                 if (num < 3) {
                     $btnAdd.show();
                 }
