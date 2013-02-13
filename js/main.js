@@ -34,6 +34,7 @@ $(document).ready(function() {
 
     //Create an instance of the machine object and default assign properties
     var machine = {
+        id : $defaultMachine.attr('for'),
         name : $defaultMachine.find('.machineName').text(),
         type : $defaultMachine.find('.machineType').text(),
         description : $defaultMachine.find('.machine-model-description p:first').text(),
@@ -129,6 +130,7 @@ $(document).ready(function() {
                 var fieldVal = $fieldID.val();
 
                 if ($fieldID.is('input[name=machine-model]')) {
+                    machine['id'] = $fieldLabel.attr('name');
                     machine['name'] = $fieldLabel.find('.machineName').text();
                     machine['type'] = $fieldLabel.find('.machineType').text();
                     machine['description'] = $fieldLabel.find('.machine-model-description p:first').text();
@@ -137,27 +139,12 @@ $(document).ready(function() {
 
                 switch (fieldVal) {
                     case 'S-4':
-                        $machineModelDesc.hide();
-                        $fieldLabel.find('.machine-model-description').show();
-                        $machineImage.removeClass('s4 s5 s6 s7').addClass('s4');
-                        $nextMachineImage.html(machine.name + " " + machine.type);
-                        break;
                     case 'S-5':
-                        $machineModelDesc.hide();
-                        $fieldLabel.find('.machine-model-description').show();
-                        $machineImage.removeClass('s4 s5 s6 s7').addClass('s5');
-                        $nextMachineImage.html(machine.name + " " + machine.type);
-                        break;
                     case 'S-6':
-                        $machineModelDesc.hide();
-                        $fieldLabel.find('.machine-model-description').show();
-                        $machineImage.removeClass('s4 s5 s6 s7').addClass('s6');
-                        $nextMachineImage.html(machine.name + " " + machine.type);
-                        break;
                     case 'S-7':
                         $machineModelDesc.hide();
                         $fieldLabel.find('.machine-model-description').show();
-                        $machineImage.removeClass('s4 s5 s6 s7').addClass('s7');
+                        $machineImage.removeClass('s4 s5 s6 s7').addClass(machine.id);
                         $nextMachineImage.html(machine.name + " " + machine.type);
                         break;
                     case 'small-weight-hopper':
