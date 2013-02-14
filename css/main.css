@@ -122,6 +122,53 @@ h2 {
 form#logical-machines-price-accesory-guide {
 }
 /*
+ * Pagination
+ */
+
+#main-content .form {
+    margin: 66px 72px 0 72px;
+}
+#step-1 {
+}
+#step-2 {
+}
+#step-3 {
+}
+#step-4 {
+}
+#step-5 {
+}
+.bottom {
+    z-index:-10;
+}
+#hidden-accessories-page,
+.step-container {
+    background-color: white;
+}
+#hidden-accessories-page {
+    border: 1px solid #911936;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow:  3px 10px 10px 2px #555555;
+    box-shadow:  3px 10px 10px 2px #555555;
+    display: block;
+    left: 10px;
+    padding:10px;
+    position: absolute;
+    top: 10px;
+}
+#hidden-accessories-page-btn {
+    background: url("../img/sprite.png") no-repeat -238px -914px transparent;
+    bottom: 0;
+    height: 26px;
+    position: absolute;
+    right: 0;
+    width: 26px;
+}
+#btnClose {
+    float: right;
+}
+/*
  * Price & Accesory Guide Navigation
  */
 #pag-navigation {
@@ -377,83 +424,39 @@ form#logical-machines-price-accesory-guide {
 	margin-right: 10px;
 	width: 100px;
 }
+.field-name-weight-hopper .small label .accessories-image,
 #weigh-hopper-sml {
 	width: 78px;
 	height: 85px;
 	background-position: -124px -1050px;
 }
+.field-name-weight-hopper .large label .accessories-image,
 #weigh-hopper-lrg {
 	width: 104px;
 	height: 126px;
 	background-position: -10px -914px;
 }
-.field-name-discharge-funnel .small .std-fnl {
+.field-name-discharge-funnel .small .std-fnl label .accessories-image {
 	width: 104px;
 	height: 60px;
 	background-position: -124px -1334px;
 }
-.field-name-discharge-funnel .small .steep-fnl {
+.field-name-discharge-funnel .small .steep-fnl label .accessories-image {
 	width: 104px;
 	height: 106px;
 	background-position: -124px -914px;
 }
-.field-name-discharge-funnel .large .std-fnl {
+.field-name-discharge-funnel .large .std-fnl label .accessories-image {
 	width: 104px;
 	height: 89px;
 	background-position: -10px -1050px;
 }
-.field-name-discharge-funnel .large .steep-fnl {
+.field-name-discharge-funnel .large .steep-fnl label .accessories-image {
 	width: 104px;
 	height: 81px;
 	background-position: -10px -1334px;
 }
-/*
- * Pagination
- */
 
-#main-content .form {
-	margin: 66px 72px 0 72px;
-}
-#step-1 {
-}
-#step-2 {
-}
-#step-3 {
-}
-#step-4 {
-}
-#step-5 {
-}
-.bottom {
-	z-index:-10;
-}
-#hidden-accessories-page,
-.step-container {
-	background-color: white;
-}
-#hidden-accessories-page {
-	border: 1px solid #911936;
-	-webkit-border-radius: 10px;
-    border-radius: 10px;
-    -webkit-box-shadow:  3px 10px 10px 2px #555555;
-    box-shadow:  3px 10px 10px 2px #555555;
-	display: block;
-	left: 10px;
-	padding:10px;
-	position: absolute;
-	top: 10px;
-}
-#hidden-accessories-page-btn {
-	background: url("../img/sprite.png") no-repeat -238px -914px transparent;
-	bottom: 0;
-	height: 26px;
-	position: absolute;
-	right: 0;
-	width: 26px;
-}
-#btnClose {
-	float: right;
-}
 /*
  * Form styles
  */

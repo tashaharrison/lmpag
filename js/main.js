@@ -173,7 +173,8 @@ $(document).ready(function() {
                         $nextMachineImage.html(machine.name + " " + machine.type);
                         break;
                     case 'small-weight-hopper':
-                        $('.field-name-discharge-funnel .small').show().find('#small-std-fnl').prop('checked', true);
+                        componentSize = $(this).closest('li').attr('class');
+                        $('.field-name-discharge-funnel .' + componentSize).show().find('#small-std-fnl').prop('checked', true);
                         $('.field-name-discharge-funnel .large').hide().find('input').prop('checked', false);
                         $machineImage.removeClass('smwh lrgwh std-fnl steep-fnl').addClass('smwh std-fnl');
                         break;
