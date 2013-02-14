@@ -48,7 +48,7 @@ $(document).ready(function() {
     */
 
     // Hide fallback content, add and delete button
-    $('.large-discharge-funnel,.field-name-dimensions li,#step-2,#step-3,#step-4,#step-5,#hidden-accessories-page,.container-shape-images > *,#btnAdd,#btnDel,.btnCalculate,.spout-calculation,.flatBagDesc,.fourSidedBagDesc,.canJarDesc').hide();
+    $('.field-name-discharge-funnel .large,.field-name-dimensions li,#step-2,#step-3,#step-4,#step-5,#hidden-accessories-page,.container-shape-images > *,#btnAdd,#btnDel,.btnCalculate,.spout-calculation,.flatBagDesc,.fourSidedBagDesc,.canJarDesc').hide();
     // Remove fallback form elements
     $('.default-field-spout,.default-discharge-funnel,#btnQuote').remove();
     // .bottom class puts a negative z-index on the hidden
@@ -58,9 +58,9 @@ $(document).ready(function() {
     // Hide all but the first machine model description
     $machineModelDesc.not('.machine-model-description:first').hide();
     // Remove .hidden class from JS ready content
-    $('.small-discharge-funnel,.large-discharge-funnel,#btnAdd,#btnDel,#btnFront,#btnSide,.field-spout,.step-submit,#sidebar,#btnPrint,#btnEmail,#btnClose,#btnContinue,.order-summary,#hidden-accessories-page,#machine-title,#order-summary').removeClass('hidden');
+    $('.field-name-discharge-funnel .small,.field-name-discharge-funnel .large,#btnAdd,#btnDel,#btnFront,#btnSide,.field-spout,.step-submit,#sidebar,#btnPrint,#btnEmail,#btnClose,#btnContinue,.order-summary,#hidden-accessories-page,#machine-title,#order-summary').removeClass('hidden');
     // Check the default discharge funnel field
-    $('#small-standard-discharge-funnel').prop('checked', true).addClass('active');
+    $('#small-standard-funnel').prop('checked', true).addClass('active');
 
     // Add a waypoint to the sidebar
     var $mi_container = $('#sidebar');
@@ -173,19 +173,19 @@ $(document).ready(function() {
                         $nextMachineImage.html(machine.name + " " + machine.type);
                         break;
                     case 'small-weight-hopper':
-                        $('.small-discharge-funnel').show().find('#small-standard-discharge-funnel').prop('checked', true);
-                        $('.large-discharge-funnel').hide().find('input').prop('checked', false);
+                        $('.field-name-discharge-funnel .small').show().find('#small-std-fnl').prop('checked', true);
+                        $('.field-name-discharge-funnel .large').hide().find('input').prop('checked', false);
                         $machineImage.removeClass('smwh lrgwh std-fnl steep-fnl').addClass('smwh std-fnl');
                         break;
                     case 'large-weight-hopper':
-                        $('.large-discharge-funnel').show().find('#large-standard-discharge-funnel').prop('checked', false);
-                        $('.small-discharge-funnel').hide().find('input').prop('checked', false);
+                        $('.field-name-discharge-funnel .large').show().find('#large-std-fnl').prop('checked', false);
+                        $('.field-name-discharge-funnel .small').hide().find('input').prop('checked', false);
                         $machineImage.removeClass('smwh lrgwh std-fnl steep-fnl').addClass('lrgwh std-fnl');
                         break;
                     case 'small-steep-funnel':
                     case 'large-steep-funnel':
-                    case 'small-standard-discharge-funnel':
-                    case 'large-standard-discharge-funnel':
+                    case 'small-standard-funnel':
+                    case 'small-standard-funnel':
                         $machineImage.toggleClass('std-fnl steep-fnl');
                         break;
 
