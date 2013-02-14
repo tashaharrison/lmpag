@@ -32,7 +32,7 @@ $(document).ready(function() {
      *  Declare global variables
      */
 
-    var $defaultMachine = $('.field-name-machine-model label:first'), $machineModelDesc = $('.machine-model-description'), $machineImage = $('#machine-image'), $nextMachineImage = $('#machine-image').next('#machine-title'), $btnAdd = $('#btnAdd'), $btnDel = $('#btnDel'), $grandTotalContainer = $('#cost-container .amount'), grandTotal = parseInt($grandTotalContainer.text(), 10);
+    var $defaultMachine = $('.field-name-machine-model label:first'), $machineModelDesc = $('.machine-model-description'), $machineImage = $('#machine-image'), $nextMachineImage = $('#machine-image').next('#machine-title'), $btnAdd = $('#btnAdd'), $btnDel = $('#btnDel'), $grandTotalContainer = $('#cost-container .amount'), grandTotal = parseInt($grandTotalContainer.text(), 10), $fieldDichargeFunnel = $('.field-name-discharge-funnel');
 
     //Create an instance of the machine object and default assign properties
     var machine = {
@@ -48,8 +48,7 @@ $(document).ready(function() {
     */
 
     // Hide fallback content, add and delete button
-    $('.field-name-discharge-funnel .large,.field-name-dimensions li,#hidden-accessories-page,.container-shape-images > *,#btnAdd,#btnDel,.btnCalculate,.spout-calculation,.flatBagDesc,.fourSidedBagDesc,.canJarDesc').hide();
-    // ,#step-2,#step-3,#step-4,#step-5
+    $('.field-name-discharge-funnel .large,.field-name-dimensions li,#step-2,#step-3,#step-4,#step-5,#hidden-accessories-page,.container-shape-images > *,#btnAdd,#btnDel,.btnCalculate,.spout-calculation,.flatBagDesc,.fourSidedBagDesc,.canJarDesc').hide();
     // Remove fallback form elements
     $('.default-field-spout,.default-discharge-funnel,#btnQuote').remove();
     // .bottom class puts a negative z-index on the hidden
@@ -61,7 +60,7 @@ $(document).ready(function() {
     // Remove .hidden class from JS ready content
     $('.field-name-discharge-funnel li,#btnAdd,#btnDel,#btnFront,#btnSide,.field-spout,.step-submit,#sidebar,#btnPrint,#btnEmail,#btnClose,#btnContinue,.order-summary,#hidden-accessories-page,#machine-title,#order-summary').removeClass('hidden');
     // Check the default discharge funnel field
-    $('.field-name-discharge-funnel .small #small-std-fnl').prop('checked', true).addClass('active');
+    $fieldDichargeFunnel.find($('.small #small-std-fnl')).prop('checked', true).addClass('active');
 
     // Add a waypoint to the sidebar
     var $mi_container = $('#sidebar');
@@ -148,47 +147,38 @@ $(document).ready(function() {
         var $radioInputFields = $('input[name=machine-model],input[name=weight-hopper],input[name=discharge-funnel]');
 
         $radioInputFields.click(function(e) {
-            var $fieldID = $(this), inputVal = $fieldID.closest('ul.field-type-radio').find('.active').attr('id'), objectVal = $fieldID.attr('id'), $fieldLabel = $(this).next('label');
+            var $fieldID = $(this), objectName = $fieldID.attr('name'), objectVal = $fieldID.attr('id'), inputVal = $fieldID.closest('ul.field-type-radio').find('.active').attr('id'), $fieldLabel = $(this).next('label');
 
             if (inputVal == objectVal) {
                 e.preventDefault();
                 //add this to prevent default click behaviour
             } else {
 
-                var fieldVal = $fieldID.val();
-
-                if ($fieldID.is('input[name=machine-model]')) {
-                    machine['id'] = $fieldLabel.attr('name');
-                    machine['name'] = $fieldLabel.find('.machineName').text();
-                    machine['type'] = $fieldLabel.find('.machineType').text();
-                    machine['description'] = $fieldLabel.find('.machine-model-description p:first').text();
-                    machine['price'] = $fieldLabel.find('.amount').text();
-                }
-
-                switch (fieldVal) {
-                    case 'S-4':
-                    case 'S-5':
-                    case 'S-6':
-                    case 'S-7':
+                switch (objectName) {
+                    case 'machine-model':
+                    // Assign properties to the machine object
+                        machine['id'] = $fieldLabel.attr('name');
+                        machine['name'] = $fieldLabel.find('.machineName').text();
+                        machine['type'] = $fieldLabel.find('.machineType').text();
+                        machine['description'] = $fieldLabel.find('.machine-model-description p:first').text();
+                        machine['price'] = $fieldLabel.find('.amount').text();
+                    // Show/Hide descriptions
                         $machineModelDesc.hide();
                         $fieldLabel.find('.machine-model-description').show();
+                    // Assign classes to machine image and change name
                         $machineImage.removeClass('s4 s5 s6 s7').addClass(machine.id);
                         $nextMachineImage.html(machine.name + " " + machine.type);
                         break;
-                    case 'small-weight-hopper':
-                    case 'large-weight-hopper':
+                    case 'weight-hopper':
                         fieldID = $(this).attr('id');
                         componentSize = $(this).closest('li').attr('class');
-                        $('.field-name-discharge-funnel li').hide().filter($('.' + componentSize)).show();
+                        $fieldDichargeFunnel.find($('li')).hide().filter($('.' + componentSize)).show();
                         $machineImage.removeClass('smwh lrgwh std-fnl steep-fnl').addClass(fieldID + ' std-fnl');
-                        $('.field-name-discharge-funnel input').prop('checked', false);
+                        $fieldDichargeFunnel.find($('input')).prop('checked', false);
                         if (componentSize === 'small')
-                            $('.field-name-discharge-funnel .small #small-std-fnl').prop('checked', true);
+                            $fieldDichargeFunnel.find($('.small #small-std-fnl')).prop('checked', true);
                         break;
-                    case 'small-steep-funnel':
-                    case 'large-steep-funnel':
-                    case 'small-standard-funnel':
-                    case 'small-standard-funnel':
+                    case 'discharge-funnel':
                         $machineImage.toggleClass('std-fnl steep-fnl');
                         break;
 
