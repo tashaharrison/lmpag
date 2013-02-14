@@ -226,7 +226,9 @@ legend {
 	margin-top: 10px;
 }
 .tips,
-.instruction {
+.instructions {
+    clear:both;
+    color:#911936;
 	font-size: 12px;
 	margin-top: 2px;
 }

@@ -248,11 +248,10 @@ form#logical-machines-price-accesory-guide {
 	padding:10px;
 }
 .price {
-	color:#AD0000;
-	font-weight:bold;
+    font-weight:bold;
 }
 .amount {
-
+    color:#AD0000;
 }
 .s4.front .machine-bg {
 	width: 254px;
@@ -506,10 +505,6 @@ ul.field-type-radio > li {
 #fieldNameSpout {
 	margin-bottom: 16px;
 }
-.instruction {
-	clear:both;
-	color:#911936;
-}
 /* 
  * Spout page
  */
@@ -529,32 +524,32 @@ ul.field-type-radio > li {
 .field-name-dimensions input {
 	width: 120px;
 }
-.four-sided-bag-spout {
+ul.field-name-spout-type input[value="four-sided-bag"] + label .spout-sprite {
 	width: 97px;
 	height: 235px;
 	background-position: -20px -20px;
 }
-ul.field-name-spout-type input[type="radio"]:checked + label .four-sided-bag-spout {
+ul.field-name-spout-type input[value="four-sided-bag"]:checked + label .spout-sprite {
 	width: 97px;
 	height: 235px;
 	background-position: -20px -269px;
 }
-.flat-bag-spout {
+ul.field-name-spout-type input[value="flat-bag"] + label .spout-sprite {
 	width: 74px;
 	height: 235px;
 	background-position: -20px -518px;
 }
-ul.field-name-spout-type input[type="radio"]:checked + label .flat-bag-spout {
+ul.field-name-spout-type input[value="flat-bag"]:checked + label .spout-sprite {
 	width: 74px;
 	height: 235px;
 	background-position: -20px -764px;
 }
-.can-or-jar-spout {
+ul.field-name-spout-type input[value="can-jar"] + label .spout-sprite {
 	width: 81px;
 	height: 235px;
 	background-position: -114px -518px;
 }
-ul.field-name-spout-type input[type="radio"]:checked + label .can-or-jar-spout {
+ul.field-name-spout-type input[value="can-jar"]:checked + label .spout-sprite {
 	width: 81px;
 	height: 235px;
 	background-position: -114px -757px;
@@ -566,17 +561,17 @@ ul.field-name-spout-type input[type="radio"]:checked + label .can-or-jar-spout {
     margin: 0 20px;
     width: 125px;
 }
-.four-sided-bag-shape {
+.container-shape-images .four-sided-bag {
 	width: 144px;
 	height: 179px;
 	background-position: -20px -1221px;
 }
-.can-or-jar-shape {
+.container-shape-images .can-jar {
 	width: 133px;
 	height: 132px;
 	background-position: -20px -1420px;
 }
-.flat-bag-shape {
+.container-shape-images .flat-bag {
 	width: 188px;
 	height: 74px;
 	background-position: -20px -1572px;

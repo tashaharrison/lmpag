@@ -33,7 +33,7 @@ $(document).ready(function() {
     */
 
     // Field containers
-    var $machineModel = $('.field-name-machine-model'), $weighHopper = $('.field-name-weight-hopper'), $dischargeFunnel = $('.field-name-discharge-funnel'),
+    var $machineModel = $('.field-name-machine-model'), $weighHopper = $('.field-name-weight-hopper'), $dischargeFunnel = $('.field-name-discharge-funnel'), $spoutType = $('.field-name-spout-type'),
     // Field labels for extracting data
     $machineData = $machineModel.find('label'), $weighHopperData = $weighHopper.find($('label')), $dischargeFunnelData = $dischargeFunnel.find($('label')),
     // Machine image variables
@@ -65,7 +65,8 @@ $(document).ready(function() {
     */
 
     // Hide fallback content, add and delete button
-    $('.field-name-discharge-funnel .large,.field-name-dimensions li,#step-2,#step-3,#step-4,#step-5,#hidden-accessories-page,.container-shape-images > *,#btnAdd,#btnDel,.btnCalculate,.spout-calculation,.flatBagDesc,.fourSidedBagDesc,.canJarDesc').hide();
+    $('.field-name-discharge-funnel .large,.field-name-dimensions li,#step-2,#step-3,#step-4,#step-5,#hidden-accessories-page,.container-shape-images > *,#btnAdd,#btnDel,.calculate,.spout-calculation,.field-spout .instructions p').hide();
+    $('.field-spout .instructions p.spout-selection').show();
     // Remove fallback form elements
     $('.default-field-spout,.default-discharge-funnel,#btnQuote').remove();
     // .bottom class puts a negative z-index on the hidden
@@ -160,162 +161,134 @@ $(document).ready(function() {
      *  Pages 1 - 3 selection actions
      */
 
-    function radioSelect() {
-        var $radioInputFields = $('input[name=machine-model],input[name=weight-hopper],input[name=discharge-funnel]');
+    $machineModel.add($weighHopper).add($dischargeFunnel).on('click', 'input', function(e) {
+        var $fieldID = $(this), objectName = $fieldID.attr('name'), objectVal = $fieldID.attr('id'), inputVal = $fieldID.closest('ul.field-type-radio').find('.active').attr('id'), $fieldLabel = $(this).next('label');
 
-        $radioInputFields.click(function(e) {
-            var $fieldID = $(this), objectName = $fieldID.attr('name'), objectVal = $fieldID.attr('id'), inputVal = $fieldID.closest('ul.field-type-radio').find('.active').attr('id'), $fieldLabel = $(this).next('label');
+        if (inputVal == objectVal) {
+            e.preventDefault();
+            //add this to prevent default click behaviour
+        } else {
 
-            if (inputVal == objectVal) {
-                e.preventDefault();
-                //add this to prevent default click behaviour
-            } else {
+            switch (objectName) {
+                case 'machine-model':
+                    // Assign properties to the machine object
+                    machine.id = $fieldID.attr('name');
+                    machine.name = $fieldLabel.find('.name').text();
+                    machine.type = $fieldLabel.find('.type').text();
+                    machine.description = $fieldLabel.find('.description').text();
+                    machine.price = $fieldLabel.find('.amount').text();
+                    // Show/Hide descriptions
+                    $machineData.children(':not(h4,.price)').hide();
+                    $fieldLabel.find('.description').show();
+                    // Assign classes to machine image and change name
+                    $machineImage.removeClass('s4 s5 s6 s7').addClass(machine.id);
+                    $nextMachineImage.html(machine.name + " " + machine.type);
+                    break;
+                case 'weight-hopper':
+                    // Assign properties to the machine.weighHopper object
+                    machine.weighHopper.id = $fieldID.attr('name');
+                    machine.weighHopper.name = $fieldLabel.find('.machineName').text(), machine.weighHopper.price = $fieldLabel.find('.amount').text()
+                    // Assign classes to machine image
+                    $machineImage.removeClass('smwh lrgwh std-fnl steep-fnl').addClass(objectVal + ' std-fnl');
+                    // Show/Hide discharge funnels and reset checked properties
+                    componentSize = $fieldID.closest('li').attr('class');
+                    $dischargeFunnel.find($('li')).hide().filter($('.' + componentSize)).show();
+                    $dischargeFunnel.find($('input')).prop('checked', false);
+                    if (componentSize === 'small')
+                        $dischargeFunnel.find($('.small #small-std-fnl')).prop('checked', true);
+                    break;
+                case 'discharge-funnel':
+                    $machineImage.toggleClass('std-fnl steep-fnl');
+                    break;
 
-                switch (objectName) {
-                    case 'machine-model':
-                        // Assign properties to the machine object
-                        machine.id = $fieldID.attr('name');
-                        machine.name = $fieldLabel.find('.name').text();
-                        machine.type = $fieldLabel.find('.type').text();
-                        machine.description = $fieldLabel.find('.description').text();
-                        machine.price = $fieldLabel.find('.amount').text();
-                        // Show/Hide descriptions
-                        $machineData.find('.description').hide();
-                        $fieldLabel.find('.description').show();
-                        // Assign classes to machine image and change name
-                        $machineImage.removeClass('s4 s5 s6 s7').addClass(machine.id);
-                        $nextMachineImage.html(machine.name + " " + machine.type);
-                        break;
-                    case 'weight-hopper':
-                        // Assign properties to the machine.weighHopper object
-                        machine.weighHopper.id = $fieldID.attr('name');
-                        machine.weighHopper.name = $fieldLabel.find('.machineName').text(),
-                        machine.weighHopper.price = $fieldLabel.find('.amount').text()
-                        // Assign classes to machine image
-                        $machineImage.removeClass('smwh lrgwh std-fnl steep-fnl').addClass(objectVal + ' std-fnl');
-                        // Show/Hide discharge funnels and reset checked properties
-                        componentSize = $fieldID.closest('li').attr('class');
-                        $dischargeFunnel.find($('li')).hide().filter($('.' + componentSize)).show();
-                        $dischargeFunnel.find($('input')).prop('checked', false);
-                        if (componentSize === 'small')
-                            $dischargeFunnel.find($('.small #small-std-fnl')).prop('checked', true);
-                        break;
-                    case 'discharge-funnel':
-                        $machineImage.toggleClass('std-fnl steep-fnl');
-                        break;
-
-                }
-                calculateTotal($fieldID);
             }
+            calculateTotal($fieldID);
+        }
 
-        });
-    }
-
-    radioSelect();
+    });
 
     /*
     *  'Select spouts' page
     */
 
     // React to the selection of the spout type
-    function spoutSelect() {
-        $('.field-name-spout-type input').click(function() {
-            var $fieldID = $(this), fieldVal = $fieldID.val(), $spoutContainer = $fieldID.closest('fieldset');
+    $('#step-4').on('click', 'input[type=radio]', function() {
+        var $fieldID = $(this), fieldVal = $fieldID.val(), $spoutContainer = $fieldID.closest('fieldset');
 
-            $spoutContainer.find('.btnCalculate').show();
-            // Toggle active class
-            $spoutContainer.find('input.active').removeClass('active');
-            $fieldID.addClass('active');
-            // Show the spout image
-            $machineImage.find('.spout').removeClass('hidden');
-            // Hide all the dimensions fields and images
-            $spoutContainer.find('.field-name-dimensions li').hide();
-            $spoutContainer.find('.container-shape-images > *').hide();
-            $spoutContainer.find('p').hide();
+        $spoutContainer.find('.calculate').show();
+        // Toggle active class
+        $spoutContainer.find('input.active').removeClass('active');
+        $fieldID.addClass('active');
+        // Show the spout image
+        $machineImage.find('.spout').removeClass('hidden');
+        // Hide all the dimensions fields and images
+        $spoutContainer.find('.field-name-dimensions li').hide();
+        $spoutContainer.find('.container-shape-images > *').hide();
+        $spoutContainer.find('p').hide();
 
-            switch (fieldVal) {
-                case 'flag-bag':
-                    $spoutContainer.find('.description .flatBagDesc').show();
-                    $spoutContainer.find('.field-name-dimensions .width').show();
-                    $spoutContainer.find('.container-shape-images .flat-bag-shape').show();
-                    break;
-                case '4-sided-bag':
-                    $spoutContainer.find('.description .fourSidedBagDesc').show();
-                    $spoutContainer.find('.field-name-dimensions .d1, .field-name-dimensions .d2').show();
-                    $spoutContainer.find('.container-shape-images > .four-sided-bag-shape').show();
-                    break;
-                case 'can-jar':
-                    $spoutContainer.find('.description .canJarDesc').show();
-                    $spoutContainer.find('.field-name-dimensions .diameter').show();
-                    $spoutContainer.find('.container-shape-images .can-or-jar-shape').show();
-                    break;
-            }
+        $spoutContainer.find('.instructions .' + fieldVal).show();
+        $spoutContainer.find('.field-name-dimensions .' + fieldVal).show();
+        $spoutContainer.find('.container-shape-images .' + fieldVal).show();
 
-        });
-    }
-
-    spoutSelect();
+    });
 
     // Calculate the size of the spout based on the container
-    function calculateSpoutSize() {
-        $('.btnCalculate').click(function() {
 
-            var num = $('fieldset.field-spout').length, $spoutContainer = $(this).closest('fieldset'),
-            // The selected spout type
-            $spoutSelected = $spoutContainer.find('.field-name-spout-type input:checked'), spoutSelectedVal = $spoutSelected.val(), spoutSelectedTitle = $spoutSelected.next('label').find('h4').text(),
-            // Spout dimension values
-            dimensionFieldWidth = $spoutContainer.find('.width').val(), dimensionFieldD1 = $spoutContainer.find('.d1').val(), dimensionFieldD2 = $spoutContainer.find('.d2').val(), dimensionFieldDiameter = $spoutContainer.find('.diameter').val(),
-            // Visisble dimension fields
-            $dimensionFieldsVisible = $spoutContainer.find('.field-type-textfield input').filter(":visible");
+    $('#step-4').on('click', '.calculate', function() {
 
-            if ($dimensionFieldsVisible.valid()) {
-                var spoutSize = 0;
-                switch (spoutSelectedVal) {
-                    case 'flag-bag':
-                        if (dimensionFieldWidth < 2) {
-                            spoutSize = 0.75;
-                        } else if (dimensionFieldWidth >= 2 && 2.4 >= dimensionFieldWidth) {
-                            spoutSize = 1;
-                        } else if (dimensionFieldWidth >= 2.5 && 2.9 >= dimensionFieldWidth) {
-                            spoutSize = 1.25;
-                        } else if (dimensionFieldWidth >= 3 && 3.5 >= dimensionFieldWidth) {
-                            spoutSize = 1.5;
-                        } else if (dimensionFieldWidth >= 3.6 && 3.9 >= dimensionFieldWidth) {
-                            spoutSize = 1.75;
-                        } else if (dimensionFieldWidth >= 4 && 4.9 >= dimensionFieldWidth) {
-                            spoutSize = 2;
-                        } else if (dimensionFieldWidth >= 5 && 5.9 >= dimensionFieldWidth) {
-                            spoutSize = 2.5;
-                        } else if (dimensionFieldWidth >= 6 && 6.5 >= dimensionFieldWidth) {
-                            spoutSize = 3;
-                        } else {
-                            spoutSize = 3.5;
-                        }
-                        break;
-                    case '4-sided-bag':
-                        alert(dimensionFieldD1 + " " + dimensionFieldD2);
-                        break;
-                    case 'can-jar':
-                        alert(dimensionFieldDiameter);
-                        break;
-                }
-                $spoutContainer.find('.spout-calculation').show().find('.spout-size').text(spoutSize);
-                if (num < 3) {
-                    $btnAdd.show();
-                }
-                $(this).hide();
-                $spoutContainer.find('.field-name-spout-type,.description').hide();
-                $dimensionFieldsVisible.prop("disabled", true);
-                $btnDel.show().prop('disabled', false);
-                // price = parseInt($('#spout' + num + ' input.active + label .amount').text(), 10);
-                grandTotal += 150;
-                $grandTotalContainer.html(grandTotal);
+        var num = $('fieldset.field-spout').length, $spoutContainer = $(this).closest('fieldset'),
+        // The selected spout type
+        $spoutSelected = $spoutContainer.find('.field-name-spout-type input:checked'), spoutSelectedVal = $spoutSelected.val(), spoutSelectedTitle = $spoutSelected.next('label').find('h4').text(),
+        // Spout dimension values
+        dimensionFieldWidth = $spoutContainer.find('.width').val(), dimensionFieldD1 = $spoutContainer.find('.d1').val(), dimensionFieldD2 = $spoutContainer.find('.d2').val(), dimensionFieldDiameter = $spoutContainer.find('.diameter').val(),
+        // Visisble dimension fields
+        $dimensionFieldsVisible = $spoutContainer.find('.field-type-textfield input').filter(":visible");
+
+        if ($dimensionFieldsVisible.valid()) {
+            var spoutSize = 0;
+            switch (spoutSelectedVal) {
+                case 'flag-bag':
+                    if (dimensionFieldWidth < 2) {
+                        spoutSize = 0.75;
+                    } else if (dimensionFieldWidth >= 2 && 2.4 >= dimensionFieldWidth) {
+                        spoutSize = 1;
+                    } else if (dimensionFieldWidth >= 2.5 && 2.9 >= dimensionFieldWidth) {
+                        spoutSize = 1.25;
+                    } else if (dimensionFieldWidth >= 3 && 3.5 >= dimensionFieldWidth) {
+                        spoutSize = 1.5;
+                    } else if (dimensionFieldWidth >= 3.6 && 3.9 >= dimensionFieldWidth) {
+                        spoutSize = 1.75;
+                    } else if (dimensionFieldWidth >= 4 && 4.9 >= dimensionFieldWidth) {
+                        spoutSize = 2;
+                    } else if (dimensionFieldWidth >= 5 && 5.9 >= dimensionFieldWidth) {
+                        spoutSize = 2.5;
+                    } else if (dimensionFieldWidth >= 6 && 6.5 >= dimensionFieldWidth) {
+                        spoutSize = 3;
+                    } else {
+                        spoutSize = 3.5;
+                    }
+                    break;
+                case 'four-sided-bag':
+                    alert(dimensionFieldD1 + " " + dimensionFieldD2);
+                    break;
+                case 'can-jar':
+                    alert(dimensionFieldDiameter);
+                    break;
             }
+            $spoutContainer.find('.spout-calculation').show().find('.spout-size').text(spoutSize);
+            if (num < 3) {
+                $btnAdd.show();
+            }
+            $(this).hide();
+            $spoutContainer.find('.field-name-spout-type,.description').hide();
+            $dimensionFieldsVisible.prop("disabled", true);
+            $btnDel.show().prop('disabled', false);
+            // price = parseInt($('#spout' + num + ' input.active + label .amount').text(), 10);
+            grandTotal += 150;
+            $grandTotalContainer.html(grandTotal);
+        }
 
-        });
-    }
-
-    calculateSpoutSize();
+    });
 
     // Buttons for adding a deleting spouts
     $btnAdd.click(function() {
@@ -350,9 +323,6 @@ $(document).ready(function() {
         // enable the "remove" button and hide the 'add' button
         $btnDel.show().prop('disabled', false);
         $btnAdd.hide();
-
-        spoutSelect();
-        calculateSpoutSize();
 
     });
 
