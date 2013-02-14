@@ -48,7 +48,8 @@ $(document).ready(function() {
     */
 
     // Hide fallback content, add and delete button
-    $('.field-name-discharge-funnel .large,.field-name-dimensions li,#step-2,#step-3,#step-4,#step-5,#hidden-accessories-page,.container-shape-images > *,#btnAdd,#btnDel,.btnCalculate,.spout-calculation,.flatBagDesc,.fourSidedBagDesc,.canJarDesc').hide();
+    $('.field-name-discharge-funnel .large,.field-name-dimensions li,#hidden-accessories-page,.container-shape-images > *,#btnAdd,#btnDel,.btnCalculate,.spout-calculation,.flatBagDesc,.fourSidedBagDesc,.canJarDesc').hide();
+    // ,#step-2,#step-3,#step-4,#step-5
     // Remove fallback form elements
     $('.default-field-spout,.default-discharge-funnel,#btnQuote').remove();
     // .bottom class puts a negative z-index on the hidden
@@ -58,9 +59,9 @@ $(document).ready(function() {
     // Hide all but the first machine model description
     $machineModelDesc.not('.machine-model-description:first').hide();
     // Remove .hidden class from JS ready content
-    $('.field-name-discharge-funnel .small,.field-name-discharge-funnel .large,#btnAdd,#btnDel,#btnFront,#btnSide,.field-spout,.step-submit,#sidebar,#btnPrint,#btnEmail,#btnClose,#btnContinue,.order-summary,#hidden-accessories-page,#machine-title,#order-summary').removeClass('hidden');
+    $('.field-name-discharge-funnel li,#btnAdd,#btnDel,#btnFront,#btnSide,.field-spout,.step-submit,#sidebar,#btnPrint,#btnEmail,#btnClose,#btnContinue,.order-summary,#hidden-accessories-page,#machine-title,#order-summary').removeClass('hidden');
     // Check the default discharge funnel field
-    $('#small-standard-funnel').prop('checked', true).addClass('active');
+    $('.field-name-discharge-funnel .small #small-std-fnl').prop('checked', true).addClass('active');
 
     // Add a waypoint to the sidebar
     var $mi_container = $('#sidebar');
@@ -119,11 +120,13 @@ $(document).ready(function() {
     // Change the machine image between front and side view
     $('#btnFront,#btnSide').click(function() {
         var btnDirection = $(this).val();
+
         if (btnDirection === 'Front') {
             $machineImage.addClass('front').removeClass('side');
         } else {
             $machineImage.addClass('side').removeClass('front');
         }
+
     });
 
     // Retreive form values for display on summary
@@ -173,15 +176,14 @@ $(document).ready(function() {
                         $nextMachineImage.html(machine.name + " " + machine.type);
                         break;
                     case 'small-weight-hopper':
-                        componentSize = $(this).closest('li').attr('class');
-                        $('.field-name-discharge-funnel .' + componentSize).show().find('#small-std-fnl').prop('checked', true);
-                        $('.field-name-discharge-funnel .large').hide().find('input').prop('checked', false);
-                        $machineImage.removeClass('smwh lrgwh std-fnl steep-fnl').addClass('smwh std-fnl');
-                        break;
                     case 'large-weight-hopper':
-                        $('.field-name-discharge-funnel .large').show().find('#large-std-fnl').prop('checked', false);
-                        $('.field-name-discharge-funnel .small').hide().find('input').prop('checked', false);
-                        $machineImage.removeClass('smwh lrgwh std-fnl steep-fnl').addClass('lrgwh std-fnl');
+                        fieldID = $(this).attr('id');
+                        componentSize = $(this).closest('li').attr('class');
+                        $('.field-name-discharge-funnel li').hide().filter($('.' + componentSize)).show();
+                        $machineImage.removeClass('smwh lrgwh std-fnl steep-fnl').addClass(fieldID + ' std-fnl');
+                        $('.field-name-discharge-funnel input').prop('checked', false);
+                        if (componentSize === 'small')
+                            $('.field-name-discharge-funnel .small #small-std-fnl').prop('checked', true);
                         break;
                     case 'small-steep-funnel':
                     case 'large-steep-funnel':
@@ -193,6 +195,7 @@ $(document).ready(function() {
                 }
                 calculateTotal($fieldID);
             }
+
         });
     }
 
@@ -296,6 +299,7 @@ $(document).ready(function() {
                 grandTotal += 150;
                 $grandTotalContainer.html(grandTotal);
             }
+
         });
     }
 
@@ -363,9 +367,9 @@ $(document).ready(function() {
             $('#spout' + num).remove();
         }
         // Show the "add" button
-        if (num == 3) {
+        if (num == 3)
             $btnAdd.show();
-        }
+
     });
 
     /*
@@ -374,6 +378,7 @@ $(document).ready(function() {
 
     $('.step-pager button').click(function() {
         var $stepContainer = $(this).closest('.step-container'), nextStepContainerID = $stepContainer.next().attr('id'), prevStepContainerID = $stepContainer.prev().attr('id');
+
         $('#pag-navigation a').removeClass('active');
 
         if ($(this).is('.next')) {
@@ -383,20 +388,21 @@ $(document).ready(function() {
             $stepContainer.hide().prev().show();
             $('#pag-navigation a[href*=' + prevStepContainerID + ']').addClass('active');
         }
-        if ($(this).is('#step-4-pager button')) {
+        if ($(this).is('#step-4-pager button'))
             showValues();
-        }
+
     });
 
     $('#pag-navigation a').click(function() {
         var stepValue = $(this).attr('href');
+
         $('#pag-navigation a').removeClass('active');
         $(this).addClass('active');
         $('.step-container').hide();
         $(stepValue).show();
-        if (stepValue === "#step-5") {
+        if (stepValue === "#step-5")
             showValues();
-        }
+
     });
 
     /*
