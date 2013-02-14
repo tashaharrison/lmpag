@@ -29,18 +29,35 @@ $(document).ready(function() {
     });
 
     /*
-     *  Declare global variables
-     */
+    *  Declare global variables
+    */
 
-    var $defaultMachine = $('.field-name-machine-model label:first'), $machineModelDesc = $('.machine-model-description'), $machineImage = $('#machine-image'), $nextMachineImage = $('#machine-image').next('#machine-title'), $btnAdd = $('#btnAdd'), $btnDel = $('#btnDel'), $grandTotalContainer = $('#cost-container .amount'), grandTotal = parseInt($grandTotalContainer.text(), 10), $fieldDichargeFunnel = $('.field-name-discharge-funnel');
+    // Field containers
+    var $machineModel = $('.field-name-machine-model'), $weighHopper = $('.field-name-weight-hopper'), $dischargeFunnel = $('.field-name-discharge-funnel'),
+    // Field labels for extracting data
+    $machineData = $machineModel.find('label'), $weighHopperData = $weighHopper.find($('label')), $dischargeFunnelData = $dischargeFunnel.find($('label')),
+    // Machine image variables
+    $machineImage = $('#machine-image'), $nextMachineImage = $('#machine-image').next('#machine-title'), $grandTotalContainer = $('#cost-container .amount'), grandTotal = parseInt($grandTotalContainer.text(), 10),
+    // Controls
+    $btnAdd = $('#btnAdd'), $btnDel = $('#btnDel');
 
     //Create an instance of the machine object and default assign properties
     var machine = {
-        id : $defaultMachine.attr('for'),
-        name : $defaultMachine.find('.machineName').text(),
-        type : $defaultMachine.find('.machineType').text(),
-        description : $defaultMachine.find('.machine-model-description p:first').text(),
-        price : $defaultMachine.find('.amount').text()
+        id : $machineData.first().attr('for'),
+        name : $machineData.first().find('.name').text(),
+        type : $machineData.first().find('.type').text(),
+        description : $machineData.first().find('.description').text(),
+        price : $machineData.first().find('.amount').text(),
+        weighHopper : {
+            id : $weighHopperData.first().attr('for'),
+            name : $weighHopperData.first().find('.machineName').text(),
+            price : $weighHopperData.first().find('.amount').text()
+        },
+        dischargeFunnel : {
+            id : $dischargeFunnelData.first().attr('for'),
+            name : $dischargeFunnelData.first().find('.machineName').text(),
+            price : $dischargeFunnelData.first().find('.amount').text()
+        }
     };
 
     /*
@@ -56,11 +73,11 @@ $(document).ready(function() {
     // the content. This removes that class on load.
     $('.bottom').removeClass('bottom');
     // Hide all but the first machine model description
-    $machineModelDesc.not('.machine-model-description:first').hide();
+    $machineModel.find('.description').not(':first').hide();
     // Remove .hidden class from JS ready content
     $('.field-name-discharge-funnel li,#btnAdd,#btnDel,#btnFront,#btnSide,.field-spout,.step-submit,#sidebar,#btnPrint,#btnEmail,#btnClose,#btnContinue,.order-summary,#hidden-accessories-page,#machine-title,#order-summary').removeClass('hidden');
     // Check the default discharge funnel field
-    $fieldDichargeFunnel.find($('.small #small-std-fnl')).prop('checked', true).addClass('active');
+    $dischargeFunnel.find($('.small #small-std-fnl')).prop('checked', true).addClass('active');
 
     // Add a waypoint to the sidebar
     var $mi_container = $('#sidebar');
@@ -156,27 +173,32 @@ $(document).ready(function() {
 
                 switch (objectName) {
                     case 'machine-model':
-                    // Assign properties to the machine object
-                        machine['id'] = $fieldLabel.attr('name');
-                        machine['name'] = $fieldLabel.find('.machineName').text();
-                        machine['type'] = $fieldLabel.find('.machineType').text();
-                        machine['description'] = $fieldLabel.find('.machine-model-description p:first').text();
-                        machine['price'] = $fieldLabel.find('.amount').text();
-                    // Show/Hide descriptions
-                        $machineModelDesc.hide();
-                        $fieldLabel.find('.machine-model-description').show();
-                    // Assign classes to machine image and change name
+                        // Assign properties to the machine object
+                        machine.id = $fieldID.attr('name');
+                        machine.name = $fieldLabel.find('.name').text();
+                        machine.type = $fieldLabel.find('.type').text();
+                        machine.description = $fieldLabel.find('.description').text();
+                        machine.price = $fieldLabel.find('.amount').text();
+                        // Show/Hide descriptions
+                        $machineData.find('.description').hide();
+                        $fieldLabel.find('.description').show();
+                        // Assign classes to machine image and change name
                         $machineImage.removeClass('s4 s5 s6 s7').addClass(machine.id);
                         $nextMachineImage.html(machine.name + " " + machine.type);
                         break;
                     case 'weight-hopper':
-                        fieldID = $(this).attr('id');
-                        componentSize = $(this).closest('li').attr('class');
-                        $fieldDichargeFunnel.find($('li')).hide().filter($('.' + componentSize)).show();
-                        $machineImage.removeClass('smwh lrgwh std-fnl steep-fnl').addClass(fieldID + ' std-fnl');
-                        $fieldDichargeFunnel.find($('input')).prop('checked', false);
+                        // Assign properties to the machine.weighHopper object
+                        machine.weighHopper.id = $fieldID.attr('name');
+                        machine.weighHopper.name = $fieldLabel.find('.machineName').text(),
+                        machine.weighHopper.price = $fieldLabel.find('.amount').text()
+                        // Assign classes to machine image
+                        $machineImage.removeClass('smwh lrgwh std-fnl steep-fnl').addClass(objectVal + ' std-fnl');
+                        // Show/Hide discharge funnels and reset checked properties
+                        componentSize = $fieldID.closest('li').attr('class');
+                        $dischargeFunnel.find($('li')).hide().filter($('.' + componentSize)).show();
+                        $dischargeFunnel.find($('input')).prop('checked', false);
                         if (componentSize === 'small')
-                            $fieldDichargeFunnel.find($('.small #small-std-fnl')).prop('checked', true);
+                            $dischargeFunnel.find($('.small #small-std-fnl')).prop('checked', true);
                         break;
                     case 'discharge-funnel':
                         $machineImage.toggleClass('std-fnl steep-fnl');

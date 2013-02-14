@@ -179,7 +179,7 @@ textarea[disabled] {
 	color: #888;
 	cursor: default;
 }
-.btnCalculate {
+.calculate {
     clear:both;
     display:block;
 }
@@ -226,7 +226,7 @@ legend {
 	margin-top: 10px;
 }
 .tips,
-.description {
+.instruction {
 	font-size: 12px;
 	margin-top: 2px;
 }
