@@ -33,7 +33,7 @@ $(document).ready(function() {
 	*/
 
 	// Field containers
-	var $machineModel = $('#field-name-machine-model'), $weighHopper = $('#field-name-weight-hopper'), $dischargeFunnel = $('#field-name-discharge-funnel'), $spout = $('#field-name-spout'),
+	var $fieldContainer = $('.field-container'), $machineModel = $('#field-name-machine-model'), $weighHopper = $('#field-name-weight-hopper'), $dischargeFunnel = $('#field-name-discharge-funnel'), $spout = $('#field-name-spout'),
 	// Field labels for extracting data
 	$machineData = $machineModel.find('label'), $weighHopperData = $weighHopper.find($('label')), $dischargeFunnelData = $dischargeFunnel.find($('label')),
 	// Machine image variables
@@ -65,7 +65,7 @@ $(document).ready(function() {
 	*/
 
 	// Hide fallback content, add and delete button
-	$('.field-name-discharge-funnel .large, .field-name-dimensions li, #step-2, #step-3, #step-4, #step-5, #hidden-accessories-page, .container-shape-images > *, #btnAdd, #btnDel, .calculate, .spout-calculation, .field-spout .instructions p').hide();
+	$('#field-name-discharge-funnel .large, .field-name-dimensions li, #step-2, #step-3, #step-4, #step-5, #hidden-accessories-page, .container-shape-images > *, #btnAdd, #btnDel, .calculate, .spout-calculation, .field-spout .instructions p').hide();
 	$('.field-spout .instructions p.spout-selection').show();
 	// Remove fallback form elements
 	$('.default-field-spout,.default-discharge-funnel,#btnQuote').remove();
@@ -119,7 +119,7 @@ $(document).ready(function() {
 	// Calculate the grand total
 	function calculateTotal($fieldID) {
 		var price = parseInt($fieldID.next('label').find(".amount").text(), 10), siblingAmounts = 0, radioName = $fieldID.attr("name");
-
+		if (!isNaN(price)) {
 		$("input[name='" + radioName + "'].active").not($fieldID).each(function() {
 			siblingAmounts += parseInt($(this).next("label").find(".amount").text(), 10);
 		});
@@ -132,6 +132,7 @@ $(document).ready(function() {
 			grandTotal -= price;
 		}
 		$grandTotalContainer.html(grandTotal);
+		}
 	}
 
 	// Change the machine image between front and side view
@@ -161,8 +162,8 @@ $(document).ready(function() {
 	 *  Pages 1 - 3 selection actions
 	 */
 
-	$('.field-container').on('click', 'input[type=radio]', function(e) {
-		var $fieldID = $(this), fieldContainerID = $(this).closest('.field-container').attr('id');
+	$fieldContainer.on('click', 'input[type=radio]', function(e) {
+		var $fieldID = $(this), fieldContainerID = $(this).closest($fieldContainer).attr('id');
 		objectName = $fieldID.attr('name'), objectVal = $fieldID.attr('id'), inputVal = $fieldID.closest('ul.field-type-radio').find('.active').attr('id'), $fieldLabel = $(this).next('label');
 
 		if (inputVal == objectVal) {
@@ -180,7 +181,7 @@ $(document).ready(function() {
 					machine.price = $fieldLabel.find('.amount').text();
 					// Show/Hide descriptions
 					$machineData.children(':not(h4,.price)').hide();
-					$fieldLabel.find('.description').show();
+					$fieldLabel.find('*').show();
 					// Assign classes to machine image and change name
 					$machineImage.removeClass('s4 s5 s6 s7').addClass(machine.id);
 					$nextMachineImage.html(machine.name + " " + machine.type);
@@ -230,20 +231,20 @@ $(document).ready(function() {
 
 	// Calculate the size of the spout based on the container
 
-	$('#step-4').on('click', '.calculate', function() {
+	$spout.on('click', '.calculate', function() {
 
 		var num = $('fieldset.field-spout').length, $spoutContainer = $(this).closest('fieldset'),
 		// The selected spout type
 		$spoutSelected = $spoutContainer.find('.field-name-spout-type input:checked'), spoutSelectedVal = $spoutSelected.val(), spoutSelectedTitle = $spoutSelected.next('label').find('h4').text(),
 		// Spout dimension values
-		dimensionFieldWidth = $spoutContainer.find('.width').val(), dimensionFieldD1 = $spoutContainer.find('.d1').val(), dimensionFieldD2 = $spoutContainer.find('.d2').val(), dimensionFieldDiameter = $spoutContainer.find('.diameter').val(),
+		dimensionFieldWidth = $spoutContainer.find('.width input').val(), dimensionFieldD1 = $spoutContainer.find('.d1 input').val(), dimensionFieldD2 = $spoutContainer.find('.d2 input').val(), dimensionFieldDiameter = $spoutContainer.find('.diameter input').val(),
 		// Visisble dimension fields
 		$dimensionFieldsVisible = $spoutContainer.find('.field-type-textfield input').filter(":visible");
-
 		if ($dimensionFieldsVisible.valid()) {
 			var spoutSize = 0;
 			switch (spoutSelectedVal) {
 				case 'flag-bag':
+				alert(dimensionFieldWidth);
 					if (dimensionFieldWidth < 2) {
 						spoutSize = 0.75;
 					} else if (dimensionFieldWidth >= 2 && 2.4 >= dimensionFieldWidth) {
