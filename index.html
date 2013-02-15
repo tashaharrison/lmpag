@@ -153,7 +153,7 @@
 								</div>
 								<h3>Logical Machines Models</h3>
 								<h4>Please begin by selecting your model.</h4>
-								<ul class="field-type-radio field-name-machine-model">
+								<ul id="field-name-machine-model" class="field-container field-type-radio">
 									<li>
 										<input type="radio" id="s4" class="radio active" name="machine-model" value="S-4" checked="checked" />
 										<label for="s4"><h4><span class="name">S-4</span>&nbsp;<span class="type">Weigh Fill System</span></h4>
@@ -246,7 +246,7 @@
 								<p>
 									The <b>Weigh Hopper</b> is the scale portion of the unit which handles and weighs your products. Select a hopper by clicking its image.
 								</p>
-								<ul class="field-type-radio field-name-weight-hopper">
+								<ul id="field-name-weight-hopper" class="field-type-radio field-container">
 									<li class="small">
 										<input type="radio" id="smwh" class="active" name="weight-hopper" value="small-weight-hopper" checked="checked"/>
 										<label for="smwh" class="clearfix"><h4 class="name">Small Weigh Hopper</h4>
@@ -283,7 +283,7 @@
 								<p>
 									The <b>Discharge Funnel</b> directs your product from the weigh hopper to the spout. Select a funnel by clicking its image.
 								</p>
-								<ul class="field-type-radio field-name-discharge-funnel">
+								<ul id="field-name-discharge-funnel" class="field-type-radio field-container">
 									<li class="small default-discharge-funnel">
 										<input type="radio" id="std-fnl" class="active" name="discharge-funnel" value="standard-discharge-funnel" checked="checked" />
 										<label for="std-fnl" class="std-fnl clearfix"><h4 class="name">Standard Discharge Funnel</h4>
@@ -390,321 +390,322 @@
 								<p>
 									Use the <b>Spout Calculator</b> below to help you determine which size spout is right for your container.
 								</p>
-
-								<fieldset id="defaultSpout1" class="default-field-spout">
-									<legend>
-										Spout 1
-									</legend>
-									<ul class="field-type-radio field-name-spout-type">
-										<li>
-											<input type="radio" id="type0Spout1Default" name="typeSpout1Default" value="flag-bag" />
-											<label for="type0Spout1Default">
-												<div class="spout-sprite flat-bag-spout ir">
-													Flag bag spout image
-												</div><h4>Flag bag</h4></label>
-										</li>
-										<li>
-											<input type="radio" id="type1Spout1Default" name="typeSpout1Default" value="four-sided-bag" />
-											<label for="type1Spout1Default">
-												<div class="spout-sprite four-sided-bag-spout ir">
-													4 sided bag spout image
-												</div><h4>4 sided bag</h4></label>
-										</li>
-										<li>
-											<input type="radio" id="type2Spout1Default" name="typeSpout1Default" value="can-jar" />
-											<label for="type2Spout1Default">
-												<div class="spout-sprite can-or-jar-spout ir">
-													Can or Jar spout image
-												</div><h4>Can or Jar</h4></label>
-										</li>
-									</ul>
-									<div class="instructions">
-										<p>
-											Click on the diagram above that most accurately depicts your container and then enter the size of the bags to be filled in inches.
-										</p>
-									</div>
-									<ul class="field-type-textfield field-name-dimensions">
-										<li class="width">
-											<label>Width in inches</label>
-											<input type="text" name="widthInches" />
-										</li>
-										<li class="d1">
-											<label>D1</label>
-											<input type="text" name="d1Inches" />
-										</li>
-										<li class="d2">
-											<label>D2</label>
-											<input type="text" name="d2Inches" />
-										</li>
-										<li class="diameter">
-											<label>Diameter in inches</label>
-											<input type="text" name="diameterInches" />
-										</li>
-									</ul>
-									<div class="instructions">
-										<p>
-											Please enter:
-										</p>
-										<ul>
+								<div id="field-name-spout" class="field-container">
+									<fieldset id="defaultSpout1" class="default-field-spout">
+										<legend>
+											Spout 1
+										</legend>
+										<ul class="field-type-radio field-name-spout-type">
 											<li>
-												<b>Flat Bag:</b> Enter the width of the bag opening (W).
+												<input type="radio" id="type0Spout1Default" name="typeSpout1Default" value="flag-bag" />
+												<label for="type0Spout1Default">
+													<div class="spout-sprite flat-bag-spout ir">
+														Flag bag spout image
+													</div><h4>Flag bag</h4></label>
 											</li>
 											<li>
-												<b>4 sided bag Bag:</b> Looking down at the top of your bag, enter the dimensions (D1) and (D2) of the bag opening.
+												<input type="radio" id="type1Spout1Default" name="typeSpout1Default" value="four-sided-bag" />
+												<label for="type1Spout1Default">
+													<div class="spout-sprite four-sided-bag-spout ir">
+														4 sided bag spout image
+													</div><h4>4 sided bag</h4></label>
 											</li>
 											<li>
-												<b>Bottle or Jar:</b> Enter the inside diameter of the bottle or can opening (D).
+												<input type="radio" id="type2Spout1Default" name="typeSpout1Default" value="can-jar" />
+												<label for="type2Spout1Default">
+													<div class="spout-sprite can-or-jar-spout ir">
+														Can or Jar spout image
+													</div><h4>Can or Jar</h4></label>
 											</li>
 										</ul>
-									</div>
-									<div class="container-shape-images">
-										<div class="spout-sprite flat-bag-shape ir">
-											Flag bag spout shape image
+										<div class="instructions">
+											<p>
+												Click on the diagram above that most accurately depicts your container and then enter the size of the bags to be filled in inches.
+											</p>
 										</div>
-										<div class="spout-sprite four-sided-bag-shape ir">
-											4 sided bag spout shape image
-										</div>
-										<div class="spout-sprite can-or-jar-shape ir">
-											Can or Jar spout shape image
-										</div>
-									</div>
-								</fieldset>
-
-								<fieldset id="defaultSpout2" class="default-field-spout">
-									<legend>
-										Spout 1
-									</legend>
-									<ul class="field-type-radio field-name-spout-type">
-										<li>
-											<input type="radio" id="type0Spout2Default" name="typeSpout2Default" value="flag-bag" />
-											<label for="type0Spout2Default">
-												<div class="spout-sprite flat-bag-spout ir">
-													Flag bag spout image
-												</div><h4>Flag bag</h4></label>
-										</li>
-										<li>
-											<input type="radio" id="type1Spout2Default" name="typeSpout2Default" value="four-sided-bag" />
-											<label for="type1Spout2Default">
-												<div class="spout-sprite four-sided-bag-spout ir">
-													4 sided bag spout image
-												</div><h4>4 sided bag</h4></label>
-										</li>
-										<li>
-											<input type="radio" id="type2Spout2Default" name="typeSpout2Default" value="can-jar" />
-											<label for="type2Spout2Default">
-												<div class="spout-sprite can-or-jar-spout ir">
-													Can or Jar spout image
-												</div><h4>Can or Jar</h4></label>
-										</li>
-									</ul>
-									<div class="instructions">
-										<p>
-											Click on the diagram above that most accurately depicts your container and then enter the size of the bags to be filled in inches.
-										</p>
-									</div>
-									<ul class="field-type-textfield field-name-dimensions">
-										<li class="width">
-											<label>Width in inches</label>
-											<input type="text" name="widthInches" />
-										</li>
-										<li class="d1">
-											<label>D1</label>
-											<input type="text" name="d1Inches" />
-										</li>
-										<li class="d2">
-											<label>D2</label>
-											<input type="text" name="d2Inches" />
-										</li>
-										<li class="diameter">
-											<label>Diameter in inches</label>
-											<input type="text" name="diameterInches" />
-										</li>
-									</ul>
-									<div class="instructions">
-										<p>
-											Please enter:
-										</p>
-										<ul>
-											<li>
-												<b>Flat Bag:</b> Enter the width of the bag opening (W).
+										<ul class="field-type-textfield field-name-dimensions">
+											<li class="width">
+												<label>Width in inches</label>
+												<input type="text" name="widthInches" />
 											</li>
-											<li>
-												<b>4 sided bag Bag:</b> Looking down at the top of your bag, enter the dimensions (D1) and (D2) of the bag opening.
+											<li class="d1">
+												<label>D1</label>
+												<input type="text" name="d1Inches" />
 											</li>
-											<li>
-												<b>Bottle or Jar:</b> Enter the inside diameter of the bottle or can opening (D).
+											<li class="d2">
+												<label>D2</label>
+												<input type="text" name="d2Inches" />
+											</li>
+											<li class="diameter">
+												<label>Diameter in inches</label>
+												<input type="text" name="diameterInches" />
 											</li>
 										</ul>
-									</div>
-									<div class="container-shape-images">
-										<div class="spout-sprite flat-bag-shape ir">
-											Flag bag spout shape image
+										<div class="instructions">
+											<p>
+												Please enter:
+											</p>
+											<ul>
+												<li>
+													<b>Flat Bag:</b> Enter the width of the bag opening (W).
+												</li>
+												<li>
+													<b>4 sided bag Bag:</b> Looking down at the top of your bag, enter the dimensions (D1) and (D2) of the bag opening.
+												</li>
+												<li>
+													<b>Bottle or Jar:</b> Enter the inside diameter of the bottle or can opening (D).
+												</li>
+											</ul>
 										</div>
-										<div class="spout-sprite four-sided-bag-shape ir">
-											4 sided bag spout shape image
+										<div class="container-shape-images">
+											<div class="spout-sprite flat-bag-shape ir">
+												Flag bag spout shape image
+											</div>
+											<div class="spout-sprite four-sided-bag-shape ir">
+												4 sided bag spout shape image
+											</div>
+											<div class="spout-sprite can-or-jar-shape ir">
+												Can or Jar spout shape image
+											</div>
 										</div>
-										<div class="spout-sprite can-or-jar-shape ir">
-											Can or Jar spout shape image
-										</div>
-									</div>
-								</fieldset>
+									</fieldset>
 
-								<fieldset id="defaultSpout3" class="default-field-spout">
-									<legend>
-										Spout 1
-									</legend>
-									<ul class="field-type-radio field-name-spout-type">
-										<li>
-											<input type="radio" id="type0Spout3Default" name="typeSpout3Default" value="flag-bag" />
-											<label for="type0Spout3Default">
-												<div class="spout-sprite flat-bag-spout ir">
-													Flag bag spout image
-												</div><h4>Flag bag</h4></label>
-										</li>
-										<li>
-											<input type="radio" id="type1Spout3Default" name="typeSpout3Default" value="four-sided-bag" />
-											<label for="type1Spout3Default">
-												<div class="spout-sprite four-sided-bag-spout ir">
-													4 sided bag spout image
-												</div><h4>4 sided bag</h4></label>
-										</li>
-										<li>
-											<input type="radio" id="type2Spout3Default" name="typeSpout3Default" value="can-jar" />
-											<label for="type2Spout3Default">
-												<div class="spout-sprite can-or-jar-spout ir">
-													Can or Jar spout image
-												</div><h4>Can or Jar</h4></label>
-										</li>
-									</ul>
-									<div class="instructions">
-										<p>
-											Click on the diagram above that most accurately depicts your container and then enter the size of the bags to be filled in inches.
-										</p>
-									</div>
-									<ul class="field-type-textfield field-name-dimensions">
-										<li class="width">
-											<label>Width in inches</label>
-											<input type="text" name="widthInches" />
-										</li>
-										<li class="d1">
-											<label>D1</label>
-											<input type="text" name="d1Inches" />
-										</li>
-										<li class="d2">
-											<label>D2</label>
-											<input type="text" name="d2Inches" />
-										</li>
-										<li class="diameter">
-											<label>Diameter in inches</label>
-											<input type="text" name="diameterInches" />
-										</li>
-									</ul>
-									<div class="instructions">
-										<p>
-											Please enter:
-										</p>
-										<ul>
+									<fieldset id="defaultSpout2" class="default-field-spout">
+										<legend>
+											Spout 1
+										</legend>
+										<ul class="field-type-radio field-name-spout-type">
 											<li>
-												<b>Flat Bag:</b> Enter the width of the bag opening (W).
+												<input type="radio" id="type0Spout2Default" name="typeSpout2Default" value="flag-bag" />
+												<label for="type0Spout2Default">
+													<div class="spout-sprite flat-bag-spout ir">
+														Flag bag spout image
+													</div><h4>Flag bag</h4></label>
 											</li>
 											<li>
-												<b>4 sided bag Bag:</b> Looking down at the top of your bag, enter the dimensions (D1) and (D2) of the bag opening.
+												<input type="radio" id="type1Spout2Default" name="typeSpout2Default" value="four-sided-bag" />
+												<label for="type1Spout2Default">
+													<div class="spout-sprite four-sided-bag-spout ir">
+														4 sided bag spout image
+													</div><h4>4 sided bag</h4></label>
 											</li>
 											<li>
-												<b>Bottle or Jar:</b> Enter the inside diameter of the bottle or can opening (D).
+												<input type="radio" id="type2Spout2Default" name="typeSpout2Default" value="can-jar" />
+												<label for="type2Spout2Default">
+													<div class="spout-sprite can-or-jar-spout ir">
+														Can or Jar spout image
+													</div><h4>Can or Jar</h4></label>
 											</li>
 										</ul>
-									</div>
-									<div class="container-shape-images">
-										<div class="spout-sprite flat-bag-shape ir">
-											Flag bag spout shape image
+										<div class="instructions">
+											<p>
+												Click on the diagram above that most accurately depicts your container and then enter the size of the bags to be filled in inches.
+											</p>
 										</div>
-										<div class="spout-sprite four-sided-bag-shape ir">
-											4 sided bag spout shape image
+										<ul class="field-type-textfield field-name-dimensions">
+											<li class="width">
+												<label>Width in inches</label>
+												<input type="text" name="widthInches" />
+											</li>
+											<li class="d1">
+												<label>D1</label>
+												<input type="text" name="d1Inches" />
+											</li>
+											<li class="d2">
+												<label>D2</label>
+												<input type="text" name="d2Inches" />
+											</li>
+											<li class="diameter">
+												<label>Diameter in inches</label>
+												<input type="text" name="diameterInches" />
+											</li>
+										</ul>
+										<div class="instructions">
+											<p>
+												Please enter:
+											</p>
+											<ul>
+												<li>
+													<b>Flat Bag:</b> Enter the width of the bag opening (W).
+												</li>
+												<li>
+													<b>4 sided bag Bag:</b> Looking down at the top of your bag, enter the dimensions (D1) and (D2) of the bag opening.
+												</li>
+												<li>
+													<b>Bottle or Jar:</b> Enter the inside diameter of the bottle or can opening (D).
+												</li>
+											</ul>
 										</div>
-										<div class="spout-sprite can-or-jar-shape ir">
-											Can or Jar spout shape image
+										<div class="container-shape-images">
+											<div class="spout-sprite flat-bag-shape ir">
+												Flag bag spout shape image
+											</div>
+											<div class="spout-sprite four-sided-bag-shape ir">
+												4 sided bag spout shape image
+											</div>
+											<div class="spout-sprite can-or-jar-shape ir">
+												Can or Jar spout shape image
+											</div>
 										</div>
-									</div>
-								</fieldset>
+									</fieldset>
 
-								<fieldset id="spout1" class="field-spout hidden">
-									<legend>
-										Spout 1
-									</legend>
-									<ul class="field-type-radio field-name-spout-type">
-										<li>
-											<input type="radio" id="type0Spout1" name="typeSpout1" value="flat-bag" />
-											<label for="type0Spout1">
-												<div class="spout-sprite ir">
-													Flag bag spout image
-												</div><h4 class="name">Flag bag</h4></label>
-										</li>
-										<li>
-											<input type="radio" id="type1Spout1" name="typeSpout1" value="four-sided-bag" />
-											<label for="type1Spout1">
-												<div class="spout-sprite ir">
-													4 sided bag spout image
-												</div><h4 class="name">4 sided bag</h4></label>
-										</li>
-										<li>
-											<input type="radio" id="type2Spout1" name="typeSpout1" value="can-jar" />
-											<label for="type2Spout1">
-												<div class="spout-sprite ir">
-													Bottle or Jar spout image
-												</div><h4 class="name">Bottle or Jar</h4></label>
-										</li>
-									</ul>
-									<div class="instructions">
-										<p class="spout-selection">
-											Click on the diagram above that most accurately depicts your container.
-										</p>
-										<p class="flat-bag">
-											Enter the width of the bag opening (W).
-										</p>
-										<p class="four-sided-bag">
-											Looking down at the top of your bag, enter the dimensions (D1) and (D2) of the bag opening.
-										</p>
-										<p class="can-jar">
-											Enter the inside diameter of the bottle or can opening (D).
-										</p>
-									</div>
-									<ul class="field-type-textfield field-name-dimensions">
-										<li class="width flat-bag">
-											<label>Width in inches</label>
-											<input type="text" name="width" />
-										</li>
-										<li class="d1 four-sided-bag">
-											<label>D1</label>
-											<input type="text" name="d1" />
-										</li>
-										<li class="d2 four-sided-bag">
-											<label>D2</label>
-											<input type="text" name="d2" />
-										</li>
-										<li class="diameter can-jar">
-											<label>Diameter in inches</label>
-											<input type="text" name="diameter" />
-										</li>
-									</ul>
-									<div class="container-shape-images">
-										<div class="spout-sprite flat-bag ir">
-											Flag bag spout shape image
+									<fieldset id="defaultSpout3" class="default-field-spout">
+										<legend>
+											Spout 1
+										</legend>
+										<ul class="field-type-radio field-name-spout-type">
+											<li>
+												<input type="radio" id="type0Spout3Default" name="typeSpout3Default" value="flag-bag" />
+												<label for="type0Spout3Default">
+													<div class="spout-sprite flat-bag-spout ir">
+														Flag bag spout image
+													</div><h4>Flag bag</h4></label>
+											</li>
+											<li>
+												<input type="radio" id="type1Spout3Default" name="typeSpout3Default" value="four-sided-bag" />
+												<label for="type1Spout3Default">
+													<div class="spout-sprite four-sided-bag-spout ir">
+														4 sided bag spout image
+													</div><h4>4 sided bag</h4></label>
+											</li>
+											<li>
+												<input type="radio" id="type2Spout3Default" name="typeSpout3Default" value="can-jar" />
+												<label for="type2Spout3Default">
+													<div class="spout-sprite can-or-jar-spout ir">
+														Can or Jar spout image
+													</div><h4>Can or Jar</h4></label>
+											</li>
+										</ul>
+										<div class="instructions">
+											<p>
+												Click on the diagram above that most accurately depicts your container and then enter the size of the bags to be filled in inches.
+											</p>
 										</div>
-										<div class="spout-sprite four-sided-bag ir">
-											4 sided bag spout shape image
+										<ul class="field-type-textfield field-name-dimensions">
+											<li class="width">
+												<label>Width in inches</label>
+												<input type="text" name="widthInches" />
+											</li>
+											<li class="d1">
+												<label>D1</label>
+												<input type="text" name="d1Inches" />
+											</li>
+											<li class="d2">
+												<label>D2</label>
+												<input type="text" name="d2Inches" />
+											</li>
+											<li class="diameter">
+												<label>Diameter in inches</label>
+												<input type="text" name="diameterInches" />
+											</li>
+										</ul>
+										<div class="instructions">
+											<p>
+												Please enter:
+											</p>
+											<ul>
+												<li>
+													<b>Flat Bag:</b> Enter the width of the bag opening (W).
+												</li>
+												<li>
+													<b>4 sided bag Bag:</b> Looking down at the top of your bag, enter the dimensions (D1) and (D2) of the bag opening.
+												</li>
+												<li>
+													<b>Bottle or Jar:</b> Enter the inside diameter of the bottle or can opening (D).
+												</li>
+											</ul>
 										</div>
-										<div class="spout-sprite can-jar ir">
-											Bottle or Jar spout shape image
+										<div class="container-shape-images">
+											<div class="spout-sprite flat-bag-shape ir">
+												Flag bag spout shape image
+											</div>
+											<div class="spout-sprite four-sided-bag-shape ir">
+												4 sided bag spout shape image
+											</div>
+											<div class="spout-sprite can-or-jar-shape ir">
+												Can or Jar spout shape image
+											</div>
 										</div>
-									</div>
-									<button type="button" value="Calculate" class="calculate">
-										Calculate
-									</button>
-									<p class="spout-calculation">
-										You have selected a <span class="spout-size">&nbsp;</span> inch spout
-									</p>
-								</fieldset>
+									</fieldset>
+
+									<fieldset id="spout1" class="field-spout hidden">
+										<legend>
+											Spout 1
+										</legend>
+										<ul class="field-type-radio field-name-spout-type">
+											<li>
+												<input type="radio" id="type0Spout1" name="typeSpout1" value="flat-bag" />
+												<label for="type0Spout1">
+													<div class="spout-sprite ir">
+														Flag bag spout image
+													</div><h4 class="name">Flag bag</h4></label>
+											</li>
+											<li>
+												<input type="radio" id="type1Spout1" name="typeSpout1" value="four-sided-bag" />
+												<label for="type1Spout1">
+													<div class="spout-sprite ir">
+														4 sided bag spout image
+													</div><h4 class="name">4 sided bag</h4></label>
+											</li>
+											<li>
+												<input type="radio" id="type2Spout1" name="typeSpout1" value="can-jar" />
+												<label for="type2Spout1">
+													<div class="spout-sprite ir">
+														Bottle or Jar spout image
+													</div><h4 class="name">Bottle or Jar</h4></label>
+											</li>
+										</ul>
+										<div class="instructions">
+											<p class="spout-selection">
+												Click on the diagram above that most accurately depicts your container.
+											</p>
+											<p class="flat-bag">
+												Enter the width of the bag opening (W).
+											</p>
+											<p class="four-sided-bag">
+												Looking down at the top of your bag, enter the dimensions (D1) and (D2) of the bag opening.
+											</p>
+											<p class="can-jar">
+												Enter the inside diameter of the bottle or can opening (D).
+											</p>
+										</div>
+										<ul class="field-type-textfield field-name-dimensions">
+											<li class="width flat-bag">
+												<label>Width in inches</label>
+												<input type="text" name="width" />
+											</li>
+											<li class="d1 four-sided-bag">
+												<label>D1</label>
+												<input type="text" name="d1" />
+											</li>
+											<li class="d2 four-sided-bag">
+												<label>D2</label>
+												<input type="text" name="d2" />
+											</li>
+											<li class="diameter can-jar">
+												<label>Diameter in inches</label>
+												<input type="text" name="diameter" />
+											</li>
+										</ul>
+										<div class="container-shape-images">
+											<div class="spout-sprite flat-bag ir">
+												Flag bag spout shape image
+											</div>
+											<div class="spout-sprite four-sided-bag ir">
+												4 sided bag spout shape image
+											</div>
+											<div class="spout-sprite can-jar ir">
+												Bottle or Jar spout shape image
+											</div>
+										</div>
+										<button type="button" value="Calculate" class="calculate">
+											Calculate
+										</button>
+										<p class="spout-calculation">
+											You have selected a <span class="spout-size">&nbsp;</span> inch spout
+										</p>
+									</fieldset>
+								</div>
 								<button type="button" id="btnDel" value="Remove spout" class="hidden">
 									Remove spout
 								</button>
@@ -813,18 +814,18 @@
 
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 		<script>
-            window.jQuery || document.write('<script src="js/vendor/jquery-1.8.3.min.js"><\/script>')
+			window.jQuery || document.write('<script src="js/vendor/jquery-1.8.3.min.js"><\/script>')
 		</script>
 		<script src="js/plugins.js"></script>
 		<script src="js/main.js"></script>
 
 		<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 		<script>
-            var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']]; ( function(d, t) {
-                    var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
-                    g.src = ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
-                    s.parentNode.insertBefore(g, s)
-                }(document, 'script'));
+			var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']]; ( function(d, t) {
+					var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+					g.src = ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+					s.parentNode.insertBefore(g, s)
+				}(document, 'script'));
 		</script>
 	</body>
 </html>
