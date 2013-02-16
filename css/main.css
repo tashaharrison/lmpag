@@ -412,10 +412,10 @@ form#logical-machines-price-accesory-guide {
 	left: 19px;
 }
 /*
- * Accessories images
+ *  Component images
  */
 
-.accessories-image {
+.component-image {
 	background: url("../img/sprite.png") no-repeat 0 0 transparent;
 	float: left;
 	height: 100px;
@@ -423,34 +423,34 @@ form#logical-machines-price-accesory-guide {
 	margin-right: 10px;
 	width: 100px;
 }
-.field-name-weight-hopper .small label .accessories-image,
+#field-name-weight-hopper .small label .component-image,
 #weigh-hopper-sml {
 	width: 78px;
 	height: 85px;
 	background-position: -124px -1050px;
 }
-.field-name-weight-hopper .large label .accessories-image,
+#field-name-weight-hopper .large label .component-image,
 #weigh-hopper-lrg {
 	width: 104px;
 	height: 126px;
 	background-position: -10px -914px;
 }
-.field-name-discharge-funnel .small .std-fnl label .accessories-image {
+#field-name-discharge-funnel .small .std-fnl label .component-image {
 	width: 104px;
 	height: 60px;
 	background-position: -124px -1334px;
 }
-.field-name-discharge-funnel .small .steep-fnl label .accessories-image {
+#field-name-discharge-funnel .small .steep-fnl label .component-image {
 	width: 104px;
 	height: 106px;
 	background-position: -124px -914px;
 }
-.field-name-discharge-funnel .large .std-fnl label .accessories-image {
+#field-name-discharge-funnel .large .std-fnl label .component-image {
 	width: 104px;
 	height: 89px;
 	background-position: -10px -1050px;
 }
-.field-name-discharge-funnel .large .steep-fnl label .accessories-image {
+#field-name-discharge-funnel .large .steep-fnl label .component-image {
 	width: 104px;
 	height: 81px;
 	background-position: -10px -1334px;
@@ -460,7 +460,7 @@ form#logical-machines-price-accesory-guide {
  * Form styles
  */
 
-ul.field-type-radio,
+.field-type-radio,
 ul.field-type-textfield {
 	list-style: none;
 	padding: 0;
@@ -517,39 +517,39 @@ ul.field-type-radio > li {
 	float:left;
 	margin-right:20px;
 }
-.field-name-dimensions {
+#field-name-dimensions {
 	float:left;
 	width:120px;
 }
-.field-name-dimensions input {
+#field-name-dimensions input {
 	width: 120px;
 }
-ul.field-name-spout-type input[value="four-sided-bag"] + label .spout-sprite {
+#field-name-spout .four-sided-bag input + label .spout-sprite {
 	width: 97px;
 	height: 235px;
 	background-position: -20px -20px;
 }
-ul.field-name-spout-type input[value="four-sided-bag"]:checked + label .spout-sprite {
+#field-name-spout .four-sided-bag input:checked + label .spout-sprite {
 	width: 97px;
 	height: 235px;
 	background-position: -20px -269px;
 }
-ul.field-name-spout-type input[value="flat-bag"] + label .spout-sprite {
+#field-name-spout .flat-bag input + label .spout-sprite {
 	width: 74px;
 	height: 235px;
 	background-position: -20px -518px;
 }
-ul.field-name-spout-type input[value="flat-bag"]:checked + label .spout-sprite {
+#field-name-spout .flat-bag input:checked + label .spout-sprite {
 	width: 74px;
 	height: 235px;
 	background-position: -20px -764px;
 }
-ul.field-name-spout-type input[value="can-jar"] + label .spout-sprite {
+#field-name-spout .can-jar input + label .spout-sprite {
 	width: 81px;
 	height: 235px;
 	background-position: -114px -518px;
 }
-ul.field-name-spout-type input[value="can-jar"]:checked + label .spout-sprite {
+#field-name-spout .can-jar input:checked + label .spout-sprite {
 	width: 81px;
 	height: 235px;
 	background-position: -114px -757px;
@@ -576,25 +576,25 @@ ul.field-name-spout-type input[value="can-jar"]:checked + label .spout-sprite {
 	height: 74px;
 	background-position: -20px -1572px;
 }
-ul.field-name-spout-type {
+#field-name-spout ul {
 	margin: 0;
 }
-ul.field-name-spout-type label {
+#field-name-spout label {
 	border: none;
 	display:inline;
 }
-ul.field-name-spout-type > li {
+#field-name-spout ul li {
 	float:left;
 	margin:0 10px;
 }
-ul.field-name-spout-type input[type="radio"]:checked + label {
+#field-name-spout input[type="radio"]:checked + label {
 	border: none;
 	background-color: transparent;
 }
-ul.field-name-spout-type h4 {
+#field-name-spout h4 {
 	margin: 0 0 0.4em 0;
 }
-ul.field-name-spout-type input {
+#field-name-spout input {
 	margin-left: 0;
 	margin-bottom:10px;
 }

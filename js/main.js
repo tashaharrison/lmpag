@@ -189,7 +189,8 @@ $(document).ready(function() {
 				case 'field-name-weight-hopper':
 					// Assign properties to the machine.weighHopper object
 					machine.weighHopper.id = $fieldID.attr('name');
-					machine.weighHopper.name = $fieldLabel.find('.machineName').text(), machine.weighHopper.price = $fieldLabel.find('.amount').text()
+					machine.weighHopper.name = $fieldLabel.find('.machineName').text();
+					machine.weighHopper.price = $fieldLabel.find('.amount').text()
 					// Assign classes to machine image
 					$machineImage.removeClass('smwh lrgwh std-fnl steep-fnl').addClass(objectVal + ' std-fnl');
 					// Show/Hide discharge funnels and reset checked properties
@@ -200,6 +201,10 @@ $(document).ready(function() {
 						$dischargeFunnel.find($('.small #small-std-fnl')).prop('checked', true);
 					break;
 				case 'field-name-discharge-funnel':
+					// Assign properties to the machine.weighHopper object
+					machine.dischargeFunnel.id = $fieldID.attr('name');
+					machine.dischargeFunnel.name = $fieldLabel.find('.machineName').text();
+					machine.dischargeFunnel.price = $fieldLabel.find('.amount').text()
 					$machineImage.toggleClass('std-fnl steep-fnl');
 					break;
 				case 'field-name-spout':
@@ -237,14 +242,13 @@ $(document).ready(function() {
 		// The selected spout type
 		$spoutSelected = $spoutContainer.find('.field-name-spout-type input:checked'), spoutSelectedVal = $spoutSelected.val(), spoutSelectedTitle = $spoutSelected.next('label').find('h4').text(),
 		// Spout dimension values
-		dimensionFieldWidth = $spoutContainer.find('.width input').val(), dimensionFieldD1 = $spoutContainer.find('.d1 input').val(), dimensionFieldD2 = $spoutContainer.find('.d2 input').val(), dimensionFieldDiameter = $spoutContainer.find('.diameter input').val(),
+		dimensionFieldWidth = parseInt($spoutContainer.find('.width input').val()), dimensionFieldD1 = $spoutContainer.find('.d1 input').val(), dimensionFieldD2 = $spoutContainer.find('.d2 input').val(), dimensionFieldDiameter = $spoutContainer.find('.diameter input').val(),
 		// Visisble dimension fields
 		$dimensionFieldsVisible = $spoutContainer.find('.field-type-textfield input').filter(":visible");
 		if ($dimensionFieldsVisible.valid()) {
-			var spoutSize = 0;
+			var spoutSize;
 			switch (spoutSelectedVal) {
-				case 'flag-bag':
-				alert(dimensionFieldWidth);
+				case 'flat-bag':
 					if (dimensionFieldWidth < 2) {
 						spoutSize = 0.75;
 					} else if (dimensionFieldWidth >= 2 && 2.4 >= dimensionFieldWidth) {
