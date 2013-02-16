@@ -517,11 +517,11 @@ ul.field-type-radio > li {
 	float:left;
 	margin-right:20px;
 }
-#field-name-dimensions {
+.field-name-dimensions {
 	float:left;
 	width:120px;
 }
-#field-name-dimensions input {
+.field-name-dimensions input {
 	width: 120px;
 }
 #field-name-spout .four-sided-bag input + label .spout-sprite {
@@ -583,7 +583,7 @@ ul.field-type-radio > li {
 	border: none;
 	display:inline;
 }
-#field-name-spout ul li {
+#field-name-spout .field-name-spout-type li {
 	float:left;
 	margin:0 10px;
 }

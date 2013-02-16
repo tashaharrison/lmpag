@@ -50,12 +50,14 @@ $(document).ready(function() {
 		price : $machineData.first().find('.amount').text(),
 		weighHopper : {
 			id : $weighHopperData.first().attr('for'),
-			name : $weighHopperData.first().find('.machineName').text(),
+			name : $weighHopperData.first().find('.name').text(),
+			description : $weighHopperData.first().find('.description').text(),
 			price : $weighHopperData.first().find('.amount').text()
 		},
 		dischargeFunnel : {
 			id : $dischargeFunnelData.first().attr('for'),
-			name : $dischargeFunnelData.first().find('.machineName').text(),
+			name : $dischargeFunnelData.first().find('.name').text(),
+			description : $dischargeFunnelData.first().find('.description').text(),
 			price : $dischargeFunnelData.first().find('.amount').text()
 		}
 	};
@@ -120,18 +122,18 @@ $(document).ready(function() {
 	function calculateTotal($fieldID) {
 		var price = parseInt($fieldID.next('label').find(".amount").text(), 10), siblingAmounts = 0, radioName = $fieldID.attr("name");
 		if (!isNaN(price)) {
-		$("input[name='" + radioName + "'].active").not($fieldID).each(function() {
-			siblingAmounts += parseInt($(this).next("label").find(".amount").text(), 10);
-		});
-		$fieldID.toggleClass("active");
-		$("input[name='" + radioName + "']").not($fieldID).removeClass("active");
-		if ($fieldID.hasClass("active")) {
-			grandTotal -= siblingAmounts;
-			grandTotal += price;
-		} else {
-			grandTotal -= price;
-		}
-		$grandTotalContainer.html(grandTotal);
+			$("input[name='" + radioName + "'].active").not($fieldID).each(function() {
+				siblingAmounts += parseInt($(this).next("label").find(".amount").text(), 10);
+			});
+			$fieldID.toggleClass("active");
+			$("input[name='" + radioName + "']").not($fieldID).removeClass("active");
+			if ($fieldID.hasClass("active")) {
+				grandTotal -= siblingAmounts;
+				grandTotal += price;
+			} else {
+				grandTotal -= price;
+			}
+			$grandTotalContainer.html(grandTotal);
 		}
 	}
 
@@ -150,14 +152,22 @@ $(document).ready(function() {
 	// Retreive form values for display on summary
 	function showValues() {
 
-		$("#results").empty().append("<tr><td>" + machine.name + " " + machine.type + "</td><td>" + machine.description + "</td><td>$" + machine.price + "</td></tr>")
+		$("#results").empty().append("<tr><td>" + machine.name + " " + machine.type + "</td><td>" + machine.description + "</td><td>$" + machine.price + "</td></tr><tr><td>" + machine.weighHopper.name + "</td><td>" + machine.weighHopper.description + "</td><td>$" + machine.weighHopper.price + "</td></tr><tr><td>" + machine.dischargeFunnel.name + "</td><td>" + machine.dischargeFunnel.description + "</td><td>$" + machine.dischargeFunnel.price + "</td></tr>" +  showProps(machine, "machine"))
 		/*var fields = $(":input").serializeArray();
 		 $("#results").empty();
 		 $.each(fields, function(i, field) {
 		 $("#results").append("<tr><td>" + field.name + "</td><td>" + field.value + "</td></tr>");
 		 });*/
 	}
-
+function showProps(obj, objName) {
+  var result = "";
+  for (var i in obj) {
+    if (obj.hasOwnProperty(i)) {
+        result += objName + "." + i + " = " + obj[i] + "\n";
+    }
+  }
+  return result;
+}
 	/*
 	 *  Pages 1 - 3 selection actions
 	 */
@@ -189,8 +199,9 @@ $(document).ready(function() {
 				case 'field-name-weight-hopper':
 					// Assign properties to the machine.weighHopper object
 					machine.weighHopper.id = $fieldID.attr('name');
-					machine.weighHopper.name = $fieldLabel.find('.machineName').text();
-					machine.weighHopper.price = $fieldLabel.find('.amount').text()
+					machine.weighHopper.name = $fieldLabel.find('.name').text();
+					machine.weighHopper.description = $fieldLabel.find('.description').text();
+					machine.weighHopper.price = $fieldLabel.find('.amount').text();
 					// Assign classes to machine image
 					$machineImage.removeClass('smwh lrgwh std-fnl steep-fnl').addClass(objectVal + ' std-fnl');
 					// Show/Hide discharge funnels and reset checked properties
@@ -203,8 +214,9 @@ $(document).ready(function() {
 				case 'field-name-discharge-funnel':
 					// Assign properties to the machine.weighHopper object
 					machine.dischargeFunnel.id = $fieldID.attr('name');
-					machine.dischargeFunnel.name = $fieldLabel.find('.machineName').text();
-					machine.dischargeFunnel.price = $fieldLabel.find('.amount').text()
+					machine.dischargeFunnel.name = $fieldLabel.find('.name').text();
+					machine.dischargeFunnel.description = $fieldLabel.find('.description').text();
+					machine.dischargeFunnel.price = $fieldLabel.find('.amount').text();
 					$machineImage.toggleClass('std-fnl steep-fnl');
 					break;
 				case 'field-name-spout':
