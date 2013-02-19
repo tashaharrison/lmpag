@@ -83,13 +83,13 @@ $(document).ready(function() {
     $dischargeFunnel.find($('.small #small-std-fnl')).prop('checked', true).addClass('active');
 
     // Add a waypoint to the sidebar
-    var $mi_container = $('#sidebar');
+    //var $mi_container = $('#sidebar');
     // Remove the no-sidebar class for fallback
     $('#main-content').removeClass('no-sidebar');
     // Set the .sticky class when waypoint is reached
-    $mi_container.waypoint(function(direction) {
-        $('#machine-image-container').toggleClass('sticky', direction === 'down');
-    });
+    //$mi_container.waypoint(function(direction) {
+    //    $('#machine-image-container').toggleClass('sticky', direction === 'down');
+    //});
 
     // Create a div on each page for the pager button
     $('.step-container').each(function() {
