@@ -169,6 +169,11 @@ $(document).ready(function() {
          });*/
     }
 
+    $('#btnPrint').click(function() {
+        window.print();
+        return false;
+    });
+
     function showProps(obj, objName) {
         var result = "";
         for (var i in obj) {
