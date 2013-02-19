@@ -651,6 +651,38 @@ ul.field-type-radio > li {
 #order-summary {
 	margin-bottom:14px;
 }
+#field-name-customer-details {
+    background-color:rgb(238, 238, 238);
+    padding:14px;
+}
+#field-name-customer-details .first-name,
+#field-name-customer-details .company {
+    margin-right:10px;
+}
+#field-name-customer-details .first-name,
+#field-name-customer-details .last-name,
+#field-name-customer-details .company,
+#field-name-customer-details .zip {
+    float:left;
+}
+#field-name-customer-details .first-name input,
+#field-name-customer-details .last-name input {
+    width:155px;
+}
+#field-name-customer-details .company input {
+    width:190px;
+}
+#field-name-customer-details .zip input {
+    width:120px;
+}
+#field-name-customer-details .email,
+#field-name-customer-details .phone {
+    clear:left;
+}
+#field-name-customer-details .email input,
+#field-name-customer-details .phone input {
+    width:100%;
+}
 /* 
  * Fallback content
  */

@@ -202,14 +202,13 @@ select[multiple] {
 label {
 }
 label.error {
-	display: block;
-	background-color: #AD0000;
-	color: white;
-	padding: 4px 8px;
-	width: 104px;
-	margin-top:-8px;
-	margin-bottom:8px;
-	font-size: 0.9em;
+    display: block;
+    background-color: #AD0000;
+    color: white;
+    padding: 4px 0px 4px 8px;
+    margin-top: -8px;
+    margin-bottom: 8px;
+    font-size: 0.9em;
 }
 legend {
 	background-color: #FFFFFF;

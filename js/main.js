@@ -10,25 +10,57 @@ $(document)
 						required : true,
 						number : true,
 					};
+					var justRequired = {
+						required : true,
+					};
 					var dimensionValidationMessages = {
 						required : "This is a required field.",
 						number : "Please enter a number.",
 					};
+					var justRequiredMessages = {
+						required : "This is a required field.",
+					};
 
-					$("#logical-machines-price-accesory-guide").validate({
-						rules : {
-							width : dimensionValidationRules,
-							d1 : dimensionValidationRules,
-							d2 : dimensionValidationRules,
-							diameter : dimensionValidationRules
-						},
-						messages : {
-							width : dimensionValidationMessages,
-							d1 : dimensionValidationMessages,
-							d2 : dimensionValidationRules,
-							diameter : dimensionValidationMessages
-						}
-					});
+					$("#logical-machines-price-accesory-guide")
+							.validate(
+									{
+										rules : {
+											width : dimensionValidationRules,
+											d1 : dimensionValidationRules,
+											d2 : dimensionValidationRules,
+											diameter : dimensionValidationRules,
+											email : {
+												required : true,
+												email : true,
+											},
+											phone : {
+												required : true,
+												phoneUS : true
+											},
+											firstName : justRequired,
+											lastName : justRequired,
+											company : justRequired,
+											zip : justRequired
+										},
+										messages : {
+											width : dimensionValidationMessages,
+											d1 : dimensionValidationMessages,
+											d2 : dimensionValidationRules,
+											diameter : dimensionValidationMessages,
+											email : {
+												required : "This is a required field.",
+												email : "Please enter a valid email address.",
+											},
+											phone : {
+												required : "This is a required field.",
+												phoneUS : "Please enter a valid US phone number."
+											},
+											firstName : justRequiredMessages,
+											lastName : justRequiredMessages,
+											company : justRequiredMessages,
+											zip : justRequiredMessages
+										}
+									});
 
 					/*
 					 * Declare global variables
