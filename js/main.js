@@ -370,7 +370,7 @@ $(document).ready(function() {
             $spoutField.find('.description').show().find('p').hide().filter('.spout-selection').show();
             $spoutField.find('.field-name-dimensions li').hide().find('input').prop('disabled', false).val("");
             $spoutField.find('.container-shape-images > *').hide();
-            $spoutField.find('.spout-calculation').hide();
+            $spoutField.find('.spout-calculation').hide().find('.spout-size').empty();
             $btnAdd.hide();
             $btnDel.hide();
         } else {

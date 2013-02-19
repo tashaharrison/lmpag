@@ -88,6 +88,7 @@ td {
 thead {
     border-bottom: 1px solid #0c4b81;
     font-size: 1em;
+    text-align:left;
 }
 th,td {
     padding: 8px 14px;
@@ -109,7 +110,13 @@ tbody tr.total td, tbody tr.total th {
 tbody tr.total th {
     text-align:left;
 }
-
+thead tr th:first-child {
+    text-align:right;
+}
+thead th, .total td, .total th {
+    padding-bottom:6px;
+    padding-top:8px;
+}
 /* ==========================================================================
    Chrome Frame prompt
    ========================================================================== */
@@ -812,8 +819,9 @@ img {
 	max-width: 100% !important;
 }
  @page {
- margin: 0.5cm;
+ margin: 1cm;
 }
+
 p,
  h2,
  h3 {
@@ -823,5 +831,37 @@ p,
 h2,
  h3 {
 	page-break-after: avoid;
+}
+body {
+    font-size: 12pt;
+}
+#sidebar,
+#main-navigation,
+#pag-navigation,
+#submit_buttons,
+.step-pager {
+    display:none;
+}
+#section-content {
+    border:none;
+    margin:0 auto;
+}
+#main-content {
+    width:100%;
+}
+#order-summary {
+    margin: 1cm;
+}
+tr.even {
+    background-color: rgb(240, 240, 240);
+}
+thead {
+    border-bottom: 1px solid #000000;
+}
+tbody tr th {
+    border-right: 1px solid #000000;
+}
+tbody tr.total td, tbody tr.total th {
+    border-top: 1px solid #000000;
 }
 }
