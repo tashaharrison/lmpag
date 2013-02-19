@@ -120,7 +120,7 @@ $(document)
 					// Remove fallback form elements
 					$('.default-field-spout,.default-discharge-funnel')
 							.remove();
-					$('#btnQuote').text('Send Email').val('Send Email');
+					$('#btnSubmit').val('Send Email');
 					// .bottom class puts a negative z-index on the hidden
 					// accessories page so that it loads underneath the rest of
 					// the content. This removes that class on load.
