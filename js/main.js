@@ -195,7 +195,7 @@ $(document).ready(function() {
             switch (fieldContainerID) {
                 case 'field-name-machine-model':
                     // Assign properties to the machine object
-                    machine.id = $fieldID.attr('name');
+                    machine.id = $fieldID.attr('id');
                     machine.name = $fieldLabel.find('.name').text();
                     machine.type = $fieldLabel.find('.type').text();
                     machine.description = $fieldLabel.find('.description').text();

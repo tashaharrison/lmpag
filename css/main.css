@@ -99,7 +99,8 @@ tbody tr th {
     text-align:right;
     vertical-align:top;
 }
-tbody tr.total td, tbody tr.total th {    
+tbody tr.total td, tbody tr.total th {
+    background-color:white; 
     border-top: 1px solid #0c4b81;
     border-right:none;
     font-size: 1.1em;
@@ -170,7 +171,7 @@ form#logical-machines-price-accesory-guide {
 }
 #step-4 {
 }
-#step-5-pager {
+.step-pager {
     margin-top: 25px;
 }
 #submit_buttons {
