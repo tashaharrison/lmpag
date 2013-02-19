@@ -627,8 +627,12 @@ ul.field-type-radio > li {
 }
 #field-name-spout label {
 	border: none;
-	display:inline;
+	padding: 11px 0px 4px;
 }
+#field-name-spout label.error {
+padding: 4px 0px 4px 8px;
+}
+
 #field-name-spout .field-name-spout-type li {
 	float:left;
 	margin:0 10px;
@@ -640,9 +644,9 @@ ul.field-type-radio > li {
 #field-name-spout h4 {
 	margin: 0 0 0.4em 0;
 }
-#field-name-spout input {
+#field-name-spout .field-type-radio input {
 	margin-left: 0;
-	margin-bottom:10px;
+	margin-bottom:24px;
 }
 /* 
  * Order summary page
@@ -672,6 +676,7 @@ ul.field-type-radio > li {
 #field-name-customer-details .company input {
     width:190px;
 }
+#field-name-customer-details .zip,
 #field-name-customer-details .zip input {
     width:120px;
 }
@@ -682,6 +687,9 @@ ul.field-type-radio > li {
 #field-name-customer-details .email input,
 #field-name-customer-details .phone input {
     width:100%;
+}
+#btnQuote {
+    margin: 10px 0 4px;
 }
 /* 
  * Fallback content

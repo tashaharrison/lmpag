@@ -45,7 +45,7 @@ $(document)
 										messages : {
 											width : dimensionValidationMessages,
 											d1 : dimensionValidationMessages,
-											d2 : dimensionValidationRules,
+											d2 : dimensionValidationMessages,
 											diameter : dimensionValidationMessages,
 											email : {
 												required : "This is a required field.",
@@ -77,7 +77,7 @@ $(document)
 							'#machine-image').next('#machine-title'), $grandTotalContainer = $('#cost-container .amount'), grandTotal = parseInt(
 							$grandTotalContainer.text(), 10),
 					// Controls
-					$btnAdd = $('#btnAdd'), $btnDel = $('#btnDel');
+					$btnAdd = $('#btnAdd'), $btnDel = $('#btnDel'), $btnEmail = $('#btnEmail');
 
 					// Create an instance of the machine object and default
 					// assign properties
@@ -114,13 +114,13 @@ $(document)
 
 					// Hide fallback content, add and delete button
 					$(
-							'#field-name-discharge-funnel .large, .field-name-dimensions li, #step-2, #step-3, #step-4, #step-5, #hidden-accessories-page, .container-shape-images > *, #btnAdd, #btnDel, .calculate, .spout-calculation, .field-spout .instructions p')
+							'#field-name-discharge-funnel .large, .field-name-dimensions li, #step-2, #step-3, #step-4, #step-5, #hidden-accessories-page, .container-shape-images > *, #btnAdd, #btnDel, .calculate, .spout-calculation, .field-spout .instructions p, #field-name-customer-details')
 							.hide();
 					$('.field-spout .instructions p.spout-selection').show();
 					// Remove fallback form elements
-					$(
-							'.default-field-spout,.default-discharge-funnel,#btnQuote')
+					$('.default-field-spout,.default-discharge-funnel')
 							.remove();
+					$('#btnQuote').text('Send Email').val('Send Email');
 					// .bottom class puts a negative z-index on the hidden
 					// accessories page so that it loads underneath the rest of
 					// the content. This removes that class on load.
@@ -265,6 +265,16 @@ $(document)
 					$('#btnPrint').click(function() {
 						window.print();
 						return false;
+					});
+
+					$btnEmail.on('click', function() {
+						var btnEmailText = $(this).val();
+						if (btnEmailText == 'Email Quote') {
+							$(this).text('Cancel Email').val('Cancel Email');
+						} else {
+							$(this).text('Email Quote').val('Email Quote');
+						}
+						$('#field-name-customer-details').slideToggle('fast');
 					});
 
 					function showProps(obj, objName) {

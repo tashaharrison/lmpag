@@ -739,7 +739,7 @@
 										</tbody>
 									</table>
 								</div>
-								<ul id="field-name-customer-details" class="field-container field-type-textfield">
+								<ul id="field-name-customer-details" class="field-type-textfield">
 									<li class="first-name">
 										<label>First name</label>
 										<input type="text" name="firstName" />
@@ -764,6 +764,7 @@
 										<label>Phone</label>
 										<input type="text" name="phone" />
 									</li>
+									<input type="submit" id="btnQuote" value="Calculate Quote" />
 								</ul>
 								<div id="submit_buttons">
 									<button type="button" id="btnPrint" value="Print Quote" class="hidden">
@@ -772,7 +773,7 @@
 									<button type="button" id="btnEmail" value="Email Quote" class="hidden">
 										Email Quote
 									</button>
-									<input type="submit" id="btnQuote" value="Calculate Quote" />
+
 								</div>
 							</div>
 
@@ -847,8 +848,7 @@
 
 		<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 		<script>
-            var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']];
-            ( function(d, t) {
+            var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']]; ( function(d, t) {
                     var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
                     g.src = ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
                     s.parentNode.insertBefore(g, s)
