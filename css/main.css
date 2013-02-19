@@ -75,6 +75,40 @@ textarea {
 h2 {
 	line-height: 1.2;
 }
+table {
+    font-size: 0.85em;
+    margin-right:10px;
+}
+tr.even {
+    background-color: rgb(235, 255, 234);
+}
+td {
+    vertical-align:top;
+}
+thead {
+    border-bottom: 1px solid #0c4b81;
+    font-size: 1em;
+}
+th,td {
+    padding: 8px 14px;
+}
+tbody tr th {
+    border-right: 1px solid #0c4b81;
+    font-size: 1em;
+    font-weight:normal;
+    text-align:right;
+    vertical-align:top;
+}
+tbody tr.total td, tbody tr.total th {    
+    border-top: 1px solid #0c4b81;
+    border-right:none;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+tbody tr.total th {
+    text-align:left;
+}
+
 /* ==========================================================================
    Chrome Frame prompt
    ========================================================================== */
@@ -136,7 +170,11 @@ form#logical-machines-price-accesory-guide {
 }
 #step-4 {
 }
-#step-5 {
+#step-5-pager {
+    margin-top: 25px;
+}
+#submit_buttons {
+    text-align:center;
 }
 .bottom {
     z-index:-10;
