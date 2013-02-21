@@ -185,7 +185,7 @@ $(document).ready(function() {
     // Retreive form values for display on summary
     function showValues() {
 
-        $('#results').empty().append('<tr><th>' + machine.name + ' ' + machine.type + '</th><td>' + machine.description + '</td><td>$' + machine.price + '</td></tr><tr><th>' + machine.weighHopper.name + '</th><td>' + machine.weighHopper.description + '</td><td>$' + machine.weighHopper.price + '</td></tr><tr><th>' + machine.dischargeFunnel.name + '</th><td>' + machine.dischargeFunnel.description + '</td><td>$' + machine.dischargeFunnel.price + '</td></tr>' + showProps(machine, 'machine'));
+        $('#results').empty().append('<tr><th>' + machine.name + ' ' + machine.type + '</th><td>' + machine.description + '</td><td>$' + machine.price + '</td></tr><tr><th>' + machine.weighHopper.name + '</th><td>' + machine.weighHopper.description + '</td><td>$' + machine.weighHopper.price + '</td></tr><tr><th>' + machine.dischargeFunnel.name + '</th><td>' + machine.dischargeFunnel.description + '</td><td>$' + machine.dischargeFunnel.price + '</td></tr>');
         var num = parseInt($('.spout-size').text());
         if (!isNaN(num)) {
             $('.spout-size').each(function() {
@@ -239,16 +239,6 @@ $(document).ready(function() {
         }
     });
 
-    function showProps(obj, objName) {
-        var result = "";
-        for (var i in obj) {
-            if (obj.hasOwnProperty(i)) {
-                result += objName + "." + i + " = " + obj[i] + "\n";
-            }
-        }
-        return result;
-    }
-
     /*
      * Pages 1 - 3 selection actions
      */
@@ -259,8 +249,6 @@ $(document).ready(function() {
 
         if (inputVal == objectVal) {
             e.preventDefault();
-            // add this to prevent default click
-            // behaviour
         } else {
 
             switch (fieldContainerID) {
