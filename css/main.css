@@ -481,22 +481,22 @@ form#logical-machines-price-accesory-guide {
 	height: 126px;
 	background-position: -10px -914px;
 }
-#field-name-discharge-funnel .small .std-fnl label .component-image {
+#field-name-discharge-funnel .small label.std-fnl .component-image {
 	width: 104px;
 	height: 60px;
 	background-position: -124px -1334px;
 }
-#field-name-discharge-funnel .small .steep-fnl label .component-image {
+#field-name-discharge-funnel .small label.steep-fnl .component-image {
 	width: 104px;
 	height: 106px;
 	background-position: -124px -914px;
 }
-#field-name-discharge-funnel .large .std-fnl label .component-image {
+#field-name-discharge-funnel .large label.std-fnl .component-image {
 	width: 104px;
 	height: 89px;
 	background-position: -10px -1050px;
 }
-#field-name-discharge-funnel .large .steep-fnl label .component-image {
+#field-name-discharge-funnel .large label.steep-fnl .component-image {
 	width: 104px;
 	height: 81px;
 	background-position: -10px -1334px;
