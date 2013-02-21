@@ -238,7 +238,11 @@ $(document).ready(function() {
             return false;
         }
     });
-
+    
+    $('#resetForm').on('click', function() {
+        location.reload();
+    });
+    
     /*
      * Pages 1 - 3 selection actions
      */
@@ -471,9 +475,10 @@ $(document).ready(function() {
             $stepContainer.hide().prev().show();
             $('#pag-navigation a[href*=' + prevStepContainerID + ']').addClass('active');
         }
-        if ($(this).is('#step-4-pager button'))
+        if ($(this).is('#step-4-pager button.next'))
             showValues();
-
+        if ($(this).is('#step-2-pager button.prev'))
+            location.reload();
     });
 
     $('#pag-navigation a').click(function() {
@@ -485,7 +490,8 @@ $(document).ready(function() {
         $(stepValue).show();
         if (stepValue === "#step-5")
             showValues();
-
+        if  (stepValue === "#step-1")
+            location.reload();
     });
 
     /*
