@@ -655,9 +655,11 @@ padding: 4px 0px 4px 8px;
 #order-summary {
 	margin-bottom:14px;
 }
-#field-name-customer-details {
-    background-color:rgb(238, 238, 238);
-    padding:14px;
+#emailQuote {
+
+}
+#field-name-customer-details ul {
+    margin:0;
 }
 #field-name-customer-details .first-name,
 #field-name-customer-details .company {

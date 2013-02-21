@@ -69,7 +69,7 @@ $(document).ready(function() {
     // Machine image variables
     $machineImage = $('#machine-image'), $nextMachineImage = $('#machine-image').next('#machine-title'), $grandTotalContainer = $('#cost-container .amount'), grandTotal = parseInt($grandTotalContainer.text(), 10),
     // Controls
-    $btnAdd = $('#btnAdd'), $btnDel = $('#btnDel'), $btnEmail = $('#btnEmail');
+    $btnAdd = $('#btnAdd'), $btnDel = $('#btnDel'), $btnEmail = $('#btnEmail'), $btnSubmit = $('#btnSubmit');
 
     // Create an instance of the machine object and default
     // assign properties
@@ -98,11 +98,11 @@ $(document).ready(function() {
     */
 
     // Hide fallback content, add and delete button
-    $('#field-name-discharge-funnel .large, .field-name-dimensions li, #step-2, #step-3, #step-4, #step-5, #hidden-accessories-page, .container-shape-images > *, #btnAdd, #btnDel, .calculate, .spout-calculation, .field-spout .instructions p, #field-name-customer-details').hide();
+    $('#field-name-discharge-funnel .large, .field-name-dimensions li, #step-2, #step-3, #step-4, #step-5, #hidden-accessories-page, .container-shape-images > *, #btnAdd, #btnDel, .calculate, .spout-calculation, .field-spout .instructions p, #emailQuote').hide();
     $('.field-spout .instructions p.spout-selection').show();
     // Remove fallback form elements
     $('.default-field-spout,.default-discharge-funnel').remove();
-    $('#btnSubmit').val('Send Email');
+    $btnSubmit.val('Send Email');
     // .bottom class puts a negative z-index on the hidden
     // accessories page so that it loads underneath the rest of
     // the content. This removes that class on load.
@@ -217,11 +217,11 @@ $(document).ready(function() {
         } else {
             $(this).text('Email Quote').val('Email Quote');
         }
-        $('#field-name-customer-details').slideToggle('fast');
+        $('#emailQuote').slideToggle('fast');
     });
 
-    $('#btnSubmit').on('click', function() {
-        var orderSummary = $('#order-summary').html(), $customerFields = $('#field-name-customer-details input[type=text]'), firstName = $('#field-name-customer-details input[name=firstName]').val(), lastName = $('#field-name-customer-details input[name=lastName]').val(), email = $('#field-name-customer-details input[name=email]').val(), company = $('#field-name-customer-details input[name=company]').val(), zip = $('#field-name-customer-details input[name=zip]').val(), phone = $('#field-name-customer-details input[name=phone]').val(), dataString = $('#logical-machines-price-accesory-guide').serialize();
+    $btnSubmit.on('click', function() {
+        var orderSummary = $('#order-summary').html(), $customerFields = $('#emailQuote input[type=text]'), firstName = $('#emailQuote input[name=firstName]').val(), lastName = $('#emailQuote input[name=lastName]').val(), email = $('#emailQuote input[name=email]').val(), company = $('#emailQuote input[name=company]').val(), zip = $('#emailQuote input[name=zip]').val(), phone = $('#emailQuote input[name=phone]').val(), dataString = $('#logical-machines-price-accesory-guide').serialize();
         //dataString = 'firstName=' + firstName + '&lastName=' + lastName + '&email=' + email + '&company=' + company + '&zip=' + zip + '&phone=' + phone;
         //alert(dataString); return false;
         if ($customerFields.valid()) {
@@ -231,7 +231,7 @@ $(document).ready(function() {
                 data : dataString,
                 success : function() {
                     $btnEmail.hide();
-                    $('#field-name-customer-details').html("<div id='message'></div>");
+                    $('#emailQuote').html("<div id='message'></div>");
                     $('#message').html("<h3>Thank you for your order.</h3>").append("<p>We will be in touch soon.</p>");
                 }
             });
