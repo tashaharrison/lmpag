@@ -294,9 +294,12 @@ $(document).ready(function() {
                     // and reset checked properties
                     componentSize = $fieldID.closest('li').attr('class');
                     $dischargeFunnel.find($('li')).hide().filter($('.' + componentSize)).show();
-                    $dischargeFunnel.find($('input')).prop('checked', false);
-                    if (componentSize === 'small')
-                        $dischargeFunnel.find($('.small #small-std-fnl')).prop('checked', true);
+                    $dischargeFunnel.find($('input')).prop('checked', false).removeClass('active');
+                    if (componentSize === 'small') {
+                        $dischargeFunnel.find($('.small #small-std-fnl')).prop('checked', true).addClass('active');
+                    } else {
+                        $dischargeFunnel.find($('.large #large-std-fnl')).prop('checked', true).addClass('active');
+                    }                      
                     break;
                 case 'field-name-discharge-funnel':
                     // Assign properties to the
