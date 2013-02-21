@@ -11,12 +11,20 @@ $(document).ready(function() {
     var justRequired = {
         required : true,
     };
+    var requiredEmail = {
+        required : true,
+        email : true,
+    };
     var dimensionValidationMessages = {
         required : "This is a required field.",
         number : "Please enter a number.",
     };
     var justRequiredMessages = {
         required : "This is a required field.",
+    };
+    var requiredEmailMessages = {
+        required : "This is a required field.",
+        email : "Please enter a valid email address.",
     };
 
     $("#logical-machines-price-accesory-guide").validate({
@@ -25,10 +33,7 @@ $(document).ready(function() {
             d1 : dimensionValidationRules,
             d2 : dimensionValidationRules,
             diameter : dimensionValidationRules,
-            email : {
-                required : true,
-                email : true,
-            },
+            email : requiredEmail,
             phone : {
                 required : true,
                 //phoneUS : true
@@ -36,17 +41,15 @@ $(document).ready(function() {
             firstName : justRequired,
             lastName : justRequired,
             company : justRequired,
-            zip : justRequired
+            zip : justRequired,
+            recipient : requiredEmail
         },
         messages : {
             width : dimensionValidationMessages,
             d1 : dimensionValidationMessages,
             d2 : dimensionValidationMessages,
             diameter : dimensionValidationMessages,
-            email : {
-                required : "This is a required field.",
-                email : "Please enter a valid email address.",
-            },
+            email : requiredEmailMessages,
             phone : {
                 required : "This is a required field.",
                 //phoneUS : "Please enter a valid US phone number."
@@ -54,7 +57,8 @@ $(document).ready(function() {
             firstName : justRequiredMessages,
             lastName : justRequiredMessages,
             company : justRequiredMessages,
-            zip : justRequiredMessages
+            zip : justRequiredMessages,
+            recipient : requiredEmailMessages
         }
     });
 
@@ -237,10 +241,6 @@ $(document).ready(function() {
             });
             return false;
         }
-    });
-    
-    $('#resetForm').on('click', function() {
-        location.reload();
     });
     
     /*
