@@ -216,10 +216,11 @@ $(document).ready(function() {
 
     $btnEmail.on('click', function() {
         var btnEmailText = $(this).val();
-        if (btnEmailText == 'Email Quote') {
-            $(this).text('Cancel Email').val('Cancel Email');
-        } else {
+        if (btnEmailText == 'Cancel Email') {
             $(this).text('Email Quote').val('Email Quote');
+        } else {
+            $(this).text('Cancel Email').val('Cancel Email');
+            $('#thankYouMessage').remove();
         }
         $('#emailQuote').slideToggle('fast');
     });
@@ -234,15 +235,16 @@ $(document).ready(function() {
                 url : "/bin/process.php",
                 data : dataString,
                 success : function() {
-                    $btnEmail.hide();
-                    $('#emailQuote').html("<div id='message'></div>");
-                    $('#message').html("<h3>Thank you for your order.</h3>").append("<p>We will be in touch soon.</p>");
+                    $btnEmail.text('Email Quote').val('Email Quote');
+                    $('#emailQuote').slideToggle('fast').find('input').not('input[type=submit]').val('');
+                    $('#order-summary').after("<div id='thankYouMessage'></div>");
+                    $('#thankYouMessage').html("<h3>Thank you for your order.</h3>").append("<p>We will be in touch soon.</p>");
                 }
             });
             return false;
         }
     });
-    
+
     /*
      * Pages 1 - 3 selection actions
      */
@@ -291,7 +293,7 @@ $(document).ready(function() {
                         $dischargeFunnel.find($('.small #small-std-fnl')).prop('checked', true).addClass('active');
                     } else {
                         $dischargeFunnel.find($('.large #large-std-fnl')).prop('checked', true).addClass('active');
-                    }                      
+                    }
                     break;
                 case 'field-name-discharge-funnel':
                     // Assign properties to the
@@ -490,7 +492,7 @@ $(document).ready(function() {
         $(stepValue).show();
         if (stepValue === "#step-5")
             showValues();
-        if  (stepValue === "#step-1")
+        if (stepValue === "#step-1")
             location.reload();
     });
 
