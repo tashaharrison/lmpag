@@ -228,7 +228,7 @@ $(document).ready(function() {
     $btnSubmit.on('click', function() {
         var orderSummary = $('#order-summary').html(), $customerFields = $('#emailQuote input[type=text]'), firstName = $('#emailQuote input[name=firstName]').val(), lastName = $('#emailQuote input[name=lastName]').val(), email = $('#emailQuote input[name=email]').val(), company = $('#emailQuote input[name=company]').val(), zip = $('#emailQuote input[name=zip]').val(), phone = $('#emailQuote input[name=phone]').val(), dataString = $('#logical-machines-price-accesory-guide').serialize();
         //dataString = 'firstName=' + firstName + '&lastName=' + lastName + '&email=' + email + '&company=' + company + '&zip=' + zip + '&phone=' + phone;
-        //alert(dataString); return false;
+        // alert(dataString); return false;
         if ($customerFields.valid()) {
             $.ajax({
                 type : "POST",
@@ -346,7 +346,10 @@ $(document).ready(function() {
             var spoutSize;
             switch (spoutSelectedVal) {
                 case 'flat-bag':
-                    if (dimensionFieldWidth < 2) {
+                var containerDiameter = dimensionFieldWidth * 2 / Math.PI,
+                calculatedSpoutSize = containerDiameter * 0.72;
+                alert(calculatedSpoutSize);
+                    /*if (dimensionFieldWidth < 2) {
                         spoutSize = 0.75;
                     } else if (dimensionFieldWidth >= 2 && 2.4 >= dimensionFieldWidth) {
                         spoutSize = 1;
@@ -364,7 +367,7 @@ $(document).ready(function() {
                         spoutSize = 3;
                     } else {
                         spoutSize = 3.5;
-                    }
+                    }*/
                     break;
                 case 'four-sided-bag':
                     alert(dimensionFieldD1 + " " + dimensionFieldD2);
