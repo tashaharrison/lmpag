@@ -344,11 +344,17 @@ $(document).ready(function() {
         $dimensionFieldsVisible = $spoutContainer.find('.field-type-textfield input').filter(":visible");
         if ($dimensionFieldsVisible.valid()) {
             var spoutSize;
+            var availableSpouts = [ 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3, 3.25, 3.5 ];
             switch (spoutSelectedVal) {
                 case 'flat-bag':
                 var containerDiameter = dimensionFieldWidth * 2 / Math.PI,
                 calculatedSpoutSize = containerDiameter * 0.72;
-                alert(calculatedSpoutSize);
+                var closest = null;
+                $.each(availableSpouts, function() {
+                	if (closest == null || Math.abs(this - calculatedSpoutSize) < Math.abs(closest - calculatedSpoutSize)) {
+                	    closest = this;
+                	  }
+                });
                     /*if (dimensionFieldWidth < 2) {
                         spoutSize = 0.75;
                     } else if (dimensionFieldWidth >= 2 && 2.4 >= dimensionFieldWidth) {
@@ -376,7 +382,7 @@ $(document).ready(function() {
                     alert(dimensionFieldDiameter);
                     break;
             }
-            $spoutContainer.find('.spout-calculation').show().find('.spout-size').text(spoutSize);
+            $spoutContainer.find('.spout-calculation').show().find('.spout-size').text(calculatedSpoutSize + " > " + closest);
             if (num < 3) {
                 $btnAdd.show();
             }
@@ -447,7 +453,7 @@ $(document).ready(function() {
         if (num == 1) {
             // $btnDel.hide().attr('disabled',
             // 'disabled');
-            $spoutField.find('.field-name-spout-type').show().find('input').prop('checked', false);
+            $spoutField.find('.field-name-spout-type').show().find('input').removeClass('active').prop('checked', false);
             $spoutField.find('.description').show().find('p').hide().filter('.spout-selection').show();
             $spoutField.find('.field-name-dimensions li').hide().find('input').prop('disabled', false).val("");
             $spoutField.find('.container-shape-images > *').hide();
