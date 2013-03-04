@@ -66,7 +66,7 @@ $(document).ready(function() {
     * Declare global variables
     */
     // List of spouts available for sale
-    var availableSpouts = [ 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3, 3.25, 3.5 ],
+    var availableSpouts = [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3, 3.25, 3.5],
     // Field containers
     $fieldContainer = $('.field-container'), $machineModel = $('#field-name-machine-model'), $weighHopper = $('#field-name-weight-hopper'), $dischargeFunnel = $('#field-name-discharge-funnel'), $spout = $('#field-name-spout'),
     // Field labels for extracting data
@@ -75,7 +75,7 @@ $(document).ready(function() {
     $machineImage = $('#machine-image'), $nextMachineImage = $('#machine-image').next('#machine-title'), $grandTotalContainer = $('#cost-container .amount'), grandTotal = parseInt($grandTotalContainer.text(), 10),
     // Controls
     $btnAdd = $('#btnAdd'), $btnDel = $('#btnDel'), $btnEmail = $('#btnEmail'), $btnSubmit = $('#btnSubmit');
-    
+
     // Create an instance of the machine object and default
     // assign properties
     var machine = {
@@ -330,19 +330,19 @@ $(document).ready(function() {
     });
 
     /*
-    * 'Select spouts' page
-    */
+     * 'Select spouts' page
+     */
 
     function nearestSpout(containerDiameter) {
         var closest = null, calculatedSpoutSize = containerDiameter * 0.72;
         $.each(availableSpouts, function() {
-        	if (closest == null || Math.abs(this - calculatedSpoutSize) < Math.abs(closest - calculatedSpoutSize)) {
-        	    closest = this;
-        	  }
+            if (closest == null || Math.abs(this - calculatedSpoutSize) < Math.abs(closest - calculatedSpoutSize)) {
+                closest = this;
+            }
         });
         return closest;
     }
-    
+
     // Calculate the size of the spout based on the container
     $spout.on('click', '.calculate', function() {
 
@@ -356,17 +356,17 @@ $(document).ready(function() {
         if ($dimensionFieldsVisible.valid()) {
             switch (spoutSelectedVal) {
                 case 'flat-bag':
-                	var containerDiameter = dimensionFieldWidth * 2 / Math.PI, spoutSize = nearestSpout(containerDiameter);
+                    var containerDiameter = dimensionFieldWidth * 2 / Math.PI, spoutSize = nearestSpout(containerDiameter);
                     break;
                 case 'four-sided-bag':
                     var containerDiameter = (dimensionFieldD1 + dimensionFieldD2) * 2 / Math.PI, spoutSize = nearestSpout(containerDiameter);
-                    break;                
+                    break;
                 case 'can-jar':
-                var spoutSize = null;
-                	$.each(availableSpouts, function() {
-                    	if (spoutSize == null || dimensionFieldDiameter - this >= 0.125) {
-                    		spoutSize = this;
-                    	  }
+                    var spoutSize = null;
+                    $.each(availableSpouts, function() {
+                        if (spoutSize == null || dimensionFieldDiameter - this >= 0.125) {
+                            spoutSize = this;
+                        }
                     });
                     break;
             }
