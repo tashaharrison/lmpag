@@ -65,16 +65,17 @@ $(document).ready(function() {
     /*
     * Declare global variables
     */
-
+    // List of spouts available for sale
+    var availableSpouts = [ 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3, 3.25, 3.5 ],
     // Field containers
-    var $fieldContainer = $('.field-container'), $machineModel = $('#field-name-machine-model'), $weighHopper = $('#field-name-weight-hopper'), $dischargeFunnel = $('#field-name-discharge-funnel'), $spout = $('#field-name-spout'),
+    $fieldContainer = $('.field-container'), $machineModel = $('#field-name-machine-model'), $weighHopper = $('#field-name-weight-hopper'), $dischargeFunnel = $('#field-name-discharge-funnel'), $spout = $('#field-name-spout'),
     // Field labels for extracting data
     $machineData = $machineModel.find('label'), $weighHopperData = $weighHopper.find($('label')), $dischargeFunnelData = $dischargeFunnel.find($('label')),
     // Machine image variables
     $machineImage = $('#machine-image'), $nextMachineImage = $('#machine-image').next('#machine-title'), $grandTotalContainer = $('#cost-container .amount'), grandTotal = parseInt($grandTotalContainer.text(), 10),
     // Controls
     $btnAdd = $('#btnAdd'), $btnDel = $('#btnDel'), $btnEmail = $('#btnEmail'), $btnSubmit = $('#btnSubmit');
-
+    
     // Create an instance of the machine object and default
     // assign properties
     var machine = {
@@ -332,6 +333,16 @@ $(document).ready(function() {
     * 'Select spouts' page
     */
 
+    function nearestSpout(containerDiameter) {
+        var closest = null, calculatedSpoutSize = containerDiameter * 0.72;
+        $.each(availableSpouts, function() {
+        	if (closest == null || Math.abs(this - calculatedSpoutSize) < Math.abs(closest - calculatedSpoutSize)) {
+        	    closest = this;
+        	  }
+        });
+        return closest;
+    }
+    
     // Calculate the size of the spout based on the container
     $spout.on('click', '.calculate', function() {
 
@@ -339,22 +350,13 @@ $(document).ready(function() {
         // The selected spout type
         $spoutSelected = $spoutContainer.find('.field-name-spout-type input:checked'), spoutSelectedVal = $spoutSelected.val(), spoutSelectedTitle = $spoutSelected.next('label').find('h4').text(),
         // Spout dimension values
-        dimensionFieldWidth = parseInt($spoutContainer.find('.width input').val()), dimensionFieldD1 = $spoutContainer.find('.d1 input').val(), dimensionFieldD2 = $spoutContainer.find('.d2 input').val(), dimensionFieldDiameter = $spoutContainer.find('.diameter input').val(),
+        dimensionFieldWidth = parseInt($spoutContainer.find('.width input').val()), dimensionFieldD1 = parseInt($spoutContainer.find('.d1 input').val()), dimensionFieldD2 = parseInt($spoutContainer.find('.d2 input').val()), dimensionFieldDiameter = parseInt($spoutContainer.find('.diameter input').val()), spoutSize = null,
         // Visisble dimension fields
         $dimensionFieldsVisible = $spoutContainer.find('.field-type-textfield input').filter(":visible");
         if ($dimensionFieldsVisible.valid()) {
-            var spoutSize;
-            var availableSpouts = [ 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3, 3.25, 3.5 ];
             switch (spoutSelectedVal) {
                 case 'flat-bag':
-                var containerDiameter = dimensionFieldWidth * 2 / Math.PI,
-                calculatedSpoutSize = containerDiameter * 0.72;
-                var closest = null;
-                $.each(availableSpouts, function() {
-                	if (closest == null || Math.abs(this - calculatedSpoutSize) < Math.abs(closest - calculatedSpoutSize)) {
-                	    closest = this;
-                	  }
-                });
+                	var containerDiameter = dimensionFieldWidth * 2 / Math.PI, spoutSize = nearestSpout(containerDiameter);
                     /*if (dimensionFieldWidth < 2) {
                         spoutSize = 0.75;
                     } else if (dimensionFieldWidth >= 2 && 2.4 >= dimensionFieldWidth) {
@@ -376,13 +378,18 @@ $(document).ready(function() {
                     }*/
                     break;
                 case 'four-sided-bag':
-                    alert(dimensionFieldD1 + " " + dimensionFieldD2);
-                    break;
+                    var containerDiameter = (dimensionFieldD1 + dimensionFieldD2) * 2 / Math.PI, spoutSize = nearestSpout(containerDiameter);
+                    break;                
                 case 'can-jar':
-                    alert(dimensionFieldDiameter);
+                var spoutSize = null;
+                	$.each(availableSpouts, function() {
+                    	if (spoutSize == null || dimensionFieldDiameter - this >= 0.125) {
+                    		spoutSize = this;
+                    	  }
+                    });
                     break;
             }
-            $spoutContainer.find('.spout-calculation').show().find('.spout-size').text(calculatedSpoutSize + " > " + closest);
+            $spoutContainer.find('.spout-calculation').show().find('.spout-size').text(spoutSize);
             if (num < 3) {
                 $btnAdd.show();
             }
