@@ -357,25 +357,6 @@ $(document).ready(function() {
             switch (spoutSelectedVal) {
                 case 'flat-bag':
                 	var containerDiameter = dimensionFieldWidth * 2 / Math.PI, spoutSize = nearestSpout(containerDiameter);
-                    /*if (dimensionFieldWidth < 2) {
-                        spoutSize = 0.75;
-                    } else if (dimensionFieldWidth >= 2 && 2.4 >= dimensionFieldWidth) {
-                        spoutSize = 1;
-                    } else if (dimensionFieldWidth >= 2.5 && 2.9 >= dimensionFieldWidth) {
-                        spoutSize = 1.25;
-                    } else if (dimensionFieldWidth >= 3 && 3.5 >= dimensionFieldWidth) {
-                        spoutSize = 1.5;
-                    } else if (dimensionFieldWidth >= 3.6 && 3.9 >= dimensionFieldWidth) {
-                        spoutSize = 1.75;
-                    } else if (dimensionFieldWidth >= 4 && 4.9 >= dimensionFieldWidth) {
-                        spoutSize = 2;
-                    } else if (dimensionFieldWidth >= 5 && 5.9 >= dimensionFieldWidth) {
-                        spoutSize = 2.5;
-                    } else if (dimensionFieldWidth >= 6 && 6.5 >= dimensionFieldWidth) {
-                        spoutSize = 3;
-                    } else {
-                        spoutSize = 3.5;
-                    }*/
                     break;
                 case 'four-sided-bag':
                     var containerDiameter = (dimensionFieldD1 + dimensionFieldD2) * 2 / Math.PI, spoutSize = nearestSpout(containerDiameter);
