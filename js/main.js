@@ -350,7 +350,7 @@ $(document).ready(function() {
         // The selected spout type
         $spoutSelected = $spoutContainer.find('.field-name-spout-type input:checked'), spoutSelectedVal = $spoutSelected.val(), spoutSelectedTitle = $spoutSelected.next('label').find('h4').text(),
         // Spout dimension values
-        dimensionFieldWidth = parseInt($spoutContainer.find('.width input').val()), dimensionFieldD1 = parseInt($spoutContainer.find('.d1 input').val()), dimensionFieldD2 = parseInt($spoutContainer.find('.d2 input').val()), dimensionFieldDiameter = parseInt($spoutContainer.find('.diameter input').val()), spoutSize = null,
+        dimensionFieldWidth = parseInt($spoutContainer.find('.width input').val()), dimensionFieldD1 = parseInt($spoutContainer.find('.d1 input').val()), dimensionFieldD2 = parseInt($spoutContainer.find('.d2 input').val()), dimensionFieldDiameter = $spoutContainer.find('.diameter input').val(), spoutSize = null,
         // Visisble dimension fields
         $dimensionFieldsVisible = $spoutContainer.find('.field-type-textfield input').filter(":visible");
         if ($dimensionFieldsVisible.valid()) {
@@ -362,7 +362,6 @@ $(document).ready(function() {
                     var containerDiameter = (dimensionFieldD1 + dimensionFieldD2) * 2 / Math.PI, spoutSize = nearestSpout(containerDiameter);
                     break;
                 case 'can-jar':
-                    var spoutSize = null;
                     $.each(availableSpouts, function() {
                         if (spoutSize == null || dimensionFieldDiameter - this >= 0.125) {
                             spoutSize = this;
