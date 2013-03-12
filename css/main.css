@@ -649,10 +649,10 @@ padding: 4px 0px 4px 8px;
 	margin-bottom:24px;
 }
 /* 
- * Order summary page
+ * Quote summary page
  */
 
-#order-summary {
+#quote-summary {
 	margin-bottom:14px;
 }
 #emailQuote {
@@ -891,7 +891,7 @@ body {
 #main-content {
     width:100%;
 }
-#order-summary {
+#quote-summary {
     margin: 1cm;
 }
 tr.even {

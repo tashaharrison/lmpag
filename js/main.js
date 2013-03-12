@@ -115,7 +115,7 @@ $(document).ready(function() {
     // Hide all but the first machine model description
     $machineModel.find('.description').not(':first').hide();
     // Remove .hidden class from JS ready content
-    $('#field-name-discharge-funnel li, #btnAdd, #btnDel, #btnFront, #btnSide, .field-spout, .step-submit, #sidebar, #btnPrint, #btnEmail,#btnClose, #btnContinue, .order-summary, #hidden-accessories-page, #machine-title, #order-summary').removeClass('hidden');
+    $('#field-name-discharge-funnel li, #btnAdd, #btnDel, #btnFront, #btnSide, .field-spout, .step-submit, #sidebar, #btnPrint, #btnEmail,#btnClose, #btnContinue, .quote-summary, #hidden-accessories-page, #machine-title, #quote-summary').removeClass('hidden');
     // Check the default discharge funnel field
     $dischargeFunnel.find($('.small #small-std-fnl')).prop('checked', true).addClass('active');
 
@@ -227,7 +227,7 @@ $(document).ready(function() {
     });
 
     $btnSubmit.on('click', function() {
-        var orderSummary = $('#order-summary').html(), $customerFields = $('#emailQuote input[type=text]'), firstName = $('#emailQuote input[name=firstName]').val(), lastName = $('#emailQuote input[name=lastName]').val(), email = $('#emailQuote input[name=email]').val(), company = $('#emailQuote input[name=company]').val(), zip = $('#emailQuote input[name=zip]').val(), phone = $('#emailQuote input[name=phone]').val(), dataString = $('#logical-machines-quote-generator').serialize();
+        var quoteSummary = $('#quote-summary').html(), $customerFields = $('#emailQuote input[type=text]'), firstName = $('#emailQuote input[name=firstName]').val(), lastName = $('#emailQuote input[name=lastName]').val(), email = $('#emailQuote input[name=email]').val(), company = $('#emailQuote input[name=company]').val(), zip = $('#emailQuote input[name=zip]').val(), phone = $('#emailQuote input[name=phone]').val(), dataString = $('#logical-machines-quote-generator').serialize();
         //dataString = 'firstName=' + firstName + '&lastName=' + lastName + '&email=' + email + '&company=' + company + '&zip=' + zip + '&phone=' + phone;
         // alert(dataString); return false;
         if ($customerFields.valid()) {
@@ -238,8 +238,8 @@ $(document).ready(function() {
                 success : function() {
                     $btnEmail.text('Email Quote').val('Email Quote');
                     $('#emailQuote').slideToggle('fast').find('input').not('input[type=submit]').val('');
-                    $('#order-summary').after("<div id='thankYouMessage'></div>");
-                    $('#thankYouMessage').html("<h3>Thank you for your order.</h3>").append("<p>We will be in touch soon.</p>");
+                    $('#quote-summary').after("<div id='thankYouMessage'></div>");
+                    $('#thankYouMessage').html("<h3>Thank you for your quote.</h3>").append("<p>We will be in touch soon.</p>");
                 }
             });
             return false;

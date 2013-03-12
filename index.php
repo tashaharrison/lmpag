@@ -111,7 +111,7 @@
 					<li>
 						<a href="#step-5"><span class="list-no">5</span>
 						<br/>
-						Your Order Summary</a>
+						Your Quote Summary</a>
 					</li>
 				</ol>
 			</nav>
@@ -147,7 +147,7 @@
 											Select the spout or spouts that work best for the containers that you use;
 										</li>
 										<li>
-											Generate a summary of your order and print or email that summary.
+											Generate a summary of your quote and print or email that summary.
 										</li>
 									</ol>
 								</div>
@@ -715,8 +715,8 @@
 							</div><!-- id="step-4" -->
 
 							<div id="step-5" class="step-container" name="step-5">
-								<div id="order-summary" class="hidden">
-									<h3>You Order Summary</h3>
+								<div id="quote-summary" class="hidden">
+									<h3>You Quote Summary</h3>
 									<table>
 										<thead>
 											<tr>
