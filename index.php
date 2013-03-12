@@ -118,8 +118,14 @@
 
 			<section id="section-content" class="clearfix">
 				<article id="main-content" class="clearfix no-sidebar">
-					<!-- <div id="js-warning"><p>Please note that because you have disabled Javascript in your browser or your browser doesn't support it, you will only receive your quote once you have submitted the form.</p></div> -->
-					<form method="post" name="logical-machines-quote-generator" id="logical-machines-quote-generator" action="">
+<?php
+session_start();
+echo isset($_SESSION['response']) && !empty($_SESSION['response']) ? $_SESSION['response']
+		: '';
+//clear the session
+unset($_SESSION['response']);
+?>				
+					<form method="post" name="logical-machines-quote-generator" id="logical-machines-quote-generator" action="bin/process.php">
 						<div id="form-pages">
 
 							<div id="step-1" class="step-container" name="step-1">
@@ -783,12 +789,6 @@
 						</div>
 
 					</form>
-								<pre>
-									<?php if ($_POST) {
-	print_r($_POST);
-}
-									?>
-								</pre>
 				</article>
 
 				<aside id="sidebar" class="clearfix hidden">

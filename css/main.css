@@ -539,7 +539,8 @@ ul.field-type-radio > li {
 .field-type-radio input {
 	margin-left: 14px;
 }
-.field-type-radio input[type="radio"]:checked+label {
+.field-type-radio input[type="radio"]:checked+label,
+.success {
 	border: #090 2px solid;
 	background-color: rgb(235, 255, 234);
 }
@@ -696,11 +697,17 @@ padding: 4px 0px 4px 8px;
 /* 
  * Fallback content
  */
-
-#js-warning {
+.warning {
 	background-color: #F3DEDE;
 	border: 2px solid red;
+	margin-bottom: 14px;
 	padding: 14px 14px 0 14px;
+    text-align: center;
+}
+.success {
+    margin-bottom: 14px;
+    padding: 14px 14px 0;
+    text-align: center;
 }
 /* ==========================================================================
    Helper classes
