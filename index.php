@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -119,7 +120,6 @@
 			<section id="section-content" class="clearfix">
 				<article id="main-content" class="clearfix no-sidebar">
 <?php
-session_start();
 echo isset($_SESSION['response']) && !empty($_SESSION['response']) ? $_SESSION['response']
 		: '';
 //clear the session
