@@ -232,6 +232,15 @@ legend {
 	font-size: 12px;
 	margin-top: 2px;
 }
+#btnSubmit {
+    float: left;
+}
+#btnSubmit + .instructions {
+    clear: none;
+    float: left;
+    padding: 8px 0 0 8px;
+    width: 200px;
+}
 div.vertical-tabs div.vertical-tabs-panes .vertical-tabs-pane fieldset,
 fieldset {
 	border: 1px solid #CCC;

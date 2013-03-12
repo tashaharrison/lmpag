@@ -754,6 +754,9 @@
 										<label for="message">Message (optional)</label>
 										<textarea rows="5" id="message" name="message">&nbsp;</textarea>
 										<input type="submit" id="btnSubmit" value="Calculate Quote" />
+											<p class="instructions">
+												Your quote will be sent only to the recipients you have designated.
+											</p>
 									</fieldset>
 								</div>
 								<div id="submit_buttons">
@@ -783,7 +786,8 @@
 								<pre>
 									<?php if ($_POST) {
 	print_r($_POST);
-} ?>
+}
+									?>
 								</pre>
 				</article>
 
