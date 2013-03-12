@@ -9,7 +9,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title>Logical Machines Price &amp; Accessory Guide</title>
+		<title>Logical Machines Quote Generator</title>
 		<meta name="description" content="Scoop no more with Logical Machines automatic weigh and fill machines. Small to medium sized companies save time and money with our automated filling machines">
 		<meta name="viewport" content="width=device-width">
 
@@ -37,7 +37,7 @@
 				<div id="h1-header">
 					<h1 class="f-lp"><span class="style8">Logical Machines
 						<br />
-						Price &amp; Accessory Guide</span></h1>
+						Quote Generator</span></h1>
 				</div>
 				<div id="scoop15a">
 					<img src="img/scoop15a.jpeg" width=105 height=118 alt="scoop15a" style="float:left">
@@ -119,14 +119,14 @@
 			<section id="section-content" class="clearfix">
 				<article id="main-content" class="clearfix no-sidebar">
 					<!-- <div id="js-warning"><p>Please note that because you have disabled Javascript in your browser or your browser doesn't support it, you will only receive your quote once you have submitted the form.</p></div> -->
-					<form method="post" name="logical-machines-price-accesory-guide" id="logical-machines-price-accesory-guide" action="">
+					<form method="post" name="logical-machines-quote-generator" id="logical-machines-quote-generator" action="">
 						<div id="form-pages">
 
 							<div id="step-1" class="step-container" name="step-1">
 								<div id="welcome-text">
 									<h2>Welcome to the Logical Machines
 									<br />
-									Price &amp; Accessory Guide</h2>
+									Quote Generator</h2>
 									<p>
 										We have developed this guide to help you select and equip your Logical Machine to meet the needs of your business.
 									</p>

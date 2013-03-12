@@ -27,7 +27,7 @@ $(document).ready(function() {
         email : "Please enter a valid email address.",
     };
 
-    $("#logical-machines-price-accesory-guide").validate({
+    $("#logical-machines-quote-generator").validate({
         rules : {
             width : dimensionValidationRules,
             d1 : dimensionValidationRules,
@@ -227,7 +227,7 @@ $(document).ready(function() {
     });
 
     $btnSubmit.on('click', function() {
-        var orderSummary = $('#order-summary').html(), $customerFields = $('#emailQuote input[type=text]'), firstName = $('#emailQuote input[name=firstName]').val(), lastName = $('#emailQuote input[name=lastName]').val(), email = $('#emailQuote input[name=email]').val(), company = $('#emailQuote input[name=company]').val(), zip = $('#emailQuote input[name=zip]').val(), phone = $('#emailQuote input[name=phone]').val(), dataString = $('#logical-machines-price-accesory-guide').serialize();
+        var orderSummary = $('#order-summary').html(), $customerFields = $('#emailQuote input[type=text]'), firstName = $('#emailQuote input[name=firstName]').val(), lastName = $('#emailQuote input[name=lastName]').val(), email = $('#emailQuote input[name=email]').val(), company = $('#emailQuote input[name=company]').val(), zip = $('#emailQuote input[name=zip]').val(), phone = $('#emailQuote input[name=phone]').val(), dataString = $('#logical-machines-quote-generator').serialize();
         //dataString = 'firstName=' + firstName + '&lastName=' + lastName + '&email=' + email + '&company=' + company + '&zip=' + zip + '&phone=' + phone;
         // alert(dataString); return false;
         if ($customerFields.valid()) {
