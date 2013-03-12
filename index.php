@@ -746,6 +746,11 @@
 										</legend>
 										<label for="recipient">To *</label>
 										<input type="text" id="recipient" name="recipient" />
+										<div class="instructions">
+											<p>
+												Enter as many email addresses as you'd like separated by a comma.
+											</p>
+										</div>
 										<label for="message">Message (optional)</label>
 										<textarea rows="5" id="message" name="message">&nbsp;</textarea>
 										<input type="submit" id="btnSubmit" value="Calculate Quote" />

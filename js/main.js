@@ -13,7 +13,7 @@ $(document).ready(function() {
     };
     var requiredEmail = {
         required : true,
-        email : true,
+        multiemails: true, 
     };
     var dimensionValidationMessages = {
         required : "This is a required field.",
@@ -24,7 +24,7 @@ $(document).ready(function() {
     };
     var requiredEmailMessages = {
         required : "This is a required field.",
-        email : "Please enter a valid email address.",
+        multiemails : "Please enter only valid email addresses. If you entered multiple email address, please separate them by a comma.",
     };
 
     $("#logical-machines-quote-generator").validate({
@@ -38,10 +38,6 @@ $(document).ready(function() {
                 required : true,
                 //phoneUS : true
             },
-            firstName : justRequired,
-            lastName : justRequired,
-            company : justRequired,
-            zip : justRequired,
             recipient : requiredEmail
         },
         messages : {
@@ -54,10 +50,6 @@ $(document).ready(function() {
                 required : "This is a required field.",
                 //phoneUS : "Please enter a valid US phone number."
             },
-            firstName : justRequiredMessages,
-            lastName : justRequiredMessages,
-            company : justRequiredMessages,
-            zip : justRequiredMessages,
             recipient : requiredEmailMessages
         }
     });
