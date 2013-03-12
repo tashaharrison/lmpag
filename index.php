@@ -783,11 +783,11 @@
 									</fieldset>
 								</div>
 								<div id="submit_buttons">
-									<button type="button" id="btnPrint" value="Print Quote" class="hidden">
-										Print Quote
+									<button type="button" id="btnPrint" value="Print your quote" class="hidden">
+										Print your quote
 									</button>
-									<button type="button" id="btnEmail" value="Email Quote" class="hidden">
-										Email Quote
+									<button type="button" id="btnEmail" value="Email your quote" class="hidden">
+										Email your quote
 									</button>
 
 								</div>
@@ -807,7 +807,9 @@
 
 					</form>
 								<pre>
-									<?php if ($_POST) {print_r($_POST);} ?>
+									<?php if ($_POST) {
+	print_r($_POST);
+} ?>
 								</pre>
 				</article>
 
