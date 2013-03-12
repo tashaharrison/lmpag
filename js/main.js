@@ -176,10 +176,12 @@ $(document).ready(function() {
     }
 
     // Change the machine image between front and side view
-    $('#btnFront,#btnSide').click(function() {
-        var btnDirection = $(this).val();
-
-        if (btnDirection === 'Front') {
+    $('#machine-image-container').on('click', 'button', function() {
+        var btnDirection = $(this).attr('id');
+        if(!$(this).hasClass('active')) {
+            $('#machine-image-container button').toggleClass('active');
+        }
+        if (btnDirection === 'btnFront') {
             $machineImage.addClass('front').removeClass('side');
         } else {
             $machineImage.addClass('side').removeClass('front');

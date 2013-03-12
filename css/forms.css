@@ -121,7 +121,8 @@ input.placeholder_text, textarea.placeholder_text, input:-moz-placeholder, texta
  color: #888;
 }
 button:focus,
-button:active {
+button:active,
+button.active {
 	z-index: 1; /* For Opera */
 	background-color:rgb(175, 206, 233);
 }

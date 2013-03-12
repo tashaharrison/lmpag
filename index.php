@@ -813,11 +813,11 @@
 
 				<aside id="sidebar" class="clearfix hidden">
 					<div id="machine-image-container">
-						<button id="btnFront" value="Front" class="hidden">
-							Front
+						<button id="btnFront" value="Front view" class="hidden active">
+							Front view
 						</button>
-						<button id="btnSide" value="Side" class="hidden">
-							Side
+						<button id="btnSide" value="Side view" class="hidden">
+							Side view
 						</button>
 						<p>
 							This is how YOUR customized machine will look
