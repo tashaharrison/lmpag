@@ -740,37 +740,6 @@
 									</table>
 								</div>
 								<div id="emailQuote">
-									<fieldset id="field-name-customer-details">
-										<legend>
-											Customer details
-										</legend>
-										<ul class="field-type-textfield">
-											<li class="first-name">
-												<label for="firstName">First name *</label>
-												<input type="text" id="firstName" name="firstName" />
-											</li>
-											<li class="last-name">
-												<label for="lastName">Last name *</label>
-												<input type="text" id="lastName" name="lastName" />
-											</li>
-											<li class="email">
-												<label for="email">Email *</label>
-												<input type="text" id="email" name="email" />
-											</li>
-											<li class="company">
-												<label for="company">Company *</label>
-												<input type="text" id="company" name="company" />
-											</li>
-											<li class="zip">
-												<label for="zip">Zip *</label>
-												<input type="text" id="zip" name="zip" />
-											</li>
-											<li class="phone">
-												<label for="phone">Phone *</label>
-												<input type="text" id="phone" name="phone" />
-											</li>
-										</ul>
-									</fieldset>
 									<fieldset id="field-name-message-details">
 										<legend>
 											Message details
