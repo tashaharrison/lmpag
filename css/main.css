@@ -881,8 +881,10 @@ body {
 #main-navigation,
 #pag-navigation,
 #submit_buttons,
-.step-pager {
-    display:none;
+#emailQuote,
+.step-pager,
+#hidden-accessories-page {
+    display:none !important;
 }
 #section-content {
     border:none;
