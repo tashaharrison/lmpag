@@ -203,7 +203,6 @@ $(document).ready(function() {
          */
     }
 
-
     $('#btnPrint').click(function() {
         window.print();
         return false;
