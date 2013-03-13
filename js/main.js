@@ -205,7 +205,7 @@ $(document).ready(function() {
         if ($customerFields.valid()) {
             $.ajax({
                 type : "POST",
-                url : "/bin/process.php",
+                url : "index.php",
                 data : dataString,
                 success : function() {
                     $btnEmail.text('Email Quote').val('Email Quote');

@@ -1,4 +1,42 @@
-<?php session_start(); ?>
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+	require_once 'bin/swiftmailer/lib/swift_required.php';
+
+	// Create the Transport
+	/*
+	 $transport = Swift_SmtpTransport::newInstance('smtp.example.org', 25)
+	 ->setUsername('your username')
+	 ->setPassword('your password')
+	 ;
+	 */
+	$transport = Swift_MailTransport::newInstance();
+	// Create the Mailer using your created Transport
+	$mailer = Swift_Mailer::newInstance($transport);
+	$text = $_POST['message'];
+	$to = urldecode($_POST['recipient']);
+	$messageHTML = "Text of the message : " . urldecode($text)
+			. " The full response is: ";
+
+	// Create a message
+	$emailMessage = Swift_Message::newInstance(
+			'Logical Machines Quote Generator')
+			->setBody($messageHTML, 'text/html')
+			->setFrom(array('pete@spirelightmedia.com' => 'Logical Machines'))
+			->setSender('pgjainsworth@gmail.com')
+			->setReturnPath('pgjainsworth@gmail.com')
+			->setBcc(array('pgjainsworth@gmail.com'))->setMaxLineLength(78)
+			->setTo(array($to));
+
+	if ($mailer->send($emailMessage)) {
+		$response = "<div class=\"success\"><p>Thank you. Your email has been successfully sent.</p></div>";
+	} else {
+		$response = "<div class=\"warning\"><p>I'm sorry we were unable to send your quote by email. Please check the email addresses that you entered and try again.</p></div>";
+	}
+
+}
+?>
+
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -119,18 +157,10 @@
 
 			<section id="section-content" class="clearfix">
 				<article id="main-content" class="clearfix no-sidebar">
-
-<pre>
-<?php print_r($_POST);
-?>
-								</pre>
-								<?php
-echo isset($_SESSION['response']) && !empty($_SESSION['response']) ? $_SESSION['response']
-		: '';
-//clear the session
-unset($_SESSION['response']);
-								?>				
-					<form method="post" name="logical-machines-quote-generator" id="logical-machines-quote-generator" action="">
+					<pre> <?php print_r($_POST); ?>	</pre>
+					<?php echo isset($response) && !empty($response) ? $response : ''; ?>				
+					<form method="post" name="logical-machines-quote-generator" id="logical-machines-quote-generator" action="<?php echo htmlspecialchars(
+										$_SERVER["PHP_SELF"]); ?>">
 						<div id="form-pages">
 
 							<div id="step-1" class="step-container" name="step-1">
