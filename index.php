@@ -530,19 +530,19 @@ unset($_SESSION['response']);
 										<ul class="field-type-textfield field-name-dimensions">
 											<li class="width">
 												<label>Width in inches</label>
-												<input type="text" name="widthInches" />
+												<input type="text" name="widthInchesSpout1Default" />
 											</li>
 											<li class="d1">
 												<label>D1</label>
-												<input type="text" name="d1Inches" />
+												<input type="text" name="d1InchesSpout1Default" />
 											</li>
 											<li class="d2">
 												<label>D2</label>
-												<input type="text" name="d2Inches" />
+												<input type="text" name="d2InchesSpout1Default" />
 											</li>
 											<li class="diameter">
 												<label>Diameter in inches</label>
-												<input type="text" name="diameterInches" />
+												<input type="text" name="diameterInchesSpout1Default" />
 											</li>
 										</ul>
 										<div class="container-shape-images">
@@ -609,19 +609,19 @@ unset($_SESSION['response']);
 										<ul class="field-type-textfield field-name-dimensions">
 											<li class="width">
 												<label>Width in inches</label>
-												<input type="text" name="widthInches" />
+												<input type="text" name="widthInchesSpout2Default" />
 											</li>
 											<li class="d1">
 												<label>D1</label>
-												<input type="text" name="d1Inches" />
+												<input type="text" name="d1InchesSpout2Default" />
 											</li>
 											<li class="d2">
 												<label>D2</label>
-												<input type="text" name="d2Inches" />
+												<input type="text" name="d2InchesSpout2Default" />
 											</li>
 											<li class="diameter">
 												<label>Diameter in inches</label>
-												<input type="text" name="diameterInches" />
+												<input type="text" name="diameterInchesSpout2Default" />
 											</li>
 										</ul>
 										<div class="container-shape-images">
@@ -688,19 +688,19 @@ unset($_SESSION['response']);
 										<ul class="field-type-textfield field-name-dimensions">
 											<li class="width">
 												<label>Width in inches</label>
-												<input type="text" name="widthInches" />
+												<input type="text" name="widthInchesSpout3Default" />
 											</li>
 											<li class="d1">
 												<label>D1</label>
-												<input type="text" name="d1Inches" />
+												<input type="text" name="d1InchesSpout3Default" />
 											</li>
 											<li class="d2">
 												<label>D2</label>
-												<input type="text" name="d2Inches" />
+												<input type="text" name="d2InchesSpout3Default" />
 											</li>
 											<li class="diameter">
 												<label>Diameter in inches</label>
-												<input type="text" name="diameterInches" />
+												<input type="text" name="diameterInchesSpout3Default" />
 											</li>
 										</ul>
 										<div class="container-shape-images">
