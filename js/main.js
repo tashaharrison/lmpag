@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+    var $form = $('#logical-machines-quote-generator');
+    
     /*
      * Validation criteria
      */
@@ -7,9 +9,6 @@ $(document).ready(function() {
     var dimensionValidationRules = {
         required : true,
         number : true,
-    };
-    var justRequired = {
-        required : true,
     };
     var requiredEmail = {
         required : true,
@@ -19,37 +18,15 @@ $(document).ready(function() {
         required : "This is a required field.",
         number : "Please enter a number.",
     };
-    var justRequiredMessages = {
-        required : "This is a required field.",
-    };
     var requiredEmailMessages = {
         required : "This is a required field.",
         multiemails : "Please enter only valid email addresses. If you entered multiple email address, please separate them by a comma.",
     };
-
-    $("#logical-machines-quote-generator").validate({
+    $form.validate({
         rules : {
-            width : dimensionValidationRules,
-            d1 : dimensionValidationRules,
-            d2 : dimensionValidationRules,
-            diameter : dimensionValidationRules,
-            email : requiredEmail,
-            phone : {
-                required : true,
-                //phoneUS : true
-            },
             recipient : requiredEmail
         },
         messages : {
-            width : dimensionValidationMessages,
-            d1 : dimensionValidationMessages,
-            d2 : dimensionValidationMessages,
-            diameter : dimensionValidationMessages,
-            email : requiredEmailMessages,
-            phone : {
-                required : "This is a required field.",
-                //phoneUS : "Please enter a valid US phone number."
-            },
             recipient : requiredEmailMessages
         }
     });
@@ -60,7 +37,7 @@ $(document).ready(function() {
     // List of spouts available for sale
     var availableSpouts = [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3, 3.25, 3.5],
     // Field containers
-    $fieldContainer = $('.field-container'), $machineModel = $('#field-name-machine-model'), $weighHopper = $('#field-name-weight-hopper'), $dischargeFunnel = $('#field-name-discharge-funnel'), $spout = $('#field-name-spout'),
+    $fieldContainer = $('.field-container'), $machineModel = $('#field-name-machine-model'), $weighHopper = $('#field-name-weigh-hopper'), $dischargeFunnel = $('#field-name-discharge-funnel'), $spout = $('#field-name-spout'),
     // Field labels for extracting data
     $machineData = $machineModel.find('label'), $weighHopperData = $weighHopper.find($('label')), $dischargeFunnelData = $dischargeFunnel.find($('label')),
     // Machine image variables
@@ -220,8 +197,10 @@ $(document).ready(function() {
     });
 
     $btnSubmit.on('click', function() {
-        var quoteSummary = $('#quote-summary').html(), $customerFields = $('#emailQuote input[type=text]'), firstName = $('#emailQuote input[name=firstName]').val(), lastName = $('#emailQuote input[name=lastName]').val(), email = $('#emailQuote input[name=email]').val(), company = $('#emailQuote input[name=company]').val(), zip = $('#emailQuote input[name=zip]').val(), phone = $('#emailQuote input[name=phone]').val(), dataString = $('#logical-machines-quote-generator').serialize();
-        //dataString = 'firstName=' + firstName + '&lastName=' + lastName + '&email=' + email + '&company=' + company + '&zip=' + zip + '&phone=' + phone;
+        var $disabled = $form.find('input:disabled').prop('disabled', false);
+    	var quoteSummary = $('#quote-summary').html(), $customerFields = $('#emailQuote input[type=text]'), firstName = $('#emailQuote input[name=firstName]').val(), lastName = $('#emailQuote input[name=lastName]').val(), email = $('#emailQuote input[name=email]').val(), company = $('#emailQuote input[name=company]').val(), zip = $('#emailQuote input[name=zip]').val(), phone = $('#emailQuote input[name=phone]').val(), dataString = $form.serialize();
+        $disabled.prop('disabled', true);
+    	//dataString = 'firstName=' + firstName + '&lastName=' + lastName + '&email=' + email + '&company=' + company + '&zip=' + zip + '&phone=' + phone;
         // alert(dataString); return false;
         if ($customerFields.valid()) {
             $.ajax({
@@ -268,7 +247,7 @@ $(document).ready(function() {
                     $machineImage.removeClass('s4 s5 s6 s7').addClass(machine.id);
                     $nextMachineImage.html(machine.name + " " + machine.type);
                     break;
-                case 'field-name-weight-hopper':
+                case 'field-name-weigh-hopper':
                     // Assign properties to the
                     // machine.weighHopper object
                     machine.weighHopper.id = $fieldID.attr('name');
@@ -395,17 +374,19 @@ $(document).ready(function() {
         // type inputs inside the new element
         newElem.find('legend').html('Spout ' + newNum).next().show().find('input').attr({
             "id" : function(arr) {
-                return "type" + arr + newSpoutIDUpper;
+                return "type" + (arr + 1) + newSpoutIDUpper;
             },
             'name' : newSpoutTypeID
         }).prop('checked', false).removeClass('active').next().attr('for', function(arr) {
-            return "type" + arr + newSpoutIDUpper;
+            return "type" + (arr + 1) + newSpoutIDUpper;
         });
 
         // Reset the field descriptions
         newElem.find('.description').show().find('p').hide().filter('.spout-selection').show();
         // Reset the dimension fields
-        newElem.find('.field-name-dimensions li').hide().find('input').prop('disabled', false).val("");
+        newElem.find('.field-name-dimensions li').hide().find('input').prop('disabled', false).val("").attr('name', function(index, attr) {
+            return attr + newSpoutIDUpper;
+        });
         // Hide container shape images
         newElem.find('.container-shape-images > *').hide();
         // Hide spout calculation result
