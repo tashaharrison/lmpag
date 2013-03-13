@@ -407,22 +407,22 @@ unset($_SESSION['response']);
 										</legend>
 										<ul class="field-type-radio field-name-spout-type">
 											<li class="flat-bag">
-												<input type="radio" id="type0Spout1" name="typeSpout1" value="flat-bag" />
-												<label for="type0Spout1">
+												<input type="radio" id="type1Spout1" name="typeSpout1" value="flat-bag" />
+												<label for="type1Spout1">
 													<div class="spout-sprite ir">
 														Flag bag spout image
 													</div><h4 class="name">Flag bag</h4></label>
 											</li>
 											<li class="four-sided-bag">
-												<input type="radio" id="type1Spout1" name="typeSpout1" value="four-sided-bag" />
-												<label for="type1Spout1">
+												<input type="radio" id="type2Spout1" name="typeSpout1" value="four-sided-bag" />
+												<label for="type2Spout1">
 													<div class="spout-sprite ir">
 														4 sided bag spout image
 													</div><h4 class="name">4 sided bag</h4></label>
 											</li>
 											<li class="can-jar">
-												<input type="radio" id="type2Spout1" name="typeSpout1" value="can-jar" />
-												<label for="type2Spout1">
+												<input type="radio" id="type3Spout1" name="typeSpout1" value="can-jar" />
+												<label for="type3Spout1">
 													<div class="spout-sprite ir">
 														Bottle or Jar spout image
 													</div><h4 class="name">Bottle or Jar</h4></label>
@@ -445,19 +445,19 @@ unset($_SESSION['response']);
 										<ul class="field-type-textfield field-name-dimensions">
 											<li class="width flat-bag">
 												<label>Width in inches</label>
-												<input type="text" name="width" />
+												<input class="required number" type="text" name="widthSpout1" />
 											</li>
 											<li class="d1 four-sided-bag">
 												<label>D1</label>
-												<input type="text" name="d1" />
+												<input class="required number" type="text" name="d1Spout1" />
 											</li>
 											<li class="d2 four-sided-bag">
 												<label>D2</label>
-												<input type="text" name="d2" />
+												<input class="required number" type="text" name="d2Spout1" />
 											</li>
 											<li class="diameter can-jar">
 												<label>Diameter in inches</label>
-												<input type="text" name="diameter" />
+												<input class="required number" type="text" name="diameterSpout1" />
 											</li>
 										</ul>
 										<div class="container-shape-images">
