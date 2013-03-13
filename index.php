@@ -1,39 +1,62 @@
 <?php
+// define variables and initialize with empty values
+$machineModel = "";
+$weighHopper = "";
+$dischargeFunnel = "";
+$recipient = "";
+$text = "";
+
+$recipientErr = "";
+$textErr = "";
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-	require_once 'bin/swiftmailer/lib/swift_required.php';
-
-	// Create the Transport
-	/*
-	 $transport = Swift_SmtpTransport::newInstance('smtp.example.org', 25)
-	 ->setUsername('your username')
-	 ->setPassword('your password')
-	 ;
-	 */
-	$transport = Swift_MailTransport::newInstance();
-	// Create the Mailer using your created Transport
-	$mailer = Swift_Mailer::newInstance($transport);
-	$text = $_POST['message'];
-	$to = urldecode($_POST['recipient']);
-	$messageHTML = "Text of the message : " . urldecode($text)
-			. " The full response is: ";
-
-	// Create a message
-	$emailMessage = Swift_Message::newInstance(
-			'Logical Machines Quote Generator')
-			->setBody($messageHTML, 'text/html')
-			->setFrom(array('pete@spirelightmedia.com' => 'Logical Machines'))
-			->setSender('pgjainsworth@gmail.com')
-			->setReturnPath('pgjainsworth@gmail.com')
-			->setBcc(array('pgjainsworth@gmail.com'))->setMaxLineLength(78)
-			->setTo(array($to));
-
-	if ($mailer->send($emailMessage)) {
-		$response = "<div class=\"success\"><p>Thank you. Your email has been successfully sent.</p></div>";
+	$machineModel = $_POST["machine-model"];
+	$weighHopper = $_POST["weigh-hopper"];
+	$dischargeFunnel = $_POST["discharge-funnel"];
+	$recipient = $_POST["recipient"];
+	$text = $_POST["message"];
+	
+	if (!filter_var($recipient, FILTER_VALIDATE_EMAIL)) {
+		$recipientErr = "Please enter a valid email address.";
+	} elseif (empty($_POST["message"])) {
+		$textErr = "Missing";
 	} else {
-		$response = "<div class=\"warning\"><p>I'm sorry we were unable to send your quote by email. Please check the email addresses that you entered and try again.</p></div>";
-	}
+		$recipient = $_POST["recipient"];
+		$text = $_POST["message"];
+		require_once 'bin/swiftmailer/lib/swift_required.php';
 
+		// Create the Transport
+		/*
+		 $transport = Swift_SmtpTransport::newInstance('smtp.example.org', 25)
+		 ->setUsername('your username')
+		 ->setPassword('your password')
+		 ;
+		 */
+		$transport = Swift_MailTransport::newInstance();
+		// Create the Mailer using your created Transport
+		$mailer = Swift_Mailer::newInstance($transport);
+		$text = $_POST['message'];
+		$to = urldecode($_POST['recipient']);
+		$messageHTML = "Text of the message : " . urldecode($text)
+				. " The full response is: ";
+
+		// Create a message
+		$emailMessage = Swift_Message::newInstance(
+				'Logical Machines Quote Generator')
+				->setBody($messageHTML, 'text/html')
+				->setFrom(
+						array('pete@spirelightmedia.com' => 'Logical Machines'))
+				->setSender('pgjainsworth@gmail.com')
+				->setReturnPath('pgjainsworth@gmail.com')
+				->setBcc(array('pgjainsworth@gmail.com'))->setMaxLineLength(78)
+				->setTo(array($to));
+
+		if ($mailer->send($emailMessage)) {
+			$response = "<div class=\"success\"><p>Thank you. Your email has been successfully sent.</p></div>";
+		} else {
+			$response = "<div class=\"warning\"><p>I'm sorry we were unable to send your quote by email. Please check the email addresses that you entered and try again.</p></div>";
+		}
+	}
 }
 ?>
 
@@ -158,9 +181,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			<section id="section-content" class="clearfix">
 				<article id="main-content" class="clearfix no-sidebar">
 					<pre> <?php print_r($_POST); ?>	</pre>
-					<?php echo isset($response) && !empty($response) ? $response : ''; ?>				
+					<?php echo isset($response) && !empty($response) ? $response
+		: '';
+					?>				
 					<form method="post" name="logical-machines-quote-generator" id="logical-machines-quote-generator" action="<?php echo htmlspecialchars(
-										$_SERVER["PHP_SELF"]); ?>">
+							$_SERVER["PHP_SELF"]);
+																															  ?>">
 						<div id="form-pages">
 
 							<div id="step-1" class="step-container" name="step-1">
@@ -196,7 +222,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 								<h4>Please begin by selecting your model.</h4>
 								<ul id="field-name-machine-model" class="field-container field-type-radio">
 									<li>
-										<input type="radio" id="s4" class="radio active" name="machine-model" value="S-4" checked="checked" />
+										<input type="radio" id="s4" class="radio active" name="machine-model" 
+										<?php if (isset($machineModel) && $machineModel == "S-4") echo "checked"; ?> 
+										value="S-4" checked="checked" />
 										<label for="s4"><h4><span class="name">S-4</span>&nbsp;<span class="type">Weigh Fill System</span></h4>
 											<p class="description">
 												The standard S-4 includes the small weigh hopper, small discharge funnel, Logical Controller II and one spout. It comes fully assembled and ready to operate.
@@ -250,7 +278,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 											</p></label>
 									</li>
 									<li>
-										<input type="radio" id="s5" name="machine-model" value="S-5" />
+										<input type="radio" id="s5" name="machine-model" 
+										<?php if (isset($machineModel) && $machineModel == "S-5") echo "checked"; ?> 
+										value="S-5" />
 										<label for="s5"><h4><span class="name">S-5</span>&nbsp;<span class="type">Bulk Fill System</span></h4>
 											<p class="description">
 												The standard S-5 includes... It comes fully assembled and ready to operate.
@@ -260,7 +290,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 											</p></label>
 									</li>
 									<li>
-										<input type="radio" id="s6" name="machine-model" value="S-6" />
+										<input type="radio" id="s6" name="machine-model" 
+										<?php if (isset($machineModel) && $machineModel == "S-6") echo "checked"; ?> 
+										value="S-6" />
 										<label for="s6"><h4><span class="name">S-6</span>&nbsp;<span class="type">Cascading Weigh FIller</span></h4>
 											<p class="description">
 												The standard S-6 includes... It comes fully assembled and ready to operate.
@@ -270,7 +302,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 											</p></label>
 									</li>
 									<li>
-										<input type="radio" id="s7" name="machine-model" value="S-7" />
+										<input type="radio" id="s7" name="machine-model" 
+										<?php if (isset($machineModel) && $machineModel == "S-7") echo "checked"; ?> 
+										value="S-7" />
 										<label for="s7"><h4><span class="name">S-7</span>&nbsp;<span class="type">Dual-Lane Weigh FIller</span></h4>
 											<p class="description">
 												The standard S-7 includes... It comes fully assembled and ready to operate.
@@ -786,14 +820,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 											Message details
 										</legend>
 										<label for="recipient">To *</label>
-										<input type="text" id="recipient" name="recipient" />
+										<input type="text" id="recipient" name="recipient" value="<?php echo htmlspecialchars(
+																																	  $recipient); ?>"/>
+										<span class="error"><?php echo $recipientErr; ?></span>
 										<div class="instructions">
 											<p>
 												Enter as many email addresses as you'd like separated by a comma.
 											</p>
 										</div>
 										<label for="message">Message (optional)</label>
-										<textarea rows="5" id="message" name="message">&nbsp;</textarea>
+										<textarea rows="5" id="message" name="message"><?php echo htmlspecialchars(
+																																	  $text); ?></textarea>
+										<span class="error"><?php echo $textErr; ?></span>
 										<input type="submit" id="btnSubmit" value="Calculate Quote" />
 											<p class="instructions">
 												Your quote will be sent only to the recipients you have designated.
