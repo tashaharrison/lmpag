@@ -313,8 +313,8 @@ form#logical-machines-quote-generator {
 	top: 5px;
 	left: 1px;
 }
-/* Small weight hopper front */
-.s4.smwh.front .weight-hopper {
+/* Small weigh hopper front */
+.s4.smwh.front .weigh-hopper {
 	width: 205px;
 	height: 67px;
 	background-position: -10px -1926px;
@@ -349,8 +349,8 @@ form#logical-machines-quote-generator {
 	top: 253px;
 	left: 70px;
 }
-/* Small weight hopper side */
-.s4.smwh.side .weight-hopper {
+/* Small weigh hopper side */
+.s4.smwh.side .weigh-hopper {
 	width: 225px;
 	height: 51px;
 	background-position: -10px -2065px;
@@ -385,8 +385,8 @@ form#logical-machines-quote-generator {
 	top: 273px;
 	left: 28px;
 }
-/* Large weight hopper front */
-.s4.lrgwh.front .weight-hopper {
+/* Large weigh hopper front */
+.s4.lrgwh.front .weigh-hopper {
 	width: 214px;
 	height: 82px;
 	background-position: -10px -1242px;
@@ -421,8 +421,8 @@ form#logical-machines-quote-generator {
 	top: 280px;
 	left: 69px;
 }
-/* Large weight hopper side */
-.s4.lrgwh.side .weight-hopper {
+/* Large weigh hopper side */
+.s4.lrgwh.side .weigh-hopper {
 	width: 250px;
 	height: 78px;
 	background-position: -10px -1425px;
@@ -469,13 +469,13 @@ form#logical-machines-quote-generator {
 	margin-right: 10px;
 	width: 100px;
 }
-#field-name-weight-hopper .small label .component-image,
+#field-name-weigh-hopper .small label .component-image,
 #weigh-hopper-sml {
 	width: 78px;
 	height: 85px;
 	background-position: -124px -1050px;
 }
-#field-name-weight-hopper .large label .component-image,
+#field-name-weigh-hopper .large label .component-image,
 #weigh-hopper-lrg {
 	width: 104px;
 	height: 126px;
@@ -695,13 +695,13 @@ padding: 4px 0px 4px 8px;
     margin: 10px 0 4px;
 }
 /* 
- * Fallback content
+ * Messages
  */
 .warning {
-	background-color: #F3DEDE;
-	border: 2px solid red;
-	margin-bottom: 14px;
-	padding: 14px 14px 0 14px;
+    background-color: #F3DEDE;
+    border: 2px solid red;
+    margin-bottom: 14px;
+    padding: 14px 14px 0 14px;
     text-align: center;
 }
 .success {
@@ -709,6 +709,19 @@ padding: 4px 0px 4px 8px;
     padding: 14px 14px 0;
     text-align: center;
 }
+/* 
+ * Fallback content / no-js
+ */
+.no-js #field-name-spout ul.field-name-dimensions {
+    margin: 14px 0;
+    width: 100%;
+}
+.no-js .container-shape-images .spout-sprite,
+.no-js .field-name-dimensions li {
+    float:left;
+    margin-right:14px;
+}
+
 /* ==========================================================================
    Helper classes
    ========================================================================== */

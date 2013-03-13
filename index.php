@@ -97,7 +97,7 @@
 					<li>
 						<a href="#step-2"><span class="list-no">2</span>
 						<br/>
-						Select a Weight Hopper</a>
+						Select a Weigh Hopper</a>
 					</li>
 					<li>
 						<a href="#step-3"><span class="list-no">3</span>
@@ -119,13 +119,18 @@
 
 			<section id="section-content" class="clearfix">
 				<article id="main-content" class="clearfix no-sidebar">
-<?php
+
+<pre>
+<?php print_r($_POST);
+?>
+								</pre>
+								<?php
 echo isset($_SESSION['response']) && !empty($_SESSION['response']) ? $_SESSION['response']
 		: '';
 //clear the session
 unset($_SESSION['response']);
-?>				
-					<form method="post" name="logical-machines-quote-generator" id="logical-machines-quote-generator" action="bin/process.php">
+								?>				
+					<form method="post" name="logical-machines-quote-generator" id="logical-machines-quote-generator" action="">
 						<div id="form-pages">
 
 							<div id="step-1" class="step-container" name="step-1">
@@ -252,9 +257,9 @@ unset($_SESSION['response']);
 								<p>
 									The <b>Weigh Hopper</b> is the scale portion of the unit which handles and weighs your products. Select a hopper by clicking its image.
 								</p>
-								<ul id="field-name-weight-hopper" class="field-type-radio field-container">
+								<ul id="field-name-weigh-hopper" class="field-type-radio field-container">
 									<li class="small">
-										<input type="radio" id="smwh" class="active" name="weight-hopper" value="small-weight-hopper" checked="checked"/>
+										<input type="radio" id="smwh" class="active" name="weigh-hopper" value="small-weigh-hopper" checked="checked"/>
 										<label for="smwh" class="clearfix"><h4 class="name">Small Weigh Hopper</h4>
 											<div class="component-image ir">
 												Small Weigh Hopper image
@@ -268,7 +273,7 @@ unset($_SESSION['response']);
 
 									</li>
 									<li class="large">
-										<input type="radio" id="lrgwh" name="weight-hopper" value="large-weight-hopper" />
+										<input type="radio" id="lrgwh" name="weigh-hopper" value="large-weigh-hopper" />
 										<label for="lrgwh" class="clearfix"><h4 class="name">Large Weigh Hopper</h4>
 											<div class="component-image ir">
 												Large Weigh Hopper image
@@ -477,23 +482,28 @@ unset($_SESSION['response']);
 									<fieldset id="defaultSpout1" class="default-field-spout">
 										<legend>
 											Spout 1
-										</legend>
+										</legend>	
+										<div class="instructions">
+											<p>
+												Click on the diagram that most accurately depicts your container and then enter the size of the bags to be filled in inches.
+											</p>
+										</div>								
 										<ul class="field-type-radio field-name-spout-type">
-											<li>
+											<li class="flat-bag">
 												<input type="radio" id="type0Spout1Default" name="typeSpout1Default" value="flag-bag" />
 												<label for="type0Spout1Default">
 													<div class="spout-sprite flat-bag-spout ir">
 														Flag bag spout image
 													</div><h4>Flag bag</h4></label>
 											</li>
-											<li>
+											<li class="four-sided-bag">
 												<input type="radio" id="type1Spout1Default" name="typeSpout1Default" value="four-sided-bag" />
 												<label for="type1Spout1Default">
 													<div class="spout-sprite four-sided-bag-spout ir">
 														4 sided bag spout image
 													</div><h4>4 sided bag</h4></label>
 											</li>
-											<li>
+											<li class="can-jar">
 												<input type="radio" id="type2Spout1Default" name="typeSpout1Default" value="can-jar" />
 												<label for="type2Spout1Default">
 													<div class="spout-sprite can-or-jar-spout ir">
@@ -503,8 +513,19 @@ unset($_SESSION['response']);
 										</ul>
 										<div class="instructions">
 											<p>
-												Click on the diagram above that most accurately depicts your container and then enter the size of the bags to be filled in inches.
+												Please enter:
 											</p>
+											<ul>
+												<li>
+													<b>Flat Bag:</b> Enter the width of the bag opening (W).
+												</li>
+												<li>
+													<b>4 sided bag Bag:</b> Looking down at the top of your bag, enter the dimensions (D1) and (D2) of the bag opening.
+												</li>
+												<li>
+													<b>Bottle or Jar:</b> Enter the inside diameter of the bottle or can opening (D).
+												</li>
+											</ul>
 										</div>
 										<ul class="field-type-textfield field-name-dimensions">
 											<li class="width">
@@ -524,30 +545,14 @@ unset($_SESSION['response']);
 												<input type="text" name="diameterInches" />
 											</li>
 										</ul>
-										<div class="instructions">
-											<p>
-												Please enter:
-											</p>
-											<ul>
-												<li>
-													<b>Flat Bag:</b> Enter the width of the bag opening (W).
-												</li>
-												<li>
-													<b>4 sided bag Bag:</b> Looking down at the top of your bag, enter the dimensions (D1) and (D2) of the bag opening.
-												</li>
-												<li>
-													<b>Bottle or Jar:</b> Enter the inside diameter of the bottle or can opening (D).
-												</li>
-											</ul>
-										</div>
 										<div class="container-shape-images">
-											<div class="spout-sprite flat-bag-shape ir">
+											<div class="spout-sprite flat-bag ir">
 												Flag bag spout shape image
 											</div>
-											<div class="spout-sprite four-sided-bag-shape ir">
+											<div class="spout-sprite four-sided-bag ir">
 												4 sided bag spout shape image
 											</div>
-											<div class="spout-sprite can-or-jar-shape ir">
+											<div class="spout-sprite can-jar ir">
 												Can or Jar spout shape image
 											</div>
 										</div>
@@ -555,24 +560,29 @@ unset($_SESSION['response']);
 
 									<fieldset id="defaultSpout2" class="default-field-spout">
 										<legend>
-											Spout 1
-										</legend>
+											Spout 2
+										</legend>	
+										<div class="instructions">
+											<p>
+												Click on the diagram that most accurately depicts your container and then enter the size of the bags to be filled in inches.
+											</p>
+										</div>								
 										<ul class="field-type-radio field-name-spout-type">
-											<li>
+											<li class="flat-bag">
 												<input type="radio" id="type0Spout2Default" name="typeSpout2Default" value="flag-bag" />
 												<label for="type0Spout2Default">
 													<div class="spout-sprite flat-bag-spout ir">
 														Flag bag spout image
 													</div><h4>Flag bag</h4></label>
 											</li>
-											<li>
+											<li class="four-sided-bag">
 												<input type="radio" id="type1Spout2Default" name="typeSpout2Default" value="four-sided-bag" />
 												<label for="type1Spout2Default">
 													<div class="spout-sprite four-sided-bag-spout ir">
 														4 sided bag spout image
 													</div><h4>4 sided bag</h4></label>
 											</li>
-											<li>
+											<li class="can-jar">
 												<input type="radio" id="type2Spout2Default" name="typeSpout2Default" value="can-jar" />
 												<label for="type2Spout2Default">
 													<div class="spout-sprite can-or-jar-spout ir">
@@ -582,8 +592,19 @@ unset($_SESSION['response']);
 										</ul>
 										<div class="instructions">
 											<p>
-												Click on the diagram above that most accurately depicts your container and then enter the size of the bags to be filled in inches.
+												Please enter:
 											</p>
+											<ul>
+												<li>
+													<b>Flat Bag:</b> Enter the width of the bag opening (W).
+												</li>
+												<li>
+													<b>4 sided bag Bag:</b> Looking down at the top of your bag, enter the dimensions (D1) and (D2) of the bag opening.
+												</li>
+												<li>
+													<b>Bottle or Jar:</b> Enter the inside diameter of the bottle or can opening (D).
+												</li>
+											</ul>
 										</div>
 										<ul class="field-type-textfield field-name-dimensions">
 											<li class="width">
@@ -603,55 +624,44 @@ unset($_SESSION['response']);
 												<input type="text" name="diameterInches" />
 											</li>
 										</ul>
-										<div class="instructions">
-											<p>
-												Please enter:
-											</p>
-											<ul>
-												<li>
-													<b>Flat Bag:</b> Enter the width of the bag opening (W).
-												</li>
-												<li>
-													<b>4 sided bag Bag:</b> Looking down at the top of your bag, enter the dimensions (D1) and (D2) of the bag opening.
-												</li>
-												<li>
-													<b>Bottle or Jar:</b> Enter the inside diameter of the bottle or can opening (D).
-												</li>
-											</ul>
-										</div>
 										<div class="container-shape-images">
-											<div class="spout-sprite flat-bag-shape ir">
+											<div class="spout-sprite flat-bag ir">
 												Flag bag spout shape image
 											</div>
-											<div class="spout-sprite four-sided-bag-shape ir">
+											<div class="spout-sprite four-sided-bag ir">
 												4 sided bag spout shape image
 											</div>
-											<div class="spout-sprite can-or-jar-shape ir">
+											<div class="spout-sprite can-jar ir">
 												Can or Jar spout shape image
 											</div>
 										</div>
 									</fieldset>
-
+									
 									<fieldset id="defaultSpout3" class="default-field-spout">
 										<legend>
-											Spout 1
-										</legend>
+											Spout 3
+										</legend>	
+										<div class="instructions">
+											<p>
+												Click on the diagram that most accurately depicts your container and then enter the size of the bags to be filled in inches.
+											</p>
+										</div>								
 										<ul class="field-type-radio field-name-spout-type">
-											<li>
+											<li class="flat-bag">
 												<input type="radio" id="type0Spout3Default" name="typeSpout3Default" value="flag-bag" />
 												<label for="type0Spout3Default">
 													<div class="spout-sprite flat-bag-spout ir">
 														Flag bag spout image
 													</div><h4>Flag bag</h4></label>
 											</li>
-											<li>
+											<li class="four-sided-bag">
 												<input type="radio" id="type1Spout3Default" name="typeSpout3Default" value="four-sided-bag" />
 												<label for="type1Spout3Default">
 													<div class="spout-sprite four-sided-bag-spout ir">
 														4 sided bag spout image
 													</div><h4>4 sided bag</h4></label>
 											</li>
-											<li>
+											<li class="can-jar">
 												<input type="radio" id="type2Spout3Default" name="typeSpout3Default" value="can-jar" />
 												<label for="type2Spout3Default">
 													<div class="spout-sprite can-or-jar-spout ir">
@@ -661,8 +671,19 @@ unset($_SESSION['response']);
 										</ul>
 										<div class="instructions">
 											<p>
-												Click on the diagram above that most accurately depicts your container and then enter the size of the bags to be filled in inches.
+												Please enter:
 											</p>
+											<ul>
+												<li>
+													<b>Flat Bag:</b> Enter the width of the bag opening (W).
+												</li>
+												<li>
+													<b>4 sided bag Bag:</b> Looking down at the top of your bag, enter the dimensions (D1) and (D2) of the bag opening.
+												</li>
+												<li>
+													<b>Bottle or Jar:</b> Enter the inside diameter of the bottle or can opening (D).
+												</li>
+											</ul>
 										</div>
 										<ul class="field-type-textfield field-name-dimensions">
 											<li class="width">
@@ -682,30 +703,14 @@ unset($_SESSION['response']);
 												<input type="text" name="diameterInches" />
 											</li>
 										</ul>
-										<div class="instructions">
-											<p>
-												Please enter:
-											</p>
-											<ul>
-												<li>
-													<b>Flat Bag:</b> Enter the width of the bag opening (W).
-												</li>
-												<li>
-													<b>4 sided bag Bag:</b> Looking down at the top of your bag, enter the dimensions (D1) and (D2) of the bag opening.
-												</li>
-												<li>
-													<b>Bottle or Jar:</b> Enter the inside diameter of the bottle or can opening (D).
-												</li>
-											</ul>
-										</div>
 										<div class="container-shape-images">
-											<div class="spout-sprite flat-bag-shape ir">
+											<div class="spout-sprite flat-bag ir">
 												Flag bag spout shape image
 											</div>
-											<div class="spout-sprite four-sided-bag-shape ir">
+											<div class="spout-sprite four-sided-bag ir">
 												4 sided bag spout shape image
 											</div>
-											<div class="spout-sprite can-or-jar-shape ir">
+											<div class="spout-sprite can-jar ir">
 												Can or Jar spout shape image
 											</div>
 										</div>
@@ -734,7 +739,7 @@ unset($_SESSION['response']);
 												<td>Model S-4</td><td>Standard with small weigh hopper and small discharge funnel</td><td>$6,150</td>
 											</tr>
 											<tr>
-												<td>Small weight hopper</td><td>Standard weigh hopper</td><td>$0</td>
+												<td>Small weighhopper</td><td>Standard weigh hopper</td><td>$0</td>
 											</tr>
 											<tr>
 												<td>Small Funnel</td><td>Standard sized funnel</td><td>$0</td>
@@ -806,7 +811,7 @@ unset($_SESSION['response']);
 							<div class="machine-bg">
 								&nbsp;
 							</div>
-							<div class="weight-hopper ">
+							<div class="weigh-hopper ">
 								&nbsp;
 							</div>
 							<div class="funnel">
