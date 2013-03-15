@@ -92,11 +92,13 @@ if (isset($_POST['btnSubmit'])) {
 		$to = urldecode($to);
 		$messageHTML = "Text of the message : " . urldecode($text)
 				. " The full response is: ";
-
+		$messageText = "Text of the message : " . urldecode($text)
+		. " The full response is: ";
 		// Create a message
 		$emailMessage = Swift_Message::newInstance(
 				'Logical Machines Quote Generator')
 				->setBody($messageHTML, 'text/html')
+				->addPart($messageText, 'text/plain')
 				->setFrom(
 						array('pete@spirelightmedia.com' => 'Logical Machines'))
 				->setSender('pgjainsworth@gmail.com')
