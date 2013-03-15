@@ -20,14 +20,16 @@ $(document).ready(function() {
     };
     var requiredEmailMessages = {
         required : "This is a required field.",
-        multiemails : "Please enter only valid email addresses. If you entered multiple email address, please separate them by a comma.",
+        multiemails : "Please enter only valid email addresses.",
     };
     $form.validate({
         rules : {
-            recipient : requiredEmail
+            to : requiredEmail,
+            cc : requiredEmail
         },
         messages : {
-            recipient : requiredEmailMessages
+            to : requiredEmailMessages,
+            cc : requiredEmailMessages
         }
     });
 
