@@ -774,7 +774,7 @@ if ($_POST && $_POST['dischargefunnel'] == 'steep-funnel') {
 																												|| $errors)) {
 																									echo 'value="'
 																											. htmlentities(
-																													$to,
+																													$d2InchesSpout1Default,
 																													ENT_COMPAT,
 																													'UTF-8')
 																											. '"';
@@ -917,7 +917,7 @@ if ($_POST && $_POST['dischargefunnel'] == 'steep-funnel') {
 																												|| $errors)) {
 																									echo 'value="'
 																											. htmlentities(
-																													$to,
+																													$d2InchesSpout2Default,
 																													ENT_COMPAT,
 																													'UTF-8')
 																											. '"';
@@ -1060,7 +1060,7 @@ if ($_POST && $_POST['dischargefunnel'] == 'steep-funnel') {
 																												|| $errors)) {
 																									echo 'value="'
 																											. htmlentities(
-																													$to,
+																													$d2InchesSpout3Default,
 																													ENT_COMPAT,
 																													'UTF-8')
 																											. '"';
