@@ -5,11 +5,12 @@ $missing = array();
 
 // if ($_SERVER["REQUEST_METHOD"] == "POST") {
 if (isset($_POST['btnSubmit'])) {
-	$expected = array('machinemodel', 'weigh-hopper', 'discharge-funnel',
+	$expected = array('machinemodel', 'weighhopper', 'dischargefunnel',
+			'typeSpout1Default', 'typeSpout2Default', 'typeSpout3Default',
 			'widthSpout1', 'd1Spout1', 'd2Spout1', 'diameterSpout1',
 			'widthInchesSpout1Default', 'd1InchesSpout1Default',
 			'd2InchesSpout1Default', 'diameterInchesSpout1Default',
-			'widthInchesSpout2Default', 'd1InchesSpout2Def',
+			'widthInchesSpout2Default', 'd1InchesSpout2Default',
 			'd2InchesSpout2Default', 'diameterInchesSpout2Default',
 			'widthInchesSpout3Default', 'd1InchesSpout3Default',
 			'd2InchesSpout3Default', 'diameterInchesSpout3Default', 'to',
@@ -226,7 +227,9 @@ if (isset($_POST['btnSubmit'])) {
 					<?php echo isset($response) && !empty($response) ? $response
 		: '';
 					?>				
-					 <?php if ($_POST && $suspect) { ?>
+					 <?php if (($_POST && $suspect)
+							|| ($_POST && isset($errors['mailfail']))) {
+					 ?>
          			<p class="warning">Sorry, your mail could not be sent. Please try later.</p>
         			<?php } elseif ($missing || $errors) { ?>
            			<p class="warning">Please fix the item(s) indicated.</p>
@@ -269,13 +272,15 @@ if (isset($_POST['btnSubmit'])) {
 								<h4>Please begin by selecting your model.</h4>
 								<ul id="field-name-machine-model" class="field-container field-type-radio">
 									<li>
-										<input type="radio" id="s4" class="radio active" name="machinemodel" 
-										<?php if (isset($machineModel)
-																																	  && $machineModel
-																																			  == "S-4")
-																																  echo "checked";
-										?> 
-										value="S-4" checked="checked" />
+										<input type="radio" id="s4" class="radio active" name="machinemodel" value="S-4" 
+										<?php
+																															  if (!$_POST
+																																	  || ($_POST
+																																			  && $_POST['machinemodel']
+																																					  == 'S-4')) {
+																																  echo 'checked';
+																															  }
+										?>/>
 										<label for="s4"><h4><span class="name">S-4</span>&nbsp;<span class="type">Weigh Fill System</span></h4>
 											<p class="description">
 												The standard S-4 includes the small weigh hopper, small discharge funnel, Logical Controller II and one spout. It comes fully assembled and ready to operate.
@@ -329,12 +334,14 @@ if (isset($_POST['btnSubmit'])) {
 											</p></label>
 									</li>
 									<li>
-										<input type="radio" id="s5" name="machinemodel" 
-										<?php if (isset($machineModel)
-												&& $machineModel == "S-5")
-											echo "checked";
-										?> 
-										value="S-5" />
+										<input type="radio" id="s5" name="machinemodel" value="S-5" 
+										<?php
+										if ($_POST
+												&& $_POST['machinemodel']
+														== 'S-5') {
+											echo 'checked';
+										}
+										?>/>
 										<label for="s5"><h4><span class="name">S-5</span>&nbsp;<span class="type">Bulk Fill System</span></h4>
 											<p class="description">
 												The standard S-5 includes... It comes fully assembled and ready to operate.
@@ -344,12 +351,14 @@ if (isset($_POST['btnSubmit'])) {
 											</p></label>
 									</li>
 									<li>
-										<input type="radio" id="s6" name="machinemodel" 
-										<?php if (isset($machineModel)
-												&& $machineModel == "S-6")
-											echo "checked";
-										?> 
-										value="S-6" />
+										<input type="radio" id="s6" name="machinemodel" value="S-6" 
+										<?php
+										if ($_POST
+												&& $_POST['machinemodel']
+														== 'S-6') {
+											echo 'checked';
+										}
+										?>/>
 										<label for="s6"><h4><span class="name">S-6</span>&nbsp;<span class="type">Cascading Weigh FIller</span></h4>
 											<p class="description">
 												The standard S-6 includes... It comes fully assembled and ready to operate.
@@ -359,12 +368,14 @@ if (isset($_POST['btnSubmit'])) {
 											</p></label>
 									</li>
 									<li>
-										<input type="radio" id="s7" name="machinemodel" 
-										<?php if (isset($machineModel)
-												&& $machineModel == "S-7")
-											echo "checked";
-										?> 
-										value="S-7" />
+										<input type="radio" id="s7" name="machinemodel" value="S-7" 
+										<?php
+										if ($_POST
+												&& $_POST['machinemodel']
+														== 'S-7') {
+											echo 'checked';
+										}
+										?>/>
 										<label for="s7"><h4><span class="name">S-7</span>&nbsp;<span class="type">Dual-Lane Weigh FIller</span></h4>
 											<p class="description">
 												The standard S-7 includes... It comes fully assembled and ready to operate.
@@ -383,7 +394,15 @@ if (isset($_POST['btnSubmit'])) {
 								</p>
 								<ul id="field-name-weigh-hopper" class="field-type-radio field-container">
 									<li class="small">
-										<input type="radio" id="smwh" class="active" name="weighhopper" value="small-weigh-hopper" checked="checked"/>
+										<input type="radio" id="smwh" class="active" name="weighhopper" value="small-weigh-hopper" 
+										<?php
+										if (!$_POST
+												|| ($_POST
+														&& $_POST['weighhopper']
+																== 'small-weigh-hopper')) {
+											echo 'checked';
+										}
+										?>/>
 										<label for="smwh" class="clearfix"><h4 class="name">Small Weigh Hopper</h4>
 											<div class="component-image ir">
 												Small Weigh Hopper image
@@ -397,7 +416,14 @@ if (isset($_POST['btnSubmit'])) {
 
 									</li>
 									<li class="large">
-										<input type="radio" id="lrgwh" name="weighhopper" value="large-weigh-hopper" />
+										<input type="radio" id="lrgwh" name="weighhopper" value="large-weigh-hopper" 
+										<?php
+										if ($_POST
+												&& $_POST['weighhopper']
+														== 'large-weigh-hopper') {
+											echo 'checked';
+										}
+										?>/>
 										<label for="lrgwh" class="clearfix"><h4 class="name">Large Weigh Hopper</h4>
 											<div class="component-image ir">
 												Large Weigh Hopper image
@@ -472,7 +498,15 @@ if (isset($_POST['btnSubmit'])) {
 											</p></label>
 									</li>
 									<li class="small default-discharge-funnel">
-										<input type="radio" id="std-fnl" class="active" name="dischargefunnel" value="standard-discharge-funnel" checked="checked" />
+										<input type="radio" id="std-fnl" class="active" name="dischargefunnel" value="standard-discharge-funnel" 
+										<?php
+										if (!$_POST
+												|| ($_POST
+														&& $_POST['dischargefunnel']
+																== 'standard-discharge-funnel')) {
+											echo 'checked';
+										}
+										?>
 										<label for="std-fnl" class="std-fnl clearfix"><h4 class="name">Standard Discharge Funnel</h4>
 											<div class="component-image ir">
 												Standard Discharge Funnel image
@@ -492,7 +526,12 @@ if (isset($_POST['btnSubmit'])) {
 
 									</li>
 									<li class="small default-discharge-funnel">
-										<input type="radio" id="steep-fnl" name="dischargefunnel" value="steep-funnel" />
+										<input type="radio" id="steep-fnl" name="dischargefunnel" value="steep-funnel" 
+										<?php
+if ($_POST && $_POST['dischargefunnel'] == 'steep-funnel') {
+	echo 'checked';
+}
+										?>/>
 										<label for="steep-fnl" class="steep-fnl clearfix"><h4 class="name">Steep-Sided Discharge Funnel</h4>
 											<div class="component-image ir">
 												Steep-Sided Discharge image
@@ -614,21 +653,42 @@ if (isset($_POST['btnSubmit'])) {
 										</div>								
 										<ul class="field-type-radio field-name-spout-type">
 											<li class="flat-bag">
-												<input type="radio" id="type0Spout1Default" name="typeSpout1Default" value="flag-bag" />
+												<input type="radio" id="type0Spout1Default" name="typeSpout1Default" value="flag-bag" 
+												<?php
+										if ($_POST
+												&& $_POST['typeSpout1Default']
+														== 'flag-bag') {
+											echo 'checked';
+										}
+												?>/>
 												<label for="type0Spout1Default">
 													<div class="spout-sprite flat-bag-spout ir">
 														Flag bag spout image
 													</div><h4>Flag bag</h4></label>
 											</li>
 											<li class="four-sided-bag">
-												<input type="radio" id="type1Spout1Default" name="typeSpout1Default" value="four-sided-bag" />
+												<input type="radio" id="type1Spout1Default" name="typeSpout1Default" value="four-sided-bag" 
+												<?php
+												if ($_POST
+														&& $_POST['typeSpout1Default']
+																== 'four-sided-bag') {
+													echo 'checked';
+												}
+												?>/>
 												<label for="type1Spout1Default">
 													<div class="spout-sprite four-sided-bag-spout ir">
 														4 sided bag spout image
 													</div><h4>4 sided bag</h4></label>
 											</li>
 											<li class="can-jar">
-												<input type="radio" id="type2Spout1Default" name="typeSpout1Default" value="can-jar" />
+												<input type="radio" id="type2Spout1Default" name="typeSpout1Default" value="can-jar" 
+												<?php
+												if ($_POST
+														&& $_POST['typeSpout1Default']
+																== 'can-jar') {
+													echo 'checked';
+												}
+												?>/>
 												<label for="type2Spout1Default">
 													<div class="spout-sprite can-or-jar-spout ir">
 														Can or Jar spout image
@@ -654,19 +714,62 @@ if (isset($_POST['btnSubmit'])) {
 										<ul class="field-type-textfield field-name-dimensions">
 											<li class="width">
 												<label>Width in inches</label>
-												<input type="text" name="widthInchesSpout1Default" />
+												<input type="text" name="widthInchesSpout1Default" <?php if (!empty(
+														$widthInchesSpout1Default)
+														&& ($missing || $errors)) {
+													echo 'value="'
+															. htmlentities(
+																	$widthInchesSpout1Default,
+																	ENT_COMPAT,
+																	'UTF-8')
+															. '"';
+												}
+																								   ?>/>
 											</li>
 											<li class="d1">
 												<label>D1</label>
-												<input type="text" name="d1InchesSpout1Default" />
+												<input type="text" name="d1InchesSpout1Default" <?php if (!empty(
+																										   $d1InchesSpout1Default)
+																										   && ($missing
+																												   || $errors)) {
+																									   echo 'value="'
+																											   . htmlentities(
+																													   $d1InchesSpout1Default,
+																													   ENT_COMPAT,
+																													   'UTF-8')
+																											   . '"';
+																								   }
+																								?>/>
 											</li>
 											<li class="d2">
 												<label>D2</label>
-												<input type="text" name="d2InchesSpout1Default" />
+												<input type="text" name="d2InchesSpout1Default" <?php if (!empty(
+																										$d2InchesSpout1Default)
+																										&& ($missing
+																												|| $errors)) {
+																									echo 'value="'
+																											. htmlentities(
+																													$d2InchesSpout1Default,
+																													ENT_COMPAT,
+																													'UTF-8')
+																											. '"';
+																								}
+																								?>/>
 											</li>
 											<li class="diameter">
 												<label>Diameter in inches</label>
-												<input type="text" name="diameterInchesSpout1Default" />
+												<input type="text" name="diameterInchesSpout1Default" <?php if (!empty(
+																										$diameterInchesSpout1Default)
+																										&& ($missing
+																												|| $errors)) {
+																									echo 'value="'
+																											. htmlentities(
+																													$to,
+																													ENT_COMPAT,
+																													'UTF-8')
+																											. '"';
+																								}
+																									  ?>/>
 											</li>
 										</ul>
 										<div class="container-shape-images">
@@ -693,21 +796,42 @@ if (isset($_POST['btnSubmit'])) {
 										</div>								
 										<ul class="field-type-radio field-name-spout-type">
 											<li class="flat-bag">
-												<input type="radio" id="type0Spout2Default" name="typeSpout2Default" value="flag-bag" />
+												<input type="radio" id="type0Spout2Default" name="typeSpout2Default" value="flag-bag" 
+												<?php
+																									  if ($_POST
+																											  && $_POST['typeSpout2Default']
+																													  == 'flag-bag') {
+																										  echo 'checked';
+																									  }
+												?>/>
 												<label for="type0Spout2Default">
 													<div class="spout-sprite flat-bag-spout ir">
 														Flag bag spout image
 													</div><h4>Flag bag</h4></label>
 											</li>
 											<li class="four-sided-bag">
-												<input type="radio" id="type1Spout2Default" name="typeSpout2Default" value="four-sided-bag" />
+												<input type="radio" id="type1Spout2Default" name="typeSpout2Default" value="four-sided-bag" 
+												<?php
+												if ($_POST
+														&& $_POST['typeSpout2Default']
+																== 'four-sided-bag') {
+													echo 'checked';
+												}
+												?>/>
 												<label for="type1Spout2Default">
 													<div class="spout-sprite four-sided-bag-spout ir">
 														4 sided bag spout image
 													</div><h4>4 sided bag</h4></label>
 											</li>
 											<li class="can-jar">
-												<input type="radio" id="type2Spout2Default" name="typeSpout2Default" value="can-jar" />
+												<input type="radio" id="type2Spout2Default" name="typeSpout2Default" value="can-jar" 
+												<?php
+												if ($_POST
+														&& $_POST['typeSpout2Default']
+																== 'can-jar') {
+													echo 'checked';
+												}
+												?>/>
 												<label for="type2Spout2Default">
 													<div class="spout-sprite can-or-jar-spout ir">
 														Can or Jar spout image
@@ -733,19 +857,62 @@ if (isset($_POST['btnSubmit'])) {
 										<ul class="field-type-textfield field-name-dimensions">
 											<li class="width">
 												<label>Width in inches</label>
-												<input type="text" name="widthInchesSpout2Default" />
+												<input type="text" name="widthInchesSpout2Default" <?php if (!empty(
+														$widthInchesSpout2Default)
+														&& ($missing || $errors)) {
+													echo 'value="'
+															. htmlentities(
+																	$widthInchesSpout2Default,
+																	ENT_COMPAT,
+																	'UTF-8')
+															. '"';
+												}
+																								   ?>/>
 											</li>
 											<li class="d1">
 												<label>D1</label>
-												<input type="text" name="d1InchesSpout2Default" />
+												<input type="text" name="d1InchesSpout2Default" <?php if (!empty(
+																										   $d1InchesSpout2Default)
+																										   && ($missing
+																												   || $errors)) {
+																									   echo 'value="'
+																											   . htmlentities(
+																													   $d1InchesSpout2Default,
+																													   ENT_COMPAT,
+																													   'UTF-8')
+																											   . '"';
+																								   }
+																								?>/>
 											</li>
 											<li class="d2">
 												<label>D2</label>
-												<input type="text" name="d2InchesSpout2Default" />
+												<input type="text" name="d2InchesSpout2Default" <?php if (!empty(
+																										$d2InchesSpout2Default)
+																										&& ($missing
+																												|| $errors)) {
+																									echo 'value="'
+																											. htmlentities(
+																													$d2InchesSpout2Default,
+																													ENT_COMPAT,
+																													'UTF-8')
+																											. '"';
+																								}
+																								?>/>
 											</li>
 											<li class="diameter">
 												<label>Diameter in inches</label>
-												<input type="text" name="diameterInchesSpout2Default" />
+												<input type="text" name="diameterInchesSpout2Default" <?php if (!empty(
+																										$diameterInchesSpout2Default)
+																										&& ($missing
+																												|| $errors)) {
+																									echo 'value="'
+																											. htmlentities(
+																													$to,
+																													ENT_COMPAT,
+																													'UTF-8')
+																											. '"';
+																								}
+																									  ?>/>
 											</li>
 										</ul>
 										<div class="container-shape-images">
@@ -763,7 +930,7 @@ if (isset($_POST['btnSubmit'])) {
 									
 									<fieldset id="defaultSpout3" class="default-field-spout">
 										<legend>
-											Spout 3
+											Spout 1
 										</legend>	
 										<div class="instructions">
 											<p>
@@ -772,21 +939,42 @@ if (isset($_POST['btnSubmit'])) {
 										</div>								
 										<ul class="field-type-radio field-name-spout-type">
 											<li class="flat-bag">
-												<input type="radio" id="type0Spout3Default" name="typeSpout3Default" value="flag-bag" />
+												<input type="radio" id="type0Spout3Default" name="typeSpout3Default" value="flag-bag" 
+												<?php
+																									  if ($_POST
+																											  && $_POST['typeSpout3Default']
+																													  == 'flag-bag') {
+																										  echo 'checked';
+																									  }
+												?>/>
 												<label for="type0Spout3Default">
 													<div class="spout-sprite flat-bag-spout ir">
 														Flag bag spout image
 													</div><h4>Flag bag</h4></label>
 											</li>
 											<li class="four-sided-bag">
-												<input type="radio" id="type1Spout3Default" name="typeSpout3Default" value="four-sided-bag" />
+												<input type="radio" id="type1Spout3Default" name="typeSpout3Default" value="four-sided-bag" 
+												<?php
+												if ($_POST
+														&& $_POST['typeSpout3Default']
+																== 'four-sided-bag') {
+													echo 'checked';
+												}
+												?>/>
 												<label for="type1Spout3Default">
 													<div class="spout-sprite four-sided-bag-spout ir">
 														4 sided bag spout image
 													</div><h4>4 sided bag</h4></label>
 											</li>
 											<li class="can-jar">
-												<input type="radio" id="type2Spout3Default" name="typeSpout3Default" value="can-jar" />
+												<input type="radio" id="type2Spout3Default" name="typeSpout3Default" value="can-jar" 
+												<?php
+												if ($_POST
+														&& $_POST['typeSpout3Default']
+																== 'can-jar') {
+													echo 'checked';
+												}
+												?>/>
 												<label for="type2Spout3Default">
 													<div class="spout-sprite can-or-jar-spout ir">
 														Can or Jar spout image
@@ -812,19 +1000,62 @@ if (isset($_POST['btnSubmit'])) {
 										<ul class="field-type-textfield field-name-dimensions">
 											<li class="width">
 												<label>Width in inches</label>
-												<input type="text" name="widthInchesSpout3Default" />
+												<input type="text" name="widthInchesSpout3Default" <?php if (!empty(
+														$widthInchesSpout3Default)
+														&& ($missing || $errors)) {
+													echo 'value="'
+															. htmlentities(
+																	$widthInchesSpout3Default,
+																	ENT_COMPAT,
+																	'UTF-8')
+															. '"';
+												}
+																								   ?>/>
 											</li>
 											<li class="d1">
 												<label>D1</label>
-												<input type="text" name="d1InchesSpout3Default" />
+												<input type="text" name="d1InchesSpout3Default" <?php if (!empty(
+																										   $d1InchesSpout3Default)
+																										   && ($missing
+																												   || $errors)) {
+																									   echo 'value="'
+																											   . htmlentities(
+																													   $d1InchesSpout3Default,
+																													   ENT_COMPAT,
+																													   'UTF-8')
+																											   . '"';
+																								   }
+																								?>/>
 											</li>
 											<li class="d2">
 												<label>D2</label>
-												<input type="text" name="d2InchesSpout3Default" />
+												<input type="text" name="d2InchesSpout3Default" <?php if (!empty(
+																										$d2InchesSpout3Default)
+																										&& ($missing
+																												|| $errors)) {
+																									echo 'value="'
+																											. htmlentities(
+																													$d2InchesSpout3Default,
+																													ENT_COMPAT,
+																													'UTF-8')
+																											. '"';
+																								}
+																								?>/>
 											</li>
 											<li class="diameter">
 												<label>Diameter in inches</label>
-												<input type="text" name="diameterInchesSpout3Default" />
+												<input type="text" name="diameterInchesSpout3Default" <?php if (!empty(
+																										$diameterInchesSpout3Default)
+																										&& ($missing
+																												|| $errors)) {
+																									echo 'value="'
+																											. htmlentities(
+																													$to,
+																													ENT_COMPAT,
+																													'UTF-8')
+																											. '"';
+																								}
+																									  ?>/>
 											</li>
 										</ul>
 										<div class="container-shape-images">
@@ -881,14 +1112,22 @@ if (isset($_POST['btnSubmit'])) {
 										</legend>
 										<label for="to">To *</label>
 										<input type="text" id="to" name="to" <?php if (!empty(
-												$to) && ($missing || $errors)) {
-											echo 'value="'
-													. htmlentities($to,
-															ENT_COMPAT,
-															'UTF-8') . '"';
-										} ?>/>
+																											  $to)
+																											  && ($missing
+																													  || $errors)) {
+																										  echo 'value="'
+																												  . htmlentities(
+																														  $to,
+																														  ENT_COMPAT,
+																														  'UTF-8')
+																												  . '"';
+																									  }
+																			 ?>/>
 											<?php if ($missing
-												&& in_array('to', $missing)) { ?>
+																					 && in_array(
+																							 'to',
+																							 $missing)) {
+											?>
                   							<label class="error">Please enter your email address</label>
                 							<?php } elseif (isset($errors['to'])) { ?>
                   							<label class="error">Invalid email address</label>
@@ -899,10 +1138,13 @@ if (isset($_POST['btnSubmit'])) {
 											</p>
 										</div>
 										<label for="message">Message (optional)</label>
-										<textarea rows="5" id="message" name="message"><?php if (!empty(
-		$message) && ($missing || $errors)) {
-	echo htmlentities($message);
-} ?></textarea>
+										<textarea rows="5" id="message" name="message">
+										<?php if (!empty($message)
+		&& ($missing || $errors)) {
+	echo htmlentities($message, ENT_COMPAT, 'UTF-8');
+}
+										?>
+										</textarea>
 										<input type="submit" id="btnSubmit" name="btnSubmit" value="Calculate Quote" />
 											<p class="instructions">
 												Your quote will be sent only to the recipients you have designated.
