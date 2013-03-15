@@ -16,6 +16,16 @@ if (isset($_POST['btnSubmit'])) {
 			'd2InchesSpout3Default', 'diameterInchesSpout3Default', 'to',
 			'message');
 	$required = array('to');
+	
+	if (!isset($_POST['typeSpout1Default'])) {
+		$_POST['typeSpout1Default'] = '';
+	}
+	if (!isset($_POST['typeSpout2Default'])) {
+		$_POST['typeSpout2Default'] = '';
+	}
+	if (!isset($_POST['typeSpout3Default'])) {
+		$_POST['typeSpout3Default'] = '';
+	}
 
 	// assume nothing is suspect
 	$suspect = false;
@@ -506,7 +516,7 @@ if (isset($_POST['btnSubmit'])) {
 																== 'standard-discharge-funnel')) {
 											echo 'checked';
 										}
-										?>
+										?>/>
 										<label for="std-fnl" class="std-fnl clearfix"><h4 class="name">Standard Discharge Funnel</h4>
 											<div class="component-image ir">
 												Standard Discharge Funnel image
