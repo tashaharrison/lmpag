@@ -13,10 +13,10 @@ if (isset($_POST['btnSubmit'])) {
 			'widthInchesSpout2Default', 'd1InchesSpout2Default',
 			'd2InchesSpout2Default', 'diameterInchesSpout2Default',
 			'widthInchesSpout3Default', 'd1InchesSpout3Default',
-			'd2InchesSpout3Default', 'diameterInchesSpout3Default', 'to',
+			'd2InchesSpout3Default', 'diameterInchesSpout3Default', 'to', 'cc',
 			'message');
 	$required = array('to');
-	
+
 	if (!isset($_POST['typeSpout1Default'])) {
 		$_POST['typeSpout1Default'] = '';
 	}
@@ -65,11 +65,18 @@ if (isset($_POST['btnSubmit'])) {
 		}
 	}
 
-	// validate the user's email
+	// validate the to email
 	if (!$suspect && !empty($to)) {
 		$validemail = filter_input(INPUT_POST, 'to', FILTER_VALIDATE_EMAIL);
 		if (!$validemail) {
 			$errors['to'] = true;
+		}
+	}
+	// validate the cc email
+	if (!$suspect && !empty($cc)) {
+		$validemail = filter_input(INPUT_POST, 'cc', FILTER_VALIDATE_EMAIL);
+		if (!$validemail) {
+			$errors['cc'] = true;
 		}
 	}
 
@@ -93,7 +100,7 @@ if (isset($_POST['btnSubmit'])) {
 		$messageHTML = "Text of the message : " . urldecode($text)
 				. " The full response is: ";
 		$messageText = "Text of the message : " . urldecode($text)
-		. " The full response is: ";
+				. " The full response is: ";
 		// Create a message
 		$emailMessage = Swift_Message::newInstance(
 				'Logical Machines Quote Generator')
@@ -104,7 +111,7 @@ if (isset($_POST['btnSubmit'])) {
 				->setSender('pgjainsworth@gmail.com')
 				->setReturnPath('pgjainsworth@gmail.com')
 				->setBcc(array('pgjainsworth@gmail.com'))->setMaxLineLength(78)
-				->setTo(array($to));
+				->setTo(array($to))->setCc(array($cc));
 
 		if ($mailer->send($emailMessage)) {
 			$response = "<div class=\"success\"><p>Thank you. Your email has been successfully sent.</p></div>";
@@ -540,9 +547,11 @@ if (isset($_POST['btnSubmit'])) {
 									<li class="small default-discharge-funnel">
 										<input type="radio" id="steep-fnl" name="dischargefunnel" value="steep-funnel" 
 										<?php
-if ($_POST && $_POST['dischargefunnel'] == 'steep-funnel') {
-	echo 'checked';
-}
+										if ($_POST
+												&& $_POST['dischargefunnel']
+														== 'steep-funnel') {
+											echo 'checked';
+										}
 										?>/>
 										<label for="steep-fnl" class="steep-fnl clearfix"><h4 class="name">Steep-Sided Discharge Funnel</h4>
 											<div class="component-image ir">
@@ -1146,7 +1155,22 @@ if ($_POST && $_POST['dischargefunnel'] == 'steep-funnel') {
                 							<?php } ?>
 										<div class="instructions">
 											<p>
-												Enter as many email addresses as you'd like separated by a comma.
+												Enter the main email address that you would like to send the quote to.
+											</p>
+										</div>
+										<label for="to">Cc</label>
+										<input type="text" id="cc" name="cc" <?php if (!empty(
+		$cc) && ($missing || $errors)) {
+	echo 'value="'
+			. htmlentities($cc, ENT_COMPAT, 'UTF-8') . '"';
+}
+																			 ?>/>
+											<?php if (isset($errors['cc'])) { ?>
+                  							<label class="error">Invalid email address</label>
+                							<?php } ?>
+										<div class="instructions">
+											<p>
+												Copy in an additional email address to receive the quote.
 											</p>
 										</div>
 										<label for="message">Message (optional)</label>
