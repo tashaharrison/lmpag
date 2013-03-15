@@ -1,28 +1,70 @@
 <?php
 // define variables and initialize with empty values
-$machineModel = "";
-$weighHopper = "";
-$dischargeFunnel = "";
-$recipient = "";
-$text = "";
+$errors = array();
+$missing = array();
 
-$recipientErr = "";
-$textErr = "";
+// if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if (isset($_POST['btnSubmit'])) {
+	$expected = array('machinemodel', 'weigh-hopper', 'discharge-funnel',
+			'widthSpout1', 'd1Spout1', 'd2Spout1', 'diameterSpout1',
+			'widthInchesSpout1Default', 'd1InchesSpout1Default',
+			'd2InchesSpout1Default', 'diameterInchesSpout1Default',
+			'widthInchesSpout2Default', 'd1InchesSpout2Def',
+			'd2InchesSpout2Default', 'diameterInchesSpout2Default',
+			'widthInchesSpout3Default', 'd1InchesSpout3Default',
+			'd2InchesSpout3Default', 'diameterInchesSpout3Default', 'to',
+			'message');
+	$required = array('to');
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	$machineModel = $_POST["machine-model"];
-	$weighHopper = $_POST["weigh-hopper"];
-	$dischargeFunnel = $_POST["discharge-funnel"];
-	$recipient = $_POST["recipient"];
-	$text = $_POST["message"];
-	
-	if (!filter_var($recipient, FILTER_VALIDATE_EMAIL)) {
-		$recipientErr = "Please enter a valid email address.";
-	} elseif (empty($_POST["message"])) {
-		$textErr = "Missing";
-	} else {
-		$recipient = $_POST["recipient"];
-		$text = $_POST["message"];
+	// assume nothing is suspect
+	$suspect = false;
+	// create a pattern to locate suspect phrases
+	$pattern = '/Content-Type:|Bcc:|Cc:/i';
+
+	// function to check for suspect phrases
+	function isSuspect($val, $pattern, &$suspect) {
+		// if the variable is an array, loop through each element
+		// and pass it recursively back to the same function
+		if (is_array($val)) {
+			foreach ($val as $item) {
+				isSuspect($item, $pattern, $suspect);
+			}
+		} else {
+			// if one of the suspect phrases is found, set Boolean to true
+			if (preg_match($pattern, $val)) {
+				$suspect = true;
+			}
+		}
+	}
+
+	// check the $_POST array and any subarrays for suspect content
+	isSuspect($_POST, $pattern, $suspect);
+
+	if (!$suspect) {
+		foreach ($_POST as $key => $value) {
+			// assign to temporary variable and strip whitespace if not an array
+			$temp = is_array($value) ? $value : trim($value);
+			// if empty and required, add to $missing array
+			if (empty($temp) && in_array($key, $required)) {
+				$missing[] = $key;
+			} elseif (in_array($key, $expected)) {
+				// otherwise, assign to a variable of the same name as $key
+				${$key} = $temp;
+			}
+		}
+	}
+
+	// validate the user's email
+	if (!$suspect && !empty($to)) {
+		$validemail = filter_input(INPUT_POST, 'to', FILTER_VALIDATE_EMAIL);
+		if (!$validemail) {
+			$errors['to'] = true;
+		}
+	}
+
+	$mailer = false;
+
+	if (!$suspect && !$missing && !$errors) {
 		require_once 'bin/swiftmailer/lib/swift_required.php';
 
 		// Create the Transport
@@ -35,8 +77,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$transport = Swift_MailTransport::newInstance();
 		// Create the Mailer using your created Transport
 		$mailer = Swift_Mailer::newInstance($transport);
-		$text = $_POST['message'];
-		$to = urldecode($_POST['recipient']);
+		$text = $message;
+		$to = urldecode($to);
 		$messageHTML = "Text of the message : " . urldecode($text)
 				. " The full response is: ";
 
@@ -54,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		if ($mailer->send($emailMessage)) {
 			$response = "<div class=\"success\"><p>Thank you. Your email has been successfully sent.</p></div>";
 		} else {
-			$response = "<div class=\"warning\"><p>I'm sorry we were unable to send your quote by email. Please check the email addresses that you entered and try again.</p></div>";
+			$errors['mailfail'] = true;
 		}
 	}
 }
@@ -184,8 +226,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					<?php echo isset($response) && !empty($response) ? $response
 		: '';
 					?>				
+					 <?php if ($_POST && $suspect) { ?>
+         			<p class="warning">Sorry, your mail could not be sent. Please try later.</p>
+        			<?php } elseif ($missing || $errors) { ?>
+           			<p class="warning">Please fix the item(s) indicated.</p>
+        			<?php } ?>
 					<form method="post" name="logical-machines-quote-generator" id="logical-machines-quote-generator" action="<?php echo htmlspecialchars(
-							$_SERVER["PHP_SELF"]);
+		$_SERVER["PHP_SELF"]);
 																															  ?>">
 						<div id="form-pages">
 
@@ -222,8 +269,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 								<h4>Please begin by selecting your model.</h4>
 								<ul id="field-name-machine-model" class="field-container field-type-radio">
 									<li>
-										<input type="radio" id="s4" class="radio active" name="machine-model" 
-										<?php if (isset($machineModel) && $machineModel == "S-4") echo "checked"; ?> 
+										<input type="radio" id="s4" class="radio active" name="machinemodel" 
+										<?php if (isset($machineModel)
+																																	  && $machineModel
+																																			  == "S-4")
+																																  echo "checked";
+										?> 
 										value="S-4" checked="checked" />
 										<label for="s4"><h4><span class="name">S-4</span>&nbsp;<span class="type">Weigh Fill System</span></h4>
 											<p class="description">
@@ -278,8 +329,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 											</p></label>
 									</li>
 									<li>
-										<input type="radio" id="s5" name="machine-model" 
-										<?php if (isset($machineModel) && $machineModel == "S-5") echo "checked"; ?> 
+										<input type="radio" id="s5" name="machinemodel" 
+										<?php if (isset($machineModel)
+												&& $machineModel == "S-5")
+											echo "checked";
+										?> 
 										value="S-5" />
 										<label for="s5"><h4><span class="name">S-5</span>&nbsp;<span class="type">Bulk Fill System</span></h4>
 											<p class="description">
@@ -290,8 +344,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 											</p></label>
 									</li>
 									<li>
-										<input type="radio" id="s6" name="machine-model" 
-										<?php if (isset($machineModel) && $machineModel == "S-6") echo "checked"; ?> 
+										<input type="radio" id="s6" name="machinemodel" 
+										<?php if (isset($machineModel)
+												&& $machineModel == "S-6")
+											echo "checked";
+										?> 
 										value="S-6" />
 										<label for="s6"><h4><span class="name">S-6</span>&nbsp;<span class="type">Cascading Weigh FIller</span></h4>
 											<p class="description">
@@ -302,8 +359,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 											</p></label>
 									</li>
 									<li>
-										<input type="radio" id="s7" name="machine-model" 
-										<?php if (isset($machineModel) && $machineModel == "S-7") echo "checked"; ?> 
+										<input type="radio" id="s7" name="machinemodel" 
+										<?php if (isset($machineModel)
+												&& $machineModel == "S-7")
+											echo "checked";
+										?> 
 										value="S-7" />
 										<label for="s7"><h4><span class="name">S-7</span>&nbsp;<span class="type">Dual-Lane Weigh FIller</span></h4>
 											<p class="description">
@@ -323,7 +383,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 								</p>
 								<ul id="field-name-weigh-hopper" class="field-type-radio field-container">
 									<li class="small">
-										<input type="radio" id="smwh" class="active" name="weigh-hopper" value="small-weigh-hopper" checked="checked"/>
+										<input type="radio" id="smwh" class="active" name="weighhopper" value="small-weigh-hopper" checked="checked"/>
 										<label for="smwh" class="clearfix"><h4 class="name">Small Weigh Hopper</h4>
 											<div class="component-image ir">
 												Small Weigh Hopper image
@@ -337,7 +397,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 									</li>
 									<li class="large">
-										<input type="radio" id="lrgwh" name="weigh-hopper" value="large-weigh-hopper" />
+										<input type="radio" id="lrgwh" name="weighhopper" value="large-weigh-hopper" />
 										<label for="lrgwh" class="clearfix"><h4 class="name">Large Weigh Hopper</h4>
 											<div class="component-image ir">
 												Large Weigh Hopper image
@@ -360,7 +420,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 								</p>
 								<ul id="field-name-discharge-funnel" class="field-type-radio field-container">
 									<li class="small hidden">
-										<input type="radio" id="small-std-fnl" name="discharge-funnel" value="small-standard-funnel" />
+										<input type="radio" id="small-std-fnl" name="dischargefunnel" value="small-standard-funnel" />
 										<label for="small-std-fnl" class="std-fnl clearfix"><h4 class="name">Small Standard Discharge Funnel</h4>
 											<div class="component-image ir">
 												Small Standard Discharge Funnel image
@@ -373,7 +433,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 											</p></label>
 									</li>
 									<li class="small hidden">
-										<input type="radio" id="small-steep-fnl" name="discharge-funnel" value="small-steep-funnel" />
+										<input type="radio" id="small-steep-fnl" name="dischargefunnel" value="small-steep-funnel" />
 										<label for="small-steep-fnl" class="steep-fnl clearfix"><h4 class="name">Small Steep-Sided Discharge Funnel</h4>
 											<div class="component-image ir">
 												Small Steep-Sided Discharge image
@@ -386,7 +446,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 											</p></label>
 									</li>
 									<li class="large hidden">
-										<input type="radio" id="large-std-fnl" name="discharge-funnel" value="large-standard-funnel" />
+										<input type="radio" id="large-std-fnl" name="dischargefunnel" value="large-standard-funnel" />
 										<label for="large-std-fnl" class="std-fnl clearfix"><h4 class="name">Large Standard Discharge Funnel</h4>
 											<div class="component-image ir">
 												Large Standard Discharge Funnel image
@@ -399,7 +459,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 											</p></label>
 									</li>
 									<li class="large hidden">
-										<input type="radio" id="large-steep-fnl" name="discharge-funnel" value="large-steep-funnel" />
+										<input type="radio" id="large-steep-fnl" name="dischargefunnel" value="large-steep-funnel" />
 										<label for="large-steep-fnl" class="steep-fnl clearfix"><h4 class="name">Large Steep-Sided Discharge Funnel</h4>
 											<div class="component-image ir">
 												Large Steep-Sided Discharge image
@@ -412,7 +472,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 											</p></label>
 									</li>
 									<li class="small default-discharge-funnel">
-										<input type="radio" id="std-fnl" class="active" name="discharge-funnel" value="standard-discharge-funnel" checked="checked" />
+										<input type="radio" id="std-fnl" class="active" name="dischargefunnel" value="standard-discharge-funnel" checked="checked" />
 										<label for="std-fnl" class="std-fnl clearfix"><h4 class="name">Standard Discharge Funnel</h4>
 											<div class="component-image ir">
 												Standard Discharge Funnel image
@@ -432,7 +492,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 									</li>
 									<li class="small default-discharge-funnel">
-										<input type="radio" id="steep-fnl" name="discharge-funnel" value="steep-funnel" />
+										<input type="radio" id="steep-fnl" name="dischargefunnel" value="steep-funnel" />
 										<label for="steep-fnl" class="steep-fnl clearfix"><h4 class="name">Steep-Sided Discharge Funnel</h4>
 											<div class="component-image ir">
 												Steep-Sided Discharge image
@@ -819,20 +879,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 										<legend>
 											Message details
 										</legend>
-										<label for="recipient">To *</label>
-										<input type="text" id="recipient" name="recipient" value="<?php echo htmlspecialchars(
-																																	  $recipient); ?>"/>
-										<span class="error"><?php echo $recipientErr; ?></span>
+										<label for="to">To *</label>
+										<input type="text" id="to" name="to" <?php if (!empty(
+												$to) && ($missing || $errors)) {
+											echo 'value="'
+													. htmlentities($to,
+															ENT_COMPAT,
+															'UTF-8') . '"';
+										} ?>/>
+											<?php if ($missing
+												&& in_array('to', $missing)) { ?>
+                  							<label class="error">Please enter your email address</label>
+                							<?php } elseif (isset($errors['to'])) { ?>
+                  							<label class="error">Invalid email address</label>
+                							<?php } ?>
 										<div class="instructions">
 											<p>
 												Enter as many email addresses as you'd like separated by a comma.
 											</p>
 										</div>
 										<label for="message">Message (optional)</label>
-										<textarea rows="5" id="message" name="message"><?php echo htmlspecialchars(
-																																	  $text); ?></textarea>
-										<span class="error"><?php echo $textErr; ?></span>
-										<input type="submit" id="btnSubmit" value="Calculate Quote" />
+										<textarea rows="5" id="message" name="message"><?php if (!empty(
+		$message) && ($missing || $errors)) {
+	echo htmlentities($message);
+} ?></textarea>
+										<input type="submit" id="btnSubmit" name="btnSubmit" value="Calculate Quote" />
 											<p class="instructions">
 												Your quote will be sent only to the recipients you have designated.
 											</p>
