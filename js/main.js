@@ -6,30 +6,28 @@ $(document).ready(function() {
      * Validation criteria
      */
 
-    var dimensionValidationRules = {
-        required : true,
-        number : true,
+    var email = {
+        email: true 
     };
+    var emailMessages = {
+    	emails : "Please enter a valid email address.",
+        };
     var requiredEmail = {
         required : true,
-        multiemails: true, 
-    };
-    var dimensionValidationMessages = {
-        required : "This is a required field.",
-        number : "Please enter a number.",
+        email: true, 
     };
     var requiredEmailMessages = {
-        required : "This is a required field.",
-        multiemails : "Please enter only valid email addresses.",
+        required : "Please enter an email address.",
+    	emails : "Please enter a valid email address.",
     };
     $form.validate({
         rules : {
             to : requiredEmail,
-            cc : requiredEmail
+            cc : email
         },
         messages : {
             to : requiredEmailMessages,
-            cc : requiredEmailMessages
+            cc : emailMessages
         }
     });
 
