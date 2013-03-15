@@ -6,8 +6,12 @@ $missing = array();
 // if ($_SERVER["REQUEST_METHOD"] == "POST") {
 if (isset($_POST['btnSubmit'])) {
 	$expected = array('machinemodel', 'weighhopper', 'dischargefunnel',
-			'typeSpout1Default', 'typeSpout2Default', 'typeSpout3Default',
-			'widthSpout1', 'd1Spout1', 'd2Spout1', 'diameterSpout1',
+			'typeSpout1', 'widthSpout1', 'd1Spout1', 'd2Spout1',
+			'diameterSpout1', 'typeSpout2', 'widthSpout2', 'd1Spout2',
+			'd2Spout2', 'diameterSpout2', 'typeSpout3', 'widthSpout3',
+			'd1Spout3', 'd2Spout3', 'diameterSpout3', 'typeSpout1Default',
+			'typeSpout2Default', 'typeSpout3Default', 'widthSpout1',
+			'd1Spout1', 'd2Spout1', 'diameterSpout1',
 			'widthInchesSpout1Default', 'd1InchesSpout1Default',
 			'd2InchesSpout1Default', 'diameterInchesSpout1Default',
 			'widthInchesSpout2Default', 'd1InchesSpout2Default',
@@ -1235,13 +1239,7 @@ if ($_POST
 											</p>
 										</div>
 										<label for="message">Message (optional)</label>
-										<textarea rows="5" id="message" name="message">
-										<?php if (!empty($message)
-		&& ($missing || $errors)) {
-	echo htmlentities($message, ENT_COMPAT, 'UTF-8');
-}
-										?>
-										</textarea>
+										<textarea rows="5" id="message" name="message"><?php if (!empty($message) && ($missing || $errors)) {echo htmlentities($message, ENT_COMPAT, 'UTF-8');} ?></textarea>
 										<input type="submit" id="btnSubmit" name="btnSubmit" value="Calculate Quote" />
 											<p class="instructions">
 												Your quote will be sent only to the recipients you have designated.

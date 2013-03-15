@@ -6,30 +6,30 @@ $(document).ready(function() {
      * Validation criteria
      */
 
-    var email = {
-        email: true 
-    };
-    var emailMessages = {
-    	emails : "Please enter a valid email address.",
+    	var email = {
+            email: true 
         };
-    var requiredEmail = {
-        required : true,
-        email: true, 
-    };
-    var requiredEmailMessages = {
-        required : "Please enter an email address.",
-    	emails : "Please enter a valid email address.",
-    };
-    $form.validate({
-        rules : {
-            to : requiredEmail,
-            cc : email
-        },
-        messages : {
-            to : requiredEmailMessages,
-            cc : emailMessages
-        }
-    });
+        var emailMessages = {
+        	emails : "Please enter a valid email address.",
+            };
+        var requiredEmail = {
+            required : true,
+            email: true, 
+        };
+        var requiredEmailMessages = {
+            required : "Please enter an email address.",
+        	emails : "Please enter a valid email address.",
+        };
+        $form.validate({
+            rules : {
+                to : requiredEmail,
+                cc : email
+            },
+            messages : {
+                to : requiredEmailMessages,
+                cc : emailMessages
+            }
+        });
 
     /*
     * Declare global variables
@@ -37,7 +37,7 @@ $(document).ready(function() {
     // List of spouts available for sale
     var availableSpouts = [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3, 3.25, 3.5],
     // Field containers
-    $fieldContainer = $('.field-container'), $machineModel = $('#field-name-machine-model'), $weighHopper = $('#field-name-weigh-hopper'), $dischargeFunnel = $('#field-name-discharge-funnel'), $spout = $('#field-name-spout'),
+    $fieldContainer = $('.field-container'), $machineModel = $('#field-name-machine-model'), $weighHopper = $('#field-name-weigh-hopper'), $dischargeFunnel = $('#field-name-discharge-funnel'), $spout = $('#field-name-spout'), $spout1 = $spout.find('#spout1'), $spout2 = $spout.find('#spout2'), $spout3 = $spout.find('#spout3'),
     // Field labels for extracting data
     $machineData = $machineModel.find('label'), $weighHopperData = $weighHopper.find($('label')), $dischargeFunnelData = $dischargeFunnel.find($('label')),
     // Machine image variables
@@ -171,6 +171,12 @@ $(document).ready(function() {
         $('#results').append('<tr class="total"><td>&nbsp;</td><th>Total:</th><td>$' + grandTotal + '</td></tr>');
         $('#results tr').filter(':even').addClass('even');
 
+        var $disabled = $form.find('input:disabled').prop('disabled', false);
+        $('#datastring').remove();
+        dataString = $form.serialize();
+        $disabled.prop('disabled', true);
+        $('#quote-summary').append('<div id="datastring">' + dataString + '</div>');
+
         /*
          * var fields = $(':input').serializeArray();
          * $('#results').empty(); $.each(fields, function(i,
@@ -198,9 +204,35 @@ $(document).ready(function() {
 
     $btnSubmit.on('click', function() {
         var $disabled = $form.find('input:disabled').prop('disabled', false);
-    	var quoteSummary = $('#quote-summary').html(), $customerFields = $('#emailQuote input[type=text]'), firstName = $('#emailQuote input[name=firstName]').val(), lastName = $('#emailQuote input[name=lastName]').val(), email = $('#emailQuote input[name=email]').val(), company = $('#emailQuote input[name=company]').val(), zip = $('#emailQuote input[name=zip]').val(), phone = $('#emailQuote input[name=phone]').val(), dataString = $form.serialize();
-        $disabled.prop('disabled', true);
-    	//dataString = 'firstName=' + firstName + '&lastName=' + lastName + '&email=' + email + '&company=' + company + '&zip=' + zip + '&phone=' + phone;
+    	var quoteSummary = $('#quote-summary').html();
+    	
+        var machinemodel = $machineModel.find('input:checked').val(),
+        weighhopper = $weighHopper.find('input:checked').val(),
+        dischargefunnel = $dischargeFunnel.find('input:checked').val(),
+        
+        typeSpout1 = $spout1.find('input:checked').val(),
+        widthSpout1 = $spout1.find('.field-name-dimensions .width input').val(),
+        d1Spout1 = $spout1.find('.field-name-dimensions .d1 input').val(),
+        d2Spout1 = $spout1.find('.field-name-dimensions .d2 input').val(),
+        diameterSpout1 = $spout1.find('.field-name-dimensions .diameter input').val(),
+        
+        typeSpout2 = $spout2.find('input:checked').val(),
+        widthSpout1Spout2 = $spout2.find('.field-name-dimensions .width input').val(),
+        d1Spout1Spout2 = $spout2.find('.field-name-dimensions .d1 input').val(),
+        d2Spout1Spout2 = $spout2.find('.field-name-dimensions .d2 input').val(),
+        diameterSpout1Spout2 = $spout2.find('.field-name-dimensions .diameter input').val(),
+        
+        typeSpout3 = $spout3.find('input:checked').val(),
+        widthSpout1Spout2Spout3 = $spout3.find('.field-name-dimensions .width input').val(),
+        d1Spout1Spout2Spout3 = $spout3.find('.field-name-dimensions .d1 input').val(),
+        d2Spout1Spout2Spout3 = $spout3.find('.field-name-dimensions .d2 input').val(),
+        diameterSpout1Spout2Spout3 = $spout3.find('.field-name-dimensions .diameter input').val(),
+        to = '',
+        cc = '',
+        message = '';
+        	
+    	$disabled.prop('disabled', true);
+    	dataString = 'firstName=' + firstName + '&lastName=' + lastName + '&email=' + email + '&company=' + company + '&zip=' + zip + '&phone=' + phone;
         // alert(dataString); return false;
         if ($customerFields.valid()) {
             $.ajax({
