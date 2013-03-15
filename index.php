@@ -67,16 +67,58 @@ if (isset($_POST['btnSubmit'])) {
 
 	// validate the to email
 	if (!$suspect && !empty($to)) {
-		$validemail = filter_input(INPUT_POST, 'to', FILTER_VALIDATE_EMAIL);
-		if (!$validemail) {
+		$validto = filter_input(INPUT_POST, 'to', FILTER_VALIDATE_EMAIL);
+		if (!$validto) {
 			$errors['to'] = true;
 		}
 	}
 	// validate the cc email
 	if (!$suspect && !empty($cc)) {
-		$validemail = filter_input(INPUT_POST, 'cc', FILTER_VALIDATE_EMAIL);
-		if (!$validemail) {
+		$validcc = filter_input(INPUT_POST, 'cc', FILTER_VALIDATE_EMAIL);
+		if (!$validcc) {
 			$errors['cc'] = true;
+		}
+	}
+	// validate the spout 1 dimensions
+	if (!$suspect && !empty($typeSpout1Default)) {
+		if ($typeSpout1Default == 'flat-bag'
+				&& empty($widthInchesSpout1Default)) {
+			$errors['widthSpout1'] = true;
+		} elseif ($typeSpout1Default == 'four-sided-bag'
+				&& (empty($d1InchesSpout1Default)
+						|| empty($d2InchesSpout1Default))) {
+			$errors['d1d2Spout1'] = true;
+		} elseif ($typeSpout1Default == 'can-jar'
+				&& empty($diameterInchesSpout2Default)) {
+			$errors['diameterSpout1'] = true;
+		}
+	}
+	// validate the spout 2 dimensions
+	if (!$suspect && !empty($typeSpout2Default)) {
+		if ($typeSpout2Default == 'flat-bag'
+				&& empty($widthInchesSpout2Default)) {
+			$errors['widthSpout2'] = true;
+		} elseif ($typeSpout2Default == 'four-sided-bag'
+				&& (empty($d1InchesSpout2Default)
+						|| empty($d2InchesSpout2Default))) {
+			$errors['d1d2Spout2'] = true;
+		} elseif ($typeSpout2Default == 'can-jar'
+				&& empty($diameterInchesSpout2Default)) {
+			$errors['diameterSpout2'] = true;
+		}
+	}
+	// validate the spout 3 dimensions
+	if (!$suspect && !empty($typeSpout3Default)) {
+		if ($typeSpout3Default == 'flat-bag'
+				&& empty($widthInchesSpout3Default)) {
+			$errors['widthSpout3'] = true;
+		} elseif ($typeSpout3Default == 'four-sided-bag'
+				&& (empty($d1InchesSpout3Default)
+						|| empty($d2InchesSpout3Default))) {
+			$errors['d1d2Spout3'] = true;
+		} elseif ($typeSpout3Default == 'can-jar'
+				&& empty($diameterInchesSpout3Default)) {
+			$errors['diameterSpout3'] = true;
 		}
 	}
 
@@ -594,8 +636,8 @@ if (isset($_POST['btnSubmit'])) {
 												<input type="radio" id="type1Spout1" name="typeSpout1" value="flat-bag" />
 												<label for="type1Spout1">
 													<div class="spout-sprite ir">
-														Flag bag spout image
-													</div><h4 class="name">Flag bag</h4></label>
+														Flat bag spout image
+													</div><h4 class="name">Flat bag</h4></label>
 											</li>
 											<li class="four-sided-bag">
 												<input type="radio" id="type2Spout1" name="typeSpout1" value="four-sided-bag" />
@@ -646,7 +688,7 @@ if (isset($_POST['btnSubmit'])) {
 										</ul>
 										<div class="container-shape-images">
 											<div class="spout-sprite flat-bag ir">
-												Flag bag spout shape image
+												Flat bag spout shape image
 											</div>
 											<div class="spout-sprite four-sided-bag ir">
 												4 sided bag spout shape image
@@ -674,21 +716,22 @@ if (isset($_POST['btnSubmit'])) {
 										</div>								
 										<ul class="field-type-radio field-name-spout-type">
 											<li class="flat-bag">
-												<input type="radio" id="type0Spout1Default" name="typeSpout1Default" value="flag-bag" 
+												<input type="radio" id="type1Spout1Default" name="typeSpout1Default" value="flat-bag" 
 												<?php
 										if ($_POST
 												&& $_POST['typeSpout1Default']
-														== 'flag-bag') {
+														== 'flat-bag') {
 											echo 'checked';
 										}
 												?>/>
-												<label for="type0Spout1Default">
+
+												<label for="type1Spout1Default">
 													<div class="spout-sprite flat-bag-spout ir">
-														Flag bag spout image
-													</div><h4>Flag bag</h4></label>
+														Flat bag spout image
+													</div><h4>Flat bag</h4></label>
 											</li>
 											<li class="four-sided-bag">
-												<input type="radio" id="type1Spout1Default" name="typeSpout1Default" value="four-sided-bag" 
+												<input type="radio" id="type2Spout1Default" name="typeSpout1Default" value="four-sided-bag" 
 												<?php
 												if ($_POST
 														&& $_POST['typeSpout1Default']
@@ -696,13 +739,13 @@ if (isset($_POST['btnSubmit'])) {
 													echo 'checked';
 												}
 												?>/>
-												<label for="type1Spout1Default">
+												<label for="type2Spout1Default">
 													<div class="spout-sprite four-sided-bag-spout ir">
 														4 sided bag spout image
 													</div><h4>4 sided bag</h4></label>
 											</li>
 											<li class="can-jar">
-												<input type="radio" id="type2Spout1Default" name="typeSpout1Default" value="can-jar" 
+												<input type="radio" id="type3Spout1Default" name="typeSpout1Default" value="can-jar" 
 												<?php
 												if ($_POST
 														&& $_POST['typeSpout1Default']
@@ -710,7 +753,7 @@ if (isset($_POST['btnSubmit'])) {
 													echo 'checked';
 												}
 												?>/>
-												<label for="type2Spout1Default">
+												<label for="type3Spout1Default">
 													<div class="spout-sprite can-or-jar-spout ir">
 														Can or Jar spout image
 													</div><h4>Can or Jar</h4></label>
@@ -793,9 +836,18 @@ if (isset($_POST['btnSubmit'])) {
 																									  ?>/>
 											</li>
 										</ul>
+										<?php if (isset($errors['widthSpout1'])) { ?>
+                  							<label class="error clear">Please enter a width measurement in the 'Width in inches' field</label>
+                						<?php } elseif (isset(
+		$errors['d1d2Spout1'])) { ?>
+                  							<label class="error clear">Please enter a measurement in both the 'D1' & 'D2' fields</label>
+                						<?php } elseif (isset(
+		$errors['diameterSpout1'])) { ?>
+                  								<label class="error clear">Please enter a diameter measurement in the 'Diameter in inches' field</label>
+                						<?php } ?>
 										<div class="container-shape-images">
 											<div class="spout-sprite flat-bag ir">
-												Flag bag spout shape image
+												Flat bag spout shape image
 											</div>
 											<div class="spout-sprite four-sided-bag ir">
 												4 sided bag spout shape image
@@ -817,21 +869,20 @@ if (isset($_POST['btnSubmit'])) {
 										</div>								
 										<ul class="field-type-radio field-name-spout-type">
 											<li class="flat-bag">
-												<input type="radio" id="type0Spout2Default" name="typeSpout2Default" value="flag-bag" 
+												<input type="radio" id="type1Spout2Default" name="typeSpout2Default" value="flat-bag" 
 												<?php
-																									  if ($_POST
-																											  && $_POST['typeSpout2Default']
-																													  == 'flag-bag') {
-																										  echo 'checked';
-																									  }
+if ($_POST
+		&& $_POST['typeSpout2Default'] == 'flat-bag') {
+	echo 'checked';
+}
 												?>/>
-												<label for="type0Spout2Default">
+												<label for="type1Spout2Default">
 													<div class="spout-sprite flat-bag-spout ir">
-														Flag bag spout image
-													</div><h4>Flag bag</h4></label>
+														Flat bag spout image
+													</div><h4>Flat bag</h4></label>
 											</li>
 											<li class="four-sided-bag">
-												<input type="radio" id="type1Spout2Default" name="typeSpout2Default" value="four-sided-bag" 
+												<input type="radio" id="type2Spout2Default" name="typeSpout2Default" value="four-sided-bag" 
 												<?php
 												if ($_POST
 														&& $_POST['typeSpout2Default']
@@ -839,13 +890,13 @@ if (isset($_POST['btnSubmit'])) {
 													echo 'checked';
 												}
 												?>/>
-												<label for="type1Spout2Default">
+												<label for="type2Spout2Default">
 													<div class="spout-sprite four-sided-bag-spout ir">
 														4 sided bag spout image
 													</div><h4>4 sided bag</h4></label>
 											</li>
 											<li class="can-jar">
-												<input type="radio" id="type2Spout2Default" name="typeSpout2Default" value="can-jar" 
+												<input type="radio" id="type3Spout2Default" name="typeSpout2Default" value="can-jar" 
 												<?php
 												if ($_POST
 														&& $_POST['typeSpout2Default']
@@ -853,7 +904,7 @@ if (isset($_POST['btnSubmit'])) {
 													echo 'checked';
 												}
 												?>/>
-												<label for="type2Spout2Default">
+												<label for="type3Spout2Default">
 													<div class="spout-sprite can-or-jar-spout ir">
 														Can or Jar spout image
 													</div><h4>Can or Jar</h4></label>
@@ -936,9 +987,18 @@ if (isset($_POST['btnSubmit'])) {
 																									  ?>/>
 											</li>
 										</ul>
+										<?php if (isset($errors['widthSpout2'])) { ?>
+                  							<label class="error clear">Please enter a width measurement in the 'Width in inches' field</label>
+                						<?php } elseif (isset(
+		$errors['d1d2Spout2'])) { ?>
+                  							<label class="error clear">Please enter a measurement in both the 'D1' & 'D2' fields</label>
+                						<?php } elseif (isset(
+		$errors['diameterSpout2'])) { ?>
+                  								<label class="error clear">Please enter a diameter measurement in the 'Diameter in inches' field</label>
+                						<?php } ?>
 										<div class="container-shape-images">
 											<div class="spout-sprite flat-bag ir">
-												Flag bag spout shape image
+												Flat bag spout shape image
 											</div>
 											<div class="spout-sprite four-sided-bag ir">
 												4 sided bag spout shape image
@@ -951,7 +1011,7 @@ if (isset($_POST['btnSubmit'])) {
 									
 									<fieldset id="defaultSpout3" class="default-field-spout">
 										<legend>
-											Spout 1
+											Spout 3
 										</legend>	
 										<div class="instructions">
 											<p>
@@ -960,21 +1020,20 @@ if (isset($_POST['btnSubmit'])) {
 										</div>								
 										<ul class="field-type-radio field-name-spout-type">
 											<li class="flat-bag">
-												<input type="radio" id="type0Spout3Default" name="typeSpout3Default" value="flag-bag" 
+												<input type="radio" id="type1Spout3Default" name="typeSpout3Default" value="flat-bag" 
 												<?php
-																									  if ($_POST
-																											  && $_POST['typeSpout3Default']
-																													  == 'flag-bag') {
-																										  echo 'checked';
-																									  }
+if ($_POST
+		&& $_POST['typeSpout3Default'] == 'flat-bag') {
+	echo 'checked';
+}
 												?>/>
-												<label for="type0Spout3Default">
+												<label for="type1Spout3Default">
 													<div class="spout-sprite flat-bag-spout ir">
-														Flag bag spout image
-													</div><h4>Flag bag</h4></label>
+														Flat bag spout image
+													</div><h4>Flat bag</h4></label>
 											</li>
 											<li class="four-sided-bag">
-												<input type="radio" id="type1Spout3Default" name="typeSpout3Default" value="four-sided-bag" 
+												<input type="radio" id="type2Spout3Default" name="typeSpout3Default" value="four-sided-bag" 
 												<?php
 												if ($_POST
 														&& $_POST['typeSpout3Default']
@@ -982,13 +1041,13 @@ if (isset($_POST['btnSubmit'])) {
 													echo 'checked';
 												}
 												?>/>
-												<label for="type1Spout3Default">
+												<label for="type2Spout3Default">
 													<div class="spout-sprite four-sided-bag-spout ir">
 														4 sided bag spout image
 													</div><h4>4 sided bag</h4></label>
 											</li>
 											<li class="can-jar">
-												<input type="radio" id="type2Spout3Default" name="typeSpout3Default" value="can-jar" 
+												<input type="radio" id="type3Spout3Default" name="typeSpout3Default" value="can-jar" 
 												<?php
 												if ($_POST
 														&& $_POST['typeSpout3Default']
@@ -996,7 +1055,7 @@ if (isset($_POST['btnSubmit'])) {
 													echo 'checked';
 												}
 												?>/>
-												<label for="type2Spout3Default">
+												<label for="type3Spout3Default">
 													<div class="spout-sprite can-or-jar-spout ir">
 														Can or Jar spout image
 													</div><h4>Can or Jar</h4></label>
@@ -1071,7 +1130,7 @@ if (isset($_POST['btnSubmit'])) {
 																												|| $errors)) {
 																									echo 'value="'
 																											. htmlentities(
-																													$d2InchesSpout3Default,
+																													$diameterInchesSpout3Default,
 																													ENT_COMPAT,
 																													'UTF-8')
 																											. '"';
@@ -1079,9 +1138,18 @@ if (isset($_POST['btnSubmit'])) {
 																									  ?>/>
 											</li>
 										</ul>
+										<?php if (isset($errors['widthSpout3'])) { ?>
+                  							<label class="error clear">Please enter a width measurement in the 'Width in inches' field</label>
+                						<?php } elseif (isset(
+		$errors['d1d2Spout3'])) { ?>
+                  							<label class="error clear">Please enter a measurement in both the 'D1' & 'D2' fields</label>
+                						<?php } elseif (isset(
+		$errors['diameterSpout3'])) { ?>
+                  								<label class="error clear">Please enter a diameter measurement in the 'Diameter in inches' field</label>
+                						<?php } ?>
 										<div class="container-shape-images">
 											<div class="spout-sprite flat-bag ir">
-												Flag bag spout shape image
+												Flat bag spout shape image
 											</div>
 											<div class="spout-sprite four-sided-bag ir">
 												4 sided bag spout shape image
@@ -1133,16 +1201,10 @@ if (isset($_POST['btnSubmit'])) {
 										</legend>
 										<label for="to">To *</label>
 										<input type="text" id="to" name="to" <?php if (!empty(
-																											  $to)
-																											  && ($missing
-																													  || $errors)) {
-																										  echo 'value="'
-																												  . htmlentities(
-																														  $to,
-																														  ENT_COMPAT,
-																														  'UTF-8')
-																												  . '"';
-																									  }
+		$to) && ($missing || $errors)) {
+	echo 'value="'
+			. htmlentities($to, ENT_COMPAT, 'UTF-8') . '"';
+}
 																			 ?>/>
 											<?php if ($missing
 																					 && in_array(
@@ -1161,8 +1223,7 @@ if (isset($_POST['btnSubmit'])) {
 										<label for="to">Cc</label>
 										<input type="text" id="cc" name="cc" <?php if (!empty(
 		$cc) && ($missing || $errors)) {
-	echo 'value="'
-			. htmlentities($cc, ENT_COMPAT, 'UTF-8') . '"';
+	echo 'value="' . htmlentities($cc, ENT_COMPAT, 'UTF-8') . '"';
 }
 																			 ?>/>
 											<?php if (isset($errors['cc'])) { ?>
