@@ -1,5 +1,50 @@
 <?php
 
+$settings = array(
+		// Machine settings
+		"S-4" => array("name" => "S-4", "type" => "Weigh Fill System",
+				"description" => "The standard S-4 includes the small weigh hopper, small discharge funnel, Logical Controller II and one spout. It comes fully assembled and ready to operate.",
+				"price" => "6150"),
+		"S-5" => array("name" => "S-5", "type" => "Bulk Fill System",
+				"description" => "The standard S-5 includes... It comes fully assembled and ready to operate.",
+				"price" => "5450"),
+		"S-6" => array("name" => "S-6", "type" => "Cascading Weigh FIller",
+				"description" => "The standard S-6 includes... It comes fully assembled and ready to operate.",
+				"price" => "9950"),
+		"S-7" => array("name" => "S-7", "type" => "Dual-Lane Weigh FIller",
+				"description" => "The standard S-7 includes... It comes fully assembled and ready to operate.",
+				"price" => "12000"),
+		// Weigh hopper settings
+		"small-weigh-hopper" => array("name" => "Small Weigh Hopper",
+				"description" => "The small weigh hopper comes standard on the S-4. Its 250 cubic inch capacity handles net weights from a few grams to 3 lbs.",
+				"price" => "0"),
+		"large-weigh-hopper" => array("name" => "Large Weigh Hopper",
+				"description" => "For larger volumes, the large weigh hopper's 650 cubic inch capacity handles net weights from 2 oz. to 10 lbs.",
+				"price" => "100"),
+		// Discharge funnel settings > Fallback copy for use when Javascript is disabled
+		"standard-discharge-funnel" => array(
+				"name" => "Standard Discharge Funnel",
+				"description" => "This is the standard funnel for use with the small and large weigh hoppers. It is practical for most free-flowing materials."),
+		"steep-funnel" => array("name" => "Steep-Sided Discharge Funnel",
+				"description" => "This steep sided funnel is used for fine powdered materials such as flour or other products that can stick to metal surfaces."),
+		// Discharge funnel settings > Normal copy for use when Javascript is enabled
+		"small-standard-funnel" => array(
+				"name" => "Small Standard Discharge Funnel",
+				"description" => "This is the standard funnel for use with the small weigh hopper. It is practical for most free-flowing materials.",
+				"price" => "0"),
+		"small-steep-funnel" => array(
+				"name" => "Small Steep-Sided Discharge Funnel",
+				"description" => "This steep sided funnel is used for fine powdered materials such as flour or other products that can stick to metal surfaces.",
+				"price" => "125"),
+		"large-standard-funnel" => array(
+				"name" => "Large Standard Discharge Funnel",
+				"description" => "This is the standard funnel for use with the large weigh hopper. It works best with free flowing products.",
+				"price" => "150"),
+		"large-steep-funnel" => array(
+				"name" => "Large Steep-Sided Discharge Funnel",
+				"description" => "This steep sided funnel is used for fine powdered materials such as flour or other products that can stick to metal surfaces.",
+				"price" => "400"));
+
 include_once 'bin/php_validation.php';
 
 ?>
