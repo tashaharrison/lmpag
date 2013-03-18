@@ -5,7 +5,7 @@ $missing = array();
 
 // if ($_SERVER["REQUEST_METHOD"] == "POST") {
 if (isset($_POST['btnSubmit'])) {
-	$expected = array('machinemodel', 'weighhopper', 'dischargefunnel',
+	$expected = array('nojs', 'machinemodel', 'weighhopper', 'dischargefunnel',
 			'typeSpout1', 'widthSpout1', 'd1Spout1', 'd2Spout1',
 			'diameterSpout1', 'typeSpout2', 'widthSpout2', 'd1Spout2',
 			'd2Spout2', 'diameterSpout2', 'typeSpout3', 'widthSpout3',
@@ -69,6 +69,10 @@ if (isset($_POST['btnSubmit'])) {
 		}
 	}
 
+	if ($message) {
+		$message = trim($message);
+	}
+	
 	// validate the to email
 	if (!$suspect && !empty($to)) {
 		$validto = filter_input(INPUT_POST, 'to', FILTER_VALIDATE_EMAIL);
@@ -129,41 +133,7 @@ if (isset($_POST['btnSubmit'])) {
 	$mailer = false;
 
 	if (!$suspect && !$missing && !$errors) {
-		require_once 'bin/swiftmailer/lib/swift_required.php';
-
-		// Create the Transport
-		/*
-		 $transport = Swift_SmtpTransport::newInstance('smtp.example.org', 25)
-		 ->setUsername('your username')
-		 ->setPassword('your password')
-		 ;
-		 */
-		$transport = Swift_MailTransport::newInstance();
-		// Create the Mailer using your created Transport
-		$mailer = Swift_Mailer::newInstance($transport);
-		$text = $message;
-		$to = urldecode($to);
-		$messageHTML = "Text of the message : " . urldecode($text)
-				. " The full response is: ";
-		$messageText = "Text of the message : " . urldecode($text)
-				. " The full response is: ";
-		// Create a message
-		$emailMessage = Swift_Message::newInstance(
-				'Logical Machines Quote Generator')
-				->setBody($messageHTML, 'text/html')
-				->addPart($messageText, 'text/plain')
-				->setFrom(
-						array('pete@spirelightmedia.com' => 'Logical Machines'))
-				->setSender('pgjainsworth@gmail.com')
-				->setReturnPath('pgjainsworth@gmail.com')
-				->setBcc(array('pgjainsworth@gmail.com'))->setMaxLineLength(78)
-				->setTo(array($to))->setCc(array($cc));
-
-		if ($mailer->send($emailMessage)) {
-			$response = "<div class=\"success\"><p>Thank you. Your email has been successfully sent.</p></div>";
-		} else {
-			$errors['mailfail'] = true;
-		}
+		include_once 'bin/email_processing.php';
 	}
 }
 ?>
@@ -302,6 +272,7 @@ if (isset($_POST['btnSubmit'])) {
 					<form method="post" name="logical-machines-quote-generator" id="logical-machines-quote-generator" action="<?php echo htmlspecialchars(
 		$_SERVER["PHP_SELF"]);
 																															  ?>">
+					<input type="hidden" name="nojs" value="nojs">
 						<div id="form-pages">
 
 							<div id="step-1" class="step-container" name="step-1">
@@ -843,10 +814,12 @@ if (isset($_POST['btnSubmit'])) {
 										<?php if (isset($errors['widthSpout1'])) { ?>
                   							<label class="error clear">Please enter a width measurement in the 'Width in inches' field</label>
                 						<?php } elseif (isset(
-		$errors['d1d2Spout1'])) { ?>
+		$errors['d1d2Spout1'])) {
+										?>
                   							<label class="error clear">Please enter a measurement in both the 'D1' & 'D2' fields</label>
                 						<?php } elseif (isset(
-		$errors['diameterSpout1'])) { ?>
+		$errors['diameterSpout1'])) {
+										?>
                   								<label class="error clear">Please enter a diameter measurement in the 'Diameter in inches' field</label>
                 						<?php } ?>
 										<div class="container-shape-images">
@@ -875,8 +848,7 @@ if (isset($_POST['btnSubmit'])) {
 											<li class="flat-bag">
 												<input type="radio" id="type1Spout2Default" name="typeSpout2Default" value="flat-bag" 
 												<?php
-if ($_POST
-		&& $_POST['typeSpout2Default'] == 'flat-bag') {
+if ($_POST && $_POST['typeSpout2Default'] == 'flat-bag') {
 	echo 'checked';
 }
 												?>/>
@@ -994,10 +966,12 @@ if ($_POST
 										<?php if (isset($errors['widthSpout2'])) { ?>
                   							<label class="error clear">Please enter a width measurement in the 'Width in inches' field</label>
                 						<?php } elseif (isset(
-		$errors['d1d2Spout2'])) { ?>
+		$errors['d1d2Spout2'])) {
+										?>
                   							<label class="error clear">Please enter a measurement in both the 'D1' & 'D2' fields</label>
                 						<?php } elseif (isset(
-		$errors['diameterSpout2'])) { ?>
+		$errors['diameterSpout2'])) {
+										?>
                   								<label class="error clear">Please enter a diameter measurement in the 'Diameter in inches' field</label>
                 						<?php } ?>
 										<div class="container-shape-images">
@@ -1026,8 +1000,7 @@ if ($_POST
 											<li class="flat-bag">
 												<input type="radio" id="type1Spout3Default" name="typeSpout3Default" value="flat-bag" 
 												<?php
-if ($_POST
-		&& $_POST['typeSpout3Default'] == 'flat-bag') {
+if ($_POST && $_POST['typeSpout3Default'] == 'flat-bag') {
 	echo 'checked';
 }
 												?>/>
@@ -1145,10 +1118,12 @@ if ($_POST
 										<?php if (isset($errors['widthSpout3'])) { ?>
                   							<label class="error clear">Please enter a width measurement in the 'Width in inches' field</label>
                 						<?php } elseif (isset(
-		$errors['d1d2Spout3'])) { ?>
+		$errors['d1d2Spout3'])) {
+										?>
                   							<label class="error clear">Please enter a measurement in both the 'D1' & 'D2' fields</label>
                 						<?php } elseif (isset(
-		$errors['diameterSpout3'])) { ?>
+		$errors['diameterSpout3'])) {
+										?>
                   								<label class="error clear">Please enter a diameter measurement in the 'Diameter in inches' field</label>
                 						<?php } ?>
 										<div class="container-shape-images">
@@ -1175,7 +1150,7 @@ if ($_POST
 
 							<div id="step-5" class="step-container" name="step-5">
 								<div id="quote-summary" class="hidden">
-									<h3>You Quote Summary</h3>
+									<h3>Your Quote Summary</h3>
 									<table>
 										<thead>
 											<tr>
@@ -1206,8 +1181,7 @@ if ($_POST
 										<label for="to">To *</label>
 										<input type="text" id="to" name="to" <?php if (!empty(
 		$to) && ($missing || $errors)) {
-	echo 'value="'
-			. htmlentities($to, ENT_COMPAT, 'UTF-8') . '"';
+	echo 'value="' . htmlentities($to, ENT_COMPAT, 'UTF-8') . '"';
 }
 																			 ?>/>
 											<?php if ($missing
@@ -1239,7 +1213,11 @@ if ($_POST
 											</p>
 										</div>
 										<label for="message">Message (optional)</label>
-										<textarea rows="5" id="message" name="message"><?php if (!empty($message) && ($missing || $errors)) {echo htmlentities($message, ENT_COMPAT, 'UTF-8');} ?></textarea>
+										<textarea rows="5" id="message" name="message"><?php if (!empty(
+		$message) && ($missing || $errors)) {
+	echo htmlentities($message, ENT_COMPAT, 'UTF-8');
+}
+																					   ?></textarea>
 										<input type="submit" id="btnSubmit" name="btnSubmit" value="Calculate Quote" />
 											<p class="instructions">
 												Your quote will be sent only to the recipients you have designated.
