@@ -1,6 +1,7 @@
 <?php
 
 $settings = array(
+		"spout-price" => "150",
 		// Machine settings
 		"S-4" => array("name" => "S-4", "type" => "Weigh Fill System",
 				"description" => "The standard S-4 includes the small weigh hopper, small discharge funnel, Logical Controller II and one spout. It comes fully assembled and ready to operate.",
@@ -337,9 +338,7 @@ if ($_POST && $_POST['machinemodel'] == 'S-7') {
 									<li class="small">
 										<input type="radio" id="smwh" class="active" name="weighhopper" value="small-weigh-hopper" 
 										<?php
-if (!$_POST
-		|| ($_POST
-				&& $_POST['weighhopper'] == 'small-weigh-hopper')) {
+if (!$_POST || ($_POST && $_POST['weighhopper'] == 'small-weigh-hopper')) {
 	echo 'checked';
 }
 										?>/>
@@ -358,11 +357,9 @@ if (!$_POST
 									<li class="large">
 										<input type="radio" id="lrgwh" name="weighhopper" value="large-weigh-hopper" 
 										<?php
-										if ($_POST
-												&& $_POST['weighhopper']
-														== 'large-weigh-hopper') {
-											echo 'checked';
-										}
+if ($_POST && $_POST['weighhopper'] == 'large-weigh-hopper') {
+	echo 'checked';
+}
 										?>/>
 										<label for="lrgwh" class="clearfix"><h4 class="name"><?php echo $settings["large-weigh-hopper"]["name"]; ?></h4>
 											<div class="component-image ir">
@@ -440,12 +437,10 @@ if (!$_POST
 									<li class="small default-discharge-funnel">
 										<input type="radio" id="std-fnl" class="active" name="dischargefunnel" value="standard-discharge-funnel" 
 										<?php
-										if (!$_POST
-												|| ($_POST
-														&& $_POST['dischargefunnel']
-																== 'standard-discharge-funnel')) {
-											echo 'checked';
-										}
+if (!$_POST
+		|| ($_POST && $_POST['dischargefunnel'] == 'standard-discharge-funnel')) {
+	echo 'checked';
+}
 										?>/>
 										<label for="std-fnl" class="std-fnl clearfix"><h4 class="name"><?php echo $settings["standard-discharge-funnel"]["name"]; ?></h4>
 											<div class="component-image ir">
@@ -468,11 +463,9 @@ if (!$_POST
 									<li class="small default-discharge-funnel">
 										<input type="radio" id="steep-fnl" name="dischargefunnel" value="steep-funnel" 
 										<?php
-										if ($_POST
-												&& $_POST['dischargefunnel']
-														== 'steep-funnel') {
-											echo 'checked';
-										}
+if ($_POST && $_POST['dischargefunnel'] == 'steep-funnel') {
+	echo 'checked';
+}
 										?>/>
 										<label for="steep-fnl" class="steep-fnl clearfix"><h4 class="name"><?php echo $settings["steep-funnel"]["name"]; ?></h4>
 											<div class="component-image ir">
@@ -495,6 +488,7 @@ if (!$_POST
 							</div><!-- id="step-3" -->
 
 							<div id="step-4" class="step-container" name="step-4">
+							<input type="hidden" name="spout-price" value="<?php echo $settings["spout-price"] ?>" />
 								<h3>Select your Spout</h3>
 								<div class="spout-sprite main-spout-image ir">
 									Spout image
@@ -597,11 +591,9 @@ if (!$_POST
 											<li class="flat-bag">
 												<input type="radio" id="type1Spout1Default" name="typeSpout1Default" value="flat-bag" 
 												<?php
-										if ($_POST
-												&& $_POST['typeSpout1Default']
-														== 'flat-bag') {
-											echo 'checked';
-										}
+if ($_POST && $_POST['typeSpout1Default'] == 'flat-bag') {
+	echo 'checked';
+}
 												?>/>
 
 												<label for="type1Spout1Default">
