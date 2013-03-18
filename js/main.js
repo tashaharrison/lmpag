@@ -39,7 +39,7 @@ $(document).ready(function() {
     // Field containers
     $fieldContainer = $('.field-container'), $machineModel = $('#field-name-machine-model'), $weighHopper = $('#field-name-weigh-hopper'), $dischargeFunnel = $('#field-name-discharge-funnel'), $spout = $('#field-name-spout'), $spout1 = $spout.find('#spout1'), $spout2 = $spout.find('#spout2'), $spout3 = $spout.find('#spout3'),
     // Field labels for extracting data
-    $machineData = $machineModel.find('label'), $weighHopperData = $weighHopper.find($('label')), $dischargeFunnelData = $dischargeFunnel.find($('label')),
+    $machineData = $machineModel.find('label'), $weighHopperData = $weighHopper.find($('label')), $dischargeFunnelData = $dischargeFunnel.find($('label')), spoutPrice = parseInt($('input[name=spout-price]').val()),
     // Machine image variables
     $machineImage = $('#machine-image'), $nextMachineImage = $('#machine-image').next('#machine-title'), $grandTotalContainer = $('#cost-container .amount'), grandTotal = parseInt($grandTotalContainer.text(), 10),
     // Controls
@@ -165,7 +165,7 @@ $(document).ready(function() {
         var num = parseInt($('.spout-size').text());
         if (!isNaN(num)) {
             $('.spout-size').each(function() {
-                $('#results').append('<tr><th>Spout</th><td>' + $(this).text() + ' inch</td><td>$150</td></tr>');
+                $('#results').append('<tr><th>Spout</th><td>' + $(this).text() + ' inch</td><td>$' + spoutPrice + '</td></tr>');
             });
         }
         $('#results').append('<tr class="total"><td>&nbsp;</td><th>Total:</th><td>$' + grandTotal + '</td></tr>');
@@ -362,7 +362,7 @@ $(document).ready(function() {
             // price = parseInt($('#spout' + num
             // + ' input.active + label
             // .amount').text(), 10);
-            grandTotal += 150;
+            grandTotal += spoutPrice;
             $grandTotalContainer.html(grandTotal);
         }
 
@@ -417,7 +417,7 @@ $(document).ready(function() {
 
         // price = parseInt($('#spout' + num + '
         // input.active + label .amount').text(), 10);
-        grandTotal -= 150;
+        grandTotal -= spoutPrice;
         $grandTotalContainer.html(grandTotal);
 
         // Disable the "remove" button
