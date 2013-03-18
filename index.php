@@ -228,9 +228,9 @@ include_once 'bin/php_validation.php';
 																																  echo 'checked';
 																															  }
 										?>/>
-										<label for="s4"><h4><span class="name">S-4</span>&nbsp;<span class="type">Weigh Fill System</span></h4>
+										<label for="s4"><h4><span class="name"><?php echo $settings["S-4"]["name"]; ?></span>&nbsp;<span class="type"><?php echo $settings["S-4"]["type"]; ?></span></h4>
 											<p class="description">
-												The standard S-4 includes the small weigh hopper, small discharge funnel, Logical Controller II and one spout. It comes fully assembled and ready to operate.
+												<?php echo $settings["S-4"]["description"]; ?>
 											</p>
 											<p class="specification">
 												<h5>S-4 Specifications:</h5>
@@ -277,58 +277,52 @@ include_once 'bin/php_validation.php';
 												</ul>
 											</p>
 											<p class="price clear">
-												<b>Price: </b>$<span class="amount">6150</span>
+												<b>Price: </b>$<span class="amount"><?php echo $settings["S-4"]["price"]; ?></span>
 											</p></label>
 									</li>
 									<li>
 										<input type="radio" id="s5" name="machinemodel" value="S-5" 
 										<?php
-										if ($_POST
-												&& $_POST['machinemodel']
-														== 'S-5') {
-											echo 'checked';
-										}
+if ($_POST && $_POST['machinemodel'] == 'S-5') {
+	echo 'checked';
+}
 										?>/>
-										<label for="s5"><h4><span class="name">S-5</span>&nbsp;<span class="type">Bulk Fill System</span></h4>
+										<label for="s5"><h4><span class="name"><?php echo $settings["S-5"]["name"]; ?></span>&nbsp;<span class="type"><?php echo $settings["S-5"]["type"]; ?></span></h4>
 											<p class="description">
-												The standard S-5 includes... It comes fully assembled and ready to operate.
+												<?php echo $settings["S-5"]["description"]; ?>
 											</p> <!-- class="machine-model-description" -->
 											<p class="price clear">
-												<b>Price: </b>$<span class="amount">5450</span>
+												<b>Price: </b>$<span class="amount"><?php echo $settings["S-5"]["price"]; ?></span>
 											</p></label>
 									</li>
 									<li>
 										<input type="radio" id="s6" name="machinemodel" value="S-6" 
 										<?php
-										if ($_POST
-												&& $_POST['machinemodel']
-														== 'S-6') {
-											echo 'checked';
-										}
+if ($_POST && $_POST['machinemodel'] == 'S-6') {
+	echo 'checked';
+}
 										?>/>
-										<label for="s6"><h4><span class="name">S-6</span>&nbsp;<span class="type">Cascading Weigh FIller</span></h4>
+										<label for="s6"><h4><span class="name"><?php echo $settings["S-6"]["name"]; ?></span>&nbsp;<span class="type"><?php echo $settings["S-6"]["type"]; ?></span></h4>
 											<p class="description">
-												The standard S-6 includes... It comes fully assembled and ready to operate.
+												<?php echo $settings["S-6"]["description"]; ?>
 											</p> <!-- class="machine-model-description" -->
 											<p class="price clear">
-												<b>Price: </b>$<span class="amount">9950</span>
+												<b>Price: </b>$<span class="amount"><?php echo $settings["S-6"]["price"]; ?></span>
 											</p></label>
 									</li>
 									<li>
 										<input type="radio" id="s7" name="machinemodel" value="S-7" 
 										<?php
-										if ($_POST
-												&& $_POST['machinemodel']
-														== 'S-7') {
-											echo 'checked';
-										}
+if ($_POST && $_POST['machinemodel'] == 'S-7') {
+	echo 'checked';
+}
 										?>/>
-										<label for="s7"><h4><span class="name">S-7</span>&nbsp;<span class="type">Dual-Lane Weigh FIller</span></h4>
+										<label for="s7"><h4><span class="name"><?php echo $settings["S-7"]["name"]; ?></span>&nbsp;<span class="type"><?php echo $settings["S-7"]["type"]; ?></span></h4>
 											<p class="description">
-												The standard S-7 includes... It comes fully assembled and ready to operate.
+												<?php echo $settings["S-7"]["description"]; ?>
 											</p> <!-- class="machine-model-description" -->
 											<p class="price clear">
-												<b>Price: </b>$<span class="amount">12000</span>
+												<b>Price: </b>$<span class="amount"><?php echo $settings["S-7"]["price"]; ?></span>
 											</p></label>
 									</li>
 								</ul>
@@ -343,22 +337,21 @@ include_once 'bin/php_validation.php';
 									<li class="small">
 										<input type="radio" id="smwh" class="active" name="weighhopper" value="small-weigh-hopper" 
 										<?php
-										if (!$_POST
-												|| ($_POST
-														&& $_POST['weighhopper']
-																== 'small-weigh-hopper')) {
-											echo 'checked';
-										}
+if (!$_POST
+		|| ($_POST
+				&& $_POST['weighhopper'] == 'small-weigh-hopper')) {
+	echo 'checked';
+}
 										?>/>
-										<label for="smwh" class="clearfix"><h4 class="name">Small Weigh Hopper</h4>
+										<label for="smwh" class="clearfix"><h4 class="name"><?php echo $settings["small-weigh-hopper"]["name"]; ?></h4>
 											<div class="component-image ir">
 												Small Weigh Hopper image
 											</div>
 											<p class="description">
-												The small weigh hopper comes standard on the S-4. Its 250 cubic inch capacity handles net weights from a few grams to 3 lbs.
+												<?php echo $settings["small-weigh-hopper"]["description"]; ?>
 											</p>
 											<p class="price clear">
-												<b>Price: </b>$<span class="amount">0</span> included on standard S-4
+												<b>Price: </b>$<span class="amount"><?php echo $settings["small-weigh-hopper"]["price"]; ?></span> included on standard S-4
 											</p></label>
 
 									</li>
@@ -371,15 +364,15 @@ include_once 'bin/php_validation.php';
 											echo 'checked';
 										}
 										?>/>
-										<label for="lrgwh" class="clearfix"><h4 class="name">Large Weigh Hopper</h4>
+										<label for="lrgwh" class="clearfix"><h4 class="name"><?php echo $settings["large-weigh-hopper"]["name"]; ?></h4>
 											<div class="component-image ir">
 												Large Weigh Hopper image
 											</div>
 											<p class="description">
-												For larger volumes, the large weigh hopper's 650 cubic inch capacity handles net weights from 2 oz. to 10 lbs.
+												<?php echo $settings["large-weigh-hopper"]["description"]; ?>
 											</p>
 											<p class="price clear">
-												<b>Price: </b>$<span class="amount">100</span> upcharge
+												<b>Price: </b>$<span class="amount"><?php echo $settings["large-weigh-hopper"]["price"]; ?></span> upcharge
 											</p></label>
 
 									</li>
@@ -394,54 +387,54 @@ include_once 'bin/php_validation.php';
 								<ul id="field-name-discharge-funnel" class="field-type-radio field-container">
 									<li class="small hidden">
 										<input type="radio" id="small-std-fnl" name="dischargefunnel" value="small-standard-funnel" />
-										<label for="small-std-fnl" class="std-fnl clearfix"><h4 class="name">Small Standard Discharge Funnel</h4>
+										<label for="small-std-fnl" class="std-fnl clearfix"><h4 class="name"><?php echo $settings["small-standard-funnel"]["name"]; ?></h4>
 											<div class="component-image ir">
 												Small Standard Discharge Funnel image
 											</div>
 											<p class="description">
-												This is the standard funnel for use with the small weigh hopper. It is practical for most free-flowing materials.
+												<?php echo $settings["small-standard-funnel"]["description"]; ?>
 											</p>
 											<p class="price clear">
-												<b>Price: </b>$<span class="amount">0</span> included on standard S-4
+												<b>Price: </b>$<span class="amount"><?php echo $settings["small-standard-funnel"]["price"]; ?></span> included on standard S-4
 											</p></label>
 									</li>
 									<li class="small hidden">
 										<input type="radio" id="small-steep-fnl" name="dischargefunnel" value="small-steep-funnel" />
-										<label for="small-steep-fnl" class="steep-fnl clearfix"><h4 class="name">Small Steep-Sided Discharge Funnel</h4>
+										<label for="small-steep-fnl" class="steep-fnl clearfix"><h4 class="name"><?php echo $settings["small-steep-funnel"]["name"]; ?></h4>
 											<div class="component-image ir">
 												Small Steep-Sided Discharge image
 											</div>
 											<p class="description">
-												This steep sided funnel is used for fine powdered materials such as flour or other products that can stick to metal surfaces.
+												<?php echo $settings["small-steep-funnel"]["description"]; ?>
 											</p>
 											<p class="price clear">
-												<b>Price: </b>$<span class="amount">125</span> upcharge
+												<b>Price: </b>$<span class="amount"><?php echo $settings["small-steep-funnel"]["price"]; ?></span> upcharge
 											</p></label>
 									</li>
 									<li class="large hidden">
 										<input type="radio" id="large-std-fnl" name="dischargefunnel" value="large-standard-funnel" />
-										<label for="large-std-fnl" class="std-fnl clearfix"><h4 class="name">Large Standard Discharge Funnel</h4>
+										<label for="large-std-fnl" class="std-fnl clearfix"><h4 class="name"><?php echo $settings["large-standard-funnel"]["name"]; ?></h4>
 											<div class="component-image ir">
 												Large Standard Discharge Funnel image
 											</div>
 											<p class="description">
-												This is the standard funnel for use with the large weigh hopper. It works best with free flowing products.
+												<?php echo $settings["large-standard-funnel"]["description"]; ?>
 											</p>
 											<p class="price clear">
-												<b>Price: </b>$<span class="amount">150</span>
+												<b>Price: </b>$<span class="amount"><?php echo $settings["large-standard-funnel"]["price"]; ?></span>
 											</p></label>
 									</li>
 									<li class="large hidden">
 										<input type="radio" id="large-steep-fnl" name="dischargefunnel" value="large-steep-funnel" />
-										<label for="large-steep-fnl" class="steep-fnl clearfix"><h4 class="name">Large Steep-Sided Discharge Funnel</h4>
+										<label for="large-steep-fnl" class="steep-fnl clearfix"><h4 class="name"><?php echo $settings["large-steep-funnel"]["name"]; ?></h4>
 											<div class="component-image ir">
 												Large Steep-Sided Discharge image
 											</div>
 											<p class="description">
-												This steep sided funnel is used for fine powdered materials such as flour or other products that can stick to metal surfaces.
+												<?php echo $settings["large-steep-funnel"]["description"]; ?>
 											</p>
 											<p class="price clear">
-												<b>Price: </b>$<span class="amount">400</span> upcharge
+												<b>Price: </b>$<span class="amount"><?php echo $settings["large-steep-funnel"]["price"]; ?></span> upcharge
 											</p></label>
 									</li>
 									<li class="small default-discharge-funnel">
@@ -454,21 +447,21 @@ include_once 'bin/php_validation.php';
 											echo 'checked';
 										}
 										?>/>
-										<label for="std-fnl" class="std-fnl clearfix"><h4 class="name">Standard Discharge Funnel</h4>
+										<label for="std-fnl" class="std-fnl clearfix"><h4 class="name"><?php echo $settings["standard-discharge-funnel"]["name"]; ?></h4>
 											<div class="component-image ir">
 												Standard Discharge Funnel image
 											</div>
 											<p class="description">
-												This is the standard funnel for use with the small and large weigh hoppers. It is practical for most free-flowing materials.
+												<?php echo $settings["standard-discharge-funnel"]["description"]; ?>
 											</p>
 											<p class="price clear">
 												<b>Price with Small Weigh Hopper: </b>
 												<br/>
-												$<span class="amount">0</span> included on standard S-4
+												$<span class="amount"><?php echo $settings["small-standard-funnel"]["price"]; ?></span> included on standard S-4
 												<br />
 												<b>Price with Large Weigh Hopper: </b>
 												<br/>
-												$<span class="amount">150</span>
+												$<span class="amount"><?php echo $settings["small-steep-funnel"]["price"]; ?></span>
 											</p></label>
 
 									</li>
@@ -481,21 +474,21 @@ include_once 'bin/php_validation.php';
 											echo 'checked';
 										}
 										?>/>
-										<label for="steep-fnl" class="steep-fnl clearfix"><h4 class="name">Steep-Sided Discharge Funnel</h4>
+										<label for="steep-fnl" class="steep-fnl clearfix"><h4 class="name"><?php echo $settings["steep-funnel"]["name"]; ?></h4>
 											<div class="component-image ir">
 												Steep-Sided Discharge image
 											</div>
 											<p class="description">
-												This steep sided funnel is used for fine powdered materials such as flour or other products that can stick to metal surfaces.
+												<?php echo $settings["steep-funnel"]["description"]; ?>
 											</p>
 											<p class="price clear">
 												<b>Price with Small Weigh Hopper: </b>
 												<br/>
-												$<span class="amount">125</span> upcharge
+												$<span class="amount"><?php echo $settings["large-standard-funnel"]["price"]; ?></span> upcharge
 												<br />
 												<b>Price with Large Weigh Hopper: </b>
 												<br/>
-												$<span class="amount">400</span> upcharge
+												$<span class="amount"><?php echo $settings["large-steep-funnel"]["price"]; ?></span> upcharge
 											</p></label>
 									</li>
 								</ul>
