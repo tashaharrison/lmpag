@@ -51,18 +51,18 @@ $(document).ready(function() {
         id : $machineData.first().attr('for'),
         name : $machineData.first().find('.name').text(),
         type : $machineData.first().find('.type').text(),
-        description : $machineData.first().find('.description').text(),
+        description : $machineData.first().find('.description').text().trim(),
         price : $machineData.first().find('.amount').text(),
         weighHopper : {
             id : $weighHopperData.first().attr('for'),
             name : $weighHopperData.first().find('.name').text(),
-            description : $weighHopperData.first().find('.description').text(),
+            description : $weighHopperData.first().find('.description').text().trim(),
             price : $weighHopperData.first().find('.amount').text()
         },
         dischargeFunnel : {
             id : $dischargeFunnelData.first().attr('for'),
             name : $dischargeFunnelData.first().find('.name').text(),
-            description : $dischargeFunnelData.first().find('.description').text(),
+            description : $dischargeFunnelData.first().find('.description').text().trim(),
             price : $dischargeFunnelData.first().find('.amount').text()
         }
     };
@@ -75,7 +75,7 @@ $(document).ready(function() {
     $('#field-name-discharge-funnel .large, .field-name-dimensions li, #step-2, #step-3, #step-4, #step-5, #hidden-accessories-page, .container-shape-images > *, #btnAdd, #btnDel, .calculate, .spout-calculation, .field-spout .instructions p, #emailQuote').hide();
     $('.field-spout .instructions p.spout-selection').show();
     // Remove fallback form elements
-    $('.default-field-spout,.default-discharge-funnel').remove();
+    $('.default-field-spout,.default-discharge-funnel,input[name=nojs]').remove();
     $btnSubmit.val('Send Email');
     // .bottom class puts a negative z-index on the hidden
     // accessories page so that it loads underneath the rest of
@@ -160,8 +160,8 @@ $(document).ready(function() {
 
     // Retreive form values for display on summary
     function showValues() {
-
-        $('#results').empty().append('<tr><th>' + machine.name + ' ' + machine.type + '</th><td>' + machine.description + '</td><td>$' + machine.price + '</td></tr><tr><th>' + machine.weighHopper.name + '</th><td>' + machine.weighHopper.description + '</td><td>$' + machine.weighHopper.price + '</td></tr><tr><th>' + machine.dischargeFunnel.name + '</th><td>' + machine.dischargeFunnel.description + '</td><td>$' + machine.dischargeFunnel.price + '</td></tr>');
+    	var resultsHTML = '<tr><th>' + machine.name + ' ' + machine.type + '</th><td>' + machine.description + '</td><td>$' + machine.price + '</td></tr><tr><th>' + machine.weighHopper.name + '</th><td>' + machine.weighHopper.description + '</td><td>$' + machine.weighHopper.price + '</td></tr><tr><th>' + machine.dischargeFunnel.name + '</th><td>' + machine.dischargeFunnel.description + '</td><td>$' + machine.dischargeFunnel.price + '</td></tr>';
+        $('#results').empty().append(resultsHTML);
         var num = parseInt($('.spout-size').text());
         if (!isNaN(num)) {
             $('.spout-size').each(function() {
@@ -176,14 +176,8 @@ $(document).ready(function() {
         dataString = $form.serialize();
         $disabled.prop('disabled', true);
         $('#quote-summary').append('<div id="datastring">' + dataString + '</div>');
-
-        /*
-         * var fields = $(':input').serializeArray();
-         * $('#results').empty(); $.each(fields, function(i,
-         * field) { $('#results').append('<tr><td>' +
-         * field.name + '</td><td>' + field.value + '</td></tr>');
-         * });
-         */
+        
+        return resultsHTML;
     }
 
     $('#btnPrint').click(function() {
@@ -205,45 +199,29 @@ $(document).ready(function() {
     $btnSubmit.on('click', function() {
         var $disabled = $form.find('input:disabled').prop('disabled', false);
     	var quoteSummary = $('#quote-summary').html();
-    	
-        var machinemodel = $machineModel.find('input:checked').val(),
-        weighhopper = $weighHopper.find('input:checked').val(),
-        dischargefunnel = $dischargeFunnel.find('input:checked').val(),
         
-        typeSpout1 = $spout1.find('input:checked').val(),
-        widthSpout1 = $spout1.find('.field-name-dimensions .width input').val(),
-        d1Spout1 = $spout1.find('.field-name-dimensions .d1 input').val(),
-        d2Spout1 = $spout1.find('.field-name-dimensions .d2 input').val(),
-        diameterSpout1 = $spout1.find('.field-name-dimensions .diameter input').val(),
+    	var to = $('#to').val(),
+        cc = $('#cc').val(),
+        message = encodeURIComponent($('#message').val().trim()),
+        $emailFields = $('#to,#cc'),
+        quoteHTML = encodeURIComponent('<h3>Your Quote Summary</h3><table><thead><tr><th>Item</th><th>Description</th><th>Price</th></tr></thead><tbody>' + showValues() + '</tbody></table>'), 
+        quoteText = encodeURIComponent(machine.name + ' ' + machine.type + ' - $' + machine.price + '\r' + machine.description + '\r\r' + machine.weighHopper.name + ' - $' + machine.weighHopper.price + '\r' + machine.weighHopper.description + '\r\r' + machine.dischargeFunnel.name + ' - $' + machine.dischargeFunnel.price + '\r' + machine.dischargeFunnel.description);
         
-        typeSpout2 = $spout2.find('input:checked').val(),
-        widthSpout1Spout2 = $spout2.find('.field-name-dimensions .width input').val(),
-        d1Spout1Spout2 = $spout2.find('.field-name-dimensions .d1 input').val(),
-        d2Spout1Spout2 = $spout2.find('.field-name-dimensions .d2 input').val(),
-        diameterSpout1Spout2 = $spout2.find('.field-name-dimensions .diameter input').val(),
+    	var dataString = 'to=' + to + '&cc=' + cc + '&message=' + message + '&quoteHTML=' + quoteHTML + '&quoteText=' + quoteText;
+    	$('#quote-summary').append(dataString);
+       // alert(dataString); return false;
         
-        typeSpout3 = $spout3.find('input:checked').val(),
-        widthSpout1Spout2Spout3 = $spout3.find('.field-name-dimensions .width input').val(),
-        d1Spout1Spout2Spout3 = $spout3.find('.field-name-dimensions .d1 input').val(),
-        d2Spout1Spout2Spout3 = $spout3.find('.field-name-dimensions .d2 input').val(),
-        diameterSpout1Spout2Spout3 = $spout3.find('.field-name-dimensions .diameter input').val(),
-        to = '',
-        cc = '',
-        message = '';
-        	
-    	$disabled.prop('disabled', true);
-    	dataString = 'firstName=' + firstName + '&lastName=' + lastName + '&email=' + email + '&company=' + company + '&zip=' + zip + '&phone=' + phone;
-        // alert(dataString); return false;
-        if ($customerFields.valid()) {
+        if ($emailFields.valid()) {
             $.ajax({
                 type : "POST",
-                url : "index.php",
+                url : "bin/email_processing.php",
                 data : dataString,
-                success : function() {
+                success : function(response) {
+                	console.log(response);
                     $btnEmail.text('Email Quote').val('Email Quote');
                     $('#emailQuote').slideToggle('fast').find('input').not('input[type=submit]').val('');
                     $('#quote-summary').after("<div id='thankYouMessage'></div>");
-                    $('#thankYouMessage').html("<h3>Thank you for your quote.</h3>").append("<p>We will be in touch soon.</p>");
+                    $('#thankYouMessage').html("<h3>Thank you.</h3>").append("<p>We will be in touch soon.</p>");
                 }
             });
             return false;
@@ -269,7 +247,7 @@ $(document).ready(function() {
                     machine.id = $fieldID.attr('id');
                     machine.name = $fieldLabel.find('.name').text();
                     machine.type = $fieldLabel.find('.type').text();
-                    machine.description = $fieldLabel.find('.description').text();
+                    machine.description = $fieldLabel.find('.description').text().trim();
                     machine.price = $fieldLabel.find('.amount').text();
                     // Show/Hide descriptions
                     $machineData.children(':not(h4,.price)').hide();
@@ -284,7 +262,7 @@ $(document).ready(function() {
                     // machine.weighHopper object
                     machine.weighHopper.id = $fieldID.attr('name');
                     machine.weighHopper.name = $fieldLabel.find('.name').text();
-                    machine.weighHopper.description = $fieldLabel.find('.description').text();
+                    machine.weighHopper.description = $fieldLabel.find('.description').text().trim();
                     machine.weighHopper.price = $fieldLabel.find('.amount').text();
                     // Assign classes to machine
                     // image
@@ -305,7 +283,7 @@ $(document).ready(function() {
                     // machine.weighHopper object
                     machine.dischargeFunnel.id = $fieldID.attr('name');
                     machine.dischargeFunnel.name = $fieldLabel.find('.name').text();
-                    machine.dischargeFunnel.description = $fieldLabel.find('.description').text();
+                    machine.dischargeFunnel.description = $fieldLabel.find('.description').text().trim();
                     machine.dischargeFunnel.price = $fieldLabel.find('.amount').text();
                     $machineImage.toggleClass('std-fnl steep-fnl');
                     break;
