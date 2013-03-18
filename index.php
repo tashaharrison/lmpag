@@ -1,50 +1,57 @@
 <?php
 
-$settings = array(
-		"spout-price" => "150",
+$settings = array("spout-price" => "150",
 		// Machine settings
-		"S-4" => array("name" => "S-4", "type" => "Weigh Fill System",
-				"description" => "The standard S-4 includes the small weigh hopper, small discharge funnel, Logical Controller II and one spout. It comes fully assembled and ready to operate.",
-				"price" => "6150"),
-		"S-5" => array("name" => "S-5", "type" => "Bulk Fill System",
-				"description" => "The standard S-5 includes... It comes fully assembled and ready to operate.",
-				"price" => "5450"),
-		"S-6" => array("name" => "S-6", "type" => "Cascading Weigh FIller",
-				"description" => "The standard S-6 includes... It comes fully assembled and ready to operate.",
-				"price" => "9950"),
-		"S-7" => array("name" => "S-7", "type" => "Dual-Lane Weigh FIller",
-				"description" => "The standard S-7 includes... It comes fully assembled and ready to operate.",
-				"price" => "12000"),
+		"machinemodel" => array(
+				"S-4" => array("name" => "S-4", "type" => "Weigh Fill System",
+						"description" => "The standard S-4 includes the small weigh hopper, small discharge funnel, Logical Controller II and one spout. It comes fully assembled and ready to operate.",
+						"price" => "6150"),
+				"S-5" => array("name" => "S-5", "type" => "Bulk Fill System",
+						"description" => "The standard S-5 includes... It comes fully assembled and ready to operate.",
+						"price" => "5450"),
+				"S-6" => array("name" => "S-6",
+						"type" => "Cascading Weigh FIller",
+						"description" => "The standard S-6 includes... It comes fully assembled and ready to operate.",
+						"price" => "9950"),
+				"S-7" => array("name" => "S-7",
+						"type" => "Dual-Lane Weigh FIller",
+						"description" => "The standard S-7 includes... It comes fully assembled and ready to operate.",
+						"price" => "12000")),
 		// Weigh hopper settings
-		"small-weigh-hopper" => array("name" => "Small Weigh Hopper",
-				"description" => "The small weigh hopper comes standard on the S-4. Its 250 cubic inch capacity handles net weights from a few grams to 3 lbs.",
-				"price" => "0"),
-		"large-weigh-hopper" => array("name" => "Large Weigh Hopper",
-				"description" => "For larger volumes, the large weigh hopper's 650 cubic inch capacity handles net weights from 2 oz. to 10 lbs.",
-				"price" => "100"),
+		"weighhopper" => array(
+				"small-weigh-hopper" => array("name" => "Small Weigh Hopper",
+						"description" => "The small weigh hopper comes standard on the S-4. Its 250 cubic inch capacity handles net weights from a few grams to 3 lbs.",
+						"price" => "0"),
+				"large-weigh-hopper" => array("name" => "Large Weigh Hopper",
+						"description" => "For larger volumes, the large weigh hopper's 650 cubic inch capacity handles net weights from 2 oz. to 10 lbs.",
+						"price" => "100")),
 		// Discharge funnel settings > Fallback copy for use when Javascript is disabled
-		"standard-discharge-funnel" => array(
-				"name" => "Standard Discharge Funnel",
-				"description" => "This is the standard funnel for use with the small and large weigh hoppers. It is practical for most free-flowing materials."),
-		"steep-funnel" => array("name" => "Steep-Sided Discharge Funnel",
-				"description" => "This steep sided funnel is used for fine powdered materials such as flour or other products that can stick to metal surfaces."),
-		// Discharge funnel settings > Normal copy for use when Javascript is enabled
-		"small-standard-funnel" => array(
-				"name" => "Small Standard Discharge Funnel",
-				"description" => "This is the standard funnel for use with the small weigh hopper. It is practical for most free-flowing materials.",
-				"price" => "0"),
-		"small-steep-funnel" => array(
-				"name" => "Small Steep-Sided Discharge Funnel",
-				"description" => "This steep sided funnel is used for fine powdered materials such as flour or other products that can stick to metal surfaces.",
-				"price" => "125"),
-		"large-standard-funnel" => array(
-				"name" => "Large Standard Discharge Funnel",
-				"description" => "This is the standard funnel for use with the large weigh hopper. It works best with free flowing products.",
-				"price" => "150"),
-		"large-steep-funnel" => array(
-				"name" => "Large Steep-Sided Discharge Funnel",
-				"description" => "This steep sided funnel is used for fine powdered materials such as flour or other products that can stick to metal surfaces.",
-				"price" => "400"));
+		"dischargefunnel" => array(
+				"standard" => array(
+								"name" => "Standard Discharge Funnel",
+								"description" => "This is the standard funnel for use with the small and large weigh hoppers. It is practical for most free-flowing materials."),
+				"steep" => array(
+								"name" => "Steep-Sided Discharge Funnel",
+								"description" => "This steep sided funnel is used for fine powdered materials such as flour or other products that can stick to metal surfaces."),
+				// Discharge funnel settings > Normal copy for use when Javascript is enabled
+				"small" => array(
+						"standard" => array(
+								"name" => "Small Standard Discharge Funnel",
+								"description" => "This is the standard funnel for use with the small weigh hopper. It is practical for most free-flowing materials.",
+								"price" => "0"),
+						"steep" => array(
+								"name" => "Small Steep-Sided Discharge Funnel",
+								"description" => "This steep sided funnel is used for fine powdered materials such as flour or other products that can stick to metal surfaces.",
+								"price" => "125")),
+				"large" => array(
+						"standard" => array(
+								"name" => "Large Standard Discharge Funnel",
+								"description" => "This is the standard funnel for use with the large weigh hopper. It works best with free flowing products.",
+								"price" => "150"),
+						"steep" => array(
+								"name" => "Large Steep-Sided Discharge Funnel",
+								"description" => "This steep sided funnel is used for fine powdered materials such as flour or other products that can stick to metal surfaces.",
+								"price" => "400"))));
 
 include_once 'bin/php_validation.php';
 
@@ -229,9 +236,9 @@ include_once 'bin/php_validation.php';
 																																  echo 'checked';
 																															  }
 										?>/>
-										<label for="s4"><h4><span class="name"><?php echo $settings["S-4"]["name"]; ?></span>&nbsp;<span class="type"><?php echo $settings["S-4"]["type"]; ?></span></h4>
+										<label for="s4"><h4><span class="name"><?php echo $settings["machinemodel"]["S-4"]["name"]; ?></span>&nbsp;<span class="type"><?php echo $settings["machinemodel"]["S-4"]["type"]; ?></span></h4>
 											<p class="description">
-												<?php echo $settings["S-4"]["description"]; ?>
+												<?php echo $settings["machinemodel"]["S-4"]["description"]; ?>
 											</p>
 											<p class="specification">
 												<h5>S-4 Specifications:</h5>
@@ -278,7 +285,7 @@ include_once 'bin/php_validation.php';
 												</ul>
 											</p>
 											<p class="price clear">
-												<b>Price: </b>$<span class="amount"><?php echo $settings["S-4"]["price"]; ?></span>
+												<b>Price: </b>$<span class="amount"><?php echo $settings["machinemodel"]["S-4"]["price"]; ?></span>
 											</p></label>
 									</li>
 									<li>
@@ -288,12 +295,12 @@ if ($_POST && $_POST['machinemodel'] == 'S-5') {
 	echo 'checked';
 }
 										?>/>
-										<label for="s5"><h4><span class="name"><?php echo $settings["S-5"]["name"]; ?></span>&nbsp;<span class="type"><?php echo $settings["S-5"]["type"]; ?></span></h4>
+										<label for="s5"><h4><span class="name"><?php echo $settings["machinemodel"]["S-5"]["name"]; ?></span>&nbsp;<span class="type"><?php echo $settings["machinemodel"]["S-5"]["type"]; ?></span></h4>
 											<p class="description">
-												<?php echo $settings["S-5"]["description"]; ?>
+												<?php echo $settings["machinemodel"]["S-5"]["description"]; ?>
 											</p> <!-- class="machine-model-description" -->
 											<p class="price clear">
-												<b>Price: </b>$<span class="amount"><?php echo $settings["S-5"]["price"]; ?></span>
+												<b>Price: </b>$<span class="amount"><?php echo $settings["machinemodel"]["S-5"]["price"]; ?></span>
 											</p></label>
 									</li>
 									<li>
@@ -303,12 +310,12 @@ if ($_POST && $_POST['machinemodel'] == 'S-6') {
 	echo 'checked';
 }
 										?>/>
-										<label for="s6"><h4><span class="name"><?php echo $settings["S-6"]["name"]; ?></span>&nbsp;<span class="type"><?php echo $settings["S-6"]["type"]; ?></span></h4>
+										<label for="s6"><h4><span class="name"><?php echo $settings["machinemodel"]["S-6"]["name"]; ?></span>&nbsp;<span class="type"><?php echo $settings["machinemodel"]["S-6"]["type"]; ?></span></h4>
 											<p class="description">
-												<?php echo $settings["S-6"]["description"]; ?>
+												<?php echo $settings["machinemodel"]["S-6"]["description"]; ?>
 											</p> <!-- class="machine-model-description" -->
 											<p class="price clear">
-												<b>Price: </b>$<span class="amount"><?php echo $settings["S-6"]["price"]; ?></span>
+												<b>Price: </b>$<span class="amount"><?php echo $settings["machinemodel"]["S-6"]["price"]; ?></span>
 											</p></label>
 									</li>
 									<li>
@@ -318,12 +325,12 @@ if ($_POST && $_POST['machinemodel'] == 'S-7') {
 	echo 'checked';
 }
 										?>/>
-										<label for="s7"><h4><span class="name"><?php echo $settings["S-7"]["name"]; ?></span>&nbsp;<span class="type"><?php echo $settings["S-7"]["type"]; ?></span></h4>
+										<label for="s7"><h4><span class="name"><?php echo $settings["machinemodel"]["S-7"]["name"]; ?></span>&nbsp;<span class="type"><?php echo $settings["machinemodel"]["S-7"]["type"]; ?></span></h4>
 											<p class="description">
-												<?php echo $settings["S-7"]["description"]; ?>
+												<?php echo $settings["machinemodel"]["S-7"]["description"]; ?>
 											</p> <!-- class="machine-model-description" -->
 											<p class="price clear">
-												<b>Price: </b>$<span class="amount"><?php echo $settings["S-7"]["price"]; ?></span>
+												<b>Price: </b>$<span class="amount"><?php echo $settings["machinemodel"]["S-7"]["price"]; ?></span>
 											</p></label>
 									</li>
 								</ul>
@@ -342,15 +349,15 @@ if (!$_POST || ($_POST && $_POST['weighhopper'] == 'small-weigh-hopper')) {
 	echo 'checked';
 }
 										?>/>
-										<label for="smwh" class="clearfix"><h4 class="name"><?php echo $settings["small-weigh-hopper"]["name"]; ?></h4>
+										<label for="smwh" class="clearfix"><h4 class="name"><?php echo $settings["weighhopper"]["small-weigh-hopper"]["name"]; ?></h4>
 											<div class="component-image ir">
 												Small Weigh Hopper image
 											</div>
 											<p class="description">
-												<?php echo $settings["small-weigh-hopper"]["description"]; ?>
+												<?php echo $settings["weighhopper"]["small-weigh-hopper"]["description"]; ?>
 											</p>
 											<p class="price clear">
-												<b>Price: </b>$<span class="amount"><?php echo $settings["small-weigh-hopper"]["price"]; ?></span> included on standard S-4
+												<b>Price: </b>$<span class="amount"><?php echo $settings["weighhopper"]["small-weigh-hopper"]["price"]; ?></span> included on standard S-4
 											</p></label>
 
 									</li>
@@ -361,15 +368,15 @@ if ($_POST && $_POST['weighhopper'] == 'large-weigh-hopper') {
 	echo 'checked';
 }
 										?>/>
-										<label for="lrgwh" class="clearfix"><h4 class="name"><?php echo $settings["large-weigh-hopper"]["name"]; ?></h4>
+										<label for="lrgwh" class="clearfix"><h4 class="name"><?php echo $settings["weighhopper"]["large-weigh-hopper"]["name"]; ?></h4>
 											<div class="component-image ir">
 												Large Weigh Hopper image
 											</div>
 											<p class="description">
-												<?php echo $settings["large-weigh-hopper"]["description"]; ?>
+												<?php echo $settings["weighhopper"]["large-weigh-hopper"]["description"]; ?>
 											</p>
 											<p class="price clear">
-												<b>Price: </b>$<span class="amount"><?php echo $settings["large-weigh-hopper"]["price"]; ?></span> upcharge
+												<b>Price: </b>$<span class="amount"><?php echo $settings["weighhopper"]["large-weigh-hopper"]["price"]; ?></span> upcharge
 											</p></label>
 
 									</li>
@@ -384,79 +391,78 @@ if ($_POST && $_POST['weighhopper'] == 'large-weigh-hopper') {
 								<ul id="field-name-discharge-funnel" class="field-type-radio field-container">
 									<li class="small hidden">
 										<input type="radio" id="small-std-fnl" name="dischargefunnel" value="small-standard-funnel" />
-										<label for="small-std-fnl" class="std-fnl clearfix"><h4 class="name"><?php echo $settings["small-standard-funnel"]["name"]; ?></h4>
+										<label for="small-std-fnl" class="std-fnl clearfix"><h4 class="name"><?php echo $settings["dischargefunnel"]["small"]["standard"]["name"]; ?></h4>
 											<div class="component-image ir">
 												Small Standard Discharge Funnel image
 											</div>
 											<p class="description">
-												<?php echo $settings["small-standard-funnel"]["description"]; ?>
+												<?php echo $settings["dischargefunnel"]["small"]["standard"]["description"]; ?>
 											</p>
 											<p class="price clear">
-												<b>Price: </b>$<span class="amount"><?php echo $settings["small-standard-funnel"]["price"]; ?></span> included on standard S-4
+												<b>Price: </b>$<span class="amount"><?php echo $settings["dischargefunnel"]["small"]["standard"]["price"]; ?></span> included on standard S-4
 											</p></label>
 									</li>
 									<li class="small hidden">
 										<input type="radio" id="small-steep-fnl" name="dischargefunnel" value="small-steep-funnel" />
-										<label for="small-steep-fnl" class="steep-fnl clearfix"><h4 class="name"><?php echo $settings["small-steep-funnel"]["name"]; ?></h4>
+										<label for="small-steep-fnl" class="steep-fnl clearfix"><h4 class="name"><?php echo $settings["dischargefunnel"]["small"]["steep"]["name"]; ?></h4>
 											<div class="component-image ir">
 												Small Steep-Sided Discharge image
 											</div>
 											<p class="description">
-												<?php echo $settings["small-steep-funnel"]["description"]; ?>
+												<?php echo $settings["dischargefunnel"]["small"]["steep"]["description"]; ?>
 											</p>
 											<p class="price clear">
-												<b>Price: </b>$<span class="amount"><?php echo $settings["small-steep-funnel"]["price"]; ?></span> upcharge
+												<b>Price: </b>$<span class="amount"><?php echo $settings["dischargefunnel"]["small"]["steep"]["price"]; ?></span> upcharge
 											</p></label>
 									</li>
 									<li class="large hidden">
 										<input type="radio" id="large-std-fnl" name="dischargefunnel" value="large-standard-funnel" />
-										<label for="large-std-fnl" class="std-fnl clearfix"><h4 class="name"><?php echo $settings["large-standard-funnel"]["name"]; ?></h4>
+										<label for="large-std-fnl" class="std-fnl clearfix"><h4 class="name"><?php echo $settings["dischargefunnel"]["large"]["standard"]["name"]; ?></h4>
 											<div class="component-image ir">
 												Large Standard Discharge Funnel image
 											</div>
 											<p class="description">
-												<?php echo $settings["large-standard-funnel"]["description"]; ?>
+												<?php echo $settings["dischargefunnel"]["large"]["standard"]["description"]; ?>
 											</p>
 											<p class="price clear">
-												<b>Price: </b>$<span class="amount"><?php echo $settings["large-standard-funnel"]["price"]; ?></span>
+												<b>Price: </b>$<span class="amount"><?php echo $settings["dischargefunnel"]["large"]["standard"]["price"]; ?></span>
 											</p></label>
 									</li>
 									<li class="large hidden">
 										<input type="radio" id="large-steep-fnl" name="dischargefunnel" value="large-steep-funnel" />
-										<label for="large-steep-fnl" class="steep-fnl clearfix"><h4 class="name"><?php echo $settings["large-steep-funnel"]["name"]; ?></h4>
+										<label for="large-steep-fnl" class="steep-fnl clearfix"><h4 class="name"><?php echo $settings["dischargefunnel"]["large"]["steep"]["name"]; ?></h4>
 											<div class="component-image ir">
 												Large Steep-Sided Discharge image
 											</div>
 											<p class="description">
-												<?php echo $settings["large-steep-funnel"]["description"]; ?>
+												<?php echo $settings["dischargefunnel"]["large"]["steep"]["description"]; ?>
 											</p>
 											<p class="price clear">
-												<b>Price: </b>$<span class="amount"><?php echo $settings["large-steep-funnel"]["price"]; ?></span> upcharge
+												<b>Price: </b>$<span class="amount"><?php echo $settings["dischargefunnel"]["large"]["steep"]["price"]; ?></span> upcharge
 											</p></label>
 									</li>
 									<li class="small default-discharge-funnel">
-										<input type="radio" id="std-fnl" class="active" name="dischargefunnel" value="standard-discharge-funnel" 
+										<input type="radio" id="std-fnl" class="active" name="dischargefunnel" value="standard-funnel" 
 										<?php
-if (!$_POST
-		|| ($_POST && $_POST['dischargefunnel'] == 'standard-discharge-funnel')) {
+if (!$_POST || ($_POST && $_POST['dischargefunnel'] == 'standard-funnel')) {
 	echo 'checked';
 }
 										?>/>
-										<label for="std-fnl" class="std-fnl clearfix"><h4 class="name"><?php echo $settings["standard-discharge-funnel"]["name"]; ?></h4>
+										<label for="std-fnl" class="std-fnl clearfix"><h4 class="name"><?php echo $settings["dischargefunnel"]["standard"]["name"]; ?></h4>
 											<div class="component-image ir">
 												Standard Discharge Funnel image
 											</div>
 											<p class="description">
-												<?php echo $settings["standard-discharge-funnel"]["description"]; ?>
+												<?php echo $settings["dischargefunnel"]["standard"]["description"]; ?>
 											</p>
 											<p class="price clear">
 												<b>Price with Small Weigh Hopper: </b>
 												<br/>
-												$<span class="amount"><?php echo $settings["small-standard-funnel"]["price"]; ?></span> included on standard S-4
+												$<span class="amount"><?php echo $settings["dischargefunnel"]["small"]["standard"]["price"]; ?></span> included on standard S-4
 												<br />
 												<b>Price with Large Weigh Hopper: </b>
 												<br/>
-												$<span class="amount"><?php echo $settings["small-steep-funnel"]["price"]; ?></span>
+												$<span class="amount"><?php echo $settings["dischargefunnel"]["small"]["steep"]["price"]; ?></span>
 											</p></label>
 
 									</li>
@@ -467,21 +473,21 @@ if ($_POST && $_POST['dischargefunnel'] == 'steep-funnel') {
 	echo 'checked';
 }
 										?>/>
-										<label for="steep-fnl" class="steep-fnl clearfix"><h4 class="name"><?php echo $settings["steep-funnel"]["name"]; ?></h4>
+										<label for="steep-fnl" class="steep-fnl clearfix"><h4 class="name"><?php echo $settings["dischargefunnel"]["steep"]["name"]; ?></h4>
 											<div class="component-image ir">
 												Steep-Sided Discharge image
 											</div>
 											<p class="description">
-												<?php echo $settings["steep-funnel"]["description"]; ?>
+												<?php echo $settings["dischargefunnel"]["steep"]["description"]; ?>
 											</p>
 											<p class="price clear">
 												<b>Price with Small Weigh Hopper: </b>
 												<br/>
-												$<span class="amount"><?php echo $settings["large-standard-funnel"]["price"]; ?></span> upcharge
+												$<span class="amount"><?php echo $settings["dischargefunnel"]["large"]["standard"]["price"]; ?></span> upcharge
 												<br />
 												<b>Price with Large Weigh Hopper: </b>
 												<br/>
-												$<span class="amount"><?php echo $settings["large-steep-funnel"]["price"]; ?></span> upcharge
+												$<span class="amount"><?php echo $settings["dischargefunnel"]["large"]["steep"]["price"]; ?></span> upcharge
 											</p></label>
 									</li>
 								</ul>
