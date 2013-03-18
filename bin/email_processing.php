@@ -10,11 +10,15 @@ require_once 'swiftmailer/lib/swift_required.php';
 		} else {
 			$to = $_POST['to'];
 			$cc = $_POST['cc'];
-			$message =  $_POST['message'];
+			if (!empty($message)) {
+				$message =   urldecode($_POST['message']) . "\r\r";
+			} else {
+				$message = "";
+			}
 			$quoteHTML = $_POST['quoteHTML'];
 			$quoteText = $_POST['quoteText'];
-			$messageHTML = urldecode($quoteHTML) . " \r " . urldecode($message);
-			$messageText = urldecode($quoteText) . " \r " . urldecode($message);
+			$messageHTML = $message . urldecode($quoteHTML);
+			$messageText = $message . urldecode($quoteText);
 		}
 
 		// Create the Transport
