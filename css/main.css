@@ -903,7 +903,10 @@ body {
 #submit_buttons,
 #emailQuote,
 .step-pager,
-#hidden-accessories-page {
+#hidden-accessories-page,
+form,
+.success,
+#hidden-accessories-page-btn {
     display:none !important;
 }
 #section-content {
