@@ -34,8 +34,10 @@ $(document).ready(function() {
     /*
     * Declare global variables
     */
-    // List of spouts available for sale
-    var availableSpouts = [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3, 3.25, 3.5],
+    // Retreive list of spouts available for sale from the HTML
+    var spoutSizes = $('input[name=spout-sizes]').val(),
+    spoutSizes = spoutSizes.replace(/\s+/g,''),
+    availableSpouts = spoutSizes.split(','),
     // Field containers
     $fieldContainer = $('.field-container'), $machineModel = $('#field-name-machine-model'), $weighHopper = $('#field-name-weigh-hopper'), $dischargeFunnel = $('#field-name-discharge-funnel'), $spout = $('#field-name-spout'), $spout1 = $spout.find('#spout1'), $spout2 = $spout.find('#spout2'), $spout3 = $spout.find('#spout3'),
     // Field labels for extracting data
@@ -75,7 +77,7 @@ $(document).ready(function() {
     $('#field-name-discharge-funnel .large, .field-name-dimensions li, #step-2, #step-3, #step-4, #step-5, #hidden-accessories-page, .container-shape-images > *, #btnAdd, #btnDel, .calculate, .spout-calculation, .field-spout .instructions p, #emailQuote').hide();
     $('.field-spout .instructions p.spout-selection').show();
     // Remove fallback form elements
-    $('.default-field-spout,.default-discharge-funnel,input[name=nojs]').remove();
+    $('.fallback-field-spout,.fallback-discharge-funnel,input[name=nojs]').remove();
     $btnSubmit.val('Send Email');
     // .bottom class puts a negative z-index on the hidden
     // accessories page so that it loads underneath the rest of
@@ -85,7 +87,7 @@ $(document).ready(function() {
     $machineModel.find('.description').not(':first').hide();
     // Remove .hidden class from JS ready content
     $('#field-name-discharge-funnel li, #btnAdd, #btnDel, #btnFront, #btnSide, .field-spout, .step-submit, #sidebar, #btnPrint, #btnEmail,#btnClose, #btnContinue, .quote-summary, #hidden-accessories-page, #machine-title, #quote-summary').removeClass('hidden');
-    // Check the default discharge funnel field
+    // Check the fallback discharge funnel field
     $dischargeFunnel.find($('.small #small-std-fnl')).prop('checked', true).addClass('active');
 
     // Add a waypoint to the sidebar
