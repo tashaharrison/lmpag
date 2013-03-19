@@ -9,28 +9,26 @@ if (isset($_POST['btnSubmit'])) {
 			'typeSpout1', 'widthSpout1', 'd1Spout1', 'd2Spout1',
 			'diameterSpout1', 'typeSpout2', 'widthSpout2', 'd1Spout2',
 			'd2Spout2', 'diameterSpout2', 'typeSpout3', 'widthSpout3',
-			'd1Spout3', 'd2Spout3', 'diameterSpout3', 'typeSpout1Default',
-			'typeSpout2Default', 'typeSpout3Default', 'widthSpout1',
-			'd1Spout1', 'd2Spout1', 'diameterSpout1',
-			'widthInchesSpout1Default', 'd1InchesSpout1Default',
-			'd2InchesSpout1Default', 'diameterInchesSpout1Default',
-			'widthInchesSpout2Default', 'd1InchesSpout2Default',
-			'd2InchesSpout2Default', 'diameterInchesSpout2Default',
-			'widthInchesSpout3Default', 'd1InchesSpout3Default',
-			'd2InchesSpout3Default', 'diameterInchesSpout3Default', 'to', 'cc',
-			'message');
+			'd1Spout3', 'd2Spout3', 'diameterSpout3', 'typeSpout1Fallback',
+			'typeSpout2Fallback', 'typeSpout3Fallback', 'widthSpout1',
+			'd1Spout1', 'd2Spout1', 'diameterSpout1', 'widthSpout1Fallback',
+			'd1Spout1Fallback', 'd2Spout1Fallback', 'diameterSpout1Fallback',
+			'widthSpout2Fallback', 'd1Spout2Fallback', 'd2Spout2Fallback',
+			'diameterSpout2Fallback', 'widthSpout3Fallback',
+			'd1Spout3Fallback', 'd2Spout3Fallback', 'diameterSpout3Fallback',
+			'to', 'cc', 'message');
 	$required = array('to');
 
-	if (!isset($_POST['typeSpout1Default'])) {
-		$_POST['typeSpout1Default'] = '';
+	if (!isset($_POST['typeSpout1Fallback'])) {
+		$_POST['typeSpout1Fallback'] = "";
 	}
-	if (!isset($_POST['typeSpout2Default'])) {
-		$_POST['typeSpout2Default'] = '';
+	if (!isset($_POST['typeSpout2Fallback'])) {
+		$_POST['typeSpout2Fallback'] = "";
 	}
-	if (!isset($_POST['typeSpout3Default'])) {
-		$_POST['typeSpout3Default'] = '';
+	if (!isset($_POST['typeSpout3Fallback'])) {
+		$_POST['typeSpout3Fallback'] = "";
 	}
-
+	
 	// assume nothing is suspect
 	$suspect = false;
 	// create a pattern to locate suspect phrases
@@ -87,49 +85,33 @@ if (isset($_POST['btnSubmit'])) {
 			$errors['cc'] = true;
 		}
 	}
-	// validate the spout 1 dimensions
-	if (!$suspect && !empty($typeSpout1Default)) {
-		if ($typeSpout1Default == 'flat-bag'
-				&& empty($widthInchesSpout1Default)) {
-			$errors['widthSpout1'] = true;
-		} elseif ($typeSpout1Default == 'four-sided-bag'
-				&& (empty($d1InchesSpout1Default)
-						|| empty($d2InchesSpout1Default))) {
-			$errors['d1d2Spout1'] = true;
-		} elseif ($typeSpout1Default == 'can-jar'
-				&& empty($diameterInchesSpout2Default)) {
-			$errors['diameterSpout1'] = true;
+	$spoutFields = array_intersect_key($_POST,
+			array_flip(preg_grep('/^typeSpout/', array_keys($_POST))));
+	$spoutFieldCount = count($spoutFields);
+	
+	for($i = 0; $i <= $spoutFieldCount; $i++) {
+		$spoutID = "Spout" . $i;
+		$spouttype = "type" . $spoutID . "Fallback";
+		$spoutwidth = "width" . $spoutID . "Fallback";
+		$spoutd1 = "d1" . $spoutID . "Fallback";
+		$spoutd2 = "d2" . $spoutID . "Fallback";
+		$spoutdiameter = "diameter" . $spoutID . "Fallback";
+		$widtherror = "width" . $spoutID;
+		$d1d2error = "d1d2" . $spoutID;
+		$diametererror = "diameter" . $spoutID;
+		if (!$suspect && !empty(${$spouttype})) {
+			if (${$spouttype} == 'flat-bag' && empty(${$spoutwidth})) {
+				$errors[$widtherror] = true;
+			} elseif (${$spouttype} == 'four-sided-bag'
+					&& (empty(${$spoutd1}) || empty(${$spoutd2}))) {
+				$errors[$d1d2error] = true;
+			} elseif (${$spouttype} == 'can-jar'
+					&& empty(${$spoutdiameter})) {
+				$errors[$diametererror] = true;
+			}
 		}
 	}
-	// validate the spout 2 dimensions
-	if (!$suspect && !empty($typeSpout2Default)) {
-		if ($typeSpout2Default == 'flat-bag'
-				&& empty($widthInchesSpout2Default)) {
-			$errors['widthSpout2'] = true;
-		} elseif ($typeSpout2Default == 'four-sided-bag'
-				&& (empty($d1InchesSpout2Default)
-						|| empty($d2InchesSpout2Default))) {
-			$errors['d1d2Spout2'] = true;
-		} elseif ($typeSpout2Default == 'can-jar'
-				&& empty($diameterInchesSpout2Default)) {
-			$errors['diameterSpout2'] = true;
-		}
-	}
-	// validate the spout 3 dimensions
-	if (!$suspect && !empty($typeSpout3Default)) {
-		if ($typeSpout3Default == 'flat-bag'
-				&& empty($widthInchesSpout3Default)) {
-			$errors['widthSpout3'] = true;
-		} elseif ($typeSpout3Default == 'four-sided-bag'
-				&& (empty($d1InchesSpout3Default)
-						|| empty($d2InchesSpout3Default))) {
-			$errors['d1d2Spout3'] = true;
-		} elseif ($typeSpout3Default == 'can-jar'
-				&& empty($diameterInchesSpout3Default)) {
-			$errors['diameterSpout3'] = true;
-		}
-	}
-
+	
 	$mailer = false;
 
 	if (!$suspect && !$missing && !$errors) {
