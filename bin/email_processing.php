@@ -131,7 +131,7 @@ if ($mailer->send($emailMessage)) {
 		$_POST['typeSpout1Fallback'] = "";
 		$_POST['typeSpout2Fallback'] = "";
 		$_POST['typeSpout3Fallback'] = "";
-	$response = "<div class=\"success\"><p>Thank you. Your email has been successfully sent.</p></div>" . $messageHTML;
+	$response = "<div class=\"success\"><p>Thank you. Your email has been successfully sent.</p><p>To print your quote press CTRL + P on your keyboard or select print from your browser's menu.</p></div>" . $messageHTML;
 } else {
 	$errors['mailfail'] = true;
 }
