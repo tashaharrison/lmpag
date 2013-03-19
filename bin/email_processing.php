@@ -21,7 +21,8 @@ if (isset($_POST['nojs'])) {
 		return $closest;
 	}
 	// Process the correct dimension fields according to the spout type selection
-	$spoutRows = "";
+	$spoutRowsHTML = "";
+	$spoutRowsText = "";
 	$index = 0;
 	foreach ($spoutFields as $key => $value) {
 		$index++;
@@ -50,8 +51,9 @@ if (isset($_POST['nojs'])) {
 				;
 				break;
 			}
-			$spoutRows .= "<tr><td>Spout</td><td>" . $spoutSize . " inch"
+			$spoutRowsHTML .= "<tr><td>Spout</td><td>" . $spoutSize . " inch"
 					. "</td><td>" . $settings["spout"]["price"] . "</td></tr>";
+			$spoutRowsText .= "Spout: " . $spoutSize . " inch - $" . $settings["spout"]["price"] . "\r";
 		}
 	}
 	// Determine the weigh hopper size and discharge funnel type in order to list the correct name, description and price for the dischgarge funnel on the order summar
@@ -80,13 +82,21 @@ if (isset($_POST['nojs'])) {
 			. $settings["dischargefunnel"][$weighHopperSize[0]][$dischargeFunnelType[0]]["description"]
 			. "</td><td>"
 			. $settings["dischargefunnel"][$weighHopperSize[0]][$dischargeFunnelType[0]]["price"]
-			. "</td></tr>" . $spoutRows . "</tbody></table>";
+			. "</td></tr>" . $spoutRowsHTML . "</tbody></table>";
 
-	$messageText = "Text of the message : " . urldecode($message)
-			. "Your Quote Summary \r"
-			. $settings["machinemodel"][$machinemodel]["name"] . " "
-			. $settings["machinemodel"][$machinemodel]["type"] . " \n "
-			. $weighhopper . " \n " . $dischargefunnel;
+	$messageText = $message
+			. "Your Quote Summary \r\r"
+			. $settings["machinemodel"][$machinemodel]["name"] . " " 
+			. $settings["machinemodel"][$machinemodel]["type"] . " - $"
+			. $settings["machinemodel"][$machinemodel]["price"] . "\r"
+			. $settings["machinemodel"][$machinemodel]["description"] . "\r\r"
+			. $settings["weighhopper"][$weighhopper]["name"]. " - $"
+			. $settings["weighhopper"][$weighhopper]["price"] . "\r"
+			. $settings["weighhopper"][$weighhopper]["description"] . "\r\r"
+			. $settings["dischargefunnel"][$weighHopperSize[0]][$dischargeFunnelType[0]]["name"] . " - $"
+						. $settings["dischargefunnel"][$weighHopperSize[0]][$dischargeFunnelType[0]]["price"] . "\r"
+			. $settings["dischargefunnel"][$weighHopperSize[0]][$dischargeFunnelType[0]]["description"] . "\r\r"
+			. $spoutRowsText;
 } else {
 	$to = $_POST['to'];
 	$cc = $_POST['cc'];
