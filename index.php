@@ -179,7 +179,6 @@ include_once 'bin/php_validation.php';
 
 			<section id="section-content" class="clearfix">
 				<article id="main-content" class="clearfix no-sidebar">
-					<pre><?php print_r($_POST);?></pre>
 					<?php echo isset($response) && !empty($response) ? $response
 		: '';
 					?>				
