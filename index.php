@@ -1,6 +1,6 @@
 <?php
 $spoutSizes = "0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75,	3, 3.25, 3.5";
-$settings = array(		
+$settings = array(
 		// Machine settings
 		"machinemodel" => array(
 				"S-4" => array("name" => "S-4", "type" => "Weigh Fill System",
@@ -178,7 +178,7 @@ include_once 'bin/php_validation.php';
 			</nav>
 
 			<section id="section-content" class="clearfix">
-				<article id="main-content" class="clearfix no-sidebar">
+				<article id="main-content" class="clearfix no-sidebar"> 
 					<?php echo isset($response) && !empty($response) ? $response
 		: '';
 					?>				

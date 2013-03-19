@@ -163,21 +163,21 @@ $(document).ready(function() {
     // Retreive form values for display on summary
     function showValues() {
     	var resultsHTML = '<tr><th>' + machine.name + ' ' + machine.type + '</th><td>' + machine.description + '</td><td>$' + machine.price + '</td></tr><tr><th>' + machine.weighHopper.name + '</th><td>' + machine.weighHopper.description + '</td><td>$' + machine.weighHopper.price + '</td></tr><tr><th>' + machine.dischargeFunnel.name + '</th><td>' + machine.dischargeFunnel.description + '</td><td>$' + machine.dischargeFunnel.price + '</td></tr>';
-        $('#results').empty().append(resultsHTML);
         var num = parseInt($('.spout-size').text());
         if (!isNaN(num)) {
             $('.spout-size').each(function() {
-                $('#results').append('<tr><th>Spout</th><td>' + $(this).text() + ' inch</td><td>$' + spoutPrice + '</td></tr>');
+            	resultsHTML += '<tr><th>Spout</th><td>' + $(this).text() + ' inch</td><td>$' + spoutPrice + '</td></tr>';
             });
         }
-        $('#results').append('<tr class="total"><td>&nbsp;</td><th>Total:</th><td>$' + grandTotal + '</td></tr>');
+        resultsHTML += '<tr class="total"><td>&nbsp;</td><th>Total:</th><td>$' + grandTotal + '</td></tr>';
+        $('#results').empty().append(resultsHTML);
         $('#results tr').filter(':even').addClass('even');
 
-        var $disabled = $form.find('input:disabled').prop('disabled', false);
+        /*var $disabled = $form.find('input:disabled').prop('disabled', false);
         $('#datastring').remove();
         dataString = $form.serialize();
         $disabled.prop('disabled', true);
-        $('#quote-summary').append('<div id="datastring">' + dataString + '</div>');
+        $('#quote-summary').append('<div id="datastring">' + dataString + '</div>');*/
         
         return resultsHTML;
     }
@@ -201,17 +201,24 @@ $(document).ready(function() {
     $btnSubmit.on('click', function() {
         var $disabled = $form.find('input:disabled').prop('disabled', false);
     	var quoteSummary = $('#quote-summary').html();
+        var spoutRowsText = '';
+    	var num = parseInt($('.spout-size').text());
+        if (!isNaN(num)) {
+        	$('.spout-size').each(function() {
+        		spoutRowsText += 'Spout: ' + $(this).text() + ' inch $ - ' + spoutPrice + '\r';
+            });
+        }
         
     	var to = $('#to').val(),
         cc = $('#cc').val(),
         message = encodeURIComponent($('#message').val().trim()),
         $emailFields = $('#to,#cc'),
         quoteHTML = encodeURIComponent('<h3>Your Quote Summary</h3><table><thead><tr><th>Item</th><th>Description</th><th>Price</th></tr></thead><tbody>' + showValues() + '</tbody></table>'), 
-        quoteText = encodeURIComponent(machine.name + ' ' + machine.type + ' - $' + machine.price + '\r' + machine.description + '\r\r' + machine.weighHopper.name + ' - $' + machine.weighHopper.price + '\r' + machine.weighHopper.description + '\r\r' + machine.dischargeFunnel.name + ' - $' + machine.dischargeFunnel.price + '\r' + machine.dischargeFunnel.description);
+        quoteText = encodeURIComponent(machine.name + ' ' + machine.type + ' - $' + machine.price + '\r' + machine.description + '\r\r' + machine.weighHopper.name + ' - $' + machine.weighHopper.price + '\r' + machine.weighHopper.description + '\r\r' + machine.dischargeFunnel.name + ' - $' + machine.dischargeFunnel.price + '\r' + machine.dischargeFunnel.description + '\r\r' + spoutRowsText + '\rTotal: $' + grandTotal);
         
     	var dataString = 'to=' + to + '&cc=' + cc + '&message=' + message + '&quoteHTML=' + quoteHTML + '&quoteText=' + quoteText;
-    	$('#quote-summary').append(dataString);
-       // alert(dataString); return false;
+    	// $('#quote-summary').append(dataString);
+        // alert(dataString); return false;
         
         if ($emailFields.valid()) {
             $.ajax({

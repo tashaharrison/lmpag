@@ -13,7 +13,7 @@ if (isset($_POST['nojs'])) {
 		foreach ($availableSpouts as $value) {
 			if ($closest == null
 					|| abs($value - $calculatedSpoutSize)
-					< abs($closest - $calculatedSpoutSize)) {
+							< abs($closest - $calculatedSpoutSize)) {
 				$closest = $value;
 			}
 		}
@@ -23,6 +23,7 @@ if (isset($_POST['nojs'])) {
 	// Process the correct dimension fields according to the spout type selection
 	$spoutRowsHTML = "";
 	$spoutRowsText = "";
+	$spoutPrice = 0;
 	$index = 0;
 	foreach ($spoutFields as $key => $value) {
 		$index++;
@@ -53,9 +54,12 @@ if (isset($_POST['nojs'])) {
 			}
 			$spoutRowsHTML .= "<tr><td>Spout</td><td>" . $spoutSize . " inch"
 					. "</td><td>" . $settings["spout"]["price"] . "</td></tr>";
-			$spoutRowsText .= "Spout: " . $spoutSize . " inch - $" . $settings["spout"]["price"] . "\r";
+			$spoutRowsText .= "Spout: " . $spoutSize . " inch - $"
+					. $settings["spout"]["price"] . "\r";
+			$spoutPrice = $spoutPrice + abs($settings["spout"]["price"]);
 		}
 	}
+	$spoutRowsText .= "\r";
 	// Determine the weigh hopper size and discharge funnel type in order to list the correct name, description and price for the dischgarge funnel on the order summar
 	$weighHopperSize = explode("-", $weighhopper);
 	$dischargeFunnelType = explode("-", $dischargefunnel);
@@ -65,6 +69,10 @@ if (isset($_POST['nojs'])) {
 	} else {
 		$message = "";
 	}
+	$total = $settings["machinemodel"][$machinemodel]["price"]
+			+ $settings["weighhopper"][$weighhopper]["price"]
+			+ $settings["dischargefunnel"][$weighHopperSize[0]][$dischargeFunnelType[0]]["price"]
+			+ $spoutPrice;
 	// Create the HTML message
 	$messageHTML = $message
 			. "<h3>Your Quote Summary</h3><table><thead><tr><th>Item</th><th>Description</th><th>Price</th></tr></thead><tbody><tr><td>"
@@ -82,21 +90,24 @@ if (isset($_POST['nojs'])) {
 			. $settings["dischargefunnel"][$weighHopperSize[0]][$dischargeFunnelType[0]]["description"]
 			. "</td><td>"
 			. $settings["dischargefunnel"][$weighHopperSize[0]][$dischargeFunnelType[0]]["price"]
-			. "</td></tr>" . $spoutRowsHTML . "</tbody></table>";
+			. "</td></tr>" . $spoutRowsHTML
+			. "<tr><td>&nbsp;</td><th>Total:</th><td>" . $total
+			. "</td></tr></tbody></table>";
 
-	$messageText = $message
-			. "Your Quote Summary \r\r"
-			. $settings["machinemodel"][$machinemodel]["name"] . " " 
+	$messageText = $message . "Your Quote Summary \r\r"
+			. $settings["machinemodel"][$machinemodel]["name"] . " "
 			. $settings["machinemodel"][$machinemodel]["type"] . " - $"
 			. $settings["machinemodel"][$machinemodel]["price"] . "\r"
 			. $settings["machinemodel"][$machinemodel]["description"] . "\r\r"
-			. $settings["weighhopper"][$weighhopper]["name"]. " - $"
+			. $settings["weighhopper"][$weighhopper]["name"] . " - $"
 			. $settings["weighhopper"][$weighhopper]["price"] . "\r"
 			. $settings["weighhopper"][$weighhopper]["description"] . "\r\r"
-			. $settings["dischargefunnel"][$weighHopperSize[0]][$dischargeFunnelType[0]]["name"] . " - $"
-						. $settings["dischargefunnel"][$weighHopperSize[0]][$dischargeFunnelType[0]]["price"] . "\r"
-			. $settings["dischargefunnel"][$weighHopperSize[0]][$dischargeFunnelType[0]]["description"] . "\r\r"
-			. $spoutRowsText;
+			. $settings["dischargefunnel"][$weighHopperSize[0]][$dischargeFunnelType[0]]["name"]
+			. " - $"
+			. $settings["dischargefunnel"][$weighHopperSize[0]][$dischargeFunnelType[0]]["price"]
+			. "\r"
+			. $settings["dischargefunnel"][$weighHopperSize[0]][$dischargeFunnelType[0]]["description"]
+			. "\r\r" . $spoutRowsText . "Total: " . $total;
 } else {
 	$to = $_POST['to'];
 	$cc = $_POST['cc'];
@@ -137,11 +148,13 @@ if (!empty($cc)) {
 
 if ($mailer->send($emailMessage)) {
 	//header('Location: index.php');
-	unset($_POST['typeSpout1Fallback'], $_POST['typeSpout2Fallback'], $_POST['typeSpout3Fallback']);
-		$_POST['typeSpout1Fallback'] = "";
-		$_POST['typeSpout2Fallback'] = "";
-		$_POST['typeSpout3Fallback'] = "";
-	$response = "<div class=\"success\"><p>Thank you. Your email has been successfully sent.</p><p>To print your quote press CTRL + P on your keyboard or select print from your browser's menu.</p></div>" . $messageHTML;
+	unset($_POST['typeSpout1Fallback'], $_POST['typeSpout2Fallback'],
+			$_POST['typeSpout3Fallback']);
+	$_POST['typeSpout1Fallback'] = "";
+	$_POST['typeSpout2Fallback'] = "";
+	$_POST['typeSpout3Fallback'] = "";
+	$response = "<div class=\"success\"><p>Thank you. Your email has been successfully sent.</p><p>To print your quote press CTRL + P on your keyboard or select print from your browser's menu.</p></div>"
+			. $messageHTML;
 } else {
 	$errors['mailfail'] = true;
 }
