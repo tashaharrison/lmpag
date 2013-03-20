@@ -52,8 +52,9 @@ if (isset($_POST['nojs'])) {
 				;
 				break;
 			}
-			$spoutRowsHTML .= '<tr><th style="text-align:right;border-right: 1px solid #0c4b81;">Spout</th><td>' . $spoutSize . ' inch'
-					. '</td><td>$' . $settings["spout"]["price"] . '</td></tr>';
+			$spoutRowsHTML .= '<tr><th style="text-align:right;border-right: 1px solid #0c4b81;">Spout</th><td>'
+					. $spoutSize . ' inch' . '</td><td>$'
+					. $settings["spout"]["price"] . '</td></tr>';
 			$spoutRowsText .= "Spout: " . $spoutSize . " inch - $"
 					. $settings["spout"]["price"] . "\r";
 			$spoutPrice = $spoutPrice + abs($settings["spout"]["price"]);
@@ -75,7 +76,7 @@ if (isset($_POST['nojs'])) {
 			+ $spoutPrice;
 	// Create the HTML message
 	$messageHTML = $message
-			. '<h3>Your Quote Summary</h3><table border="0" cellpadding="10" cellspacing="0" style="margin:14px;border-collapse:collapse;"><thead style="border-bottom:1px solid #0c4b81;"><tr><th style="text-align:right;">Item</th><th style="text-align:left;">Description</th><th style="text-align:left;">Price</th></tr></thead><tbody><tr bgcolor="#EBFFEA"><th style="text-align:right;border-right: 1px solid #0c4b81;">'
+			. '<h3 style="margin-left:10px;">Your Quote Summary</h3><table border="0" cellpadding="10" cellspacing="0" style="margin:14px;border-collapse:collapse;"><thead style="border-bottom:1px solid #0c4b81;"><tr><th style="text-align:right;">Item</th><th style="text-align:left;">Description</th><th style="text-align:left;">Price</th></tr></thead><tbody><tr bgcolor="#EBFFEA"><th style="text-align:right;border-right: 1px solid #0c4b81;">'
 			. $settings["machinemodel"][$machinemodel]["name"] . ' '
 			. $settings["machinemodel"][$machinemodel]["type"] . '</th><td>'
 			. $settings["machinemodel"][$machinemodel]["description"]
@@ -91,8 +92,8 @@ if (isset($_POST['nojs'])) {
 			. '</td><td>$'
 			. $settings["dischargefunnel"][$weighHopperSize[0]][$dischargeFunnelType[0]]["price"]
 			. '</td></tr>' . $spoutRowsHTML
-			. '<tr class="total" style="text-align:right;border-top:1px solid #0c4b81;"><td>&nbsp;</td><th>Total:</th><td>$' . $total
-			. '</td></tr></tbody></table>';
+			. '<tr class="total" style="text-align:right;border-top:1px solid #0c4b81;"><td>&nbsp;</td><th>Total:</th><td>$'
+			. $total . '</td></tr></tbody></table>';
 
 	$messageText = $message . "Your Quote Summary \r\r"
 			. $settings["machinemodel"][$machinemodel]["name"] . " "
@@ -132,12 +133,35 @@ if (isset($_POST['nojs'])) {
 $transport = Swift_MailTransport::newInstance();
 // Create the Mailer using your created Transport
 $mailer = Swift_Mailer::newInstance($transport);
-
 // Create a message
-$emailMessage = Swift_Message::newInstance('Logical Machines Quote Generator')
-		->setBody($messageHTML, 'text/html')
-		->addPart($messageText, 'text/plain')
-		->setFrom(array('pete@spirelightmedia.com' => 'Logical Machines'))
+$emailMessage = Swift_Message::newInstance('Logical Machines Quote Generator');
+$cid = $emailMessage
+		->embed(
+				Swift_Image::fromPath(
+						'http://www.logicalmachines.com/Resources/lmweblogo.jpeg'));
+$emailMessage
+		->setBody(
+				'<html>' . ' <head></head>'
+						. ' <body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">'
+						. '<center>'
+						. '<table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="backgroundTable">'
+						. '<tr><td align="center" valign="top">'
+						. '<table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateContainer">'
+						. '<tr><td align="center" valign="top">'
+						. '<table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateHeader">'
+						. '<tr><td class="headerContent">' . '<img src="'
+						. $cid . '" alt="Logical Machines" />' . '</td></tr>'
+						. '</table>'
+						. '</td></tr><tr><td align="center" valign="top">'
+						. '<table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateBody">'
+						. '<tr><td valign="top" class="bodyContent">'
+						. '<table border="0" cellpadding="20" cellspacing="0" width="100%">'
+						. '<tr><td valign="top">' . $messageHTML . '</td></tr>'
+						. '</table></td></tr></table>' . '</td></tr>'
+						. '</table>' . '<br></td></tr>' . '</table></center>'
+						. '</body>' . '</html>', 'text/html');
+$emailMessage->addPart($messageText, 'text/plain');
+$emailMessage->setFrom(array('pete@spirelightmedia.com' => 'Logical Machines'))
 		->setSender('pgjainsworth@gmail.com')
 		->setReturnPath('pgjainsworth@gmail.com')
 		->setBcc(array('pgjainsworth@gmail.com'))->setMaxLineLength(78)
