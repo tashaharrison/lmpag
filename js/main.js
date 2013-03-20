@@ -468,6 +468,7 @@ $(document).ready(function() {
         }
         if ($(this).is('#step-4-pager button.next'))
             showValues();
+    	$('#thankYouMessage').remove();
         if ($(this).is('#step-2-pager button.prev'))
             location.reload();
     });
@@ -481,6 +482,7 @@ $(document).ready(function() {
         $(stepValue).show();
         if (stepValue === "#step-5")
             showValues();
+    	$('#thankYouMessage').remove();
         if (stepValue === "#step-1")
             location.reload();
     });
