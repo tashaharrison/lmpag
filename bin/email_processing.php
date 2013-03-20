@@ -52,8 +52,8 @@ if (isset($_POST['nojs'])) {
 				;
 				break;
 			}
-			$spoutRowsHTML .= "<tr><td>Spout</td><td>" . $spoutSize . " inch"
-					. "</td><td>" . $settings["spout"]["price"] . "</td></tr>";
+			$spoutRowsHTML .= '<tr><th style="text-align:right;border-right: 1px solid #0c4b81;">Spout</th><td>' . $spoutSize . ' inch'
+					. '</td><td>$' . $settings["spout"]["price"] . '</td></tr>';
 			$spoutRowsText .= "Spout: " . $spoutSize . " inch - $"
 					. $settings["spout"]["price"] . "\r";
 			$spoutPrice = $spoutPrice + abs($settings["spout"]["price"]);
@@ -75,24 +75,24 @@ if (isset($_POST['nojs'])) {
 			+ $spoutPrice;
 	// Create the HTML message
 	$messageHTML = $message
-			. "<h3>Your Quote Summary</h3><table><thead><tr><th>Item</th><th>Description</th><th>Price</th></tr></thead><tbody><tr><td>"
-			. $settings["machinemodel"][$machinemodel]["name"] . " "
-			. $settings["machinemodel"][$machinemodel]["type"] . "</td><td>"
+			. '<h3>Your Quote Summary</h3><table border="0" cellpadding="10" cellspacing="0" style="margin:14px;border-collapse:collapse;"><thead style="border-bottom:1px solid #0c4b81;"><tr><th style="text-align:right;">Item</th><th style="text-align:left;">Description</th><th style="text-align:left;">Price</th></tr></thead><tbody><tr bgcolor="#EBFFEA"><th style="text-align:right;border-right: 1px solid #0c4b81;">'
+			. $settings["machinemodel"][$machinemodel]["name"] . ' '
+			. $settings["machinemodel"][$machinemodel]["type"] . '</th><td>'
 			. $settings["machinemodel"][$machinemodel]["description"]
-			. "</td><td>" . $settings["machinemodel"][$machinemodel]["price"]
-			. "</td></tr><tr><td>"
-			. $settings["weighhopper"][$weighhopper]["name"] . "</td><td>"
+			. '</td><td>$' . $settings["machinemodel"][$machinemodel]["price"]
+			. '</td></tr><tr><th style="text-align:right;border-right: 1px solid #0c4b81;">'
+			. $settings["weighhopper"][$weighhopper]["name"] . "</th><td>"
 			. $settings["weighhopper"][$weighhopper]["description"]
-			. "</td><td>" . $settings["weighhopper"][$weighhopper]["price"]
-			. "</td></tr><tr><td>"
+			. '</td><td>$' . $settings["weighhopper"][$weighhopper]["price"]
+			. '</td></tr><tr bgcolor="#EBFFEA"><th style="text-align:right;border-right: 1px solid #0c4b81;">'
 			. $settings["dischargefunnel"][$weighHopperSize[0]][$dischargeFunnelType[0]]["name"]
-			. "</td><td>"
+			. '</th><td>'
 			. $settings["dischargefunnel"][$weighHopperSize[0]][$dischargeFunnelType[0]]["description"]
-			. "</td><td>"
+			. '</td><td>$'
 			. $settings["dischargefunnel"][$weighHopperSize[0]][$dischargeFunnelType[0]]["price"]
-			. "</td></tr>" . $spoutRowsHTML
-			. "<tr><td>&nbsp;</td><th>Total:</th><td>" . $total
-			. "</td></tr></tbody></table>";
+			. '</td></tr>' . $spoutRowsHTML
+			. '<tr class="total" style="text-align:right;border-top:1px solid #0c4b81;"><td>&nbsp;</td><th>Total:</th><td>$' . $total
+			. '</td></tr></tbody></table>';
 
 	$messageText = $message . "Your Quote Summary \r\r"
 			. $settings["machinemodel"][$machinemodel]["name"] . " "
@@ -107,7 +107,7 @@ if (isset($_POST['nojs'])) {
 			. $settings["dischargefunnel"][$weighHopperSize[0]][$dischargeFunnelType[0]]["price"]
 			. "\r"
 			. $settings["dischargefunnel"][$weighHopperSize[0]][$dischargeFunnelType[0]]["description"]
-			. "\r\r" . $spoutRowsText . "Total: " . $total;
+			. "\r\r" . $spoutRowsText . "Total: $" . $total;
 } else {
 	$to = $_POST['to'];
 	$cc = $_POST['cc'];

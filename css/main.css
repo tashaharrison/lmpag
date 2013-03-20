@@ -108,7 +108,7 @@ tbody tr.total td, tbody tr.total th {
     font-weight: bold;
 }
 tbody tr.total th {
-    text-align:left;
+    text-align:right;
 }
 thead tr th:first-child {
     text-align:right;
