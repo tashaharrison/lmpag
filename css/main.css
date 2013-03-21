@@ -903,9 +903,13 @@ body {
 #submit_buttons,
 #emailQuote,
 .step-pager,
+#step-1,
+#step-2,
+#step-3,
+#step-4,
 #hidden-accessories-page,
-form,
 .success,
+#thankYouMessage,
 #hidden-accessories-page-btn {
     display:none !important;
 }
