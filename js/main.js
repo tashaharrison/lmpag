@@ -213,7 +213,10 @@ $(document).ready(function() {
         cc = $('#cc').val(),
         message = encodeURIComponent($('#message').val().trim()),
         $emailFields = $('#to,#cc'),
-        quoteHTML = encodeURIComponent('<h3 style="margin-left:10px;">Your Quote Summary</h3><table border="0" cellpadding="10" cellspacing="0" style="margin:14px;border-collapse:collapse;"><thead style="border-bottom:1px solid #0c4b81;><tr"><th style="text-align:right;">Item</th><th style="text-align:left;">Description</th><th style="text-align:left;">Price</th></tr></thead><tbody>' + showValues() + '</tbody></table>'), 
+        $HTMLresults = encodeURIComponent(showValues()),
+    	$HTMLheader = encodeURIComponent('<h3 style="margin-left:10px;">Your Quote Summary</h3><table border="0" cellpadding="10" cellspacing="0" style="margin:14px;border-collapse:collapse;"><thead style="border-bottom:1px solid #0c4b81;><tr"><th style="text-align:right;">Item</th><th style="text-align:left;">Description</th><th style="text-align:left;">Price</th></tr></thead><tbody>'), 
+    	$HTMLfooter = encodeURIComponent('</tbody></table>'),
+    	quoteHTML =  $HTMLheader + $HTMLresults + $HTMLfooter, 
         quoteText = encodeURIComponent(machine.name + " " + machine.type + " - $" + machine.price + "\r" + machine.description + "\r\r" + machine.weighHopper.name + " - $" + machine.weighHopper.price + "\r" + machine.weighHopper.description + "\r\r" + machine.dischargeFunnel.name + " - $" + machine.dischargeFunnel.price + "\r" + machine.dischargeFunnel.description + "\r\r" + spoutRowsText + "\rTotal: $" + grandTotal);
         
     	var dataString = 'to=' + to + '&cc=' + cc + '&message=' + message + '&quoteHTML=' + quoteHTML + '&quoteText=' + quoteText;
