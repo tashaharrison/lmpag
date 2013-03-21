@@ -135,10 +135,6 @@ $transport = Swift_MailTransport::newInstance();
 $mailer = Swift_Mailer::newInstance($transport);
 // Create a message
 $emailMessage = Swift_Message::newInstance('Logical Machines Quote Generator');
-/*$cid = $emailMessage
-        ->embed(
-                Swift_Image::fromPath(
-                        'http://www.logicalmachines.com/Resources/lmweblogo.jpeg'));*/
 $emailMessage
 		->setBody(
 				'<html>'
@@ -313,30 +309,33 @@ $emailMessage
 						. ' <body leftmargin="0" marginwidth="0" topmargin="10" marginheight="0" offset="0">'
 						. '<center>'
 				// Background container
-						. '<table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="backgroundTable">'
+						. '<table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="backgroundTable"><tbody>'
 						. '<tr><td align="center" valign="top">'
 				// Email container
-						. '<table border="0" cellpadding="0" cellspacing="0" width="600" id="templateContainer">'
+						. '<table border="0" cellpadding="0" cellspacing="0" width="600" id="templateContainer"><tbody>'
 						. '<tr><td align="center" valign="top">'
 				// Header container
-						. '<table border="0" cellpadding="0" cellspacing="0" width="600" id="templateHeader">'
-						. '<tr><td class="headerContent">' /*. '<img src="' . $cid . '" alt="Logical Machines" />'*/
- . '</td></tr>' . '</table>' . '</td></tr><tr><td align="center" valign="top">'
+						. '<table border="0" cellpadding="0" cellspacing="0" width="600" id="templateHeader"><tbody>'
+						. '<tr><td class="headerContent">' . '</td></tr>'
+						. '</tbody></table>'
+						. '</td></tr><tr><td align="center" valign="top">'
 				// Body container
-						. '<table border="0" cellpadding="0" cellspacing="0" width="600" id="templateBody">'
+						. '<table border="0" cellpadding="0" cellspacing="0" width="600" id="templateBody"><tbody>'
 						. '<tr><td valign="top" class="bodyContent">'
-						. '<table border="0" cellpadding="20" cellspacing="0" width="100%">'
+						. '<table border="0" cellpadding="20" cellspacing="0" width="100%"><tbody>'
 						. '<tr><td valign="top">' . $messageHTML . '</td></tr>'
-						. '</table></td></tr></table>' . '</td></tr>'
-						. '<tr><td align="center" valign="top">'
+						. '</tbody></table></td></tr></tbody></table>'
+						. '</td></tr>' . '<tr><td align="center" valign="top">'
 				// Footer container
-						. '<table border="0" cellpadding="10" cellspacing="0" width="100%" id="templateFooter">'
+						. '<table border="0" cellpadding="10" cellspacing="0" width="100%" id="templateFooter"><tbody>'
 						. '<tr><td valign="top" class="footerContent">'
-						. '<table border="0" cellpadding="10" cellspacing="0" width="100%">'
+						. '<table border="0" cellpadding="10" cellspacing="0" width="100%"><tbody>'
 						. '<tr><td colspan="2" valign="middle"></td></tr>'
-						. '</table>' . '</td></tr>' . '</table>' . '</td></tr>'
-						. '</table>' . '<br></td></tr>' . '</table></center>'
-						. '</body>' . '</html>', 'text/html');
+						. '</tbody></table>' . '</td></tr>'
+						. '</tbody></table>' . '</td></tr>'
+						. '</tbody></table>' . '<br></td></tr>'
+						. '</tbody></table></center>' . '</body>' . '</html>',
+				'text/html');
 $emailMessage->addPart($messageText, 'text/plain');
 $emailMessage->setFrom(array('pete@spirelightmedia.com' => 'Logical Machines'))
 		->setSender('pgjainsworth@gmail.com')
