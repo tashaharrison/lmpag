@@ -234,7 +234,7 @@ $(document).ready(function() {
                     $btnEmail.text('Email Quote').val('Email Quote');
                     $('#emailQuote').slideToggle('fast').find('input').not('input[type=submit]').val('');
                     $('#quote-summary').after("<div id='thankYouMessage'></div>");
-                    $('#thankYouMessage').html("<h3>Thank you.</h3>").append("<p>We will be in touch soon.</p>");
+                    $('#thankYouMessage').html("<h3>Thank you.</h3>").append("<p>Your email has been sent to the recipients your entered.</p>");
                 }
             });
             return false;
