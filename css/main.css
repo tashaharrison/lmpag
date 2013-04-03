@@ -522,7 +522,7 @@ ul.field-type-radio > li {
 	margin-bottom: 20px;
 }
 .field-type-radio h4 {
-	margin: 0 0 0.4em 1.33em;
+	margin: 0 0 0.4em 0;
 }
 .field-type-radio h5 {
 	margin: 1.67em 0 0;
@@ -533,10 +533,11 @@ ul.field-type-radio > li {
 .field-type-radio label {
 	border: 2px solid #0c4b81;
 	display: block;
-	margin-top: -30px;
+	margin-top: 0;
 	padding: 11px 11px 4px;
 }
 .field-type-radio input {
+    display:none;
 	margin-left: 14px;
 }
 .field-type-radio input[type="radio"]:checked+label,
@@ -573,32 +574,26 @@ ul.field-type-radio > li {
 }
 #field-name-spout .four-sided-bag input + label .spout-sprite {
 	width: 97px;
-	height: 229px;
+	height: 230px;
 	background-position: -20px -20px;
 }
 #field-name-spout .four-sided-bag input:checked + label .spout-sprite {
-	width: 97px;
-	height: 229px;
 	background-position: -20px -269px;
 }
 #field-name-spout .flat-bag input + label .spout-sprite {
 	width: 74px;
-	height: 226px;
+	height: 230px;
 	background-position: -20px -518px;
 }
 #field-name-spout .flat-bag input:checked + label .spout-sprite {
-	width: 74px;
-	height: 226px;
 	background-position: -20px -764px;
 }
 #field-name-spout .can-jar input + label .spout-sprite {
 	width: 81px;
-	height: 219px;
+	height: 230px;
 	background-position: -20px -1010px;
 }
 #field-name-spout .can-jar input:checked + label .spout-sprite {
-	width: 81px;
-	height: 219px;
 	background-position: -20px -1249px;
 }
 .main-spout-image {
