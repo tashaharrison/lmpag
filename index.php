@@ -1181,7 +1181,7 @@ if ($_POST && $_POST['typeSpout3Fallback'] == 'flat-bag') {
 						</div>
 						<h3 id="machine-title" class="hidden">S-4 Weigh/Fill System</h3>
 						<p id="cost-container">
-							Price as configured: <span class="price">$<span class="amount">6150</span></span>
+							 <span class="title">Base Price:</span> <span class="price">$<span class="amount">6150</span></span>
 						</p>
 					</div>
 				</aside>

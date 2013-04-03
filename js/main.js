@@ -459,6 +459,7 @@ $(document).ready(function() {
      */
 
     $('.step-pager button').click(function() {
+    	changeCostContainerText()
         var $stepContainer = $(this).closest('.step-container'), nextStepContainerID = $stepContainer.next().attr('id'), prevStepContainerID = $stepContainer.prev().attr('id');
 
         $('#pag-navigation a').removeClass('active');
@@ -478,6 +479,7 @@ $(document).ready(function() {
     });
 
     $('#pag-navigation a').click(function() {
+    	changeCostContainerText();
         var stepValue = $(this).attr('href');
 
         $('#pag-navigation a').removeClass('active');
@@ -491,6 +493,12 @@ $(document).ready(function() {
             location.reload();
     });
 
+    function changeCostContainerText() {
+    	var costContainerText = $('#cost-container .title').text(); 
+    	if (costContainerText !== 'Price as Configured:') {
+    		$('#cost-container .title').text('Price as Configured:');
+    	} 
+    }
     /*
      * Hidden accessories page
      */
