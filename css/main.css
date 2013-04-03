@@ -573,36 +573,36 @@ ul.field-type-radio > li {
 }
 #field-name-spout .four-sided-bag input + label .spout-sprite {
 	width: 97px;
-	height: 235px;
+	height: 229px;
 	background-position: -20px -20px;
 }
 #field-name-spout .four-sided-bag input:checked + label .spout-sprite {
 	width: 97px;
-	height: 235px;
+	height: 229px;
 	background-position: -20px -269px;
 }
 #field-name-spout .flat-bag input + label .spout-sprite {
 	width: 74px;
-	height: 235px;
+	height: 226px;
 	background-position: -20px -518px;
 }
 #field-name-spout .flat-bag input:checked + label .spout-sprite {
 	width: 74px;
-	height: 235px;
+	height: 226px;
 	background-position: -20px -764px;
 }
 #field-name-spout .can-jar input + label .spout-sprite {
 	width: 81px;
-	height: 235px;
-	background-position: -114px -518px;
+	height: 219px;
+	background-position: -20px -1010px;
 }
 #field-name-spout .can-jar input:checked + label .spout-sprite {
 	width: 81px;
-	height: 235px;
-	background-position: -114px -757px;
+	height: 219px;
+	background-position: -20px -1249px;
 }
 .main-spout-image {
-	background-position: -20px -1010px;
+	background-position: -20px -1488px;
 	float: right;
     height: 191px;
     margin: 0 20px;
@@ -611,17 +611,17 @@ ul.field-type-radio > li {
 .container-shape-images .four-sided-bag {
 	width: 144px;
 	height: 179px;
-	background-position: -20px -1221px;
+	background-position: -20px -1699px;
 }
 .container-shape-images .can-jar {
 	width: 133px;
 	height: 132px;
-	background-position: -20px -1420px;
+	background-position: -20px -2081px;
 }
 .container-shape-images .flat-bag {
-	width: 188px;
-	height: 74px;
-	background-position: -20px -1572px;
+	width:146px; 
+	height:163px;
+	background-position: -20px -1898px;
 }
 #field-name-spout ul {
 	margin: 0;
