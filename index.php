@@ -4,7 +4,7 @@ $settings = array(
 		// Machine settings
 		"machinemodel" => array(
 				"S-4" => array("name" => "S-4", "type" => "Weigh Fill System",
-						"description" => "The standard S-4 includes the small weigh hopper, small discharge funnel, Logical Controller II and one spout. It comes fully assembled and ready to operate.",
+						"description" => "The standard S-4 includes the small weigh hopper, small discharge funnel and Logical Controller II. It comes fully assembled and ready to operate.",
 						"price" => "6150"),
 				"S-5" => array("name" => "S-5", "type" => "Bulk Fill System",
 						"description" => "The standard S-5 includes... It comes fully assembled and ready to operate.",
