@@ -369,7 +369,7 @@ $(document).ready(function() {
                 $btnAdd.show();
             }
             $(this).hide();
-            $spoutContainer.find('.field-name-spout-type,.description').hide();
+            $spoutContainer.find('.field-name-spout-type,.instructions,.field-name-dimensions,.container-shape-images').hide();
             $dimensionFieldsVisible.prop("disabled", true);
             $btnDel.show().prop('disabled', false);
             // price = parseInt($('#spout' + num
@@ -438,7 +438,8 @@ $(document).ready(function() {
             // $btnDel.hide().attr('disabled',
             // 'disabled');
             $spoutField.find('.field-name-spout-type').show().find('input').removeClass('active').prop('checked', false);
-            $spoutField.find('.description').show().find('p').hide().filter('.spout-selection').show();
+            $spoutField.find('.instructions').show().find('p').hide().filter('.spout-selection').show();
+            $spoutField.find('.field-name-dimensions,.container-shape-images').show();
             $spoutField.find('.field-name-dimensions li').hide().find('input').prop('disabled', false).val("");
             $spoutField.find('.container-shape-images > *').hide();
             $spoutField.find('.spout-calculation').hide().find('.spout-size').empty();

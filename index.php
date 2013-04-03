@@ -582,7 +582,7 @@ if ($_POST && $_POST['dischargefunnel'] == 'steep-funnel') {
 											Calculate
 										</button>
 										<p class="spout-calculation">
-											You have selected a <span class="spout-size">&nbsp;</span> inch spout
+											<span class="spout-size">&nbsp;</span>"
 										</p>
 									</fieldset>
 
