@@ -1044,9 +1044,6 @@ if ($_POST && $_POST['typeSpout3Fallback'] == 'flat-bag') {
 									</fieldset>
 
 								</div>
-								<button type="button" id="btnDel" value="Remove spout" class="hidden">
-									Remove spout
-								</button>
 								<button type="button" id="btnAdd" value="Add another spout" class="hidden">
 									Add another spout
 								</button>

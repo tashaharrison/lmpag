@@ -651,13 +651,12 @@ padding: 4px 0px 4px 8px;
     font-size: 1.2em;
     margin: 0 0 14px;
     background-color: #F8F4F4;
-    padding: 12px 14px;
-    position:relative
+    padding: 10px;
 }
-.spout-calculation .btnEdit {
-    position:absolute;
-    right: 4px;
-    top:4px;
+.spout-calculation .btnEdit,
+.spout-calculation .btnRemove {
+    float:right;
+   margin-top: -4px;
 }
 /* 
  * Quote summary page

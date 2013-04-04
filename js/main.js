@@ -296,7 +296,6 @@ $(document).ready(function() {
 
     // Calculate the size of the spout based on the container
     $spout.on('click', '.calculate', function() {
-
         var num = $('fieldset.field-spout').length, $spoutContainer = $(this).closest('fieldset'), spoutTitle = $spoutContainer.find('legend').text().trim(),
         // The selected spout type
         $spoutSelected = $spoutContainer.find('.field-name-spout-type input:checked'), spoutSelectedVal = $spoutSelected.val(), spoutSelectedTitle = $spoutSelected.next('label').find('h4').text(),
@@ -354,8 +353,8 @@ $(document).ready(function() {
             $btnAdd.show();
         }
         // Slide the fieldset up and display the results and edit button
-        $spoutContainer.slideUp('slow', function() {    
-        	$spoutContainer.after('<p class="spout-calculation">' + spoutTitle + ': <span class="spout-size">' + spoutSize + '</span>"<button type="button" class="btnEdit" value="Edit spout">Edit spout</button></p>');
+        $spoutContainer.slideUp('fast', function() {    
+        	$spoutContainer.after('<p class="spout-calculation"><span class="spoutNum">' + spoutTitle + '</span>: <span class="spout-size">' + spoutSize + '</span>"<button type="button" class="btnRemove" value="Remove spout">Remove</button><button type="button" class="btnEdit" value="Edit spout">Edit</button></p>');
         });
         // Show delete button
         $btnDel.show().prop('disabled', false);
@@ -368,7 +367,7 @@ $(document).ready(function() {
         }
        }
     
-    // Buttons for adding, deleting and editing spouts
+    // Buttons for adding, removing and editing spouts
     
     // Add button
     $btnAdd.click(function() {
@@ -377,45 +376,33 @@ $(document).ready(function() {
         // The numeric ID of the new input field being added
         newSpoutID = 'spout' + newNum, newSpoutIDUpper = newSpoutID.capitalise(), newSpoutTypeID = "type" + newSpoutIDUpper,
         // Create the new element via clone() give it the new ID using newNum value
-        newElem = $('#spout' + num).clone().attr('id', newSpoutID);
+        $newElem = $('#spout' + num).clone().attr('id', newSpoutID);
         // Manipulate the name/id values of the spout type inputs inside the new element
-        newElem.find('legend').html('Spout ' + newNum).next().show().find('input').attr({
-            "id" : function(arr) {
-                return "type" + (arr + 1) + newSpoutIDUpper;
-            },
-            'name' : newSpoutTypeID
-        }).prop('checked', false).removeClass('active').next().attr('for', function(arr) {
-            return "type" + (arr + 1) + newSpoutIDUpper;
-        });
+        spoutNumber($newElem,newNum,newSpoutID,newSpoutIDUpper,newSpoutTypeID);
+        // Show spout type fields and reset
+        $newElem.find('.field-name-spout-type').show().find('input').prop('checked', false).removeClass('active');
         // Reset the field descriptions
-        newElem.find('.description').show().find('p').hide().filter('.spout-selection').show();
+        $newElem.find('.description').show().find('p').hide().filter('.spout-selection').show();
         // Reset the dimension fields
-        newElem.find('.field-name-dimensions li').hide().find('input').prop('disabled', false).val("").attr('name', function(index, attr) {
-            return attr + newSpoutIDUpper;
-        });
+        $newElem.find('.field-name-dimensions li').hide().find('input').prop('disabled', false).val("");
         // Hide container shape images
-        newElem.find('.container-shape-images > *').hide();
+        $newElem.find('.container-shape-images > *').hide();
         // Remove spout calculation result and hide the calculate button
-        newElem.find('.spout-calculation').remove();
-        newElem.find('.calculate').hide();
-        newElem.find('fieldset').slideDown();
+        $newElem.find('.spout-calculation').remove();
+        $newElem.find('.calculate').hide();
+        $newElem.find('fieldset').slideDown('fast');
         // Insert the new element after the last spout
-        $('#spout' + num).after(newElem);
+        $('#spout' + num).after($newElem);
         // enable the "remove" button and hide the 'add'
         // button
         $btnDel.show().prop('disabled', false);
         $btnAdd.hide();
     });
-    
-    // Delete button
-    $btnDel.click(function() {
-        // Check the number of spouts
-        var num = $('fieldset.field-spout').length, $spoutField = $("#spout" + num);
-        // Adjust the spout price
-        grandTotal -= spoutPrice;
-        $grandTotalContainer.html(grandTotal);
-        // If the first field is being removed then reset it to its default state
-        if (num == 1) {
+
+    // Remove button
+    $('#field-name-spout').on('click', '.btnRemove', function() {
+    	var num = $('fieldset.field-spout').length, $spoutField = $("#spout" + num), $spoutWrapper = $(this).closest('.spout-wrapper'), $spoutFieldset = $spoutWrapper.find('fieldset');
+    	if (num == 1) {
         	$spoutField.find('fieldset').slideDown().find('.calculate').hide();
             $spoutField.find('.field-name-spout-type').show().find('input').removeClass('active').prop('checked', false);
             $spoutField.find('.instructions').show().find('p').hide().filter('.spout-selection').show();
@@ -427,18 +414,43 @@ $(document).ready(function() {
             $btnDel.hide();
             $spoutImage.addClass('hidden');
         } else {
-            // Otherwise remove the last spout
-            $('#spout' + num).remove();
+    	// Delete the spout
+    	$spoutWrapper.remove();
+    	// Reset the ID and label numbering for the remaining fields
+    	$('.spout-wrapper').each(function(index) {
+    		var $newElem = $(this); newNum = index + 1, newSpoutID = 'spout' + newNum, newSpoutIDUpper = newSpoutID.capitalise(), newSpoutTypeID = "type" + newSpoutIDUpper;
+    		spoutNumber($newElem,newNum,newSpoutID,newSpoutIDUpper,newSpoutTypeID);
+    		$newElem.find('.spout-calculation .spoutNum').text('Spout ' + newNum);
+    	});
         }
+    	// Adjust the spout price
+        grandTotal -= spoutPrice;
+        $grandTotalContainer.html(grandTotal);
         // Show the "add" button if the 3rd spout is being removed
         if (num == 3)
             $btnAdd.show();
     });
-
+    
+    function spoutNumber($newElem,newNum,newSpoutID,newSpoutIDUpper,newSpoutTypeID) {
+    	$newElem.attr('id', 'spout' + newNum).find('legend').html('Spout ' + newNum).next().find('input').attr({
+            "id" : function(arr) {
+                return "type" + (arr + 1) + newSpoutIDUpper;
+            },
+            'name' : newSpoutTypeID
+        }).next().attr('for', function(arr) {
+            return "type" + (arr + 1) + newSpoutIDUpper;
+        });
+		$newElem.find('.field-name-dimensions li input').attr('name', function(index, attr) {
+            attr = attr.substring(0, attr.length - 1);
+        	return attr + newNum;
+        });
+    }
+    
     // Edit button
     $('#field-name-spout').on('click', '.btnEdit', function() {
     	var $spoutWrapper = $(this).closest('.spout-wrapper'), $spoutFieldset = $spoutWrapper.find('fieldset');
-    	$spoutFieldset.slideDown().next().remove();
+    	$spoutFieldset.slideDown('fast').next().remove();
+        $btnAdd.hide();
     });
     
     /*
