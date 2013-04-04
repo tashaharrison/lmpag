@@ -460,6 +460,11 @@ $(document).ready(function() {
 
     });
 
+    $('#field-name-spout').on('click', '.btnEdit', function() {
+    	var $spoutWrapper = $(this).closest('.spout-wrapper'), $spoutFieldset = $spoutWrapper.find('fieldset');
+    	$spoutFieldset.slideDown().next().remove();
+    });
+    
     /*
      * Navigation
      */
