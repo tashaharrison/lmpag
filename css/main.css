@@ -600,7 +600,7 @@ ul.field-type-radio > li {
 	background-position: -20px -1488px;
 	float: right;
     height: 191px;
-    margin: 0 20px;
+    margin: -48px 20px 0;
     width: 125px;
 }
 .container-shape-images .four-sided-bag {
@@ -645,9 +645,18 @@ padding: 4px 0px 4px 8px;
 	margin-bottom:24px;
 }
 .spout-calculation {
+    border: 1px solid #CCC;
     font-weight: bold;
     font-size: 1.2em;
-    margin: 0px 0 0 0;
+    margin: 0 0 14px;
+    background-color: #F8F4F4;
+    padding: 12px 14px;
+    position:relative
+}
+.spout-calculation .btnEdit {
+    position:absolute;
+    right: 4px;
+    top:4px;
 }
 /* 
  * Quote summary page
@@ -661,6 +670,7 @@ padding: 4px 0px 4px 8px;
 }
 #field-name-customer-details ul {
     margin:0;
+    top:0;
 }
 #field-name-customer-details .first-name,
 #field-name-customer-details .company {

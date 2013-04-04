@@ -508,7 +508,8 @@ if ($_POST && $_POST['dischargefunnel'] == 'steep-funnel') {
 									Use the <b>Spout Calculator</b> below to help you determine which size spout is right for your container.
 								</p>
 								<div id="field-name-spout" class="field-container">
-									<fieldset id="spout1" class="field-spout hidden">
+									<div id="spout1" class="spout-wrapper">
+									<fieldset class="field-spout hidden">
 										<legend>
 											Spout 1
 										</legend>
@@ -585,6 +586,7 @@ if ($_POST && $_POST['dischargefunnel'] == 'steep-funnel') {
 											<span class="spout-size">&nbsp;</span>"
 										</p>
 									</fieldset>
+									</div>
 
 									<fieldset id="fallbackSpout1" class="fallback-field-spout">
 										<legend>
