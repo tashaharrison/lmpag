@@ -43,7 +43,7 @@ $(document).ready(function() {
     // Field labels for extracting data
     $machineData = $machineModel.find('label'), $weighHopperData = $weighHopper.find($('label')), $dischargeFunnelData = $dischargeFunnel.find($('label')), spoutPrice = parseInt($('input[name=spout-price]').val()),
     // Machine image variables
-    $machineImage = $('#machine-image'), $nextMachineImage = $('#machine-image').next('#machine-title'), $grandTotalContainer = $('#cost-container .amount'), grandTotal = parseInt($grandTotalContainer.text(), 10),
+    $machineImage = $('#machine-image'), $spoutImage = $machineImage.find('.spout'), $nextMachineImage = $('#machine-image').next('#machine-title'), $grandTotalContainer = $('#cost-container .amount'), grandTotal = parseInt($grandTotalContainer.text(), 10),
     // Controls
     $btnAdd = $('#btnAdd'), $btnDel = $('#btnDel'), $btnEmail = $('#btnEmail'), $btnSubmit = $('#btnSubmit');
 
@@ -306,8 +306,6 @@ $(document).ready(function() {
                     // Toggle active class
                     $spoutContainer.find('input.active').removeClass('active');
                     $fieldID.addClass('active');
-                    // Show the spout image
-                    $machineImage.find('.spout').removeClass('hidden');
                     // Hide all the dimensions
                     // fields and images
                     $spoutContainer.find('.field-name-dimensions li').hide();
@@ -380,6 +378,10 @@ $(document).ready(function() {
             // .amount').text(), 10);
             grandTotal += spoutPrice;
             $grandTotalContainer.html(grandTotal);
+            // Show the spout image
+            if ($spoutImage.hasClass('hidden')) {
+            	$spoutImage.removeClass('hidden');
+            }
         }
 
     });
@@ -415,7 +417,7 @@ $(document).ready(function() {
         });
         // Hide container shape images
         newElem.find('.container-shape-images > *').hide();
-        // Remove spout calculation result
+        // Remove spout calculation result and hide the calculate button
         newElem.find('.spout-calculation').remove();
         newElem.find('.calculate').hide();
         newElem.find('fieldset').slideDown();
@@ -450,6 +452,7 @@ $(document).ready(function() {
         	$spoutField.find('.spout-calculation').hide().find('.spout-size').empty();
             $btnAdd.hide();
             $btnDel.hide();
+            $spoutImage.addClass('hidden');
         } else {
             // Remove the last spout
             $('#spout' + num).remove();
