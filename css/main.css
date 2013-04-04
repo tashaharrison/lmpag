@@ -570,7 +570,8 @@ ul.field-type-radio > li {
 	width:120px;
 }
 .field-name-dimensions input {
-	width: 120px;
+    margin-top:4px;
+	width: 50px;
 }
 #field-name-spout .four-sided-bag input + label .spout-sprite {
 	width: 97px;
