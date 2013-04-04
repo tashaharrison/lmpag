@@ -74,7 +74,7 @@ $(document).ready(function() {
     */
 
     // Hide fallback content, add and delete button
-    $('#field-name-discharge-funnel .large, .field-name-dimensions li, #step-2, #step-3, #step-4, #step-5, #hidden-accessories-page, .container-shape-images > *, #btnAdd, #btnDel, .calculate, .spout-calculation, .field-spout .instructions p, #emailQuote').hide();
+    $('#field-name-discharge-funnel .large, .field-name-dimensions li, #step-2, #step-3, #step-4, #step-5, #hidden-accessories-page, .container-shape-images > *, #btnAdd, #btnDel, .calculate, .spout-calculation, .field-spout .instructions p, #emailQuote, .field-spout .warning').hide();
     $('.field-spout .instructions p.spout-selection').show();
     // Remove fallback form elements
     $('.fallback-field-spout,.fallback-discharge-funnel,input[name=nojs]').remove();
@@ -160,7 +160,7 @@ $(document).ready(function() {
 
     });
 
-    // Retreive form values for display on summary
+    // Retrieve form values for display on summary
     function showValues() {
     	var resultsHTML = '<tr bgcolor="#EBFFEA"><th style="text-align:right;border-right: 1px solid #0c4b81;">' + machine.name + ' ' + machine.type + '</th><td>' + machine.description + '</td><td>$' + machine.price + '</td></tr><tr><th style="text-align:right;border-right: 1px solid #0c4b81;">' + machine.weighHopper.name + '</th><td>' + machine.weighHopper.description + '</td><td>$' + machine.weighHopper.price + '</td></tr><tr bgcolor="#EBFFEA"><th style="text-align:right;border-right: 1px solid #0c4b81;">' + machine.dischargeFunnel.name + '</th><td>' + machine.dischargeFunnel.description + '</td><td>$' + machine.dischargeFunnel.price + '</td></tr>';
         var num = parseInt($('.spout-size').text());
@@ -339,7 +339,7 @@ $(document).ready(function() {
     // Calculate the size of the spout based on the container
     $spout.on('click', '.calculate', function() {
 
-        var num = $('fieldset.field-spout').length, $spoutContainer = $(this).closest('fieldset'), spoutTitle = $spoutContainer.find('legend').text(),
+        var num = $('fieldset.field-spout').length, $spoutContainer = $(this).closest('fieldset'), spoutTitle = $spoutContainer.find('legend').text().trim(),
         // The selected spout type
         $spoutSelected = $spoutContainer.find('.field-name-spout-type input:checked'), spoutSelectedVal = $spoutSelected.val(), spoutSelectedTitle = $spoutSelected.next('label').find('h4').text(),
         // Spout dimension values
@@ -362,30 +362,45 @@ $(document).ready(function() {
                     });
                     break;
             }
-            //$spoutContainer.find('.spout-calculation').show().find('.spout-size').text(spoutSize);
-            if (num < 3) {
-                $btnAdd.show();
-            }
-            //$(this).hide();
-            //$spoutContainer.find('.field-name-spout-type,.instructions,.field-name-dimensions,.container-shape-images').hide();
-            $spoutContainer.slideUp('slow', function() {    
-            	$spoutContainer.after('<p class="spout-calculation"><span class="spout-size">' + spoutTitle + ': ' + spoutSize + '</span>"<button type="button" class="btnEdit" value="Edit spout">Edit spout</button></p>');
-            });
-            //$dimensionFieldsVisible.prop("disabled", true);
-            $btnDel.show().prop('disabled', false);
-            // price = parseInt($('#spout' + num
-            // + ' input.active + label
-            // .amount').text(), 10);
-            grandTotal += spoutPrice;
-            $grandTotalContainer.html(grandTotal);
-            // Show the spout image
-            if ($spoutImage.hasClass('hidden')) {
-            	$spoutImage.removeClass('hidden');
-            }
+            spoutSize = parseFloat(spoutSize);
+
+           var calculatedSpoutSizes = [];
+           $('.spout-calculation .spout-size').each(function(){
+            	calculatedSpoutSizes.push(parseFloat($(this).text().trim()));
+           });
+            	if (calculatedSpoutSizes.length !== 0 && $.inArray(spoutSize, calculatedSpoutSizes) !== -1) {
+            		$spoutContainer.find('.warning').show().find('.calculatedSpoutSize').text(spoutSize);
+            	} else {
+            		spoutValid(num, $spoutContainer, spoutTitle, spoutSize);
+            	}
         }
-
     });
-
+    
+    function spoutValid(num, $spoutContainer, spoutTitle, spoutSize) {
+    	// Hide invalid warning message
+    	$spoutContainer.find('.warning').hide();
+        //$spoutContainer.find('.spout-calculation').show().find('.spout-size').text(spoutSize);
+        if (num < 3) {
+            $btnAdd.show();
+        }
+        //$(this).hide();
+        //$spoutContainer.find('.field-name-spout-type,.instructions,.field-name-dimensions,.container-shape-images').hide();
+        $spoutContainer.slideUp('slow', function() {    
+        	$spoutContainer.after('<p class="spout-calculation">' + spoutTitle + ': <span class="spout-size">' + spoutSize + '</span>"<button type="button" class="btnEdit" value="Edit spout">Edit spout</button></p>');
+        });
+        //$dimensionFieldsVisible.prop("disabled", true);
+        $btnDel.show().prop('disabled', false);
+        // price = parseInt($('#spout' + num
+        // + ' input.active + label
+        // .amount').text(), 10);
+        grandTotal += spoutPrice;
+        $grandTotalContainer.html(grandTotal);
+        // Show the spout image
+        if ($spoutImage.hasClass('hidden')) {
+        	$spoutImage.removeClass('hidden');
+        }
+       }
+    
     // Buttons for adding a deleting spouts
     $btnAdd.click(function() {
         // Find out the amount of existing fields and
