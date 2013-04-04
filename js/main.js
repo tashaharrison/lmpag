@@ -326,16 +326,6 @@ $(document).ready(function() {
      * 'Select spouts' page
      */
 
-    function nearestSpout(containerDiameter) {
-        var closest = null, calculatedSpoutSize = containerDiameter * 0.72;
-        $.each(availableSpouts, function() {
-            if (closest == null || Math.abs(this - calculatedSpoutSize) < Math.abs(closest - calculatedSpoutSize)) {
-                closest = this;
-            }
-        });
-        return closest;
-    }
-
     // Calculate the size of the spout based on the container
     $spout.on('click', '.calculate', function() {
 
@@ -343,7 +333,7 @@ $(document).ready(function() {
         // The selected spout type
         $spoutSelected = $spoutContainer.find('.field-name-spout-type input:checked'), spoutSelectedVal = $spoutSelected.val(), spoutSelectedTitle = $spoutSelected.next('label').find('h4').text(),
         // Spout dimension values
-        dimensionFieldWidth = parseInt($spoutContainer.find('.width input').val()), dimensionFieldD1 = parseInt($spoutContainer.find('.d1 input').val()), dimensionFieldD2 = parseInt($spoutContainer.find('.d2 input').val()), dimensionFieldDiameter = $spoutContainer.find('.diameter input').val(), spoutSize = null,
+        dimensionFieldWidth = parseFloat($spoutContainer.find('.width input').val()), dimensionFieldD1 = parseFloat($spoutContainer.find('.d1 input').val()), dimensionFieldD2 = parseFloat($spoutContainer.find('.d2 input').val()), dimensionFieldDiameter = $spoutContainer.find('.diameter input').val(), spoutSize = null,
         // Visisble dimension fields
         $dimensionFieldsVisible = $spoutContainer.find('.field-type-textfield input').filter(":visible");
         if ($dimensionFieldsVisible.valid()) {
@@ -375,6 +365,16 @@ $(document).ready(function() {
             	}
         }
     });
+    
+    function nearestSpout(containerDiameter) {
+        var closest = null, calculatedSpoutSize = Math.round(containerDiameter * 0.72 * 1000) / 1000;
+        $.each(availableSpouts, function() {
+            if (closest == null || Math.abs(this - calculatedSpoutSize) < Math.abs(closest - calculatedSpoutSize)) {
+                closest = this;
+            }
+        });
+        return closest;
+    }
     
     function spoutValid(num, $spoutContainer, spoutTitle, spoutSize) {
     	// Hide invalid warning message
