@@ -172,17 +172,16 @@
 	<body leftmargin="0" marginwidth="0" topmargin="10" marginheight="0"
 	offset="0">
 		<center>
-			// Background container
 			<table border="0" cellpadding="0" cellspacing="0" height="100%"
 			width="100%" id="backgroundTable">
 				<tbody>
 					<tr>
-						<td align="center" valign="top">// Email container
+						<td align="center" valign="top">
 						<table border="0" cellpadding="0" cellspacing="0" width="600"
 						id="templateContainer">
 							<tbody>
 								<tr>
-									<td align="center" valign="top">// Header container
+									<td align="center" valign="top">
 									<table border="0" cellpadding="0" cellspacing="0" width="600"
 									id="templateHeader">
 										<tbody>
@@ -193,7 +192,7 @@
 									</table></td>
 								</tr>
 								<tr>
-									<td align="center" valign="top">// Body container
+									<td align="center" valign="top">
 									<table border="0" cellpadding="0" cellspacing="0" width="600"
 									id="templateBody">
 										<tbody>
@@ -212,7 +211,7 @@
 									</table></td>
 								</tr>
 								<tr>
-									<td align="center" valign="top">// Footer container
+									<td align="center" valign="top">
 									<table border="0" cellpadding="10" cellspacing="0"
 									width="100%" id="templateFooter">
 										<tbody>
