@@ -11,12 +11,10 @@
 				-webkit-text-size-adjust:none;
 			}
 			body {
-				margin-bottom:0;
-				margin-left:0;
-				margin-right:0;
 				margin-top:10px;
 				padding:0;
 			}
+			@page { margin: 10px; }
 			img {
 				border:0;
 				height:auto;
