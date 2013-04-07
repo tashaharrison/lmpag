@@ -414,6 +414,8 @@ $(document).ready(function() {
             $btnDel.hide();
             $spoutImage.addClass('hidden');
         } else {
+        // Show the add abother page button
+        $btnAdd.show();
     	// Delete the spout
     	$spoutWrapper.remove();
     	// Reset the ID and label numbering for the remaining fields
@@ -423,8 +425,6 @@ $(document).ready(function() {
     		$newElem.find('.spout-calculation .spoutNum').text('Spout ' + newNum);
     	});
         }
-        // Show the add abother page button
-        $btnAdd.show();
     	// Adjust the spout price
         grandTotal -= spoutPrice;
         $grandTotalContainer.html(grandTotal);
