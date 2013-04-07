@@ -289,6 +289,7 @@ include_once 'bin/php_validation.php';
 												<b>Price: </b>$<span class="amount"><?php echo $settings["machinemodel"]["S-4"]["price"]; ?></span>
 											</p></label>
 									</li>
+<!--  Remove this line to enable the other machines
 									<li>
 										<input type="radio" id="s5" name="machinemodel" value="S-5" 
 										<?php
@@ -299,7 +300,7 @@ if ($_POST && $_POST['machinemodel'] == 'S-5') {
 										<label for="s5"><h4><span class="name"><?php echo $settings["machinemodel"]["S-5"]["name"]; ?></span>&nbsp;<span class="type"><?php echo $settings["machinemodel"]["S-5"]["type"]; ?></span></h4>
 											<p class="description">
 												<?php echo $settings["machinemodel"]["S-5"]["description"]; ?>
-											</p> <!-- class="machine-model-description" -->
+											</p>
 											<p class="price clear">
 												<b>Price: </b>$<span class="amount"><?php echo $settings["machinemodel"]["S-5"]["price"]; ?></span>
 											</p></label>
@@ -314,7 +315,7 @@ if ($_POST && $_POST['machinemodel'] == 'S-6') {
 										<label for="s6"><h4><span class="name"><?php echo $settings["machinemodel"]["S-6"]["name"]; ?></span>&nbsp;<span class="type"><?php echo $settings["machinemodel"]["S-6"]["type"]; ?></span></h4>
 											<p class="description">
 												<?php echo $settings["machinemodel"]["S-6"]["description"]; ?>
-											</p> <!-- class="machine-model-description" -->
+											</p>
 											<p class="price clear">
 												<b>Price: </b>$<span class="amount"><?php echo $settings["machinemodel"]["S-6"]["price"]; ?></span>
 											</p></label>
@@ -329,11 +330,12 @@ if ($_POST && $_POST['machinemodel'] == 'S-7') {
 										<label for="s7"><h4><span class="name"><?php echo $settings["machinemodel"]["S-7"]["name"]; ?></span>&nbsp;<span class="type"><?php echo $settings["machinemodel"]["S-7"]["type"]; ?></span></h4>
 											<p class="description">
 												<?php echo $settings["machinemodel"]["S-7"]["description"]; ?>
-											</p> <!-- class="machine-model-description" -->
+											</p>
 											<p class="price clear">
 												<b>Price: </b>$<span class="amount"><?php echo $settings["machinemodel"]["S-7"]["price"]; ?></span>
 											</p></label>
 									</li>
+Remove this line to enable the other machines -->
 								</ul>
 							</div><!-- id="step-1" -->
 
