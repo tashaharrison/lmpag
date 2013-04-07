@@ -126,10 +126,23 @@ if (isset($_POST['nojs'])) {
 	$messageText = $message . urldecode($quoteText);
 }
 
-// Get the contents of the HTML email into a variable for later
+// Get the contents of the PDF into a variable
+ob_start();
+require_once($dir.'/pdf.tpl.php');
+$pdfHTML = ob_get_contents();
+ob_end_clean();
+
+// Load the dompdf files
+require_once($dir.'/dompdf/dompdf_config.inc.php');
+$dompdf = new DOMPDF(); // Create new instance of dompdf
+$dompdf->load_html($pdfHTML); // Load the html
+$dompdf->render(); // Parse the html, convert to PDF
+$pdf_content = $dompdf->output(); // Put contents of pdf into variable for later
+
+// Get the contents of the HTML email into a variable
 ob_start();
 require_once($dir.'/email.tpl.php');
-$html_message = ob_get_contents();
+$htmlBody = ob_get_contents();
 ob_end_clean();
 
 // Create the Transport
@@ -145,9 +158,10 @@ $mailer = Swift_Mailer::newInstance($transport);
 // Create a message
 $emailMessage = Swift_Message::newInstance('Logical Machines Quote Generator');
 $emailMessage
-		->setBody($html_message, 'text/html');
-$emailMessage->addPart($messageText, 'text/plain');
-$emailMessage->setFrom(array('pete@spirelightmedia.com' => 'Logical Machines'))
+		->setBody($htmlBody, 'text/html')
+		->addPart($messageText, 'text/plain')
+		->attach(Swift_Attachment::newInstance($pdf_content, 'logical-machines-quote.pdf', 'application/pdf'))
+		->setFrom(array('pete@spirelightmedia.com' => 'Logical Machines'))
 		->setSender('pgjainsworth@gmail.com')
 		->setReturnPath('pgjainsworth@gmail.com')
 		->setBcc(array('pgjainsworth@gmail.com'))->setMaxLineLength(78)
