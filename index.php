@@ -582,7 +582,7 @@ if ($_POST && $_POST['dischargefunnel'] == 'steep-funnel') {
 										<button type="button" value="Calculate" class="calculate">
 											Calculate
 										</button>
-										<p class="warning">The calculated spout size of <span class="calculatedSpoutSize"></span>" is the same as a spout that you have already added.<br/>Please enter different dimensions<br/>or remove this spout.</p>
+										<p class="warning">The calculated spout size of <span class="calculatedSpoutSize"></span>" is the same as a spout that you have already added.<br/>Please enter different dimensions<br/>or remove this spout.<br/><button type="button" class="btnRemove" value="Remove spout">Remove</button></p>
 									</fieldset>
 									</div>
 

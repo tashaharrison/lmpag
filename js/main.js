@@ -423,6 +423,8 @@ $(document).ready(function() {
     		$newElem.find('.spout-calculation .spoutNum').text('Spout ' + newNum);
     	});
         }
+        // Show the add abother page button
+        $btnAdd.show();
     	// Adjust the spout price
         grandTotal -= spoutPrice;
         $grandTotalContainer.html(grandTotal);
