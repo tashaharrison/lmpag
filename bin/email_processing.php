@@ -79,7 +79,7 @@ if (isset($_POST['nojs'])) {
 			+ $spoutPrice;
 	// Create the HTML message
 	$messageHTML = $message
-			. '<h3 style="margin-left:10px;">Your Quote Summary</h3><table border="0" cellpadding="10" cellspacing="0" style="margin:14px;border-collapse:collapse;"><thead style="border-bottom:1px solid #0c4b81;"><tr><th style="text-align:right;">Item</th><th style="text-align:left;">Description</th><th style="text-align:left;">Price</th></tr></thead><tbody><tr bgcolor="#EBFFEA"><th style="text-align:right;border-right: 1px solid #0c4b81;">'
+			. '<table border="0" cellpadding="10" cellspacing="0" style="margin:14px;border-collapse:collapse;"><thead style="border-bottom:1px solid #0c4b81;"><tr><th style="text-align:right;">Item</th><th style="text-align:left;">Description</th><th style="text-align:left;">Price</th></tr></thead><tbody><tr bgcolor="#EBFFEA"><th style="text-align:right;border-right: 1px solid #0c4b81;">'
 			. $settings["machinemodel"][$machinemodel]["name"] . ' '
 			. $settings["machinemodel"][$machinemodel]["type"] . '</th><td>'
 			. $settings["machinemodel"][$machinemodel]["description"]
