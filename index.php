@@ -1125,6 +1125,7 @@ if ($_POST && $_POST['typeSpout3Fallback'] == 'flat-bag') {
 											<p class="instructions">
 												Your quote will be sent only to the recipients you have designated.
 											</p>
+											<img src="img/sending.gif" width="328" height="30" id="sending" class="hidden" />
 									</fieldset>
 								</div>
 								<div id="submit_buttons">

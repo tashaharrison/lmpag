@@ -74,7 +74,7 @@ $(document).ready(function() {
     */
 
     // Hide fallback content, add and delete button
-    $('#field-name-discharge-funnel .large, .field-name-dimensions li, #step-2, #step-3, #step-4, #step-5, #hidden-accessories-page, .container-shape-images > *, #btnAdd, #btnDel, .calculate, .spout-calculation, .field-spout .instructions p, #emailQuote, .field-spout .warning').hide();
+    $('#field-name-discharge-funnel .large, .field-name-dimensions li, #step-2, #step-3, #step-4, #step-5, #hidden-accessories-page, .container-shape-images > *, #btnAdd, #btnDel, .calculate, .spout-calculation, .field-spout .instructions p, #emailQuote, .field-spout .warning, #sending').hide();
     $('.field-spout .instructions p.spout-selection').show();
     // Remove fallback form elements
     $('.fallback-field-spout,.fallback-discharge-funnel,input[name=nojs]').remove();
@@ -86,7 +86,7 @@ $(document).ready(function() {
     // Hide all but the first machine model description
     $machineModel.find('.description').not(':first').hide();
     // Remove .hidden class from JS ready content
-    $('#field-name-discharge-funnel li, #btnAdd, #btnDel, #btnFront, #btnSide, .field-spout, .step-submit, #sidebar, #btnPrint, #btnEmail,#btnClose, #btnContinue, .quote-summary, #hidden-accessories-page, #machine-title, #quote-summary').removeClass('hidden');
+    $('#field-name-discharge-funnel li, #btnAdd, #btnDel, #btnFront, #btnSide, .field-spout, .step-submit, #sidebar, #btnPrint, #btnEmail,#btnClose, #btnContinue, .quote-summary, #hidden-accessories-page, #machine-title, #quote-summary, #sending').removeClass('hidden');
     // Check the fallback discharge funnel field
     $dischargeFunnel.find($('.small #small-std-fnl')).prop('checked', true).addClass('active');
     // Remove the no-sidebar class for fallback
@@ -534,6 +534,7 @@ $(document).ready(function() {
     	var dataString = 'to=' + to + '&cc=' + cc + '&message=' + message + '&quoteHTML=' + quoteHTML + '&quoteText=' + quoteText;
         // Send the email via an AJAX request the PHP script
         if ($emailFields.valid()) {
+        	$('#sending').show();
             $.ajax({
                 type : "POST",
                 url : "bin/email_processing.php",
@@ -543,6 +544,7 @@ $(document).ready(function() {
                     $('#emailQuote').slideToggle('fast').find('input').not('input[type=submit]').val('');
                     $('#quote-summary').after("<div id='thankYouMessage'></div>");
                     $('#thankYouMessage').html("<h3>Thank you.</h3>").append("<p>Your email has been sent to the recipients your entered.</p>");
+                	$('#sending').hide();
                 }
             });
             return false;
