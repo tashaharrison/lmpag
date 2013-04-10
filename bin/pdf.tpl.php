@@ -105,7 +105,7 @@ h4,
 </style>
 </head>
 <body>
-<div id="header"><img src="http://www.logicalmachines.com/Resources/lmweblogo.jpeg" style="max-width:600px;" id="headerImage campaign-icon">
+<div id="header"><img src="../img/lmlogo1.jpeg" style="max-width:600px;" id="headerImage campaign-icon">
   <h2>Here is you Logical Machines quote summary</h2>
 </div>
 <div id="body">
