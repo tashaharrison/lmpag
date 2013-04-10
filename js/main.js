@@ -535,6 +535,7 @@ $(document).ready(function() {
         // Send the email via an AJAX request the PHP script
         if ($emailFields.valid()) {
         	$('#sending').show();
+        	$('#btnSubmit').prop('disabled', true);
             $.ajax({
                 type : "POST",
                 url : "bin/email_processing.php",
@@ -545,6 +546,7 @@ $(document).ready(function() {
                     $('#quote-summary').after("<div id='thankYouMessage'></div>");
                     $('#thankYouMessage').html("<h3>Thank you.</h3>").append("<p>Your email has been sent to the recipients your entered.</p>");
                 	$('#sending').hide();
+                	$('#btnSubmit').prop('disabled', false);
                 }
             });
             return false;
