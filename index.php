@@ -76,7 +76,7 @@ include_once 'bin/php_validation.php';
 
 		<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-		<link rel="stylesheet" href="css/lm.css">
+		<link rel="stylesheet" href="css/lm-container.css">
 		<link rel="stylesheet" href="css/normalize.css">
 		<link rel="stylesheet" href="css/main.css">
 		<link rel="stylesheet" href="css/forms.css">

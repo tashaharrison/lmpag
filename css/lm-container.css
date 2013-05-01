@@ -1,0 +1,186 @@
+body {
+    margin: 0px;
+    background-color: #fff;
+    height: 100%
+}
+html {
+    height: 100%
+}
+form {
+    margin: 0px
+}
+img {
+    margin: 0px;
+    border-style: none
+}
+button {
+    margin: 0px;
+    border-style: none;
+    padding: 0px;
+    background-color: transparent;
+    vertical-align: top
+}
+p:first-child {
+    margin-top: 0px
+}
+table {
+    empty-cells: hide
+}
+.f-sp {
+    font-size: 1px;
+    visibility: hidden
+}
+.f-lp {
+    margin-bottom: 0px
+}
+.f-fp {
+    margin-top: 0px
+}
+.f-x1 {
+}
+.f-x2 {
+}
+.f-x3 {
+}
+a:link {
+    color: #0c4b81;
+    text-decoration: none
+}
+a:visited {
+    color: #0c4b81;
+    text-decoration: none
+}
+a:hover {
+    color: #090
+}
+em {
+    font-style: italic
+}
+h1 {
+    color: #0c4b81;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 1.2;
+    text-align: center
+}
+h1:first-child {
+    margin-top: 0px
+}
+h2 {
+    font-weight: bold;
+    font-size: 16px
+}
+h2:first-child {
+    margin-top: 0px
+}
+h3 {
+    color: #911936;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 16px
+}
+h3:first-child {
+    margin-top: 0px
+}
+strong {
+    font-weight: bold
+}
+.style8 {
+    color: #0c4b81;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 24px
+}
+.style1 {
+    color: #090
+}
+.style10 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 1.3;
+    text-align: center
+}
+.style13 {
+    color: #911936;
+    font-size: 18px
+}
+.style11 {
+    color: #0c4b81
+}
+.style6 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    text-align: center
+}
+.style5 {
+    color: #911936;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    text-align: center
+}
+.style7 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    text-align: center
+}
+.lftnav {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    line-height: 1.3;
+    text-align: center
+}
+.style3 {
+    color: #0c4b81
+}
+.style12 {
+    text-align: center
+}
+.tabletxt {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px
+}
+.style21 {
+    color: #fff
+}
+#PageDiv {
+    min-height: 100%;
+    position: relative;
+    width: 960px;
+}
+#LMLogo1 {
+    float: left;
+    width: 258px;
+    height: 96px;
+    z-index: 1;
+}
+#h1-header {
+    float: left;
+    height: 73px;
+    margin-top: 20px;
+    overflow: visible;
+    width: 596px;
+    z-index: 2;
+}
+#h1-header h1 {
+    line-height: 0.9;
+}
+#footer {
+    width: 960px;
+    height: 105px;
+    z-index: 4;
+    overflow: visible;
+}
+#scoop15a {
+    float: left;
+    width: 106px;
+    height: 118px;
+    z-index: 3;
+}
+#lft-nav1 {
+    width: 171px;
+    height: 454px;
+    z-index: 16;
+    border-right: solid #ccc 2px;
+    overflow: visible;
+}
