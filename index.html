@@ -81,7 +81,9 @@
 				</div>
 			</nav>
 
-			<iframe id="quote-generator" src="quote-generator.php" width="785" height="1000" frameborder="no" scrolling="no"></iframe>
+			<div id="frame-container">
+				<iframe id="quote-generator" src="http://lmpag.spirelightserver.com/quote-generator.php" width="785" height="600" frameborder="no" horizontalscrolling="no" verticalscrolling="yes"></iframe>
+			</div>
 
 			<footer id="footer" class="clearfix clear">
 				<hr>
@@ -104,6 +106,8 @@
 		<script src="js/main.js"></script>
 
 <script>
+$('#frame-container').html('<iframe id="quote-generator" src="http://lmpag.spirelightserver.com/quote-generator.php" width="785" height="600" frameborder="no" scrolling="no"></iframe>');
+
 $('#quote-generator').load(function () {
     $(this).height($(this).contents().height());
 });
