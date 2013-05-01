@@ -72,7 +72,6 @@ include_once 'bin/php_validation.php';
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<title>Logical Machines Quote Generator</title>
 		<meta name="description" content="Scoop no more with Logical Machines automatic weigh and fill machines. Small to medium sized companies save time and money with our automated filling machines">
-		<meta name="viewport" content="width=device-width">
 
 		<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
