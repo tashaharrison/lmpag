@@ -102,11 +102,13 @@
 		<script>
             window.jQuery || document.write('<script src="js/vendor/jquery-1.8.3.min.js"><\/script>')
 		</script>
-		<script src="js/plugins.js"></script>
-		<script src="js/main.js"></script>
 
 <script>
-$('#frame-container').html('<iframe id="quote-generator" src="http://lmpag.spirelightserver.com/quote-generator.php" width="785" height="1128" frameborder="no" scrolling="no"></iframe>');
+$(document).ready( function () {
+	 if (! $("html").hasClass("lt-ie9")) {
+		$('#frame-container').html('<iframe id="quote-generator" src="http://lmpag.spirelightserver.com/quote-generator.php" width="785" height="1128" frameborder="no" scrolling="no"></iframe>');
+	 }
+} );
 </script>
 
 		<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
