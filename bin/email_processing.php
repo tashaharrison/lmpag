@@ -161,10 +161,11 @@ $emailMessage
 		->setBody($htmlBody, 'text/html')
 		->addPart($messageText, 'text/plain')
 		->attach(Swift_Attachment::newInstance($pdf_content, 'logical-machines-quote.pdf', 'application/pdf'))
-		->setFrom(array('pete@spirelightmedia.com' => 'Logical Machines'))
-		->setSender('pgjainsworth@gmail.com')
-		->setReturnPath('pgjainsworth@gmail.com')
-		->setBcc(array('pgjainsworth@gmail.com'))->setMaxLineLength(78)
+		->setFrom(array('lminkler@logicalmachines.com' => 'Logical Machines'))
+		->setSender('lminkler@logicalmachines.com')
+		->setReturnPath('lminkler@logicalmachines.com')
+//		->setBcc(array('lminkler@logicalmachines.com'))
+		->setMaxLineLength(78)
 		->setTo(array($to));
 if (!empty($cc)) {
 	$emailMessage->setCc(array($cc));
