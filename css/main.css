@@ -245,6 +245,9 @@ form#logical-machines-quote-generator {
 	padding: 6px;
 	margin-bottom: -1px;
 }
+.lt-ie8 #pag-navigation ol li a {
+	display: block;
+}
 #pag-navigation ol li a.active,
 #pag-navigation ol li a.active:hover {
 	color: #0c4b81;
