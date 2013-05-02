@@ -10,15 +10,15 @@ $(document).ready(function() {
             email: true 
         };
         var emailMessages = {
-        	emails : "Please enter a valid email address.",
+        	emails : "Please enter a valid email address."
             };
         var requiredEmail = {
             required : true,
-            email: true, 
+            email: true
         };
         var requiredEmailMessages = {
             required : "Please enter an email address.",
-        	emails : "Please enter a valid email address.",
+            emails : "Please enter a valid email address."
         };
         $form.validate({
             rules : {
@@ -107,18 +107,18 @@ $(document).ready(function() {
         containerID = $(this).attr('id');
         $('<div/>', {
             id : containerID + '-pager',
-            class : 'step-pager'
+            "class" : 'step-pager'
         }).appendTo($(this));
 
     })
     // Create pager buttons and add them to the created div
     $('.step-pager').not(':first').append($('<button/>', {
-        class : 'prev',
-        type : 'button',
+        "class" : 'prev',
+        type : 'button'
     }).text('Previous step'));
     $('.step-pager').not(':last').append($('<button/>', {
-        class : 'next',
-        type : 'button',
+        "class" : 'next',
+        type : 'button'
     }).text('Next step'));
 
     /*
