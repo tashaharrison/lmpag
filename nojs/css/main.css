@@ -1,0 +1,938 @@
+/*
+ * HTML5 Boilerplate
+ *
+ * What follows is the result of much research on cross-browser styling.
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ */
+
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
+
+html,
+button,
+input,
+select,
+textarea {
+	color: #222;
+}
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 0.9em;
+	line-height: 1.4;
+}
+
+/*
+ * Remove text-shadow in selection highlight: h5bp.com/i
+ * These selection declarations have to be separate.
+ * Customize the background color to match your design.
+ */
+
+::-moz-selection {
+ background: #b3d4fc;
+ text-shadow: none;
+}
+::selection {
+	background: #b3d4fc;
+	text-shadow: none;
+}
+/*
+ * A better looking default horizontal rule
+ */
+
+hr {
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid #ccc;
+	margin: 1em 0;
+	padding: 0;
+}
+/*
+ * Remove the gap between images and the bottom of their containers: h5bp.com/i/440
+ */
+
+img {
+	vertical-align: middle;
+}
+/*
+ * Remove default fieldset styles.
+ */
+
+fieldset {
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+/*
+ * Allow only vertical resizing of textareas.
+ */
+
+textarea {
+	resize: vertical;
+}
+h2 {
+	line-height: 1.2;
+}
+table {
+    font-size: 0.85em;
+    margin-right:10px;
+}
+tr.even {
+    background-color: rgb(235, 255, 234);
+}
+td {
+    vertical-align:top;
+}
+thead {
+    border-bottom: 1px solid #0c4b81;
+    font-size: 1em;
+    text-align:left;
+}
+th,td {
+    padding: 8px 14px;
+}
+tbody tr th {
+    border-right: 1px solid #0c4b81;
+    font-size: 1em;
+    font-weight:normal;
+    text-align:right;
+    vertical-align:top;
+}
+tbody tr.total td, tbody tr.total th {
+    background-color:white; 
+    border-top: 1px solid #0c4b81;
+    border-right:none;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+tbody tr.total th {
+    text-align:right;
+}
+thead tr th:first-child {
+    text-align:right;
+}
+thead th, .total td, .total th {
+    padding-bottom:6px;
+    padding-top:8px;
+}
+/* ==========================================================================
+   Chrome Frame prompt
+   ========================================================================== */
+
+.chromeframe {
+	margin: 0.2em 0;
+	background: #ccc;
+	color: #000;
+	padding: 0.2em 0;
+}
+/* ==========================================================================
+   Logical Machine's styles
+   ========================================================================== */
+
+/*
+ * PAGE SECTIONS
+ * header#header {}
+ * section#section-content {}
+ * section#section-content nav#navigation {   }
+ * section#section-content article#main-content {   }
+ * section#section-content aside#sidebar {}
+ * footer#footer {}
+ */
+
+#main-navigation,
+#main-content,
+#sidebar,
+#pag-navigation {
+	float: left;
+}
+#section-content {
+	border: 1px solid #911936;
+	float: left;
+	padding: 10px;
+	position: relative;
+}
+#main-content {
+	width: 360px;
+	overflow: hidden;
+	position: relative;
+}
+#main-content.no-sidebar {
+	width: 635px;
+}
+form#logical-machines-quote-generator {
+}
+/*
+ * Pagination
+ */
+
+#main-content .form {
+    margin: 66px 72px 0 72px;
+}
+#step-1 {
+}
+#step-2 {
+}
+#step-3 {
+}
+#step-4 {
+}
+.step-pager {
+    margin-top: 25px;
+}
+#submit_buttons {
+    text-align:center;
+}
+.bottom {
+    z-index:-10;
+}
+#hidden-accessories-page,
+.step-container {
+    background-color: white;
+}
+#hidden-accessories-page {
+    border: 1px solid #911936;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow:  3px 10px 10px 2px #555555;
+    box-shadow:  3px 10px 10px 2px #555555;
+    display: block;
+    left: 10px;
+    padding:10px;
+    position: absolute;
+    top: 10px;
+}
+#hidden-accessories-page-btn {
+    background: url("../img/sprite.png") no-repeat -238px -914px transparent;
+    bottom: 0;
+    height: 26px;
+    position: absolute;
+    right: 0;
+    width: 26px;
+}
+#btnClose {
+    float: right;
+}
+/*
+ * Price & Accesory Guide Navigation
+ */
+#pag-navigation {
+	margin-left: 10px;
+}
+#pag-navigation ol {
+	margin: 0;
+	padding: 0;
+}
+#pag-navigation ol li {
+	text-align: center;
+	display: table;
+}
+#pag-navigation ol li a {
+	border-bottom: 1px solid #911936;
+	border-left: 1px solid #911936;
+	border-top: 1px solid #911936;
+	-webkit-border-radius: 20px 0px 0px 20px;
+	border-radius: 20px 0px 0px 20px;
+	color: #AAAAAA;
+	font-size: 1.2em;
+	font-weight: bold;
+	line-height: 1;
+	display: table-cell;
+	vertical-align: middle;
+	height: 100px;
+	width: 100px;
+	padding: 6px;
+	margin-bottom: -1px;
+}
+#pag-navigation ol li a.active,
+#pag-navigation ol li a.active:hover {
+	color: #0c4b81;
+}
+#pag-navigation ol li a:hover {
+	color: #090;
+}
+#pag-navigation ol li a .list-no {
+	font-size: 2.4em;
+}
+/*
+ * Sidebar
+ */
+
+#sidebar {
+	text-align: center;	
+	width: 280px;
+}
+.sticky {
+	position: fixed;
+	left: 667px;
+	top: 0;
+}
+#machine-image {
+	height: 452px;
+	margin-left: 10px;
+	position: relative;
+	width: 260px;
+}
+#machine-image > * {
+	background-image: url("../img/sprite.png");
+	background-repeat: no-repeat;
+	background-color: transparent;
+	position: absolute;
+}
+#machine-image-container {
+    background-color:#FFFFFF;
+	width:280px;
+}
+#machine-title {
+	margin: 4px 0;
+}
+#cost-container {
+	border: 3px solid #0c4b81;
+	color:#0c4b81;
+	margin-left:10px;
+	padding:10px;
+}
+.price {
+    font-weight:bold;
+}
+.amount {
+    color:#AD0000;
+}
+.s4.front .machine-bg {
+	width: 254px;
+	height: 445px;
+	background-position: -10px -10px;
+	top: 5px;
+	left: 3px;
+}
+.s4.side .machine-bg {
+	width: 256px;
+	height: 439px;
+	background-position: -10px -465px;
+	top: 5px;
+	left: 1px;
+}
+/* Small weigh hopper front */
+.s4.smwh.front .weigh-hopper {
+	width: 205px;
+	height: 67px;
+	background-position: -10px -1926px;
+	top: 139px;
+	left: 52px;
+}
+.s4.smwh.std-fnl.front .funnel {
+	width: 210px;
+	height: 52px;
+	background-position: -10px -2003px;
+	top: 191px;
+	left: 47px;
+}
+.s4.smwh.std-fnl.front .spout {
+	width: 187px;
+	height: 39px;
+	background-position: -10px -2179px;
+	top: 232px;
+	left: 70px;
+}
+.s4.smwh.steep-fnl.front .funnel {
+	width: 207px;
+	height: 83px;
+	background-position: -10px -1149px;
+	top: 191px;
+	left: 50px;
+}
+.s4.smwh.steep-fnl.front .spout {
+	width: 187px;
+	height: 39px;
+	background-position: -10px -2179px;
+	top: 253px;
+	left: 70px;
+}
+/* Small weigh hopper side */
+.s4.smwh.side .weigh-hopper {
+	width: 225px;
+	height: 51px;
+	background-position: -10px -2065px;
+	top: 152px;
+	left: 33px;
+}
+.s4.smwh.std-fnl.side .funnel {
+	width: 233px;
+	height: 43px;
+	background-position: -10px -2126px;
+	top: 192px;
+	left: 24px;
+}
+.s4.smwh.std-fnl.side .spout {
+	width: 230px;
+	height: 28px;
+	background-position: -10px -2228px;
+	top: 228px;
+	left: 27px;
+}
+.s4.smwh.steep-fnl.side .funnel {
+	width: 233px;
+	height: 73px;
+	background-position: -10px -1682px;
+	top: 188px;
+	left: 24px;
+}
+.s4.smwh.steep-fnl.side .spout {
+	width: 230px;
+	height: 28px;
+	background-position: -10px -2228px;
+	top: 273px;
+	left: 28px;
+}
+/* Large weigh hopper front */
+.s4.lrgwh.front .weigh-hopper {
+	width: 214px;
+	height: 82px;
+	background-position: -10px -1242px;
+	top: 144px;
+	left: 43px;
+}
+.s4.lrgwh.std-fnl.front .funnel {
+	width: 215px;
+	height: 74px;
+	background-position: -10px -1598px;
+	top: 218px;
+	left: 42px;
+}
+.s4.lrgwh.std-fnl.front .spout {
+	width: 187px;
+	height: 39px;
+	background-position: -10px -2179px;
+	top: 280px;
+	left: 69px;
+}
+.s4.lrgwh.steep-fnl.front .funnel {
+	width: 215px;
+	height: 75px;
+	background-position: -10px -1513px;
+	top: 218px;
+	left: 42px;
+}
+.s4.lrgwh.steep-fnl.front .spout {
+	width: 187px;
+	height: 39px;
+	background-position: -10px -2179px;
+	top: 280px;
+	left: 69px;
+}
+/* Large weigh hopper side */
+.s4.lrgwh.side .weigh-hopper {
+	width: 250px;
+	height: 78px;
+	background-position: -10px -1425px;
+	top: 144px;
+	left: 7px;
+}
+.s4.lrgwh.std-fnl.side .funnel {
+	width: 250px;
+	height: 70px;
+	background-position: -10px -1846px;
+	top: 205px;
+	left: 8px;
+}
+.s4.lrgwh.std-fnl.side .spout {
+	width: 230px;
+	height: 28px;
+	background-position: -10px -2228px;
+	top: 267px;
+	left: 15px;
+}
+.s4.lrgwh.steep-fnl.side .funnel {
+	width: 250px;
+	height: 71px;
+	background-position: -10px -1765px;
+	top: 205px;
+	left: 8px;
+}
+.s4.lrgwh.steep-fnl.side .spout {
+	width: 230px;
+	height: 28px;
+	background-position: -10px -2228px;
+	top: 270px;
+	left: 19px;
+}
+/*
+ *  Component images
+ */
+
+.component-image {
+	background: url("../img/sprite.png") no-repeat 0 0 transparent;
+	float: left;
+	height: 100px;
+	margin-bottom: 10px;
+	margin-right: 10px;
+	width: 100px;
+}
+#field-name-weigh-hopper .small label .component-image,
+#weigh-hopper-sml {
+	width: 78px;
+	height: 85px;
+	background-position: -124px -1050px;
+}
+#field-name-weigh-hopper .large label .component-image,
+#weigh-hopper-lrg {
+	width: 104px;
+	height: 126px;
+	background-position: -10px -914px;
+}
+#field-name-discharge-funnel .small label.std-fnl .component-image {
+	width: 104px;
+	height: 60px;
+	background-position: -124px -1334px;
+}
+#field-name-discharge-funnel .small label.steep-fnl .component-image {
+	width: 104px;
+	height: 106px;
+	background-position: -124px -914px;
+}
+#field-name-discharge-funnel .large label.std-fnl .component-image {
+	width: 104px;
+	height: 89px;
+	background-position: -10px -1050px;
+}
+#field-name-discharge-funnel .large label.steep-fnl .component-image {
+	width: 104px;
+	height: 81px;
+	background-position: -10px -1334px;
+}
+
+/*
+ * Form styles
+ */
+
+.field-type-radio,
+ul.field-type-textfield {
+	list-style: none;
+	padding: 0;
+}
+.default-spout ul.field-type-textfield {
+	margin-top:0;
+}
+.default-spout ul.field-type-textfield > li {
+	float:left;
+	margin-right:14px;
+}
+ul.field-type-radio > li {
+	margin-bottom: 20px;
+}
+.field-type-radio h4 {
+	margin: 0 0 0.4em 1.33em;
+}
+.field-type-radio h5 {
+	margin: 1.67em 0 0;
+}
+.field-type-radio p {
+	margin: 0.2em 0;
+}
+.field-type-radio label {
+	border: 2px solid #0c4b81;
+	display: block;
+	margin-top: -30px;
+	padding: 11px 11px 4px;
+}
+.field-type-radio input {
+	margin-left: 14px;
+}
+.field-type-radio input[type="radio"]:checked+label,
+.success {
+	border: #090 2px solid;
+	background-color: rgb(235, 255, 234);
+}
+#fieldNameSpout .field-type-radio label {
+	margin-top: -32px;
+	padding-bottom: 12px;
+	padding-left: 35px;
+}
+#fieldNameSpout {
+	margin-bottom: 16px;
+}
+/* 
+ * Spout page
+ */
+
+.spout-sprite {
+	background: url("../img/spout-sprite.png") no-repeat 0 0 transparent;
+	margin: 0 auto;
+}
+.default-spout .container-shape-images .spout-sprite {
+	float:left;
+	margin-right:20px;
+}
+.field-name-dimensions {
+	float:left;
+	width:120px;
+}
+.field-name-dimensions input {
+	width: 120px;
+}
+#field-name-spout .four-sided-bag input + label .spout-sprite {
+	width: 97px;
+	height: 235px;
+	background-position: -20px -20px;
+}
+#field-name-spout .four-sided-bag input:checked + label .spout-sprite {
+	width: 97px;
+	height: 235px;
+	background-position: -20px -269px;
+}
+#field-name-spout .flat-bag input + label .spout-sprite {
+	width: 74px;
+	height: 235px;
+	background-position: -20px -518px;
+}
+#field-name-spout .flat-bag input:checked + label .spout-sprite {
+	width: 74px;
+	height: 235px;
+	background-position: -20px -764px;
+}
+#field-name-spout .can-jar input + label .spout-sprite {
+	width: 81px;
+	height: 235px;
+	background-position: -114px -518px;
+}
+#field-name-spout .can-jar input:checked + label .spout-sprite {
+	width: 81px;
+	height: 235px;
+	background-position: -114px -757px;
+}
+.main-spout-image {
+	background-position: -20px -1010px;
+	float: right;
+    height: 191px;
+    margin: 0 20px;
+    width: 125px;
+}
+.container-shape-images .four-sided-bag {
+	width: 144px;
+	height: 179px;
+	background-position: -20px -1221px;
+}
+.container-shape-images .can-jar {
+	width: 133px;
+	height: 132px;
+	background-position: -20px -1420px;
+}
+.container-shape-images .flat-bag {
+	width: 188px;
+	height: 74px;
+	background-position: -20px -1572px;
+}
+#field-name-spout ul {
+	margin: 0;
+}
+#field-name-spout label {
+	border: none;
+	padding: 11px 0px 4px;
+}
+#field-name-spout label.error {
+padding: 4px 0px 4px 8px;
+}
+
+#field-name-spout .field-name-spout-type li {
+	float:left;
+	margin:0 10px;
+}
+#field-name-spout input[type="radio"]:checked + label {
+	border: none;
+	background-color: transparent;
+}
+#field-name-spout h4 {
+	margin: 0 0 0.4em 0;
+}
+#field-name-spout .field-type-radio input {
+	margin-left: 0;
+	margin-bottom:24px;
+}
+/* 
+ * Quote summary page
+ */
+
+#quote-summary {
+	margin-bottom:14px;
+}
+#emailQuote {
+
+}
+#field-name-customer-details ul {
+    margin:0;
+}
+#field-name-customer-details .first-name,
+#field-name-customer-details .company {
+    margin-right:10px;
+}
+#field-name-customer-details .first-name,
+#field-name-customer-details .last-name,
+#field-name-customer-details .company,
+#field-name-customer-details .zip {
+    float:left;
+}
+#field-name-customer-details .first-name input,
+#field-name-customer-details .last-name input {
+    width:155px;
+}
+#field-name-customer-details .company input {
+    width:190px;
+}
+#field-name-customer-details .zip,
+#field-name-customer-details .zip input {
+    width:120px;
+}
+#field-name-customer-details .email,
+#field-name-customer-details .phone {
+    clear:left;
+}
+#field-name-customer-details .email input,
+#field-name-customer-details .phone input {
+    width:100%;
+}
+#btnSubmit {
+    margin: 10px 0 4px;
+}
+/* 
+ * Messages
+ */
+.warning {
+    background-color: #F3DEDE;
+    border: 2px solid red;
+    margin-bottom: 14px;
+    padding: 10px;
+    text-align: center;
+}
+.success {
+    margin-bottom: 14px;
+    padding: 14px 14px 0;
+    text-align: center;
+}
+/* 
+ * Fallback content / no-js
+ */
+.no-js #field-name-spout ul.field-name-dimensions {
+    margin: 14px 0;
+    width: 100%;
+}
+.no-js .container-shape-images .spout-sprite,
+.no-js .field-name-dimensions li {
+    float:left;
+    margin-right:14px;
+}
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+.clear {
+	clear: both;
+}
+.no-clear {
+	clear: none;
+}
+/*
+ * Image replacement
+ */
+
+.ir {
+	background-color: transparent;
+	border: 0;
+	overflow: hidden;
+    /* IE 6/7 fallback */
+    *text-indent: -9999px;
+}
+.ir:before {
+	content: "";
+	display: block;
+	width: 0;
+	height: 100%;
+}
+/*
+ * Hide from both screenreaders and browsers: h5bp.com/u
+ */
+
+.hidden {
+	display: none !important;
+	visibility: hidden;
+}
+/*
+ * Hide only visually, but have it available for screenreaders: h5bp.com/v
+ */
+
+.visuallyhidden {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+}
+/*
+ * Extends the .visuallyhidden class to allow the element to be focusable
+ * when navigated to via the keyboard: h5bp.com/p
+ */
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+	clip: auto;
+	height: auto;
+	margin: 0;
+	overflow: visible;
+	position: static;
+	width: auto;
+}
+/*
+ * Hide visually and from screenreaders, but maintain layout
+ */
+
+.invisible {
+	visibility: hidden;
+}
+/*
+ * Clearfix: contain floats
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    `contenteditable` attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that receive the `clearfix` class.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+
+.clearfix:before,
+.clearfix:after {
+	content: " "; /* 1 */
+	display: table; /* 2 */
+}
+.clearfix:after {
+	clear: both;
+}
+/*
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+
+.clearfix {
+ *zoom: 1;
+}
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   Theses examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+/* Style adjustments for viewports that meet the condition */
+}
+ @media only screen and (-webkit-min-device-pixel-ratio: 1.5),  only screen and (min-resolution: 144dpi) {
+/* Style adjustments for high resolution devices */
+}
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid required HTTP connection: h5bp.com/r
+   ========================================================================== */
+
+@media print {
+* {
+	background: transparent !important;
+	color: #000 !important; /* Black prints faster: h5bp.com/s */
+	box-shadow: none !important;
+	text-shadow: none !important;
+}
+a,
+ a:visited {
+	text-decoration: underline;
+}
+a[href]:after {
+	content: " (" attr(href) ")";
+}
+abbr[title]:after {
+	content: " (" attr(title) ")";
+}
+/*
+     * Don't show links for images, or javascript/internal links
+     */
+
+.ir a:after,
+ a[href^="javascript:"]:after,
+ a[href^="#"]:after {
+	content: "";
+}
+pre,
+ blockquote {
+	border: 1px solid #999;
+	page-break-inside: avoid;
+}
+thead {
+	display: table-header-group; /* h5bp.com/t */
+}
+tr,
+ img {
+	page-break-inside: avoid;
+}
+img {
+	max-width: 100% !important;
+}
+ @page {
+ margin: 1cm;
+}
+
+p,
+ h2,
+ h3 {
+	orphans: 3;
+	widows: 3;
+}
+h2,
+ h3 {
+	page-break-after: avoid;
+}
+body {
+    font-size: 12pt;
+}
+#sidebar,
+#main-navigation,
+#pag-navigation,
+#submit_buttons,
+#emailQuote,
+.step-pager,
+#step-1,
+#step-2,
+#step-3,
+#step-4,
+#hidden-accessories-page,
+.success,
+#thankYouMessage,
+#hidden-accessories-page-btn {
+    display:none !important;
+}
+#section-content {
+    border:none;
+    margin:0 auto;
+}
+#main-content {
+    width:100%;
+}
+#quote-summary {
+    margin: 1cm;
+}
+tr.even {
+    background-color: rgb(240, 240, 240);
+}
+thead {
+    border-bottom: 1px solid #000000;
+}
+tbody tr th {
+    border-right: 1px solid #000000;
+}
+tbody tr.total td, tbody tr.total th {
+    border-top: 1px solid #000000;
+}
+}

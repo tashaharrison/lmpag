@@ -21,6 +21,33 @@
 		<link rel="stylesheet" href="css/forms.css">
 		<script src="js/vendor/modernizr-2.6.2.min.js"></script>
 		<script type="text/javascript" src="js/ahah.js" ></script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<!-- Redirect IE 7 + 8 to flash version -->
+<!--[if lt IE 9]>
+<meta http-equiv="refresh" content="1;url=http://logicalmachines.com/p-and-a-guide.html">
+<script type="text/javascript">
+	window.location.href = "http://logicalmachines.com/p-and-a-guide.html"
+</script>
+<![endif]-->
+
+<script type="text/javascript">
+	// attempt to redirect FF3.6 to flash version
+	if ($.browser.mozilla) {
+		var version = $.browser.version,
+		    majorVer = parseInt(version.substring(0, version.indexOf('.')));
+		if (majorVer < 7) {
+			window.location.href = "http://logicalmachines.com/p-and-a-guide.html";
+		}
+	}
+</script>
+
+<script type="text/javascript">
+	// Replace non-js iframe (small, with scrollbars) with js one (larger, no-scroll), if js is running
+	$(document).ready( function() {
+		$('#frame-container').html('<iframe id="quote-generator" src="http://lmpag.spirelightserver.com/quote-generator.php" width="785" height="1128" frameborder="no" scrolling="no"></iframe>');
+	});
+</script>
 	</head>
 
 	<body>
@@ -28,7 +55,8 @@
 			<header id="header" class="clearfix">
 				<div id="LMLogo1">
 					<a href="index.html"><img src="img/lmlogo1.jpeg" width=258 height=96 alt="LMLogo1" style="float:left"></a>
-				</div>
+		
+	</div>
 				<div id="h1-header">
 					<h1 class="f-lp"><span class="style8">Logical Machines
 						<br />
@@ -98,18 +126,6 @@
 
 		</div><!-- id="PageDiv" end -->
 
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-		<script>
-            window.jQuery || document.write('<script src="js/vendor/jquery-1.8.3.min.js"><\/script>')
-		</script>
-
-<script>
-$(document).ready( function () {
-	 if (! $("html").hasClass("lt-ie9")) {
-		$('#frame-container').html('<iframe id="quote-generator" src="http://lmpag.spirelightserver.com/quote-generator.php" width="785" height="1128" frameborder="no" scrolling="no"></iframe>');
-	 }
-} );
-</script>
 
 		<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 		<script>
