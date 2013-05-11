@@ -38,18 +38,36 @@ $(document).ready(function() {
     */
         
     // Retreive list of spouts available for sale from the HTML
-    var spoutSizes = $('input[name=spout-sizes]').val(),
-    spoutSizes = spoutSizes.replace(/\s+/g,''),
-    availableSpouts = spoutSizes.split(','),
+		var spoutSizes = $('input[name=spout-sizes]').val(),
+		spoutSizes = spoutSizes.replace(/\s+/g,''),
+		availableSpouts = spoutSizes.split(','),
     // Field containers
-    $fieldContainer = $('.field-container'), $machineModel = $('#field-name-machine-model'), $weighHopper = $('#field-name-weigh-hopper'), $dischargeFunnel = $('#field-name-discharge-funnel'), $spout = $('#field-name-spout'), $spout1 = $spout.find('#spout1'), $spout2 = $spout.find('#spout2'), $spout3 = $spout.find('#spout3'),
+		$fieldContainer = $('.field-container'), 
+		$machineModel = $('#field-name-machine-model'), 
+		$weighHopper = $('#field-name-weigh-hopper'), 
+		$dischargeFunnel = $('#field-name-discharge-funnel'), 
+		$spout = $('#field-name-spout'), 
+		$spout1 = $spout.find('#spout1'), 
+		$spout2 = $spout.find('#spout2'), 
+		$spout3 = $spout.find('#spout3'),
     // Field labels for extracting data
-    $machineData = $machineModel.find('label'), $weighHopperData = $weighHopper.find($('label')), $dischargeFunnelData = $dischargeFunnel.find($('label')), spoutPrice = parseInt($('input[name=spout-price]').val()),
+		$machineData = $machineModel.find('label'), 
+		$weighHopperData = $weighHopper.find($('label')), 
+		$dischargeFunnelData = $dischargeFunnel.find($('label')), 
+		spoutPrice = parseInt($('input[name=spout-price]').val()),
     // Machine image variables
-    $machineImage = $('#machine-image'), $spoutImage = $machineImage.find('.spout'), $nextMachineImage = $('#machine-image').next('#machine-title'), $grandTotalContainer = $('#cost-container .amount'), grandTotal = parseInt($grandTotalContainer.text(), 10),
+		$machineImage = $('#machine-image'), 
+		$spoutImage = $machineImage.find('.spout'), 
+		$nextMachineImage = $('#machine-image').next('#machine-title'), 
+		$grandTotalContainer = $('#cost-container .amount'), 
+		grandTotal = parseInt($grandTotalContainer.text(), 10),
     // Controls
-    $btnAdd = $('#btnAdd'), $btnDel = $('#btnDel'), $btnEmail = $('#btnEmail'), $btnSubmit = $('#btnSubmit');
+		$btnAdd = $('#btnAdd'), 
+		$btnDel = $('#btnDel'), 
+		$btnEmail = $('#btnEmail'), 
+		$btnSubmit = $('#btnSubmit');
 
+		console.log($fieldContainer)
     // Create an instance of the machine object and default assign properties
     var machine = {
         id : $machineData.first().attr('for'),
@@ -70,7 +88,6 @@ $(document).ready(function() {
             price : $dischargeFunnelData.first().find('.amount').text()
         }
     };
-
     /*
     * Document ready JS
     */
@@ -134,7 +151,9 @@ $(document).ready(function() {
     
     // Calculate the grand total
     function calculateTotal($fieldID) {
-        var price = parseInt($fieldID.next('label').find(".amount").text(), 10), siblingAmounts = 0, radioName = $fieldID.attr("name");
+        var price = parseInt($fieldID.next('label').find(".amount").text(), 10), 
+			siblingAmounts = 0, 
+			radioName = $fieldID.attr("name");
         if (!isNaN(price)) {
             $("input[name='" + radioName + "'].active").not($fieldID).each(function() {
                 siblingAmounts += parseInt($(this).next("label").find(".amount").text(), 10);
@@ -168,9 +187,11 @@ $(document).ready(function() {
      *  Navigation
      */
 
-    $('.step-pager button').click(function() {
+    $('.step-pager button').click(function() { // Action for 'prev' & 'next' buttons
     	changeCostContainerText()
-        var $stepContainer = $(this).closest('.step-container'), nextStepContainerID = $stepContainer.next().attr('id'), prevStepContainerID = $stepContainer.prev().attr('id');
+        var $stepContainer = $(this).closest('.step-container'), 
+			nextStepContainerID = $stepContainer.next().attr('id'), 
+			prevStepContainerID = $stepContainer.prev().attr('id');
     	// Remove active class from the current page 
         $('#pag-navigation a').removeClass('active');
         // Move the app forward if the clicked button is next or back if is previous and add the active class
@@ -183,20 +204,24 @@ $(document).ready(function() {
         }
         // Execute showvalues() to display results if moving to the summary page
         if ($(this).is('#step-4-pager button.next'))
-            showValues();
+//			console.log("Triggered summary page shift");
+//			Below line in original code: triggering error
+			0();
+//			Below Line possible fix:
+//			showValues()
     	$('#thankYouMessage').remove();
     	// Reload the page to reset the form if moving to page 1
         if ($(this).is('#step-2-pager button.prev'))
             location.reload();
     });
 
-    $('#pag-navigation a').click(function() {
+    $('#pag-navigation a').click(function() { // Action for left-hand step tabs
     	changeCostContainerText();
         var stepValue = $(this).attr('href');
-        // Remove active class from current page and add to next page
+        // Remove active class from current page and add to selected page
         $('#pag-navigation a').removeClass('active');
         $(this).addClass('active');
-        // Hide the current page a show the next page
+        // Hide the current page and show the selected page
         $('.step-container').hide();
         $(stepValue).show();
         // Execute showvalues() to display results if moving to the summary page
@@ -220,9 +245,13 @@ $(document).ready(function() {
      * Pages 1 - 3 selection actions
      */
 
-    $fieldContainer.on('click', 'input[type=radio]', function(e) {
-        var $fieldID = $(this), fieldContainerID = $(this).closest($fieldContainer).attr('id');
-        objectName = $fieldID.attr('name'), objectVal = $fieldID.attr('id'), inputVal = $fieldID.closest('ul.field-type-radio').find('.active').attr('id'), $fieldLabel = $(this).next('label');
+    $fieldContainer.on('click', 'input[type=radio]', function(e) { // Action when choosing options - registers & indicates selection, determines knock-on choices, updates image, updates cost.
+        var $fieldID = $(this), 
+			fieldContainerID = $(this).closest($fieldContainer).attr('id'), // Id of container element - type of option selected
+			objectName = $fieldID.attr('name'), // Name of input - Appears unused - equates to fieldContainerID
+			objectVal = $fieldID.attr('id'), // ID - precise name of item selected
+			inputVal = $fieldID.closest('ul.field-type-radio').find('.active').attr('id'), // Id of currently active option
+			$fieldLabel = $(this).next('label'); // Label that corresponds to selected input
         // Check if the clicked field is the same as the selected field
         if (inputVal == objectVal) {
             e.preventDefault();
@@ -231,63 +260,65 @@ $(document).ready(function() {
             switch (fieldContainerID) {
                 case 'field-name-machine-model':
                     // Assign properties to the machine object
-                    machine.id = $fieldID.attr('id');
-                    machine.name = $fieldLabel.find('.name').text();
-                    machine.type = $fieldLabel.find('.type').text();
-                    machine.description = $fieldLabel.find('.description').text().trim();
-                    machine.price = $fieldLabel.find('.amount').text();
-                    // Show/Hide descriptions
-                    $machineData.children(':not(h4,.price)').hide();
-                    $fieldLabel.find('*').show();
-                    // Assign classes to machine image and change name
-                    $machineImage.removeClass('s4 s5 s6 s7').addClass(machine.id);
-                    $nextMachineImage.html(machine.name + " " + machine.type);
+						machine.id = $fieldID.attr('id');
+						machine.name = $fieldLabel.find('.name').text();
+						machine.type = $fieldLabel.find('.type').text();
+						machine.description = $fieldLabel.find('.description').text().trim();
+						machine.price = $fieldLabel.find('.amount').text();
+                    // Show/Hide descriptions - once more than one machine is available this will hide all descriptions except for that of selected machine
+						$machineData.children(':not(h4,.price)').hide();
+						$fieldLabel.find('*').show();
+                    // Assign classes to machine image and change name displayed below
+						$machineImage.removeClass('s4 s5 s6 s7').addClass(machine.id);
+						$nextMachineImage.html(machine.name + " " + machine.type);
                     break;
                 case 'field-name-weigh-hopper':
                     // Assign properties to the machine.weighHopper object
-                    machine.weighHopper.id = $fieldID.attr('name');
-                    machine.weighHopper.name = $fieldLabel.find('.name').text();
-                    machine.weighHopper.description = $fieldLabel.find('.description').text().trim();
-                    machine.weighHopper.price = $fieldLabel.find('.amount').text();
+						machine.weighHopper.id = $fieldID.attr('name');
+						machine.weighHopper.name = $fieldLabel.find('.name').text();
+						machine.weighHopper.description = $fieldLabel.find('.description').text().trim();
+						machine.weighHopper.price = $fieldLabel.find('.amount').text();
                     // Assign classes to machine image
-                    $machineImage.removeClass('smwh lrgwh std-fnl steep-fnl').addClass(objectVal + ' std-fnl');
+						$machineImage.removeClass('smwh lrgwh std-fnl steep-fnl').addClass(objectVal + ' std-fnl');
                     // Show/Hide discharge funnels and reset checked properties
-                    componentSize = $fieldID.closest('li').attr('class');
-                    $dischargeFunnel.find($('li')).hide().filter($('.' + componentSize)).show();
-                    $dischargeFunnel.find($('input')).prop('checked', false).removeClass('active');
-                    if (componentSize === 'small') {
-                        $dischargeFunnel.find($('.small #small-std-fnl')).prop('checked', true).addClass('active');
-                    } else {
-                        $dischargeFunnel.find($('.large #large-std-fnl')).prop('checked', true).addClass('active');
-                    }
+						componentSize = $fieldID.closest('li').attr('class');
+						$dischargeFunnel.find($('li')).hide().filter($('.' + componentSize)).show();
+						$dischargeFunnel.find($('input')).prop('checked', false).removeClass('active');
+						if (componentSize === 'small') {
+							$dischargeFunnel.find($('.small #small-std-fnl')).prop('checked', true).addClass('active');
+						} else {
+							$dischargeFunnel.find($('.large #large-std-fnl')).prop('checked', true).addClass('active');
+						}
                     break;
                 case 'field-name-discharge-funnel':
                     // Assign properties to the machine.weighHopper object
-                    machine.dischargeFunnel.id = $fieldID.attr('name');
-                    machine.dischargeFunnel.name = $fieldLabel.find('.name').text();
-                    machine.dischargeFunnel.description = $fieldLabel.find('.description').text().trim();
-                    machine.dischargeFunnel.price = $fieldLabel.find('.amount').text();
+						machine.dischargeFunnel.id = $fieldID.attr('name');
+						machine.dischargeFunnel.name = $fieldLabel.find('.name').text();
+						machine.dischargeFunnel.description = $fieldLabel.find('.description').text().trim();
+						machine.dischargeFunnel.price = $fieldLabel.find('.amount').text();
                     // Assign classes to machine image
-                    $machineImage.toggleClass('std-fnl steep-fnl');
+						$machineImage.toggleClass('std-fnl steep-fnl');
                     break;
                 case 'field-name-spout':
-                    var fieldVal = $fieldID.val(), $spoutContainer = $fieldID.closest('fieldset');
+                    var fieldVal = $fieldID.val(), 
+					$spoutContainer = $fieldID.closest('fieldset');
                     // Show calculate button
-                    $spoutContainer.find('.calculate').show();
+						$spoutContainer.find('.calculate').show();
                     // Toggle active class
-                    $spoutContainer.find('input.active').removeClass('active');
-                    $fieldID.addClass('active');
+						$spoutContainer.find('input.active').removeClass('active');
+						$fieldID.addClass('active');
                     // Hide all the dimensions fields and images
-                    $spoutContainer.find('.field-name-dimensions li').hide();
-                    $spoutContainer.find('.container-shape-images > *').hide();
-                    $spoutContainer.find('p').hide();
+						$spoutContainer.find('.field-name-dimensions li').hide();
+						$spoutContainer.find('.container-shape-images > *').hide();
+						$spoutContainer.find('p').hide();
                     // Show the appropriate instructions and fields for the spout type choice
-                    $spoutContainer.find('.instructions .' + fieldVal).show();
-                    $spoutContainer.find('.field-name-dimensions .' + fieldVal).show();
-                    $spoutContainer.find('.container-shape-images .' + fieldVal).show();
+						$spoutContainer.find('.instructions .' + fieldVal).show();
+						$spoutContainer.find('.field-name-dimensions .' + fieldVal).show();
+						$spoutContainer.find('.container-shape-images .' + fieldVal).show();
                     break;
             }
-            calculateTotal($fieldID);
+            
+			calculateTotal($fieldID);
         }
 
     });
