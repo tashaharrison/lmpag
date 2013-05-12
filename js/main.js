@@ -85,7 +85,8 @@ $(document).ready(function() {
             name : $dischargeFunnelData.first().find('.name').text(),
             description : $dischargeFunnelData.first().find('.description').text().trim(),
             price : $dischargeFunnelData.first().find('.amount').text()
-        }
+        },
+		testElement : 'Test',
     };
     /*
     * Document ready JS
@@ -283,8 +284,16 @@ $(document).ready(function() {
 						// Uncheck selection of any discharge funnel and de-activate seletion visual:
 							$dischargeFunnel.find($('input')).prop('checked', false).removeClass('active');
 						// Select default radio input for selected discharge funnel:
-							$dischargeFunnel.find($('.'+componentSize+' #'+componentSize+'-std-fnl')).prop('checked', true).addClass('active');
-                    break;
+							var $defaultFunnel = $dischargeFunnel.find($('.'+componentSize+' #'+componentSize+'-std-fnl'));
+							$defaultFunnel.prop('checked', true).addClass('active');
+						// Get data for discharge funnel:
+							$defaultFunnelData = $defaultFunnel.siblings('label')
+						// Assign properties to the machine.dischargeFunnel object
+							machine.dischargeFunnel.id = $defaultFunnel.attr('id');
+							machine.dischargeFunnel.name = $defaultFunnelData.find('.name').text();
+							machine.dischargeFunnel.description = $defaultFunnelData.find('.description').text().trim();
+							machine.dischargeFunnel.price = $defaultFunnelData.find('.amount').text();
+						break;
                 case 'field-name-discharge-funnel':
                     // Assign properties to the machine.dischargeFunnel object
 						machine.dischargeFunnel.id = $fieldID.attr('name');
