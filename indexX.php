@@ -90,6 +90,7 @@ include_once 'bin/php_validation.php';
 		<![endif]-->
 
 		<!-- Add your site or application content here -->
+		<h1>index.php</h1>
 		<div id="PageDiv">
 			<header id="header" class="clearfix">
 				<div id="LMLogo1">
