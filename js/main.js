@@ -67,7 +67,6 @@ $(document).ready(function() {
 		$btnEmail = $('#btnEmail'), 
 		$btnSubmit = $('#btnSubmit');
 
-		console.log($fieldContainer)
     // Create an instance of the machine object and default assign properties
     var machine = {
         id : $machineData.first().attr('for'),
@@ -204,11 +203,7 @@ $(document).ready(function() {
         }
         // Execute showvalues() to display results if moving to the summary page
         if ($(this).is('#step-4-pager button.next'))
-//			console.log("Triggered summary page shift");
-//			Below line in original code: triggering error
-			0();
-//			Below Line possible fix:
-//			showValues()
+			showValues()
     	$('#thankYouMessage').remove();
     	// Reload the page to reset the form if moving to page 1
         if ($(this).is('#step-2-pager button.prev'))
@@ -280,18 +275,18 @@ $(document).ready(function() {
 						machine.weighHopper.price = $fieldLabel.find('.amount').text();
                     // Assign classes to machine image
 						$machineImage.removeClass('smwh lrgwh std-fnl steep-fnl').addClass(objectVal + ' std-fnl');
-                    // Show/Hide discharge funnels and reset checked properties
-						componentSize = $fieldID.closest('li').attr('class');
-						$dischargeFunnel.find($('li')).hide().filter($('.' + componentSize)).show();
-						$dischargeFunnel.find($('input')).prop('checked', false).removeClass('active');
-						if (componentSize === 'small') {
-							$dischargeFunnel.find($('.small #small-std-fnl')).prop('checked', true).addClass('active');
-						} else {
-							$dischargeFunnel.find($('.large #large-std-fnl')).prop('checked', true).addClass('active');
-						}
+                    // Show/Hide discharge funnels and reset checked properties:
+						// Get name of required category of discharge funnels
+							var componentSize = $fieldID.closest('li').attr('class');
+						// Hide all list items then show those that are in the required category:
+							$dischargeFunnel.find($('li')).hide().filter($('.' + componentSize)).show();
+						// Uncheck selection of any discharge funnel and de-activate seletion visual:
+							$dischargeFunnel.find($('input')).prop('checked', false).removeClass('active');
+						// Select default radio input for selected discharge funnel:
+							$dischargeFunnel.find($('.'+componentSize+' #'+componentSize+'-std-fnl')).prop('checked', true).addClass('active');
                     break;
                 case 'field-name-discharge-funnel':
-                    // Assign properties to the machine.weighHopper object
+                    // Assign properties to the machine.dischargeFunnel object
 						machine.dischargeFunnel.id = $fieldID.attr('name');
 						machine.dischargeFunnel.name = $fieldLabel.find('.name').text();
 						machine.dischargeFunnel.description = $fieldLabel.find('.description').text().trim();
@@ -329,13 +324,21 @@ $(document).ready(function() {
 
     // Calculate the size of the spout based on the container
     $spout.on('click', '.calculate', function() {
-        var num = $('fieldset.field-spout').length, $spoutContainer = $(this).closest('fieldset'), spoutTitle = $spoutContainer.find('legend').text().trim(),
+        var num = $('fieldset.field-spout').length, 
+			$spoutContainer = $(this).closest('fieldset'), 
+			spoutTitle = $spoutContainer.find('legend').text().trim(),
         // The selected spout type
-        $spoutSelected = $spoutContainer.find('.field-name-spout-type input:checked'), spoutSelectedVal = $spoutSelected.val(), spoutSelectedTitle = $spoutSelected.next('label').find('h4').text(),
+			$spoutSelected = $spoutContainer.find('.field-name-spout-type input:checked'), 
+			spoutSelectedVal = $spoutSelected.val(), 
+			spoutSelectedTitle = $spoutSelected.next('label').find('h4').text(),
         // Spout dimension values
-        dimensionFieldWidth = parseFloat($spoutContainer.find('.width input').val()), dimensionFieldD1 = parseFloat($spoutContainer.find('.d1 input').val()), dimensionFieldD2 = parseFloat($spoutContainer.find('.d2 input').val()), dimensionFieldDiameter = $spoutContainer.find('.diameter input').val(), spoutSize = null,
+			dimensionFieldWidth = parseFloat($spoutContainer.find('.width input').val()), 
+			dimensionFieldD1 = parseFloat($spoutContainer.find('.d1 input').val()), 
+			dimensionFieldD2 = parseFloat($spoutContainer.find('.d2 input').val()), 
+			dimensionFieldDiameter = $spoutContainer.find('.diameter input').val(), 
+			spoutSize = null,
         // Visisble dimension fields
-        $dimensionFieldsVisible = $spoutContainer.find('.field-type-textfield input').filter(":visible");
+			$dimensionFieldsVisible = $spoutContainer.find('.field-type-textfield input').filter(":visible");
         // If the fields are valid, calculate the spout size
         if ($dimensionFieldsVisible.valid()) {
             switch (spoutSelectedVal) {
