@@ -24,7 +24,7 @@ $settings = array(
 						"price" => "0"),
 				"large-weigh-hopper" => array("name" => "Large Weigh Hopper",
 						"description" => "For larger volumes, the large weigh hopper's 650 cubic inch capacity handles net weights from 2 oz. to 10 lbs.",
-						"price" => "100")),
+						"price" => "250")),
 		// Discharge funnel settings > Fallback copy for use when Javascript is disabled
 		"dischargefunnel" => array(
 				"standard" => array("name" => "Standard Discharge Funnel",
@@ -45,11 +45,11 @@ $settings = array(
 						"standard" => array(
 								"name" => "Large Standard Discharge Funnel",
 								"description" => "This is the standard funnel for use with the large weigh hopper. It works best with free flowing products.",
-								"price" => "150"),
+								"price" => "0"),
 						"steep" => array(
 								"name" => "Large Steep-Sided Discharge Funnel",
 								"description" => "This steep sided funnel is used for fine powdered materials such as flour or other products that can stick to metal surfaces.",
-								"price" => "400"))),
+								"price" => "250"))),
 		"spout" => array("price" => "150",
 				"type" => array("flat-bag" => array("width"),
 						"four-sided-bag" => array("d1", "d2"),
