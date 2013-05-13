@@ -148,27 +148,33 @@ $(document).ready(function() {
     String.prototype.capitalise = function() {
         return this.charAt(0).toUpperCase() + this.slice(1);
     }
-    
-    // Calculate the grand total
+
+// Calculate the grand total - passed a particular input and called when that input has been selected
     function calculateTotal($fieldID) {
         var price = parseInt($fieldID.next('label').find(".amount").text(), 10), 
 			siblingAmounts = 0, 
 			radioName = $fieldID.attr("name");
-        if (!isNaN(price)) {
-            $("input[name='" + radioName + "'].active").not($fieldID).each(function() {
-                siblingAmounts += parseInt($(this).next("label").find(".amount").text(), 10);
-            });
-            $fieldID.toggleClass("active");
-            $("input[name='" + radioName + "']").not($fieldID).removeClass("active");
-            if ($fieldID.hasClass("active")) {
-                grandTotal -= siblingAmounts;
-                grandTotal += price;
-            } else {
-                grandTotal -= price;
-            }
-            $grandTotalContainer.html(grandTotal);
+        if (!isNaN(price)) { // If price is a number
+			// Get active inputs in same group excluding clicked and add amount of each non-selected option to siblingAmounts
+				$("input[name='" + radioName + "'].active").not($fieldID).each(function() { 
+					siblingAmounts += parseInt($(this).next("label").find(".amount").text(), 10);
+				});
+			// Toggle active status for selected input and remove from all other inputs:
+				$fieldID.toggleClass("active");
+				$("input[name='" + radioName + "']").not($fieldID).removeClass("active");
+			// Test whether clicked input is 'active' and preceed accordingly	
+				if ($fieldID.hasClass("active")) {
+					// subtract sibling amounts from grand total and add price
+						grandTotal -= siblingAmounts;
+						grandTotal += price;
+				} else {
+					// subtract price from grand total
+						grandTotal -= price;
+				}
+			// Insert grand total amount into box below machine image
+				$grandTotalContainer.html(grandTotal);
         }
-    }
+    }    
 
     // Change the machine image between front and side view
     $('#machine-image-container').on('click', 'button', function() {
