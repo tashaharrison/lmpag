@@ -86,7 +86,6 @@ $(document).ready(function() {
             description : $dischargeFunnelData.first().find('.description').text().trim(),
             price : $dischargeFunnelData.first().find('.amount').text()
         },
-		testElement : 'Test',
     };
     /*
     * Document ready JS
