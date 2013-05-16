@@ -155,7 +155,7 @@ $(document).ready(function() {
 			radioName = $fieldID.attr("name");
         if (!isNaN(price)) { // If price is a number
 			// Get active inputs in same group excluding clicked and add amount of each non-selected option to siblingAmounts
-				$("input[name='" + radioName + "'].active").not($fieldID).each(function() { 
+				$("input[name='" + radioName + "'].active").not($fieldID).each(function() {
 					siblingAmounts += parseInt($(this).next("label").find(".amount").text(), 10);
 				});
 			// Toggle active status for selected input and remove from all other inputs:
@@ -286,7 +286,7 @@ $(document).ready(function() {
 							var componentSize = $fieldID.closest('li').attr('class');
 						// Hide all list items then show those that are in the required category:
 							$dischargeFunnel.find($('li')).hide().filter($('.' + componentSize)).show();
-						// Uncheck selection of any discharge funnel and de-activate seletion visual:
+						// Uncheck selection of any discharge funnel and de-activate seletion flag:
 							$dischargeFunnel.find($('input')).prop('checked', false).removeClass('active');
 						// Select default radio input for selected discharge funnel:
 							var $defaultFunnel = $dischargeFunnel.find($('.'+componentSize+' #'+componentSize+'-std-fnl'));
@@ -451,20 +451,23 @@ $(document).ready(function() {
 
     // Remove button
     $('#field-name-spout').on('click', '.btnRemove', function() {
-    	var num = $('fieldset.field-spout').length, $spoutField = $("#spout" + num), $spoutWrapper = $(this).closest('.spout-wrapper'), $spoutFieldset = $spoutWrapper.find('fieldset');
+    	var num = $('fieldset.field-spout').length, 
+			$spoutField = $("#spout" + num), 
+			$spoutWrapper = $(this).closest('.spout-wrapper'), 
+			$spoutFieldset = $spoutWrapper.find('fieldset');
     	if (num == 1) {
         	$spoutField.find('fieldset').slideDown().find('.calculate').hide();
-            $spoutField.find('.field-name-spout-type').show().find('input').removeClass('active').prop('checked', false);
+            $spoutField.find('.field-name-spout-type').show().find('input').removeClass('active').prop('checked', false); 
             $spoutField.find('.instructions').show().find('p').hide().filter('.spout-selection').show();
             $spoutField.find('.field-name-dimensions,.container-shape-images').show();
         	$spoutField.find('.field-name-dimensions li').hide().find('input').prop('disabled', false).val("");
         	$spoutField.find('.container-shape-images > *').hide();
-        	$spoutField.find('.spout-calculation').hide().find('.spout-size').empty();
+        	$spoutField.find('.spout-calculation').remove();
             $btnAdd.hide();
             $btnDel.hide();
             $spoutImage.addClass('hidden');
         } else {
-        // Show the add abother page button
+        // Show the 'add another spout' button
         $btnAdd.show();
     	// Delete the spout
     	$spoutWrapper.remove();
