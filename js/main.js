@@ -154,14 +154,16 @@ $(document).ready(function() {
 			siblingAmounts = 0, 
 			radioName = $fieldID.attr("name");
         if (!isNaN(price)) { // If price is a number
-			// Get active inputs in same group excluding clicked and add amount of each non-selected option to siblingAmounts
-				$("input[name='" + radioName + "'].active").not($fieldID).each(function() {
+			// Get active inputs in same group excluding clicked:
+				var $siblingInputs = $("input[name='" + radioName + "'].active").not($fieldID);
+			// Add price of each to siblingAmounts:
+				$siblingInputs.each(function() {
 					siblingAmounts += parseInt($(this).next("label").find(".amount").text(), 10);
 				});
 			// Toggle active status for selected input and remove from all other inputs:
 				$fieldID.toggleClass("active");
-				$("input[name='" + radioName + "']").not($fieldID).removeClass("active");
-			// Test whether clicked input is 'active' and preceed accordingly	
+				$siblingInputs.removeClass("active");
+			// Test whether clicked input is 'active' and proceed accordingly
 				if ($fieldID.hasClass("active")) {
 					// subtract sibling amounts from grand total and add price
 						grandTotal -= siblingAmounts;
@@ -287,10 +289,12 @@ $(document).ready(function() {
 						// Hide all list items then show those that are in the required category:
 							$dischargeFunnel.find($('li')).hide().filter($('.' + componentSize)).show();
 						// Uncheck selection of any discharge funnel and de-activate seletion flag:
-							$dischargeFunnel.find($('input')).prop('checked', false).removeClass('active');
+							$dischargeFunnel.find($('input')).prop('checked', false);
 						// Select default radio input for selected discharge funnel:
 							var $defaultFunnel = $dischargeFunnel.find($('.'+componentSize+' #'+componentSize+'-std-fnl'));
-							$defaultFunnel.prop('checked', true).addClass('active');
+							$defaultFunnel.prop('checked', true);
+						// Recalculate total for default discharge funnel:	
+							calculateTotal($defaultFunnel);
 						// Get data for discharge funnel:
 							$defaultFunnelData = $defaultFunnel.siblings('label')
 						// Assign properties to the machine.dischargeFunnel object
