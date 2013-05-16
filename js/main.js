@@ -503,9 +503,16 @@ $(document).ready(function() {
     
     // Edit button
     $('#field-name-spout').on('click', '.btnEdit', function() {
-    	var $spoutWrapper = $(this).closest('.spout-wrapper'), $spoutFieldset = $spoutWrapper.find('fieldset');
-    	$spoutFieldset.slideDown('fast').next().remove();
-        $btnAdd.hide();
+		// Get spout wrapper and related form in objects:
+			var $spoutWrapper = $(this).closest('.spout-wrapper'), 
+				$spoutFieldset = $spoutWrapper.find('fieldset');
+		// Show still-complete form and delete spout-calculation
+			$spoutFieldset.slideDown('fast').next().remove();
+		// Adjust the spout price
+			grandTotal -= spoutPrice;
+			$grandTotalContainer.html(grandTotal);
+		//Show add button:
+			$btnAdd.hide();
     });
     
     /*
