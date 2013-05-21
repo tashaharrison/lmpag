@@ -1,7 +1,5 @@
 $(document).ready(function() {
 
-    if ($('html').hasClass('lt-ie9')) return;
-
     var $form = $('#logical-machines-quote-generator');
     
     /*
