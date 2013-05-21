@@ -70,21 +70,26 @@ $(document).ready(function() {
         id : $machineData.first().attr('for'),
         name : $machineData.first().find('.name').text(),
         type : $machineData.first().find('.type').text(),
-        description : $machineData.first().find('.description').text().trim(),
+        description : $machineData.first().find('.description').text(),//.trim(),
         price : $machineData.first().find('.amount').text(),
         weighHopper : {
             id : $weighHopperData.first().attr('for'),
             name : $weighHopperData.first().find('.name').text(),
-            description : $weighHopperData.first().find('.description').text().trim(),
+            description : $weighHopperData.first().find('.description').text(),//.trim(),
             price : $weighHopperData.first().find('.amount').text()
         },
         dischargeFunnel : {
             id : $dischargeFunnelData.first().attr('for'),
             name : $dischargeFunnelData.first().find('.name').text(),
-            description : $dischargeFunnelData.first().find('.description').text().trim(),
+            description : $dischargeFunnelData.first().find('.description').text(),//.trim(),
             price : $dischargeFunnelData.first().find('.amount').text()
         }
     };
+	if (String.prototype.trim) {
+		machine.description = machine.description.trim();
+		machine.weighHopper.description = machine.weighHopper.description.trim();
+		machine.dischargeFunnel.description = machine.dischargeFunnel.description.trim();
+	}
     /*
     * Document ready JS
     */
