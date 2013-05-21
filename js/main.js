@@ -1,6 +1,6 @@
 $(document).ready(function() {
-	alert("I'm here");
     if ($('html').hasClass('lt-ie9')) return;
+	alert("I'm here");
 
     var $form = $('#logical-machines-quote-generator');
     
