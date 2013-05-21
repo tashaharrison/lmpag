@@ -83,7 +83,7 @@ $(document).ready(function() {
             name : $dischargeFunnelData.first().find('.name').text(),
             description : $dischargeFunnelData.first().find('.description').text().trim(),
             price : $dischargeFunnelData.first().find('.amount').text()
-        },
+        }
     };
     /*
     * Document ready JS
