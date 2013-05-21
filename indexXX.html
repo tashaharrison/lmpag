@@ -23,6 +23,24 @@
 		<script type="text/javascript" src="js/ahah.js" ></script>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<!-- Redirect IE 7 + 8 to flash version -->
+<!--[if lt IE 9]>
+<meta http-equiv="refresh" content="1;url=http://logicalmachines.com/p-and-a-guide.html">
+<script type="text/javascript">
+	window.location.href = "http://logicalmachines.com/p-and-a-guide.html"
+</script>
+<![endif]-->
+
+<script type="text/javascript">
+	// attempt to redirect FF3.6 to flash version
+	if ($.browser.mozilla) {
+		var version = $.browser.version,
+		    majorVer = parseInt(version.substring(0, version.indexOf('.')));
+		if (majorVer < 7) {
+			window.location.href = "http://logicalmachines.com/p-and-a-guide.html";
+		}
+	}
+</script>
 
 <script type="text/javascript">
 	// Replace non-js iframe (small, with scrollbars) with js one (larger, no-scroll), if js is running
