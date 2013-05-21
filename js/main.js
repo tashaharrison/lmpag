@@ -70,18 +70,18 @@ $(document).ready(function() {
         id : $machineData.first().attr('for'),
         name : $machineData.first().find('.name').text(),
         type : $machineData.first().find('.type').text(),
-        description : $machineData.first().find('.description').text().trim(),
+        description : $.trim($machineData.first().find('.description').text()),//.trim(),
         price : $machineData.first().find('.amount').text(),
         weighHopper : {
             id : $weighHopperData.first().attr('for'),
             name : $weighHopperData.first().find('.name').text(),
-            description : $weighHopperData.first().find('.description').text().trim(),
+            description : $.trim($weighHopperData.first().find('.description').text()),//.trim(),
             price : $weighHopperData.first().find('.amount').text()
         },
         dischargeFunnel : {
             id : $dischargeFunnelData.first().attr('for'),
             name : $dischargeFunnelData.first().find('.name').text(),
-            description : $dischargeFunnelData.first().find('.description').text().trim(),
+            description : $.trim($dischargeFunnelData.first().find('.description').text()),//.trim(),
             price : $dischargeFunnelData.first().find('.amount').text()
         }
     };
@@ -264,7 +264,7 @@ $(document).ready(function() {
 						machine.id = $fieldID.attr('id');
 						machine.name = $fieldLabel.find('.name').text();
 						machine.type = $fieldLabel.find('.type').text();
-						machine.description = $fieldLabel.find('.description').text().trim();
+						machine.description = $.trim($fieldLabel.find('.description').text())//.trim();
 						machine.price = $fieldLabel.find('.amount').text();
                     // Show/Hide descriptions - once more than one machine is available this will hide all descriptions except for that of selected machine
 						$machineData.children(':not(h4,.price)').hide();
@@ -277,7 +277,7 @@ $(document).ready(function() {
                     // Assign properties to the machine.weighHopper object
 						machine.weighHopper.id = $fieldID.attr('name');
 						machine.weighHopper.name = $fieldLabel.find('.name').text();
-						machine.weighHopper.description = $fieldLabel.find('.description').text().trim();
+						machine.weighHopper.description = $.trim($fieldLabel.find('.description').text())//.trim();
 						machine.weighHopper.price = $fieldLabel.find('.amount').text();
                     // Assign classes to machine image
 						$machineImage.removeClass('smwh lrgwh std-fnl steep-fnl').addClass(objectVal + ' std-fnl');
@@ -298,14 +298,14 @@ $(document).ready(function() {
 						// Assign properties to the machine.dischargeFunnel object
 							machine.dischargeFunnel.id = $defaultFunnel.attr('id');
 							machine.dischargeFunnel.name = $defaultFunnelData.find('.name').text();
-							machine.dischargeFunnel.description = $defaultFunnelData.find('.description').text().trim();
+							machine.dischargeFunnel.description = $.trim($defaultFunnelData.find('.description').text())//.trim();
 							machine.dischargeFunnel.price = $defaultFunnelData.find('.amount').text();
 						break;
                 case 'field-name-discharge-funnel':
                     // Assign properties to the machine.dischargeFunnel object
 						machine.dischargeFunnel.id = $fieldID.attr('name');
 						machine.dischargeFunnel.name = $fieldLabel.find('.name').text();
-						machine.dischargeFunnel.description = $fieldLabel.find('.description').text().trim();
+						machine.dischargeFunnel.description = $.trim($fieldLabel.find('.description').text())//.trim();
 						machine.dischargeFunnel.price = $fieldLabel.find('.amount').text();
                     // Assign classes to machine image
 						$machineImage.toggleClass('std-fnl steep-fnl');
@@ -342,7 +342,7 @@ $(document).ready(function() {
     $spout.on('click', '.calculate', function() {
         var num = $('fieldset.field-spout').length, 
 			$spoutContainer = $(this).closest('fieldset'), 
-			spoutTitle = $spoutContainer.find('legend').text().trim(),
+			spoutTitle = $.trim($spoutContainer.find('legend').text())//.trim(),
         // The selected spout type
 			$spoutSelected = $spoutContainer.find('.field-name-spout-type input:checked'), 
 			spoutSelectedVal = $spoutSelected.val(), 
@@ -376,7 +376,7 @@ $(document).ready(function() {
            // Display a warning if the spout size is the same as an existing one else run spoutValid()
            var calculatedSpoutSizes = [];
            $('.spout-calculation .spout-size').each(function(){
-            	calculatedSpoutSizes.push(parseFloat($(this).text().trim()));
+            	calculatedSpoutSizes.push(parseFloat($.trim($(this).text())));
            });
             	if (calculatedSpoutSizes.length !== 0 && $.inArray(spoutSize, calculatedSpoutSizes) !== -1) {
             		$spoutContainer.find('.warning').show().find('.calculatedSpoutSize').text(spoutSize);
@@ -584,7 +584,7 @@ $(document).ready(function() {
         // Compile the values from the form
     	var to = $('#to').val(),
         cc = $('#cc').val(),
-        message = encodeURIComponent($('#message').val().trim()),
+        message = $.trim(encodeURIComponent($('#message').val())),
         $emailFields = $('#to,#cc'),
         $HTMLresults = showValues(),
         $HTMLresults = $HTMLresults.replace(/\"/g,''),
