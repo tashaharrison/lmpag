@@ -521,8 +521,8 @@ ul.field-type-textfield {
 	float:left;
 	margin-right:14px;
 }
-ul.field-type-radio > li {
-	margin-bottom: 20px;
+.lt-ie8 ul.field-type-radio > li {
+	clear: both;
 }
 .field-type-radio h4 {
 	margin: 0 0 0.4em 0;
