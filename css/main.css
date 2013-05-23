@@ -543,7 +543,9 @@ ul.field-type-textfield {
     display:none;
 	margin-left: 14px;
 }
-.lt-ie9 .field-type-radio input {
+.lt-ie9 #field-name-machine-model .field-type-radio input,
+.lt-ie9 #field-name-weigh-hopper .field-type-radio input,
+.lt-ie9 #field-name-discharge-funnel .field-type-radio input {
     display:block;
 	float: left;
 	margin-left: 14px;
