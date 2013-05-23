@@ -551,12 +551,13 @@ ul.field-type-textfield {
 }
 .lt-ie8 .field-type-radio label {
 	float: right;
+	zoom: 1;
 }
 .field-type-radio input[type="radio"]:checked+label,
 .lt-ie9 .field-type-radio input.active+label, 
 .success {
 	border: #090 2px solid;
-	background-color: rgb(235, 255, 234);
+	background-color: #EBFFEA;
 }
 #fieldNameSpout .field-type-radio label {
 	margin-top: -32px;
