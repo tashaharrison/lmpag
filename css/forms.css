@@ -347,6 +347,16 @@ button.next {
 	padding-right: 32px;
 	float: right;
 }
+.lt-ie9 button.prev {
+	padding-left: 0px;
+	border-left:none;
+	border: 2px solid #AD0000;
+}
+.lt-ie9 button.next {
+	border-right:none;
+	padding-right: 0px;
+	border: 2px solid #AD0000;
+}
 button.next::after {
 	background: transparent url("../img/arrow_right.png") right center no-repeat;
 	/* LTR */

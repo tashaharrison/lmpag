@@ -543,7 +543,11 @@ ul.field-type-radio > li {
     display:none;
 	margin-left: 14px;
 }
+.lt-ie9 .field-type-radio input {
+	display: inline;
+}
 .field-type-radio input[type="radio"]:checked+label,
+.lt-ie9 .field-type-radio input.active+label, 
 .success {
 	border: #090 2px solid;
 	background-color: rgb(235, 255, 234);
