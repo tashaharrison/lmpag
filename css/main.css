@@ -554,7 +554,7 @@ ul.field-type-textfield {
 	margin: 0px;
 }
 .lt-ie8 .field-type-radio label {
-	width: 330px;
+	width: 304px;
 	float: right;
 }
 .field-type-radio input[type="radio"]:checked+label,
