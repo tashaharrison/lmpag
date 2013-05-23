@@ -348,13 +348,11 @@ button.next {
 	float: right;
 }
 .lt-ie9 button.prev {
-	padding-left: 0px;
-	border-left:none;
+	padding-left: 8px;
 	border: 2px solid #AD0000;
 }
 .lt-ie9 button.next {
-	border-right:none;
-	padding-right: 0px;
+	padding-right: 8px;
 	border: 2px solid #AD0000;
 }
 button.next::after {
