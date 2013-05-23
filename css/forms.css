@@ -350,6 +350,7 @@ button.next {
 .lt-ie9 button.prev {
 	padding-left: 8px;
 	border: 2px solid #AD0000;
+	float: left;
 }
 .lt-ie9 button.next {
 	padding-right: 8px;
