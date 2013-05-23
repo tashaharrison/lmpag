@@ -549,9 +549,13 @@ ul.field-type-textfield {
 	margin-left: 14px;
 	margin-top: 14px;
 }
+.lt-ie8 .field-type-radio input {
+	width: 20px;
+	margin: 0px;
+}
 .lt-ie8 .field-type-radio label {
+	width: 330px;
 	float: right;
-	zoom: 1;
 }
 .field-type-radio input[type="radio"]:checked+label,
 .lt-ie9 .field-type-radio input.active+label, 
