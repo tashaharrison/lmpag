@@ -549,6 +549,9 @@ ul.field-type-radio > li {
 	margin-left: 14px;
 	margin-top: 14px;
 }
+.lt-ie8 .field-type-radio label {
+	float: right;
+}
 .field-type-radio input[type="radio"]:checked+label,
 .lt-ie9 .field-type-radio input.active+label, 
 .success {
