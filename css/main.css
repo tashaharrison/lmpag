@@ -549,11 +549,15 @@ ul.field-type-textfield {
 	margin-left: 14px;
 	margin-top: 14px;
 }
-.lt-ie8 .field-type-radio input {
+.lt-ie8 #field-name-machine-model .field-type-radio input,
+.lt-ie8 #field-name-weigh-hopper .field-type-radio input,
+.lt-ie8 #field-name-discharge-funnel .field-type-radio input {
 	width: 20px;
 	margin: 0px;
 }
-.lt-ie8 .field-type-radio label {
+.lt-ie8 #field-name-machine-model .field-type-radio label,
+.lt-ie8 #field-name-weigh-hopper .field-type-radio label,
+.lt-ie8 #field-name-discharge-funnel .field-type-radio label {
 	width: 304px;
 	float: right;
 }
