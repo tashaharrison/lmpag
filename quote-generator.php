@@ -169,7 +169,7 @@ include_once 'bin/php_validation.php';
 								</div>
 								<h3>Logical Machines Models</h3>
 								<h4>Please begin by selecting your model.</h4>
-								<ul id="field-name-machine-model" class="field-container field-type-radio">
+								<ul id="field-name-machine-model" class="field-container field-type-radio label-format-block">
 									<li>
 										<input type="radio" id="s4" class="radio active" name="machinemodel" value="S-4" 
 										<?php
@@ -287,7 +287,7 @@ Remove this line to enable the other machines -->
 								<p>
 									The <b>Weigh Hopper</b> is the scale portion of the unit which handles and weighs your products. Select a hopper by clicking its image.
 								</p>
-								<ul id="field-name-weigh-hopper" class="field-type-radio field-container">
+								<ul id="field-name-weigh-hopper" class="field-type-radio field-container label-format-block">
 									<li class="small">
 										<input type="radio" id="smwh" class="active" name="weighhopper" value="small-weigh-hopper" 
 										<?php
@@ -334,7 +334,7 @@ if ($_POST && $_POST['weighhopper'] == 'large-weigh-hopper') {
 								<p>
 									The <b>Discharge Funnel</b> directs your product from the weigh hopper to the spout. Select a funnel by clicking its image.
 								</p>
-								<ul id="field-name-discharge-funnel" class="field-type-radio field-container">
+								<ul id="field-name-discharge-funnel" class="field-type-radio field-container label-format-block">
 									<li class="small hidden">
 										<input type="radio" id="small-std-fnl" name="dischargefunnel" value="small-standard-funnel" />
 										<label for="small-std-fnl" class="std-fnl clearfix"><h4 class="name"><?php echo $settings["dischargefunnel"]["small"]["standard"]["name"]; ?></h4>
@@ -452,7 +452,7 @@ if ($_POST && $_POST['dischargefunnel'] == 'steep-funnel') {
 								<p>
 									Use the <b>Spout Calculator</b> below to help you determine which size spout is right for your container.
 								</p>
-								<div id="field-name-spout" class="field-container">
+								<div id="field-name-spout" class="field-container label-format-column">
 									<div id="spout1" class="spout-wrapper">
 									<fieldset class="field-spout hidden">
 										<legend>
