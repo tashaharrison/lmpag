@@ -543,25 +543,26 @@ ul.field-type-textfield {
     display:none;
 	margin-left: 14px;
 }
-.lt-ie9 #field-name-machine-model .field-type-radio input,
-.lt-ie9 #field-name-weigh-hopper .field-type-radio input,
-.lt-ie9 #field-name-discharge-funnel .field-type-radio input {
+/* added classes label-format-block and label-format-column to distinguish between display formats when ie requires tweaks*/
+
+.lt-ie8.lt-ie9 .label-format-block input {
+    display:block;
+	width: 20px;
+	margin: 6px 0px;
+}
+.lt-ie8.lt-ie9 .label-format-block label {
+	width: 304px;
+	float: right;
+	margin-bottom: 14px;
+}
+.lt-ie9 .label-format-block input {
     display:block;
 	float: left;
 	margin-left: 14px;
 	margin-top: 14px;
 }
-.lt-ie8 #field-name-machine-model .field-type-radio input,
-.lt-ie8 #field-name-weigh-hopper .field-type-radio input,
-.lt-ie8 #field-name-discharge-funnel .field-type-radio input {
-	width: 20px;
-	margin: 0px;
-}
-.lt-ie8 #field-name-machine-model .field-type-radio label,
-.lt-ie8 #field-name-weigh-hopper .field-type-radio label,
-.lt-ie8 #field-name-discharge-funnel .field-type-radio label {
-	width: 304px;
-	float: right;
+.lt-ie9 .label-format-block h4 {
+	margin-left: 26px;
 }
 .field-type-radio input[type="radio"]:checked+label,
 .lt-ie9 .field-type-radio input.active+label, 
