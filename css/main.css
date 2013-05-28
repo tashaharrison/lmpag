@@ -545,6 +545,12 @@ ul.field-type-textfield {
 }
 /* added classes label-format-block and label-format-column to distinguish between display formats when ie requires tweaks*/
 
+.lt-ie9 .label-format-block input {
+    display:block;
+	float: left;
+	margin-left: 14px;
+	margin-top: 14px;
+}
 .lt-ie8.lt-ie9 .label-format-block input {
     display:block;
 	width: 20px;
@@ -555,17 +561,15 @@ ul.field-type-textfield {
 	float: right;
 	margin-bottom: 14px;
 }
-.lt-ie9 .label-format-block input {
-    display:block;
-	float: left;
-	margin-left: 14px;
-	margin-top: 14px;
-}
 .lt-ie9 .label-format-block h4 {
 	margin-left: 26px;
 }
+.lt-ie8.lt-ie9 .label-format-block h4 {
+	margin-left: 0px;
+}
 .field-type-radio input[type="radio"]:checked+label,
 .lt-ie9 .field-type-radio input.active+label, 
+.lt-ie8.lt-ie9 .field-type-radio input.active+label, 
 .success {
 	border: #090 2px solid;
 	background-color: #EBFFEA;
@@ -669,6 +673,12 @@ padding: 4px 0px 4px 8px;
 #field-name-spout .field-type-radio input {
 	margin-left: 0;
 	margin-bottom:24px;
+}
+.lt-ie9 #field-name-spout .field-type-radio input,
+.lt-ie8.lt-ie9 #field-name-spout .field-type-radio input {
+	display: block;
+	margin-left: 0;
+	margin-bottom:0px;
 }
 .spout-calculation {
     border: 1px solid #CCC;
