@@ -385,7 +385,7 @@ form#logical-machines-quote-generator {
 	width: 230px;
 	height: 28px;
 	background-position: -10px -2228px;
-	top: 273px;
+	top: 253px;
 	left: 28px;
 }
 /* Large weigh hopper front */
@@ -520,6 +520,12 @@ ul.field-type-textfield {
 .default-spout ul.field-type-textfield > li {
 	float:left;
 	margin-right:14px;
+}
+ul.field-type-radio > li {
+	margin-bottom: 20px;
+}
+.lt-ie8 ul.field-type-radio.label-format-block > li {
+	clear: both;
 }
 .lt-ie8 ul.field-type-radio.label-format-block > li {
 	clear: both;
