@@ -521,7 +521,7 @@ ul.field-type-textfield {
 	float:left;
 	margin-right:14px;
 }
-.lt-ie8 ul.field-type-radio > li {
+.lt-ie8 ul.field-type-radio.label-format-block > li {
 	clear: both;
 }
 .field-type-radio h4 {
@@ -567,9 +567,9 @@ ul.field-type-textfield {
 .lt-ie8.lt-ie9 .label-format-block h4 {
 	margin-left: 0px;
 }
-.field-type-radio input[type="radio"]:checked+label,
-.lt-ie9 .field-type-radio input.active+label, 
-.lt-ie8.lt-ie9 .field-type-radio input.active+label, 
+.field-type-radio.label-format-block input[type="radio"]:checked+label,
+.lt-ie9 .field-type-radio.label-format-block input.active+label, 
+.lt-ie8.lt-ie9 .field-type-radio.label-format-block input.active+label, 
 .success {
 	border: #090 2px solid;
 	background-color: #EBFFEA;
@@ -607,7 +607,9 @@ ul.field-type-textfield {
 	height: 230px;
 	background-position: -20px -20px;
 }
-#field-name-spout .four-sided-bag input:checked + label .spout-sprite {
+#field-name-spout .four-sided-bag input:checked + label .spout-sprite,
+.lt-ie9  #field-name-spout .four-sided-bag input.active+label .spout-sprite, 
+.lt-ie8.lt-ie9 #field-name-spout .four-sided-bag input.active+label .spout-sprite {
 	background-position: -20px -269px;
 }
 #field-name-spout .flat-bag input + label .spout-sprite {
@@ -615,7 +617,9 @@ ul.field-type-textfield {
 	height: 230px;
 	background-position: -20px -518px;
 }
-#field-name-spout .flat-bag input:checked + label .spout-sprite {
+#field-name-spout .flat-bag input:checked + label .spout-sprite,
+.lt-ie9  #field-name-spout .flat-bag input.active+label .spout-sprite, 
+.lt-ie8.lt-ie9 #field-name-spout .flat-bag input.active+label .spout-sprite {
 	background-position: -20px -764px;
 }
 #field-name-spout .can-jar input + label .spout-sprite {
@@ -623,7 +627,9 @@ ul.field-type-textfield {
 	height: 230px;
 	background-position: -20px -1010px;
 }
-#field-name-spout .can-jar input:checked + label .spout-sprite {
+#field-name-spout .can-jar input:checked + label .spout-sprite,
+.lt-ie9  #field-name-spout .can-jar input.active+label .spout-sprite, 
+.lt-ie8.lt-ie9 #field-name-spout .can-jar input.active+label .spout-sprite  {
 	background-position: -20px -1249px;
 }
 .main-spout-image {
@@ -662,6 +668,10 @@ padding: 4px 0px 4px 8px;
 #field-name-spout .field-name-spout-type li {
 	float:left;
 	margin:0 10px;
+}
+.lt-ie8 #field-name-spout .field-name-spout-type li {
+	display: inline;
+	width: 90px;
 }
 #field-name-spout input[type="radio"]:checked + label {
 	border: none;
