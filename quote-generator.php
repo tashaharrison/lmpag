@@ -371,7 +371,7 @@ if ($_POST && $_POST['weighhopper'] == 'large-weigh-hopper') {
 												<?php echo $settings["dischargefunnel"]["large"]["standard"]["description"]; ?>
 											</p>
 											<p class="price clear">
-												<b>Price: </b>$<span class="amount"><?php echo $settings["dischargefunnel"]["large"]["standard"]["price"]; ?></span>
+												<b>Price: </b>$<span class="amount"><?php echo $settings["dischargefunnel"]["large"]["standard"]["price"]; ?></span> included with the large Weigh Hopper
 											</p></label>
 									</li>
 									<li class="large hidden">
