@@ -24,7 +24,7 @@ $settings = array(
 						"price" => "0"),
 				"large-weigh-hopper" => array("name" => "650 cubic inch Large Weigh Hopper",
 						"description" => "For larger volumes, the large weigh hopper's 650 cubic inch capacity handles net weights from 2 oz. to 10 lbs.",
-						"price" => "250")),
+						"price" => "100")),
 		// Discharge funnel settings > Fallback copy for use when Javascript is disabled
 		"dischargefunnel" => array(
 				"standard" => array("name" => "Standard Discharge Funnel",
@@ -45,11 +45,11 @@ $settings = array(
 						"standard" => array(
 								"name" => "Large Discharge Funnel",
 								"description" => "This is the standard funnel for use with the large weigh hopper. It works best with free flowing products.",
-								"price" => "0"),
+								"price" => "150"),
 						"steep" => array(
 								"name" => "Large Steep-Sided Discharge Funnel",
 								"description" => "This steep sided funnel is used for fine powdered materials such as flour or other products that can stick to metal surfaces.",
-								"price" => "250"))),
+								"price" => "400"))),
 		"spout" => array("price" => "150",
 				"type" => array("flat-bag" => array("width"),
 						"four-sided-bag" => array("d1", "d2"),
@@ -371,7 +371,7 @@ if ($_POST && $_POST['weighhopper'] == 'large-weigh-hopper') {
 												<?php echo $settings["dischargefunnel"]["large"]["standard"]["description"]; ?>
 											</p>
 											<p class="price clear">
-												<b>Price: </b>$<span class="amount"><?php echo $settings["dischargefunnel"]["large"]["standard"]["price"]; ?></span> included with the large Weigh Hopper
+												<b>Price: </b>$<span class="amount"><?php echo $settings["dischargefunnel"]["large"]["standard"]["price"]; ?></span>
 											</p></label>
 									</li>
 									<li class="large hidden">
