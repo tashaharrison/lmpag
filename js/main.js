@@ -214,6 +214,11 @@ $(document).ready(function() {
     	// Reload the page to reset the form if moving to page 1
         if ($(this).is('#step-2-pager button.prev'))
             location.reload();
+    	// Reload the page to reset the form if moving to page 1
+        if ($(this).is('#step-3-pager button.prev')) {
+            console.log("step to 2");
+			defaultHopperS4();
+		}
     });
 
     $('#pag-navigation a').click(function() { // Action for left-hand step tabs
@@ -232,7 +237,17 @@ $(document).ready(function() {
     	// Reload the page to reset the form if moving to page 1
         if (stepValue === "#step-1")
             location.reload();
+    	// Reset the hopper to S4 default if moving to page 2
+        if (stepValue === "#step-2") {
+            console.log("direct to 2");
+			defaultHopperS4();
+		}
     });
+	
+	function defaultHopperS4 () {
+		console.log("default hopper triggered");
+		$('#smwh').prop('checked', true).trigger('change');
+	}
     
     // Display Base Price as title on the front page and Price as Configured on every other page
     function changeCostContainerText() {
@@ -246,8 +261,11 @@ $(document).ready(function() {
      * Pages 1 - 3 selection actions
      */
 
-    $fieldContainer.on('click', 'input[type=radio]', function(e) { // Action when choosing options - registers & indicates selection, determines knock-on choices, updates image, updates cost.
-        var $fieldID = $(this), 
+    $fieldContainer.on('change', 'input[type=radio]', function(e) { // Action when choosing options - registers & indicates selection, determines knock-on choices, updates image, updates cost.
+        console.log("onchange triggered");
+        console.log(e);
+		
+		var $fieldID = $(this), 
 			fieldContainerID = $(this).closest($fieldContainer).attr('id'), // Id of container element - type of option selected
 			objectName = $fieldID.attr('name'), // Name of input - Appears unused - equates to fieldContainerID
 			objectVal = $fieldID.attr('id'), // ID - precise name of item selected
@@ -255,7 +273,21 @@ $(document).ready(function() {
 			$fieldLabel = $(this).next('label'); // Label that corresponds to selected input
         // Check if the clicked field is the same as the selected field
         if (inputVal == objectVal) {
-            e.preventDefault();
+			if (inputVal == "smwh" && machine.dischargeFunnel.id !== "small-std-fnl") {
+				// Select default radio input for selected discharge funnel:
+					var $defaultFunnel = $('#small-std-fnl')
+					$defaultFunnel.prop('checked', true);
+				// Recalculate total for default discharge funnel:	
+					calculateTotal($defaultFunnel);
+				// Get data for discharge funnel:
+					$defaultFunnelData = $defaultFunnel.siblings('label')
+				// Assign properties to the machine.dischargeFunnel object
+					machine.dischargeFunnel.id = $defaultFunnel.attr('id');
+					machine.dischargeFunnel.name = $defaultFunnelData.find('.name').text();
+					machine.dischargeFunnel.description = $.trim($defaultFunnelData.find('.description').text())//.trim();
+					machine.dischargeFunnel.price = $defaultFunnelData.find('.amount').text();
+			}
+		    e.preventDefault();
         } else {
         // If it is different execute the following actions according to which field was clicked
             switch (fieldContainerID) {
@@ -275,10 +307,11 @@ $(document).ready(function() {
                     break;
                 case 'field-name-weigh-hopper':
                     // Assign properties to the machine.weighHopper object
-						machine.weighHopper.id = $fieldID.attr('name');
+						machine.weighHopper.id = $fieldID.attr('id');
 						machine.weighHopper.name = $fieldLabel.find('.name').text();
 						machine.weighHopper.description = $.trim($fieldLabel.find('.description').text())//.trim();
 						machine.weighHopper.price = $fieldLabel.find('.amount').text();
+						console.log('Weigh Hopper ID: ' + machine.weighHopper.id);
                     // Assign classes to machine image
 						$machineImage.removeClass('smwh lrgwh std-fnl steep-fnl').addClass(objectVal + ' std-fnl');
                     // Show/Hide discharge funnels and reset checked properties:
@@ -288,19 +321,25 @@ $(document).ready(function() {
 							$dischargeFunnel.find($('li')).hide().filter($('.' + componentSize)).show();
 						// Uncheck selection of any discharge funnel and de-activate seletion flag:
 							$dischargeFunnel.find($('input')).prop('checked', false);
-						// Select default radio input for selected discharge funnel:
-							var $defaultFunnel = $dischargeFunnel.find($('.'+componentSize+' #'+componentSize+'-std-fnl'));
-							$defaultFunnel.prop('checked', true);
-						// Recalculate total for default discharge funnel:	
-							calculateTotal($defaultFunnel);
-						// Get data for discharge funnel:
-							$defaultFunnelData = $defaultFunnel.siblings('label')
-						// Assign properties to the machine.dischargeFunnel object
-							machine.dischargeFunnel.id = $defaultFunnel.attr('id');
-							machine.dischargeFunnel.name = $defaultFunnelData.find('.name').text();
-							machine.dischargeFunnel.description = $.trim($defaultFunnelData.find('.description').text())//.trim();
-							machine.dischargeFunnel.price = $defaultFunnelData.find('.amount').text();
-						break;
+						// Check which weigh hopper is being selected:
+						if (machine.weighHopper.id == 'smwh') {
+							console.log("small WH selected");
+							// Select default radio input for selected discharge funnel:
+								var $defaultFunnel = $('#small-std-fnl')
+								$defaultFunnel.prop('checked', true);
+							// Recalculate total for default discharge funnel:	
+								calculateTotal($defaultFunnel);
+							// Get data for discharge funnel:
+								$defaultFunnelData = $defaultFunnel.siblings('label')
+							// Assign properties to the machine.dischargeFunnel object
+								machine.dischargeFunnel.id = $defaultFunnel.attr('id');
+								machine.dischargeFunnel.name = $defaultFunnelData.find('.name').text();
+								machine.dischargeFunnel.description = $.trim($defaultFunnelData.find('.description').text())//.trim();
+								machine.dischargeFunnel.price = $defaultFunnelData.find('.amount').text();
+						} else {
+							calculateTotal($('#field-name-weigh-hopper input.active'))
+						}
+					break;
                 case 'field-name-discharge-funnel':
                     // Assign properties to the machine.dischargeFunnel object
 						machine.dischargeFunnel.id = $fieldID.attr('name');
