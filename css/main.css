@@ -574,7 +574,7 @@ ul.field-type-radio > li {
 	margin-left: 0px;
 }
 .field-type-radio.label-format-block input[type="radio"]:checked+label,
-.lt-ie9 .field-type-radio.label-format-block input.active+label, 
+.lt-ie9 .field-type-radio.label-format-block input.active+label,
 .lt-ie8.lt-ie9 .field-type-radio.label-format-block input.active+label, 
 .success {
 	border: #090 2px solid;
@@ -956,7 +956,7 @@ h2,
 	page-break-after: avoid;
 }
 body {
-    font-size: 12pt;
+    font-size: 18pt;
 }
 #sidebar,
 #main-navigation,
