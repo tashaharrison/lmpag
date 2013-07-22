@@ -216,7 +216,6 @@ $(document).ready(function() {
             location.reload();
     	// Reload the page to reset the form if moving to page 1
         if ($(this).is('#step-3-pager button.prev')) {
-            console.log("step to 2");
 			defaultHopperS4();
 		}
     });
@@ -239,13 +238,11 @@ $(document).ready(function() {
             location.reload();
     	// Reset the hopper to S4 default if moving to page 2
         if (stepValue === "#step-2") {
-            console.log("direct to 2");
 			defaultHopperS4();
 		}
     });
 	
 	function defaultHopperS4 () {
-		console.log("default hopper triggered");
 		$('#smwh').prop('checked', true).trigger('change');
 	}
     
@@ -262,8 +259,6 @@ $(document).ready(function() {
      */
 
     $fieldContainer.on('change', 'input[type=radio]', function(e) { // Action when choosing options - registers & indicates selection, determines knock-on choices, updates image, updates cost.
-        console.log("onchange triggered");
-        console.log(e);
 		
 		var $fieldID = $(this), 
 			fieldContainerID = $(this).closest($fieldContainer).attr('id'), // Id of container element - type of option selected
@@ -311,7 +306,6 @@ $(document).ready(function() {
 						machine.weighHopper.name = $fieldLabel.find('.name').text();
 						machine.weighHopper.description = $.trim($fieldLabel.find('.description').text())//.trim();
 						machine.weighHopper.price = $fieldLabel.find('.amount').text();
-						console.log('Weigh Hopper ID: ' + machine.weighHopper.id);
                     // Assign classes to machine image
 						$machineImage.removeClass('smwh lrgwh std-fnl steep-fnl').addClass(objectVal + ' std-fnl');
                     // Show/Hide discharge funnels and reset checked properties:
@@ -323,7 +317,6 @@ $(document).ready(function() {
 							$dischargeFunnel.find($('input')).prop('checked', false);
 						// Check which weigh hopper is being selected:
 						if (machine.weighHopper.id == 'smwh') {
-							console.log("small WH selected");
 							// Select default radio input for selected discharge funnel:
 								var $defaultFunnel = $('#small-std-fnl')
 								$defaultFunnel.prop('checked', true);
