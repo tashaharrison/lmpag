@@ -281,6 +281,8 @@ $(document).ready(function() {
 					machine.dischargeFunnel.name = $defaultFunnelData.find('.name').text();
 					machine.dischargeFunnel.description = $.trim($defaultFunnelData.find('.description').text())//.trim();
 					machine.dischargeFunnel.price = $defaultFunnelData.find('.amount').text();
+				// Assign classes to machine image
+					$machineImage.removeClass('smwh lrgwh std-fnl steep-fnl').addClass('smwh std-fnl');
 			}
 		    e.preventDefault();
         } else {
