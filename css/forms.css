@@ -111,7 +111,10 @@ input[type="week"] {
  *padding-bottom: 1px; /* IE7 */
  *height: auto; /* IE7 */
 }
-
+.four-sided-bag input[type="text"],
+.four-sided-bag label {
+	display: inline;
+}
 /* Separate rule for Firefox. Cannot stack with WebKit's. */
 input.placeholder_text, textarea.placeholder_text, input:-moz-placeholder, textarea:-moz-placeholder {
  color: #888;
@@ -183,6 +186,9 @@ textarea[disabled] {
 .calculate {
     clear:both;
     display:block;
+	position: absolute;
+	bottom: 110px;
+}
 }
 textarea,
 select[size],
