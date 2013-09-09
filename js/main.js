@@ -315,7 +315,7 @@ $(document).ready(function() {
 							var componentSize = $fieldID.closest('li').attr('class');
 						// Hide all list items then show those that are in the required category:
 							$dischargeFunnel.find($('li')).hide().filter($('.' + componentSize)).show();
-						// Uncheck selection of any discharge funnel and de-activate seletion flag:
+						// Uncheck selection of any discharge funnel and de-activate selection flag:
 							$dischargeFunnel.find($('input')).prop('checked', false);
 						// Check which weigh hopper is being selected:
 						if (machine.weighHopper.id == 'smwh') {
@@ -331,18 +331,28 @@ $(document).ready(function() {
 								machine.dischargeFunnel.name = $defaultFunnelData.find('.name').text();
 								machine.dischargeFunnel.description = $.trim($defaultFunnelData.find('.description').text())//.trim();
 								machine.dischargeFunnel.price = $defaultFunnelData.find('.amount').text();
-						} else {
+						} else { 
 							calculateTotal($('#field-name-weigh-hopper input.active'))
 						}
 					break;
                 case 'field-name-discharge-funnel':
                     // Assign properties to the machine.dischargeFunnel object
-						machine.dischargeFunnel.id = $fieldID.attr('name');
+						machine.dischargeFunnel.id = $fieldID.attr('id');
 						machine.dischargeFunnel.name = $fieldLabel.find('.name').text();
 						machine.dischargeFunnel.description = $.trim($fieldLabel.find('.description').text())//.trim();
 						machine.dischargeFunnel.price = $fieldLabel.find('.amount').text();
                     // Assign classes to machine image
+					if (machine.weighHopper.id == 'lrgwh') {
+						if ( machine.dischargeFunnel.id == 'large-std-fnl') {
+							$machineImage.removeClass('std-fnl steep-fnl').addClass('std-fnl');
+						} else {
+							$machineImage.removeClass('std-fnl steep-fnl').addClass('steep-fnl');
+						}
+					}
+					 else {
 						$machineImage.toggleClass('std-fnl steep-fnl');
+					}
+
                     break;
                 case 'field-name-spout':
                     var fieldVal = $fieldID.val(), 
