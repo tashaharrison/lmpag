@@ -20,10 +20,10 @@ $settings = array(
 		// Weigh hopper settings
 		"weighhopper" => array(
 				"small-weigh-hopper" => array("name" => "250 cubic inch Standard Weigh Hopper",
-						"description" => "The small weigh hopper comes standard on the S-4. Its 250 cubic inch capacity handles net weights from a few grams to 3 lbs.",
+						"description" => "The small weigh hopper comes standard on the S-4. Its 250 cubic inch capacity (about a gallon of dry measure) handles net weights from a few grams to 3 lbs.",
 						"price" => "0"),
 				"large-weigh-hopper" => array("name" => "650 cubic inch Large Weigh Hopper",
-						"description" => "For larger volumes, the large weigh hopper's 650 cubic inch capacity handles net weights from 2 oz. to 10 lbs.",
+						"description" => "For larger volumes, the large weigh hopper's 650 cubic inch capacity (about 2.5 gallons of dry measure) handles net weights from 2 oz. to 10 lbs.",
 						"price" => "100")),
 		// Discharge funnel settings > Fallback copy for use when Javascript is disabled
 		"dischargefunnel" => array(
@@ -450,7 +450,7 @@ if ($_POST && $_POST['dischargefunnel'] == 'steep-funnel') {
 									The spout attaches to the bottom of the discharge funnel and directs the materials into your container.
 								</p>
 								<p>
-									Use the <b>Spout Calculator</b> below to help you determine which size spout is right for your container.
+									Use the <b>Spout Calculator</b> below to help you determine which size spout is right for your container. Please start with your smallest container first, then add larger ones if you have them.
 								</p>
 								<div id="field-name-spout" class="field-container label-format-column">
 									<div id="spout1" class="spout-wrapper">
