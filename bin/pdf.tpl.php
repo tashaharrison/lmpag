@@ -106,7 +106,7 @@ h4,
 </head>
 <body>
 <div id="header"><img src="../img/lmlogo1.jpeg" style="max-width:600px;" id="headerImage campaign-icon">
-  <h2>Here is you Logical Machines quote summary</h2>
+  <h2>Here is your Logical Machines quote summary</h2>
 </div>
 <div id="body">
   <table border="0" cellpadding="20" cellspacing="0"
