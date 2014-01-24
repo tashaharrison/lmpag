@@ -4,7 +4,7 @@ $settings = array(
 		// Machine settings
 		"machinemodel" => array(
 				"S-4" => array("name" => "S-4", "type" => "Weigh Fill System",
-						"description" => "The standard S-4 includes the small weigh hopper, small discharge funnel and Logical Controller II. It comes fully assembled and ready to operate.",
+						"description" => "The standard S-4 includes the standard weigh hopper, small discharge funnel and Logical Controller II. It comes fully assembled and ready to operate.",
 						"price" => "6150"),
 				"S-5" => array("name" => "S-5", "type" => "Bulk Fill System",
 						"description" => "The standard S-5 includes... It comes fully assembled and ready to operate.",
@@ -20,7 +20,7 @@ $settings = array(
 		// Weigh hopper settings
 		"weighhopper" => array(
 				"small-weigh-hopper" => array("name" => "250 cubic inch Standard Weigh Hopper",
-						"description" => "The small weigh hopper comes standard on the S-4. Its 250 cubic inch capacity (about a gallon of dry measure) handles net weights from a few grams to 3 lbs.",
+						"description" => "The standard weigh hopper comes by default on the S-4. Its 250 cubic inch capacity (about a gallon of dry measure) handles net weights from a few grams to 3 lbs.",
 						"price" => "0"),
 				"large-weigh-hopper" => array("name" => "650 cubic inch Large Weigh Hopper",
 						"description" => "For larger volumes, the large weigh hopper's 650 cubic inch capacity (about 2.5 gallons of dry measure) handles net weights from 2 oz. to 10 lbs.",
@@ -297,7 +297,7 @@ if (!$_POST || ($_POST && $_POST['weighhopper'] == 'small-weigh-hopper')) {
 										?>/>
 										<label for="smwh" class="clearfix"><h4 class="name"><?php echo $settings["weighhopper"]["small-weigh-hopper"]["name"]; ?></h4>
 											<div class="component-image ir">
-												Small Weigh Hopper image
+												Standard Weigh Hopper image
 											</div>
 											<p class="description">
 												<?php echo $settings["weighhopper"]["small-weigh-hopper"]["description"]; ?>
@@ -402,7 +402,7 @@ if (!$_POST || ($_POST && $_POST['dischargefunnel'] == 'standard-funnel')) {
 												<?php echo $settings["dischargefunnel"]["standard"]["description"]; ?>
 											</p>
 											<p class="price clear">
-												<b>Price with Small Weigh Hopper: </b>
+												<b>Price with Standard Weigh Hopper: </b>
 												<br/>
 												$<span class="amount"><?php echo $settings["dischargefunnel"]["small"]["standard"]["price"]; ?></span> included on standard S-4
 												<br />
@@ -1005,10 +1005,10 @@ if ($_POST && $_POST['typeSpout3Fallback'] == 'flat-bag') {
 										</thead>
 										<tbody id="results">
 											<tr>
-												<td>Model S-4</td><td>Standard with small weigh hopper and small discharge funnel</td><td>$6,150</td>
+												<td>Model S-4</td><td>Standard with standard weigh hopper and small discharge funnel</td><td>$6,150</td>
 											</tr>
 											<tr>
-												<td>Small weighhopper</td><td>Standard weigh hopper</td><td>$0</td>
+												<td>Standard weigh hopper</td><td>Standard weigh hopper</td><td>$0</td>
 											</tr>
 											<tr>
 												<td>Small Funnel</td><td>Standard sized funnel</td><td>$0</td>
