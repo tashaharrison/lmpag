@@ -1063,10 +1063,10 @@ if ($_POST && $_POST['typeSpout3Fallback'] == 'flat-bag') {
 										<label for="name">Customer Name *</label>
 										<input type="text" id="name" name="name" <?php if (!empty(
 		$name) && ($missing || $errors)) {
-	echo 'value="' . htmlentities($name, ENT_COMPAT, 'UTF-8') . '"';
+	echo htmlentities($name, ENT_COMPAT, 'UTF-8') . '"';
 }
-																			 ?>/>
-																			 
+																			 ?>/>		
+											
 										<label for="company">Company Name *</label>
 										<input type="text" id="company" name="company" <?php if (!empty(
 		$company) && ($missing || $errors)) {
