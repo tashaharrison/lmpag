@@ -1,4 +1,5 @@
 <?php
+		//Please note that the standard weigh hopper and the small weigh hopper are the same. 
 $spoutSizes = "0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3, 3.25, 3.5";
 $settings = array(
 		// Machine settings
@@ -28,14 +29,14 @@ $settings = array(
 		// Discharge funnel settings > Fallback copy for use when Javascript is disabled
 		"dischargefunnel" => array(
 				"standard" => array("name" => "Standard Discharge Funnel",
-						"description" => "This is the standard funnel for use with the small and large weigh hoppers. It is practical for most free-flowing materials."),
+						"description" => "This is the standard funnel for use with the standard and large weigh hoppers. It is practical for most free-flowing materials."),
 				"steep" => array("name" => "Steep-Sided Discharge Funnel",
 						"description" => "This steep sided funnel is used for fine powdered materials such as flour or other products that can stick to metal surfaces."),
 				// Discharge funnel settings > Normal copy for use when Javascript is enabled
 				"small" => array(
 						"standard" => array(
 								"name" => "Standard Discharge Funnel",
-								"description" => "This is the standard funnel for use with the small weigh hopper. It works best for free flowing products.",
+								"description" => "This is the standard funnel for use with the standard weigh hopper. It works best for free flowing products.",
 								"price" => "0"),
 						"steep" => array(
 								"name" => "Steep-Sided Discharge Funnel",
@@ -1058,6 +1059,21 @@ if ($_POST && $_POST['typeSpout3Fallback'] == 'flat-bag') {
 												Copy in an additional email address to receive the quote.
 											</p>
 										</div>
+										
+										<label for="name">Customer Name *</label>
+										<input type="text" id="name" name="name" <?php if (!empty(
+		$name) && ($missing || $errors)) {
+	echo 'value="' . htmlentities($name, ENT_COMPAT, 'UTF-8') . '"';
+}
+																			 ?>/>
+																			 
+										<label for="company">Company Name *</label>
+										<input type="text" id="company" name="company" <?php if (!empty(
+		$company) && ($missing || $errors)) {
+	echo 'value="' . htmlentities($company, ENT_COMPAT, 'UTF-8') . '"';
+}
+																			 ?>/>
+
 										<label for="message">Message (optional)</label>
 										<textarea rows="5" id="message" name="message"><?php if (!empty(
 		$message) && ($missing || $errors)) {

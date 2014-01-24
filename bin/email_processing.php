@@ -73,6 +73,16 @@ if (isset($_POST['nojs'])) {
 	} else {
 		$message = "";
 	}
+	if (!empty($name)) {
+		$name = urldecode($name) . "\n\r";
+	} else {
+		$name = "";
+	}
+	if (!empty($company)) {
+		$name = urldecode($company) . "\n\r";
+	} else {
+		$company = "";
+	}
 	$total = $settings["machinemodel"][$machinemodel]["price"]
 			+ $settings["weighhopper"][$weighhopper]["price"]
 			+ $settings["dischargefunnel"][$weighHopperSize[0]][$dischargeFunnelType[0]]["price"]
@@ -98,7 +108,7 @@ if (isset($_POST['nojs'])) {
 			. '<tr class="total" style="text-align:right;border-top:1px solid #0c4b81;"><td>&nbsp;</td><th>Total:</th><td>$'
 			. $total . '</td></tr></tbody></table>';
 
-	$messageText = $message . "Your Quote Summary \r\r"
+	$messageText = $message . $name . $company . "Your Quote Summary \r\r"
 			. $settings["machinemodel"][$machinemodel]["name"] . " "
 			. $settings["machinemodel"][$machinemodel]["type"] . " - $"
 			. $settings["machinemodel"][$machinemodel]["price"] . "\r"
@@ -119,6 +129,16 @@ if (isset($_POST['nojs'])) {
 		$message = urldecode($_POST['message']) . "\n\r";
 	} else {
 		$message = "";
+	}
+	if (!empty($name)) {
+		$message = urldecode($_POST['name']) . "\n\r";
+	} else {
+		$name = "";
+	}
+	if (!empty($company)) {
+		$company = urldecode($_POST['company']) . "\n\r";
+	} else {
+		$company = "";
 	}
 	$quoteHTML = $_POST['quoteHTML'];
 	$quoteText = $_POST['quoteText'];

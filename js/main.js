@@ -628,8 +628,11 @@ $(document).ready(function() {
         // Compile the values from the form
     	var to = $('#to').val(),
         cc = $('#cc').val(),
+		company = $('#company').val(),
+		name = $('#name').val(),
         message = $.trim(encodeURIComponent($('#message').val())),
         $emailFields = $('#to,#cc'),
+		$names = $('#company,#name'),
         $HTMLresults = showValues(),
         $HTMLresults = $HTMLresults.replace(/\"/g,''),
         $HTMLheader = '<table border=0 cellpadding=10 cellspacing=0 style=margin:14px;border-collapse:collapse;><thead style=border-bottom:1px solid #0c4b81;><tr><th style=text-align:right;>Item</th><th style=text-align:left;>Description</th><th style=text-align:left;>Price</th></tr></thead><tbody>', 
