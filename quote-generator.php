@@ -1062,10 +1062,13 @@ if ($_POST && $_POST['typeSpout3Fallback'] == 'flat-bag') {
 										
 										<label for="name">Customer Name *</label>
 										<input type="text" id="name" name="name" <?php if (!empty(
-		$name) && ($missing || $errors)) {
-	echo htmlentities($name, ENT_COMPAT, 'UTF-8') . '"';
+		$name) && ($missing)) {
+	echo 'value="' . htmlentities($name, ENT_COMPAT, 'UTF-8') . '"';
 }
-																			 ?>/>		
+																			 ?>/>
+											<?php if (isset($missing['name'])) { ?>
+                  							<label class="error">Enter your name</label>
+                							<?php } ?>
 											
 										<label for="company">Company Name *</label>
 										<input type="text" id="company" name="company" <?php if (!empty(

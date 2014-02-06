@@ -20,14 +20,24 @@ $(document).ready(function() {
             required : "Please enter an email address.",
             emails : "Please enter a valid email address."
         };
+		var requiredField = {
+			required : true
+		};
+		var requiredFieldMessages = {
+			required : "Please fill in your details."
+		};
         $form.validate({
             rules : {
                 to : requiredEmail,
-                cc : email
+                cc : email,
+				name : requiredField,
+				company : requiredField
             },
             messages : {
                 to : requiredEmailMessages,
-                cc : emailMessages
+                cc : emailMessages,
+				name : requiredFieldMessages,
+				company : requiredFieldMessages
             }
         });
 
@@ -640,7 +650,7 @@ $(document).ready(function() {
     	quoteHTML =  encodeURIComponent($HTMLheader + $HTMLresults + $HTMLfooter), 
         quoteText = encodeURIComponent(machine.name + " " + machine.type + " - $" + machine.price + "\r" + machine.description + "\r\r" + machine.weighHopper.name + " - $" + machine.weighHopper.price + "\r" + machine.weighHopper.description + "\r\r" + machine.dischargeFunnel.name + " - $" + machine.dischargeFunnel.price + "\r" + machine.dischargeFunnel.description + "\r\r" + spoutRowsText + "\rTotal: $" + grandTotal);
         // Create the datastring from the form values
-    	var dataString = 'to=' + to + '&cc=' + cc + '&message=' + message + '&quoteHTML=' + quoteHTML + '&quoteText=' + quoteText;
+    	var dataString = 'to=' + to + '&cc=' + cc + '&name=' + name + '&company=' + company + '&message=' + message + '&quoteHTML=' + quoteHTML + '&quoteText=' + quoteText;
         // Send the email via an AJAX request the PHP script
         if ($emailFields.valid()) {
         	$('#sending').show();
