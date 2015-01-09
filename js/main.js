@@ -249,11 +249,44 @@ $(document).ready(function() {
     	// Reset the hopper to S4 default if moving to page 2
         if (stepValue === "#step-2") {
 			defaultHopperS4();
+			$('#smwh').parent('li').hide();
+			$('#stwh').parent('li').hide();
+			$('#lrgwh').parent('li').hide();
+			$('.wh5').hide();
+		}
+		if (stepValue === "#step-2" && $('#s4').hasClass('active')) {
+			$('#stwh').parent('li').show();
+			$('#lrgwh').parent('li').show();
+		}
+		if (stepValue === "#step-2" && $('#s5').hasClass('active')) {
+			$('.wh5').show();
+			$('.not-wh5').hide();
+		}
+		if (stepValue === "#step-2" && $('#s6').hasClass('active')) {
+			defaultHopperS6();
+			$('#smwh').parent('li').show();
+			$('#lrgwh').parent('li').show();
+		}
+		if (stepValue === "#step-2" && $('#s7').hasClass('active')) {
+			defaultHopperS4();
+			$('#stwh').parent('li').show();
+			$('#lrgwh').parent('li').show();
+		}
+		if (stepValue === "#step-3" && $('#s6').hasClass('active')) {
+			defaultFunnelS6();
 		}
     });
 	
 	function defaultHopperS4 () {
+		$('#stwh').prop('checked', true).trigger('change');
+	}
+	
+	function defaultHopperS6 () {
 		$('#smwh').prop('checked', true).trigger('change');
+	}
+	
+	function defaultFunnelS6 () {
+		$('#discharge-cht').prop('checked', true).trigger('change');
 	}
     
     // Display Base Price as title on the front page and Price as Configured on every other page
@@ -263,6 +296,7 @@ $(document).ready(function() {
     		$('#cost-container .title').text('Price as Configured:');
     	} 
     }
+	
 
     /*
      * Pages 1 - 3 selection actions
@@ -278,7 +312,7 @@ $(document).ready(function() {
 			$fieldLabel = $(this).next('label'); // Label that corresponds to selected input
         // Check if the clicked field is the same as the selected field
         if (inputVal == objectVal) {
-			if (inputVal == "smwh" && machine.dischargeFunnel.id !== "small-std-fnl") {
+			if (inputVal == "stwh" && machine.dischargeFunnel.id !== "standard-std-fnl") {
 				// Select default radio input for selected discharge funnel:
 					var $defaultFunnel = $('#small-std-fnl')
 					$defaultFunnel.prop('checked', true);
@@ -292,7 +326,7 @@ $(document).ready(function() {
 					machine.dischargeFunnel.description = $.trim($defaultFunnelData.find('.description').text())//.trim();
 					machine.dischargeFunnel.price = $defaultFunnelData.find('.amount').text();
 				// Assign classes to machine image
-					$machineImage.removeClass('smwh lrgwh std-fnl steep-fnl').addClass('smwh std-fnl');
+					$machineImage.removeClass('stwh lrgwh std-fnl steep-fnl').addClass('stwh std-fnl');
 			}
 		    e.preventDefault();
         } else {
@@ -311,6 +345,9 @@ $(document).ready(function() {
                     // Assign classes to machine image and change name displayed below
 						$machineImage.removeClass('s4 s5 s6 s7').addClass(machine.id);
 						$nextMachineImage.html(machine.name + " " + machine.type);
+					// Check machine type and show relevant weigh hoppers
+						var machineType = $fieldID.closest('li').attr('class');
+						$weighHopper.find($('li')).hide().filter($('.' + machineType)).show();
                     break;
                 case 'field-name-weigh-hopper':
                     // Assign properties to the machine.weighHopper object
@@ -319,29 +356,64 @@ $(document).ready(function() {
 						machine.weighHopper.description = $.trim($fieldLabel.find('.description').text())//.trim();
 						machine.weighHopper.price = $fieldLabel.find('.amount').text();
                     // Assign classes to machine image
-						$machineImage.removeClass('smwh lrgwh std-fnl steep-fnl').addClass(objectVal + ' std-fnl');
-                    // Show/Hide discharge funnels and reset checked properties:
-						// Get name of required category of discharge funnels
-							var componentSize = $fieldID.closest('li').attr('class');
-						// Hide all list items then show those that are in the required category:
-							$dischargeFunnel.find($('li')).hide().filter($('.' + componentSize)).show();
-						// Uncheck selection of any discharge funnel and de-activate selection flag:
-							$dischargeFunnel.find($('input')).prop('checked', false);
-						// Check which weigh hopper is being selected:
-						if (machine.weighHopper.id == 'smwh') {
-							// Select default radio input for selected discharge funnel:
-								var $defaultFunnel = $('#small-std-fnl')
-								$defaultFunnel.prop('checked', true);
-							// Recalculate total for default discharge funnel:	
-								calculateTotal($defaultFunnel);
-							// Get data for discharge funnel:
-								$defaultFunnelData = $defaultFunnel.siblings('label')
-							// Assign properties to the machine.dischargeFunnel object
-								machine.dischargeFunnel.id = $defaultFunnel.attr('id');
-								machine.dischargeFunnel.name = $defaultFunnelData.find('.name').text();
-								machine.dischargeFunnel.description = $.trim($defaultFunnelData.find('.description').text())//.trim();
-								machine.dischargeFunnel.price = $defaultFunnelData.find('.amount').text();
-						} else { 
+						$machineImage.removeClass('stwh lrgwh std-fnl steep-fnl').addClass(objectVal + ' std-fnl');
+					// If the S-6 isn't selected
+					if ($('#s4').hasClass('active') || $('#s5').hasClass('active')) {
+						// Show/Hide discharge funnels and reset checked properties:
+							// Get name of required category of discharge funnels
+								var componentSize = $fieldID.closest('li').attr('class');
+							// Hide all list items then show those that are in the required category:
+								$dischargeFunnel.find($('li')).hide().filter($('.' + componentSize)).show();
+							// Uncheck selection of any discharge funnel and de-activate selection flag:
+								$dischargeFunnel.find($('input')).prop('checked', false);
+							// Check which weigh hopper is being selected:
+							if (machine.weighHopper.id == 'stwh') {
+								// Select default radio input for selected discharge funnel:
+									var $defaultFunnel = $('#small-std-fnl')
+									$defaultFunnel.prop('checked', true);
+								// Recalculate total for default discharge funnel:	
+									calculateTotal($defaultFunnel);
+								// Get data for discharge funnel:
+									$defaultFunnelData = $defaultFunnel.siblings('label')
+								// Assign properties to the machine.dischargeFunnel object
+									machine.dischargeFunnel.id = $defaultFunnel.attr('id');
+									machine.dischargeFunnel.name = $defaultFunnelData.find('.name').text();
+									machine.dischargeFunnel.description = $.trim($defaultFunnelData.find('.description').text())//.trim();
+									machine.dischargeFunnel.price = $defaultFunnelData.find('.amount').text();
+							}
+							// Automatically selects Large Discharge funnel and adds the cost
+							else if (machine.weighHopper.id == 'lrgwh') {
+								// Select default radio input for selected discharge funnel:
+									var $defaultFunnel = $('#large-std-fnl')
+									$defaultFunnel.prop('checked', true);
+								// Recalculate total for default discharge funnel:	
+									calculateTotal($defaultFunnel);
+								// Get data for discharge funnel:
+									$defaultFunnelData = $defaultFunnel.siblings('label')
+								// Assign properties to the machine.dischargeFunnel object
+									machine.dischargeFunnel.id = $defaultFunnel.attr('id');
+									machine.dischargeFunnel.name = $defaultFunnelData.find('.name').text();
+									machine.dischargeFunnel.description = $.trim($defaultFunnelData.find('.description').text())//.trim();
+									machine.dischargeFunnel.price = $defaultFunnelData.find('.amount').text();
+							} 						
+							else { 
+								calculateTotal($('#field-name-weigh-hopper input.active'))
+							}
+						}
+						// If the S-7 is selected
+						else if ($('#s7').hasClass('active')) {
+							$('#small-steep-fnl').parent('.small').hide();
+							$('#field-name-discharge-funnel .large').hide();
+							$('#field-name-discharge-funnel .discharge-cht').hide();
+							var $defaultFunnel = $('#small-std-fnl')
+							$defaultFunnel.prop('checked', true);
+							calculateTotal($('#field-name-weigh-hopper input.active'))
+						}
+						// If the S-6 is selected
+						else {
+							$('#field-name-discharge-funnel .small').hide();
+							var $defaultFunnel = $('#discharge-cht')
+							$defaultFunnel.prop('checked', true);
 							calculateTotal($('#field-name-weigh-hopper input.active'))
 						}
 					break;

@@ -20,8 +20,11 @@ $settings = array(
 						"price" => "12000")),
 		// Weigh hopper settings
 		"weighhopper" => array(
-				"small-weigh-hopper" => array("name" => "250 cubic inch Standard Weigh Hopper",
-						"description" => "The standard weigh hopper comes by default on the S-4. Its 250 cubic inch capacity (about a gallon of dry measure) handles net weights from a few grams to 3 lbs.",
+				"small-weigh-hopper" => array("name" => "250 cubic inch Small Weigh Hopper",
+						"description" => "The small weigh hopper comes by default. Its 250 cubic inch capacity (about a gallon of dry measure) handles net weights from a few grams to 3 lbs.",
+						"price" => "0"),
+				"standard-weigh-hopper" => array("name" => "250 cubic inch Standard Weigh Hopper",
+						"description" => "The standard weigh hopper comes by default. Its 250 cubic inch capacity (about a gallon of dry measure) handles net weights from a few grams to 3 lbs.",
 						"price" => "0"),
 				"large-weigh-hopper" => array("name" => "650 cubic inch Large Weigh Hopper",
 						"description" => "For larger volumes, the large weigh hopper's 650 cubic inch capacity (about 2.5 gallons of dry measure) handles net weights from 2 oz. to 10 lbs.",
@@ -30,6 +33,8 @@ $settings = array(
 		"dischargefunnel" => array(
 				"standard" => array("name" => "Standard Discharge Funnel",
 						"description" => "This is the standard funnel for use with the standard and large weigh hoppers. It is practical for most free-flowing materials."),
+				"discharge" => array("name" => "Discharge Chute",
+						"description" => "Used for larger-grained products like popcorn or crackers to allow for free flow from Weigh Hopper. Comes in 3.5”, 4.5”, 5” standard sizes."),
 				"steep" => array("name" => "Steep-Sided Discharge Funnel",
 						"description" => "This steep sided funnel is used for fine powdered materials such as flour or other products that can stick to metal surfaces."),
 				// Discharge funnel settings > Normal copy for use when Javascript is enabled
@@ -38,6 +43,9 @@ $settings = array(
 								"name" => "Standard Discharge Funnel",
 								"description" => "This is the standard funnel for use with the standard weigh hopper. It works best for free flowing products.",
 								"price" => "0"),
+						"discharge" => array("name" => "Discharge Chute",
+							"description" => "Used for larger-grained products like popcorn or crackers to allow for free flow from Weigh Hopper. Comes in 3.5”, 4.5”, 5” standard sizes.",
+							"price" => "0"),
 						"steep" => array(
 								"name" => "Steep-Sided Discharge Funnel",
 								"description" => "This steep sided funnel is used for fine powdered materials such as flour or other products that can stick to metal surfaces.",
@@ -171,7 +179,7 @@ include_once 'bin/php_validation.php';
 								<h3>Logical Machines Models</h3>
 								<h4>Please begin by selecting your model.</h4>
 								<ul id="field-name-machine-model" class="field-container field-type-radio label-format-block">
-									<li>
+									<li class="s4">
 										<input type="radio" id="s4" class="radio active" name="machinemodel" value="S-4" 
 										<?php
 																															  if (!$_POST
@@ -233,8 +241,8 @@ include_once 'bin/php_validation.php';
 												<b>Price: </b>$<span class="amount"><?php echo $settings["machinemodel"]["S-4"]["price"]; ?></span>
 											</p></label>
 									</li>
-<!--  Remove this line to enable the other machines
-									<li>
+
+									<li class="s5">
 										<input type="radio" id="s5" name="machinemodel" value="S-5" 
 										<?php
 if ($_POST && $_POST['machinemodel'] == 'S-5') {
@@ -249,7 +257,7 @@ if ($_POST && $_POST['machinemodel'] == 'S-5') {
 												<b>Price: </b>$<span class="amount"><?php echo $settings["machinemodel"]["S-5"]["price"]; ?></span>
 											</p></label>
 									</li>
-									<li>
+									<li class="s6">
 										<input type="radio" id="s6" name="machinemodel" value="S-6" 
 										<?php
 if ($_POST && $_POST['machinemodel'] == 'S-6') {
@@ -264,7 +272,7 @@ if ($_POST && $_POST['machinemodel'] == 'S-6') {
 												<b>Price: </b>$<span class="amount"><?php echo $settings["machinemodel"]["S-6"]["price"]; ?></span>
 											</p></label>
 									</li>
-									<li>
+									<li class="s7">
 										<input type="radio" id="s7" name="machinemodel" value="S-7" 
 										<?php
 if ($_POST && $_POST['machinemodel'] == 'S-7') {
@@ -279,14 +287,16 @@ if ($_POST && $_POST['machinemodel'] == 'S-7') {
 												<b>Price: </b>$<span class="amount"><?php echo $settings["machinemodel"]["S-7"]["price"]; ?></span>
 											</p></label>
 									</li>
-Remove this line to enable the other machines -->
 								</ul>
 							</div><!-- id="step-1" -->
 
 							<div id="step-2" class="step-container" name="step-2">
 								<h3>Select your Weigh Hopper</h3>
-								<p>
+								<p class="not-wh5">
 									The <b>Weigh Hopper</b> is the scale portion of the unit which handles and weighs your products. Select a hopper by clicking its image.
+								</p>
+								<p class="wh5">
+									The S-5 doesn't have weigh hoppers.
 								</p>
 								<ul id="field-name-weigh-hopper" class="field-type-radio field-container label-format-block">
 									<li class="small">
@@ -298,18 +308,37 @@ if (!$_POST || ($_POST && $_POST['weighhopper'] == 'small-weigh-hopper')) {
 										?>/>
 										<label for="smwh" class="clearfix"><h4 class="name"><?php echo $settings["weighhopper"]["small-weigh-hopper"]["name"]; ?></h4>
 											<div class="component-image ir">
-												Standard Weigh Hopper image
+												Small Weigh Hopper image
 											</div>
 											<p class="description">
 												<?php echo $settings["weighhopper"]["small-weigh-hopper"]["description"]; ?>
 											</p>
 											<p class="price clear">
-												<b>Price: </b>$<span class="amount"><?php echo $settings["weighhopper"]["small-weigh-hopper"]["price"]; ?></span> included on standard S-4
+												<b>Price: </b>$<span class="amount"><?php echo $settings["weighhopper"]["small-weigh-hopper"]["price"]; ?></span> included on standard S-6
+											</p></label>
+
+									</li>
+									<li class="small">
+										<input type="radio" id="stwh" class="active" name="weighhopper" value="standard-weigh-hopper" 
+										<?php
+if (!$_POST || ($_POST && $_POST['weighhopper'] == 'standard-weigh-hopper')) {
+	echo 'checked';
+}
+										?>/>
+										<label for="stwh" class="clearfix"><h4 class="name"><?php echo $settings["weighhopper"]["standard-weigh-hopper"]["name"]; ?></h4>
+											<div class="component-image ir">
+												Standard Weigh Hopper image
+											</div>
+											<p class="description">
+												<?php echo $settings["weighhopper"]["standard-weigh-hopper"]["description"]; ?>
+											</p>
+											<p class="price clear">
+												<b>Price: </b>$<span class="amount"><?php echo $settings["weighhopper"]["standard-weigh-hopper"]["price"]; ?></span> included on standard S-4
 											</p></label>
 
 									</li>
 									<li class="large">
-										<input type="radio" id="lrgwh" name="weighhopper" value="large-weigh-hopper" 
+										<input type="radio" id="lrgwh" class="" name="weighhopper" value="large-weigh-hopper" 
 										<?php
 if ($_POST && $_POST['weighhopper'] == 'large-weigh-hopper') {
 	echo 'checked';
@@ -360,6 +389,19 @@ if ($_POST && $_POST['weighhopper'] == 'large-weigh-hopper') {
 											</p>
 											<p class="price clear">
 												<b>Price: </b>$<span class="amount"><?php echo $settings["dischargefunnel"]["small"]["steep"]["price"]; ?></span> upcharge
+											</p></label>
+									</li>
+									<li class="discharge-cht hidden">
+										<input type="radio" id="discharge-cht" name="dischargefunnel" value="discharge-cht" />
+										<label for="discharge-cht" class="discharge-cht clearfix"><h4 class="name"><?php echo $settings["dischargefunnel"]["discharge"]["name"]; ?></h4>
+											<div class="component-image ir">
+												Discharge Chute
+											</div>
+											<p class="description">
+												<?php echo $settings["dischargefunnel"]["small"]["discharge"]["description"]; ?>
+											</p>
+											<p class="price clear">
+												<b>Price: </b>$<span class="amount"><?php echo $settings["dischargefunnel"]["small"]["discharge"]["price"]; ?></span> included on standard S-6
 											</p></label>
 									</li>
 									<li class="large hidden">
@@ -1127,7 +1169,7 @@ if ($_POST && $_POST['typeSpout3Fallback'] == 'flat-bag') {
 						<p>
 							This is how YOUR customized machine will look
 						</p>
-						<div id="machine-image" class="ir s4 smwh std-fnl front">
+						<div id="machine-image" class="ir s4 stwh std-fnl front">
 							<div class="machine-bg">
 								&nbsp;
 							</div>
