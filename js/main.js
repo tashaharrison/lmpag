@@ -95,6 +95,7 @@ $(document).ready(function() {
             price : $dischargeFunnelData.first().find('.amount').text()
         }
     };
+	 
     /*
     * Document ready JS
     */
@@ -110,7 +111,7 @@ $(document).ready(function() {
     // the content. This removes that class on load.
     $('.bottom').removeClass('bottom');
     // Hide all but the first machine model description
-    $machineModel.find('.description').not(':first').hide();
+	$machineData.children(':not(h4,.price)').not(':first').hide();
     // Remove .hidden class from JS ready content
     $('#field-name-discharge-funnel li, #btnAdd, #btnDel, #btnFront, #btnSide, .field-spout, .step-submit, #sidebar, #btnPrint, #btnEmail,#btnClose, #btnContinue, .quote-summary, #hidden-accessories-page, #machine-title, #quote-summary, #sending').removeClass('hidden');
     // Check the fallback discharge funnel field
@@ -138,13 +139,13 @@ $(document).ready(function() {
 
     })
     // Create pager buttons and add them to the created div
-    $('.step-pager').not(':first').append($('<button/>', {
-        "class" : 'prev',
-        type : 'button'
+    $('.step-pager').not(':first').append($('<a/>', {
+        "class" : 'prev button',
+		"href" : '#',
     }).text('Previous step'));
-    $('.step-pager').not(':last').append($('<button/>', {
-        "class" : 'next',
-        type : 'button'
+    $('.step-pager').not(':last').append($('<a/>', {
+        "class" : 'next button',
+		"href" : '#',
     }).text('Next step'));
 
     /*
@@ -197,16 +198,28 @@ $(document).ready(function() {
             $machineImage.addClass('side').removeClass('front');
         }
     });
-    
     /*
      *  Navigation
      */
 
-    $('.step-pager button').click(function() { // Action for 'prev' & 'next' buttons
+    $('.step-pager .button').click(function() { // Action for 'prev' & 'next' buttons
     	changeCostContainerText()
         var $stepContainer = $(this).closest('.step-container'), 
 			nextStepContainerID = $stepContainer.next().attr('id'), 
 			prevStepContainerID = $stepContainer.prev().attr('id');
+		// Text for price value on various options set to name of machine selected
+		if ($('#s4').hasClass('active')) {
+		$('.machine-name').text('S-4');
+		}
+		else if ($('#s5').hasClass('active')) {
+			$('.machine-name').text('S-5');
+		}
+		else if ($('#s6').hasClass('active')) {
+			$('.machine-name').text('S-6');
+		}
+		else if ($('#s7').hasClass('active')) {
+			$('.machine-name').text('S-7');
+		}
     	// Remove active class from the current page 
         $('#pag-navigation a').removeClass('active');
         // Move the app forward if the clicked button is next or back if is previous and add the active class
@@ -218,21 +231,64 @@ $(document).ready(function() {
             $('#pag-navigation a[href*=' + prevStepContainerID + ']').addClass('active');
         }
         // Execute showvalues() to display results if moving to the summary page
-        if ($(this).is('#step-4-pager button.next'))
+        if ($(this).is('#step-4-pager .button.next'))
 			showValues()
     	$('#thankYouMessage').remove();
     	// Reload the page to reset the form if moving to page 1
-        if ($(this).is('#step-2-pager button.prev'))
+        if ($(this).is('#step-2-pager .button.prev'))
             location.reload();
     	// Reload the page to reset the form if moving to page 1
-        if ($(this).is('#step-3-pager button.prev')) {
+        if ($(this).is('#step-3-pager .button.prev')) {
 			defaultHopperS4();
+		}
+		// Select the correct Weigh Hopper(s) for each machine
+		if ($(this).is('#step-1-pager .button.next')) {
+			defaultHopperS4();
+			$('#smwh').parent('li').hide();
+			$('#stwh').parent('li').hide();
+			$('#lrgwh').parent('li').hide();
+			$('.wh5').hide();
+			$('.fu6').hide();
+		}
+		if ($(this).is('#step-1-pager .button.next')&& $('#s4').hasClass('active')) {
+			$('#stwh').parent('li').show();
+			$('#lrgwh').parent('li').show();
+		}
+		if ($(this).is('#step-1-pager .button.next') && $('#s5').hasClass('active')) {
+			$('.wh5').show();
+			$('.not-wh5').hide();
+		}
+		if ($(this).is('#step-1-pager .button.next') && $('#s6').hasClass('active')) {
+			defaultHopperS6();
+			$('#smwh').parent('li').show();
+			$('#lrgwh').parent('li').show();
+		}
+		if ($(this).is('#step-1-pager .button.next') && $('#s7').hasClass('active')) {
+			defaultHopperS4();
+			$('#stwh').parent('li').show();
+			$('#lrgwh').parent('li').show();
+		}
+		if ($(this).is('#step-2-pager .button.next') && $('#s6').hasClass('active')) {
+			defaultFunnelS6();
 		}
     });
 
     $('#pag-navigation a').click(function() { // Action for left-hand step tabs
     	changeCostContainerText();
         var stepValue = $(this).attr('href');
+		// Text for price value on various options set to name of machine selected
+		if ($('#s4').hasClass('active')) {
+		$('.machine-name').text('S-4');
+		}
+		else if ($('#s5').hasClass('active')) {
+			$('.machine-name').text('S-5');
+		}
+		else if ($('#s6').hasClass('active')) {
+			$('.machine-name').text('S-6');
+		}
+		else if ($('#s7').hasClass('active')) {
+			$('.machine-name').text('S-7');
+		}
         // Remove active class from current page and add to selected page
         $('#pag-navigation a').removeClass('active');
         $(this).addClass('active');
@@ -253,7 +309,9 @@ $(document).ready(function() {
 			$('#stwh').parent('li').hide();
 			$('#lrgwh').parent('li').hide();
 			$('.wh5').hide();
+			$('.fu6').hide();
 		}
+		// Select the correct Weigh Hopper(s) for each machine
 		if (stepValue === "#step-2" && $('#s4').hasClass('active')) {
 			$('#stwh').parent('li').show();
 			$('#lrgwh').parent('li').show();
@@ -287,6 +345,7 @@ $(document).ready(function() {
 	
 	function defaultFunnelS6 () {
 		$('#discharge-cht').prop('checked', true).trigger('change');
+		$('.fu6').show();
 	}
     
     // Display Base Price as title on the front page and Price as Configured on every other page
@@ -542,6 +601,8 @@ $(document).ready(function() {
         // Show the spout image
         if ($spoutImage.hasClass('hidden')) {
         	$spoutImage.removeClass('hidden');
+			$machineImage.removeClass('no-spout');
+			$machineImage.addClass('spout');
         }
        }
     
@@ -594,6 +655,7 @@ $(document).ready(function() {
             $btnAdd.hide();
             $btnDel.hide();
             $spoutImage.addClass('hidden');
+			$machineImage.removeClass('spout');
         } else {
         // Show the 'add another spout' button
         $btnAdd.show();

@@ -277,8 +277,26 @@ form#logical-machines-quote-generator {
 	position: relative;
 	width: 260px;
 }
-#machine-image > * {
-	background-image: url("../img/sprite.png");
+#machine-image.s4 > * {
+	background-image: url("../img/s4-sprite.png");
+	background-repeat: no-repeat;
+	background-color: transparent;
+	position: absolute;
+}
+#machine-image.s5 > * {
+	background-image: url("../img/s5-sprite.png");
+	background-repeat: no-repeat;
+	background-color: transparent;
+	position: absolute;
+}
+#machine-image.s6 > * {
+	background-image: url("../img/s6-sprite.png");
+	background-repeat: no-repeat;
+	background-color: transparent;
+	position: absolute;
+}
+#machine-image.s7 > * {
+	background-image: url("../img/s7-sprite.png");
 	background-repeat: no-repeat;
 	background-color: transparent;
 	position: absolute;
@@ -302,7 +320,11 @@ form#logical-machines-quote-generator {
 .amount {
     color:#AD0000;
 }
-.s4.front .machine-bg {
+/********************
+	S4 Images
+*********************/
+/* S4 Main Image */
+.s4 .machine-bg {
 	width: 254px;
 	height: 455px;
 	background-position: -10px -10px;
@@ -317,148 +339,193 @@ form#logical-machines-quote-generator {
 	left: 1px;
 }
 /* Small weigh hopper front */
-.s4.smwh.front .weigh-hopper {
-	width: 205px;
-	height: 67px;
-	background-position: -10px -1926px;
-	top: 139px;
-	left: 52px;
+.s4.stwh.std-fnl.front .machine-bg {
+	width: 254px;
+	height: 455px;
+	background-position: -10px -10px;
+	top: 5px;
+	left: 3px;
 }
-.s4.smwh.std-fnl.front .funnel {
-	width: 210px;
-	height: 52px;
-	background-position: -10px -2003px;
-	top: 191px;
-	left: 47px;
+.s4.stwh.std-fnl.front.spout .machine-bg {
+	background-position: -10px -467px;
 }
-.s4.smwh.std-fnl.front .spout {
-	width: 187px;
-	height: 39px;
-	background-position: -10px -2179px;
-	top: 232px;
-	left: 70px;
+.s4.stwh.steep-fnl.front .machine-bg {
+	background-position: -10px -925px;
 }
-.s4.smwh.steep-fnl.front .funnel {
-	width: 207px;
-	height: 83px;
-	background-position: -10px -1149px;
-	top: 191px;
-	left: 50px;
+.s4.stwh.steep-fnl.front.spout .machine-bg {
+	background-position: -10px -1385px;
 }
-.s4.smwh.steep-fnl.front .spout {
-	width: 187px;
-	height: 39px;
-	background-position: -10px -2179px;
-	top: 253px;
-	left: 70px;
-}
+
 /* Small weigh hopper side */
-.s4.smwh.side .weigh-hopper {
-	width: 225px;
-	height: 51px;
-	background-position: -10px -2065px;
-	top: 152px;
-	left: 33px;
+.s4.stwh.side .machine-bg {
+	width: 254px;
+	height: 455px;
+	background-position: -340px -10px;
+	top: 5px;
+	left: 3px;
 }
-.s4.smwh.std-fnl.side .funnel {
-	width: 233px;
-	height: 43px;
-	background-position: -10px -2126px;
-	top: 192px;
-	left: 24px;
+.s4.stwh.steep-fnl.side .machine-bg {
+	background-position: -340px -923px;
 }
-.s4.smwh.std-fnl.side .spout {
-	width: 230px;
-	height: 28px;
-	background-position: -10px -2228px;
-	top: 228px;
-	left: 27px;
+.s4.stwh.side.spout .machine-bg {
+	background-position: -347px -465px;
 }
-.s4.smwh.steep-fnl.side .funnel {
-	width: 233px;
-	height: 73px;
-	background-position: -10px -1682px;
-	top: 188px;
-	left: 24px;
-}
-.s4.smwh.steep-fnl.side .spout {
-	width: 230px;
-	height: 28px;
-	background-position: -10px -2228px;
-	top: 253px;
-	left: 28px;
+.s4.stwh.steep-fnl.side.spout .machine-bg {
+	background-position: -347px -1384px;
 }
 /* Large weigh hopper front */
-.s4.lrgwh.front .weigh-hopper {
-	width: 214px;
-	height: 82px;
-	background-position: -10px -1242px;
-	top: 144px;
-	left: 43px;
+.s4.lrgwh.std-fnl.front .machine-bg {
+	background-position: -10px -1844px;
 }
-.s4.lrgwh.std-fnl.front .funnel {
-	width: 215px;
-	height: 74px;
-	background-position: -10px -1598px;
-	top: 218px;
-	left: 42px;
+.s4.lrgwh.std-fnl.spout.front .machine-bg {
+	background-position: -10px -2297px;
 }
-.s4.lrgwh.std-fnl.front .spout {
-	width: 187px;
-	height: 39px;
-	background-position: -10px -2179px;
-	top: 280px;
-	left: 69px;
+.s4.lrgwh.steep-fnl.front .machine-bg {
+	background-position: -10px -2751px;
 }
-.s4.lrgwh.steep-fnl.front .funnel {
-	width: 215px;
-	height: 75px;
-	background-position: -10px -1513px;
-	top: 218px;
-	left: 42px;
-}
-.s4.lrgwh.steep-fnl.front .spout {
-	width: 187px;
-	height: 39px;
-	background-position: -10px -2179px;
-	top: 280px;
-	left: 69px;
+.s4.lrgwh.front.steep-fnl.spout .machine-bg {
+	background-position: -12px -3203px;
 }
 /* Large weigh hopper side */
-.s4.lrgwh.side .weigh-hopper {
-	width: 250px;
-	height: 78px;
-	background-position: -10px -1425px;
-	top: 144px;
-	left: 7px;
+.s4.lrgwh.std-fnl.side .machine-bg {
+	background-position: -347px -1842px;
 }
-.s4.lrgwh.std-fnl.side .funnel {
-	width: 250px;
-	height: 70px;
-	background-position: -10px -1846px;
-	top: 205px;
-	left: 8px;
+.s4.lrgwh.std-fnl.spout.side .machine-bg {
+	background-position: -347px -2296px;
 }
-.s4.lrgwh.std-fnl.side .spout {
-	width: 230px;
-	height: 28px;
-	background-position: -10px -2228px;
-	top: 267px;
-	left: 15px;
+.s4.lrgwh.side.steep-fnl .machine-bg {
+	background-position: -347px -2751px;
 }
-.s4.lrgwh.steep-fnl.side .funnel {
-	width: 250px;
-	height: 71px;
-	background-position: -10px -1765px;
-	top: 205px;
-	left: 8px;
+.s4.lrgwh.side.steep-fnl.spout .machine-bg {
+	background-position: -347px -3203px;
 }
-.s4.lrgwh.steep-fnl.side .spout {
-	width: 230px;
-	height: 28px;
-	background-position: -10px -2228px;
-	top: 270px;
-	left: 19px;
+/********************
+	S5 Images
+*********************/
+/* S5 Main Image */
+.s5.front .machine-bg {
+	width: 254px;
+	height: 455px;
+	background-position: -10px -10px;
+	top: 5px;
+	left: 3px;
+}
+.s5.side .machine-bg {
+	width: 256px;
+	height: 439px;
+	background-position: -339px -9px;
+	top: 5px;
+	left: 1px;
+}
+/* Funnel front */
+.s5.front.steep-fnl .machine-bg {
+	width: 254px;
+	height: 455px;
+	background-position: -10px -469px;
+	top: 5px;
+	left: 3px;
+}
+/* Funnel side */
+.s5.side.steep-fnl .machine-bg {
+	width: 254px;
+	height: 455px;
+	background-position: -342px -468px;
+	top: 5px;
+	left: 3px;
+}
+/* Spout front */
+.s5.front.spout .machine-bg {
+	width: 254px;
+	height: 455px;
+	background-position: -10px -928px;
+	top: 5px;
+	left: 3px;
+}
+.s5.front.steep-fnl.spout .machine-bg {
+	width: 254px;
+	height: 455px;
+	background-position: -10px -1387px;
+	top: 5px;
+	left: 3px;
+}
+/* Spout side */
+.s5.side.spout .machine-bg {
+	width: 254px;
+	height: 455px;
+	background-position: -345px -927px;
+	top: 5px;
+	left: 3px;
+}
+.s5.side.steep-fnl.spout .machine-bg {
+	width: 254px;
+	height: 455px;
+	background-position: -345px -1386px;
+	top: 5px;
+	left: 3px;
+}
+/********************
+	S6 Images
+*********************/
+/* S6 Main Image */
+.s6.front .machine-bg {
+	width: 260px;
+	height: 410px;
+	background-position: -10px -10px;
+	top: 5px;
+	left: 3px;
+}
+.s6.side .machine-bg {
+	width: 260px;
+	height: 439px;
+	background-position: -339px -9px;
+	top: 5px;
+	left: 1px;
+}
+/* S6 Large Weigh Hopper */
+.s6.front.lrgwh .machine-bg {
+	background-position: -10px -422px;
+}
+.s6.side.lrgwh .machine-bg {
+	background-position: -339px -422px;
+}
+/********************
+	S7 Images
+*********************/
+/* S7 Main Image */
+.s7.front .machine-bg {
+	width: 254px;
+	height: 455px;
+	background-position: -10px -9px;
+	top: 5px;
+	left: 3px;
+}
+.s7.side .machine-bg {
+	width: 254px;
+	height: 455px;
+	background-position: -343px -10px;
+	top: 5px;
+	left: 3px;
+}
+/* S7 Standard Spout */
+.s7.front.spout .machine-bg {
+	background-position: -10px -468px;
+}
+.s7.spout.side .machine-bg {
+	background-position: -345px -467px;
+}
+/* S7 Large */
+.s7.front.lrgwh .machine-bg {
+	background-position: -10px -926px;
+}
+.s7.lrgwh.side .machine-bg {
+	background-position: -342px -930px;
+}
+/* S7 Large Spout */
+.s7.lrgwh.spout.front .machine-bg {
+	background-position: -10px -1384px;
+}
+.s7.lrgwh.side.spout .machine-bg {
+	background-position: -350px -1386px;
 }
 /*
  *  Component images
@@ -503,6 +570,11 @@ form#logical-machines-quote-generator {
 	width: 104px;
 	height: 81px;
 	background-position: -10px -1334px;
+}
+#field-name-discharge-funnel .discharge-cht label.discharge-cht .component-image {
+	width: 104px;
+	height: 106px;
+	background-position: -6px -1153px;
 }
 
 /*

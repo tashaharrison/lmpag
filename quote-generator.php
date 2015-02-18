@@ -8,15 +8,15 @@ $settings = array(
 						"description" => "The standard S-4 includes the standard weigh hopper, small discharge funnel and Logical Controller II. It comes fully assembled and ready to operate.",
 						"price" => "6150"),
 				"S-5" => array("name" => "S-5", "type" => "Bulk Fill System",
-						"description" => "The standard S-5 includes... It comes fully assembled and ready to operate.",
+						"description" => "The S-5 includes a standard Discharge Funnel, and Logical Controller II. It comes fully assembled and ready to operate. ",
 						"price" => "5450"),
 				"S-6" => array("name" => "S-6",
-						"type" => "Cascading Weigh FIller",
-						"description" => "The standard S-6 includes... It comes fully assembled and ready to operate.",
+						"type" => "Cascading Weigh Filler",
+						"description" => "The S-6 includes a standard Weigh Hopper, standard Discharge Chute, and Logical Controller II. It comes fully assembled and ready to operate.",
 						"price" => "9950"),
 				"S-7" => array("name" => "S-7",
-						"type" => "Dual-Lane Weigh FIller",
-						"description" => "The standard S-7 includes... It comes fully assembled and ready to operate.",
+						"type" => "Dual-Lane Weigh Filler",
+						"description" => "The S-7 includes two standard Weigh Hoppers, standard S-7 Discharge Chute, and two Logical Controller IIs. It comes fully assembled and ready to operate. ",
 						"price" => "12000")),
 		// Weigh hopper settings
 		"weighhopper" => array(
@@ -64,6 +64,7 @@ $settings = array(
 						"four-sided-bag" => array("d1", "d2"),
 						"can-jar" => array("diameter"))));
 
+
 include_once 'bin/php_validation.php';
 
 ?>
@@ -98,7 +99,7 @@ include_once 'bin/php_validation.php';
 		<![endif]-->
 
 		<!-- Add your site or application content here -->
-		<div id="PageDiv">
+		<div id="PageDiv" class="top">
 			<nav id="pag-navigation" class="clearfix">
 				<ol>
 					<li>
@@ -181,19 +182,14 @@ include_once 'bin/php_validation.php';
 								<ul id="field-name-machine-model" class="field-container field-type-radio label-format-block">
 									<li class="s4">
 										<input type="radio" id="s4" class="radio active" name="machinemodel" value="S-4" 
-										<?php
-																															  if (!$_POST
-																																	  || ($_POST
-																																			  && $_POST['machinemodel']
-																																					  == 'S-4')) {
-																																  echo 'checked';
-																															  }
+										<?php 
+											if (!$_POST || ($_POST && $_POST['machinemodel'] == 'S-4')) {
+												echo 'checked';
+											}
 										?>/>
 										<label for="s4"><h4><span class="name"><?php echo $settings["machinemodel"]["S-4"]["name"]; ?></span>&nbsp;<span class="type"><?php echo $settings["machinemodel"]["S-4"]["type"]; ?></span></h4>
-											<p class="description">
+											<div class="description">
 												<?php echo $settings["machinemodel"]["S-4"]["description"]; ?>
-											</p>
-											<p class="specification">
 												<h5>S-4 Specifications:</h5>
 												<ul>
 													<li>
@@ -209,19 +205,21 @@ include_once 'bin/php_validation.php';
 														Supply Hopper cap. 3.5 cu.ft.
 													</li>
 													<li>
-														Powder-coated chassis
+														 Standard chassis:
+														<ul>
+															<li>Powder Coated</li>
+															<li>Footprint 4.6 sq.ft., 67" high</li>
+															<li>4 locking casters</li>
+														</ul>
 													</li>
 													<li>
-														All product contact surfaces stainless steel
+														All product contact surfaces 304 stainless steel
 													</li>
 													<li>
-														Footprint 4.6 sq.ft., 67" high
+														 120V 60Hz (240V 50Hz option)
 													</li>
 													<li>
-														120V 60Hz (240V 50Hz option)
-													</li>
-													<li>
-														Handles all dry bulk from powders to large parts
+														Handles all dry bulk from powders to large parts 
 													</li>
 													<li>
 														Can be used with all bags and rigid containers
@@ -233,10 +231,10 @@ include_once 'bin/php_validation.php';
 														On-the-fly, self-adjusting bulk &amp; dribble speed control
 													</li>
 													<li>
-														600-800 fills/hour
+														Up to 800 fills/hour
 													</li>
 												</ul>
-											</p>
+											</div>
 											<p class="price clear">
 												<b>Price: </b>$<span class="amount"><?php echo $settings["machinemodel"]["S-4"]["price"]; ?></span>
 											</p></label>
@@ -245,14 +243,58 @@ include_once 'bin/php_validation.php';
 									<li class="s5">
 										<input type="radio" id="s5" name="machinemodel" value="S-5" 
 										<?php
-if ($_POST && $_POST['machinemodel'] == 'S-5') {
-	echo 'checked';
-}
+											if ($_POST && $_POST['machinemodel'] == 'S-5') {
+												echo 'checked';
+											}
 										?>/>
 										<label for="s5"><h4><span class="name"><?php echo $settings["machinemodel"]["S-5"]["name"]; ?></span>&nbsp;<span class="type"><?php echo $settings["machinemodel"]["S-5"]["type"]; ?></span></h4>
-											<p class="description">
+											<div class="description">
 												<?php echo $settings["machinemodel"]["S-5"]["description"]; ?>
-											</p>
+												<h5>S-5 Specifications:</h5>
+												<ul>
+													<li>
+														Bulk filling for weights of up to 50lbs.
+													</li>
+													<li>
+														Self-adjusting controller 
+													</li>
+													<li>
+														Reads out to .01 lbs.
+													</li>
+													<li>
+														Controller range up to 50lbs., 3.5cu.ft. hopper
+													</li>
+													<li>
+														 Support Frame:
+														<ul>
+															<li>Powder Coated</li>
+															<li>Footprint 4.6 sq.ft., 67" high</li>
+															<li>4 locking casters</li>
+														</ul>
+													</li>
+													<li>
+														All product contact surfaces 304 stainless steel
+													</li>
+													<li>
+														120V, 60Hz (240V, 50Hz option)
+													</li>
+													<li>
+														 Handles all dry bulk products from powders to large parts
+													</li>
+													<li>
+														Can be used with all bags or rigid containers 
+													</li>
+													<li>
+														Automatic tare adjustment
+													</li>
+													<li>
+														On-the-fly, self-adjusting bulk &amp; dribble speed control
+													</li>
+													<li>
+														Up to 400 fills/hour
+													</li>
+												</ul>
+											</div>
 											<p class="price clear">
 												<b>Price: </b>$<span class="amount"><?php echo $settings["machinemodel"]["S-5"]["price"]; ?></span>
 											</p></label>
@@ -265,9 +307,59 @@ if ($_POST && $_POST['machinemodel'] == 'S-6') {
 }
 										?>/>
 										<label for="s6"><h4><span class="name"><?php echo $settings["machinemodel"]["S-6"]["name"]; ?></span>&nbsp;<span class="type"><?php echo $settings["machinemodel"]["S-6"]["type"]; ?></span></h4>
-											<p class="description">
+											<div class="description">
 												<?php echo $settings["machinemodel"]["S-6"]["description"]; ?>
-											</p>
+												<h5>S-6 Specifications:</h5>
+												<ul>
+													<li>
+														Cascading feed pans 
+													</li>
+													<li>
+														Self-adjusting controller 
+													</li>
+													<li>
+														Reads out to 1 gram or .001 lbs.
+													</li>
+													<li>
+														Controller range up to 10 lbs.
+													</li>
+													<li>
+														Supply hopper 3.5 cu.ft.
+													</li>
+													<li>
+														All product surfaces 304 stainless steel
+													</li>
+													<li>
+														Discharge Chute
+													</li>
+													<li>
+														 Support Frame:
+														<ul>
+															<li>Powder Coated</li>
+															<li>Footprint 7.5 sq.ft., 74.5" high</li>
+															<li>4 locking casters</li>
+														</ul>
+													</li>
+													<li>
+														120V, 60Hz (240V, 50Hz option)
+													</li>
+													<li>
+														 Handles all dry bulk products from powders to large parts
+													</li>
+													<li>
+														Compatible with all bags, rigid containers, bagging machines and conveyors 
+													</li>
+													<li>
+														Automatic tare adjustment
+													</li>
+													<li>
+														On-the-fly, self-adjusting bulk &amp; dribble speed control
+													</li>
+													<li>
+														Up to 800 fills/hour
+													</li>
+												</ul>
+											</div>
 											<p class="price clear">
 												<b>Price: </b>$<span class="amount"><?php echo $settings["machinemodel"]["S-6"]["price"]; ?></span>
 											</p></label>
@@ -280,9 +372,56 @@ if ($_POST && $_POST['machinemodel'] == 'S-7') {
 }
 										?>/>
 										<label for="s7"><h4><span class="name"><?php echo $settings["machinemodel"]["S-7"]["name"]; ?></span>&nbsp;<span class="type"><?php echo $settings["machinemodel"]["S-7"]["type"]; ?></span></h4>
-											<p class="description">
+											<div class="description">
 												<?php echo $settings["machinemodel"]["S-7"]["description"]; ?>
-											</p>
+												<h5>S-7 Specifications:</h5>
+												<ul>
+													<li>
+														Two lanes for twice the speed 
+													</li>
+													<li>
+														Self-adjusting controller 
+													</li>
+													<li>
+														Reads out to 1 gram or .001 lbs.
+													</li>
+													<li>
+														Controller range up to 10 lbs.
+													</li>
+													<li>
+														5.1 cu.ft. supply hopper
+													</li>
+													<li>
+														All product surfaces 304 stainless steel
+													</li>
+													<li>
+														 Support Frame:
+														<ul>
+															<li>Powder Coated</li>
+															<li>Footprint 7.25 sq.ft., 68" high</li>
+															<li>4 locking casters</li>
+														</ul>
+													</li>
+													<li>
+														120V, 60Hz (240V, 50Hz option)
+													</li>
+													<li>
+														 Handles all dry bulk products from powders to large parts
+													</li>
+													<li>
+														Compatible with all bags, rigid containers, and bagging machines 
+													</li>
+													<li>
+														Automatic tare adjustment
+													</li>
+													<li>
+														On-the-fly, self-adjusting bulk &amp; dribble speed control
+													</li>
+													<li>
+														Up to 1500 fills/hour
+													</li>
+												</ul>
+											</div>
 											<p class="price clear">
 												<b>Price: </b>$<span class="amount"><?php echo $settings["machinemodel"]["S-7"]["price"]; ?></span>
 											</p></label>
@@ -296,7 +435,7 @@ if ($_POST && $_POST['machinemodel'] == 'S-7') {
 									The <b>Weigh Hopper</b> is the scale portion of the unit which handles and weighs your products. Select a hopper by clicking its image.
 								</p>
 								<p class="wh5">
-									The S-5 doesn't have weigh hoppers.
+									The S-5 uses a Weigh Table instead of a Weigh Hopper. Please click the "Next Step” arrow below to select a Discharge Funnel.
 								</p>
 								<ul id="field-name-weigh-hopper" class="field-type-radio field-container label-format-block">
 									<li class="small">
@@ -314,7 +453,7 @@ if (!$_POST || ($_POST && $_POST['weighhopper'] == 'small-weigh-hopper')) {
 												<?php echo $settings["weighhopper"]["small-weigh-hopper"]["description"]; ?>
 											</p>
 											<p class="price clear">
-												<b>Price: </b>$<span class="amount"><?php echo $settings["weighhopper"]["small-weigh-hopper"]["price"]; ?></span> included on standard S-6
+												<b>Price: </b>$<span class="amount"><?php echo $settings["weighhopper"]["small-weigh-hopper"]["price"]; ?></span> included on standard <span class="machine-name"></span>
 											</p></label>
 
 									</li>
@@ -333,7 +472,7 @@ if (!$_POST || ($_POST && $_POST['weighhopper'] == 'standard-weigh-hopper')) {
 												<?php echo $settings["weighhopper"]["standard-weigh-hopper"]["description"]; ?>
 											</p>
 											<p class="price clear">
-												<b>Price: </b>$<span class="amount"><?php echo $settings["weighhopper"]["standard-weigh-hopper"]["price"]; ?></span> included on standard S-4
+												<b>Price: </b>$<span class="amount"><?php echo $settings["weighhopper"]["standard-weigh-hopper"]["price"]; ?></span> included on standard <span class="machine-name"></span>
 											</p></label>
 
 									</li>
@@ -364,6 +503,9 @@ if ($_POST && $_POST['weighhopper'] == 'large-weigh-hopper') {
 								<p>
 									The <b>Discharge Funnel</b> directs your product from the weigh hopper to the spout. Select a funnel by clicking its image.
 								</p>
+								<p class="fu6">
+									The S-6 comes with a Discharge Chute instead of Discharge Funnel.
+								</p>
 								<ul id="field-name-discharge-funnel" class="field-type-radio field-container label-format-block">
 									<li class="small hidden">
 										<input type="radio" id="small-std-fnl" name="dischargefunnel" value="small-standard-funnel" />
@@ -375,7 +517,7 @@ if ($_POST && $_POST['weighhopper'] == 'large-weigh-hopper') {
 												<?php echo $settings["dischargefunnel"]["small"]["standard"]["description"]; ?>
 											</p>
 											<p class="price clear">
-												<b>Price: </b>$<span class="amount"><?php echo $settings["dischargefunnel"]["small"]["standard"]["price"]; ?></span> included on standard S-4
+												<b>Price: </b>$<span class="amount"><?php echo $settings["dischargefunnel"]["small"]["standard"]["price"]; ?></span> included on standard <span class="machine-name"></span>
 											</p></label>
 									</li>
 									<li class="small hidden">
@@ -401,7 +543,7 @@ if ($_POST && $_POST['weighhopper'] == 'large-weigh-hopper') {
 												<?php echo $settings["dischargefunnel"]["small"]["discharge"]["description"]; ?>
 											</p>
 											<p class="price clear">
-												<b>Price: </b>$<span class="amount"><?php echo $settings["dischargefunnel"]["small"]["discharge"]["price"]; ?></span> included on standard S-6
+												<b>Price: </b>$<span class="amount"><?php echo $settings["dischargefunnel"]["small"]["discharge"]["price"]; ?></span> included on standard <span class="machine-name"></span>
 											</p></label>
 									</li>
 									<li class="large hidden">
@@ -447,7 +589,7 @@ if (!$_POST || ($_POST && $_POST['dischargefunnel'] == 'standard-funnel')) {
 											<p class="price clear">
 												<b>Price with Standard Weigh Hopper: </b>
 												<br/>
-												$<span class="amount"><?php echo $settings["dischargefunnel"]["small"]["standard"]["price"]; ?></span> included on standard S-4
+												$<span class="amount"><?php echo $settings["dischargefunnel"]["small"]["standard"]["price"]; ?></span> included on standard <span class="machine-name"></span>
 												<br />
 												<b>Price with Large Weigh Hopper: </b>
 												<br/>

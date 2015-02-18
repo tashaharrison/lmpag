@@ -47,7 +47,7 @@ a.button:link {
 	border: 2px solid;
 	border-color: #AD0000;
 	cursor: pointer;
-	color: #000;
+	color: #000!important;
 	font: bold 15px/1.3 myriad-pro, Arial, Helvetica, sans-serif;
 	outline: 0;
 	overflow: visible;
@@ -62,12 +62,15 @@ button:hover,
 input[type="reset"]:hover,
 input[type="submit"]:hover,
 input[type="button"]:hover,
-.more-link a:hover {
+.more-link a:hover,
+.button:hover,
+a.button:hover {
 	background: #B3FFB3;
 	color: #000000;
 	font-weight: bold;
 }
-button {
+button,
+.button {
  *padding-top: 1px; /* IE7 */
  *padding-bottom: 1px; /* IE7 */
 }
@@ -125,7 +128,10 @@ input.placeholder_text, textarea.placeholder_text, input:-moz-placeholder, texta
 }
 button:focus,
 button:active,
-button.active {
+button.active,
+.button:focus,
+.button:active,
+.button.active {
 	z-index: 1; /* For Opera */
 	background-color:rgb(175, 206, 233);
 }
@@ -334,8 +340,8 @@ optgroup {
 * Checkout progress
 */
 
-button.next,
-button.prev {
+.step-pager .button.next,
+.step-pager .button.prev {
 	font-size: 16px;
 	font-weight: 700;
 	line-height: 20px;
@@ -344,25 +350,26 @@ button.prev {
 	position: relative;
 	width: auto;
 }
-button.prev {
+.step-pager .button.prev {
 	padding-left: 30px;
 	border-left:none;
+	float: left;
 }
-button.next {
+.step-pager .button.next {
 	border-right:none;
 	padding-right: 32px;
 	float: right;
 }
-.lt-ie9 button.prev {
+.lt-ie9 .step-pager .button.prev {
 	padding-left: 8px;
 	border: 2px solid #AD0000;
 	float: left;
 }
-.lt-ie9 button.next {
+.lt-ie9 .step-pager .button.next {
 	padding-right: 8px;
 	border: 2px solid #AD0000;
 }
-button.next::after {
+.step-pager .button.next::after {
 	background: transparent url("../img/arrow_right.png") right center no-repeat;
 	/* LTR */
 	content: " ";
@@ -377,7 +384,7 @@ button.next::after {
 	width: 32px;
 	z-index: 2;
 }
-button.prev::before {
+.step-pager .button.prev::before {
 	background: transparent url("../img/arrow_left.png") right center no-repeat;
 	/* LTR */
 	content: " ";
