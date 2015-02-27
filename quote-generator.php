@@ -20,6 +20,9 @@ $settings = array(
 						"price" => "12000")),
 		// Weigh hopper settings
 		"weighhopper" => array(
+				"no-weigh-hopper" => array("name" => " ",
+						"description" => "The S-5 uses a table-style scale instead of a Weigh Hopper.",
+						"price" => "0"),
 				"small-weigh-hopper" => array("name" => "250 cubic inch Small Weigh Hopper",
 						"description" => "The small weigh hopper comes by default. Its 250 cubic inch capacity (about a gallon of dry measure) handles net weights from a few grams to 3 lbs.",
 						"price" => "0"),
@@ -28,13 +31,16 @@ $settings = array(
 						"price" => "0"),
 				"large-weigh-hopper" => array("name" => "650 cubic inch Large Weigh Hopper",
 						"description" => "For larger volumes, the large weigh hopper's 650 cubic inch capacity (about 2.5 gallons of dry measure) handles net weights from 2 oz. to 10 lbs.",
-						"price" => "100")),
+						"price" => "100"),
+				"large-weigh-hopper-two" => array("name" => "650 cubic inch Large Weigh Hopper",
+						"description" => "For larger volumes, the large weigh hopper's 650 cubic inch capacity (about 2.5 gallons of dry measure) handles net weights from 2 oz. to 10 lbs.",
+						"price" => "200")),
 		// Discharge funnel settings > Fallback copy for use when Javascript is disabled
 		"dischargefunnel" => array(
 				"standard" => array("name" => "Standard Discharge Funnel",
 						"description" => "This is the standard funnel for use with the standard and large weigh hoppers. It is practical for most free-flowing materials."),
 				"discharge" => array("name" => "Discharge Chute",
-						"description" => "Used for larger-grained products like popcorn or crackers to allow for free flow from Weigh Hopper. Comes in 3.5”, 4.5”, 5” standard sizes."),
+						"description" => 'Used for larger-grained products like popcorn or crackers to allow for free flow from Weigh Hopper. Comes with a standard 5" Discharge Chute.'),
 				"steep" => array("name" => "Steep-Sided Discharge Funnel",
 						"description" => "This steep sided funnel is used for fine powdered materials such as flour or other products that can stick to metal surfaces."),
 				// Discharge funnel settings > Normal copy for use when Javascript is enabled
@@ -181,12 +187,8 @@ include_once 'bin/php_validation.php';
 								<h4>Please begin by selecting your model.</h4>
 								<ul id="field-name-machine-model" class="field-container field-type-radio label-format-block">
 									<li class="s4">
-										<input type="radio" id="s4" class="radio active" name="machinemodel" value="S-4" 
-										<?php 
-											if (!$_POST || ($_POST && $_POST['machinemodel'] == 'S-4')) {
-												echo 'checked';
-											}
-										?>/>
+										<input type="radio" id="s4" class="radio" name="machinemodel" value="S-4" 
+										/>
 										<label for="s4"><h4><span class="name"><?php echo $settings["machinemodel"]["S-4"]["name"]; ?></span>&nbsp;<span class="type"><?php echo $settings["machinemodel"]["S-4"]["type"]; ?></span></h4>
 											<div class="description">
 												<?php echo $settings["machinemodel"]["S-4"]["description"]; ?>
@@ -435,16 +437,27 @@ if ($_POST && $_POST['machinemodel'] == 'S-7') {
 									The <b>Weigh Hopper</b> is the scale portion of the unit which handles and weighs your products. Select a hopper by clicking its image.
 								</p>
 								<p class="wh5">
-									The S-5 uses a Weigh Table instead of a Weigh Hopper. Please click the "Next Step” arrow below to select a Discharge Funnel.
+									The S-5 uses a table-style scale instead of a Weigh Hopper. Please click the "Next Step” arrow below to select a Discharge Funnel.
 								</p>
 								<ul id="field-name-weigh-hopper" class="field-type-radio field-container label-format-block">
 									<li class="small">
+										<input type="radio" id="no-wh" class="active" name="weighhopper" value="small-weigh-hopper" 
+										/>
+										<label for="no-wh" class="clearfix"><h4 class="name"><?php echo $settings["weighhopper"]["no-weigh-hopper"]["name"]; ?></h4>
+											<div class="component-image ir">
+												Small Weigh Hopper image
+											</div>
+											<p class="description">
+												<?php echo $settings["weighhopper"]["no-weigh-hopper"]["description"]; ?>
+											</p>
+											<p class="price clear">
+												<b>Price: </b>$<span class="amount"><?php echo $settings["weighhopper"]["no-weigh-hopper"]["price"]; ?></span> included on standard <span class="machine-name"></span>
+											</p></label>
+
+									</li>
+									<li class="small">
 										<input type="radio" id="smwh" class="active" name="weighhopper" value="small-weigh-hopper" 
-										<?php
-if (!$_POST || ($_POST && $_POST['weighhopper'] == 'small-weigh-hopper')) {
-	echo 'checked';
-}
-										?>/>
+										/>
 										<label for="smwh" class="clearfix"><h4 class="name"><?php echo $settings["weighhopper"]["small-weigh-hopper"]["name"]; ?></h4>
 											<div class="component-image ir">
 												Small Weigh Hopper image
@@ -495,6 +508,25 @@ if ($_POST && $_POST['weighhopper'] == 'large-weigh-hopper') {
 											</p></label>
 
 									</li>
+									<li class="large">
+										<input type="radio" id="lrgwh2" class="" name="weighhopper" value="large-weigh-hopper-two" 
+										<?php
+if ($_POST && $_POST['weighhopper'] == 'large-weigh-hopper') {
+	echo 'checked';
+}
+										?>/>
+										<label for="lrgwh2" class="clearfix"><h4 class="name"><?php echo $settings["weighhopper"]["large-weigh-hopper-two"]["name"]; ?></h4>
+											<div class="component-image ir">
+												Large Weigh Hopper image
+											</div>
+											<p class="description">
+												<?php echo $settings["weighhopper"]["large-weigh-hopper-two"]["description"]; ?>
+											</p>
+											<p class="price clear">
+												<b>Price: </b>$<span class="amount"><?php echo $settings["weighhopper"]["large-weigh-hopper-two"]["price"]; ?></span> upcharge
+											</p></label>
+
+									</li>
 								</ul>
 							</div><!-- id="step-2" -->
 
@@ -504,7 +536,7 @@ if ($_POST && $_POST['weighhopper'] == 'large-weigh-hopper') {
 									The <b>Discharge Funnel</b> directs your product from the weigh hopper to the spout. Select a funnel by clicking its image.
 								</p>
 								<p class="fu6">
-									The S-6 comes with a Discharge Chute instead of Discharge Funnel.
+									The S-6 comes standard with a 5” Discharge Chute. Custom sized Chutes are available upon request.
 								</p>
 								<ul id="field-name-discharge-funnel" class="field-type-radio field-container label-format-block">
 									<li class="small hidden">
@@ -631,10 +663,13 @@ if ($_POST && $_POST['dischargefunnel'] == 'steep-funnel') {
 								<div class="spout-sprite main-spout-image ir">
 									Spout image
 								</div>
-								<p>
+								<p class="s6-sp">
+									The S-6 uses Discharge Chutes exclusively. Please click on the “Next Step” button to proceed to your Summary.
+								</p>
+								<p class="not-s6">
 									The spout attaches to the bottom of the discharge funnel and directs the materials into your container.
 								</p>
-								<p>
+								<p class="not-s6">
 									Use the <b>Spout Calculator</b> below to help you determine which size spout is right for your container. Please start with your smallest container first, then add larger ones if you have them.
 								</p>
 								<div id="field-name-spout" class="field-container label-format-column">
@@ -1327,7 +1362,7 @@ if ($_POST && $_POST['typeSpout3Fallback'] == 'flat-bag') {
 						</div>
 						<h3 id="machine-title" class="hidden">S-4 Weigh/Fill System</h3>
 						<p id="cost-container">
-							 <span class="title">Base Price:</span> <span class="price">$<span class="amount">6150</span></span>
+							 <span class="title">Base Price:</span> <span class="price">$<span class="amount">0</span></span>
 						</p>
 					</div>
 				</aside>

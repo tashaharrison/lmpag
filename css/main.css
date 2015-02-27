@@ -163,6 +163,10 @@ thead th, .total td, .total th {
 }
 form#logical-machines-quote-generator {
 }
+/* Specific styling for spout section for S-6 */
+.s6-sp {
+	height: 135px;
+}
 /*
  * Pagination
  */

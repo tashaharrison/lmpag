@@ -111,7 +111,7 @@ $(document).ready(function() {
     // the content. This removes that class on load.
     $('.bottom').removeClass('bottom');
     // Hide all but the first machine model description
-	$machineData.children(':not(h4,.price)').not(':first').hide();
+	$machineData.children(':not(h4,.price)').hide();
     // Remove .hidden class from JS ready content
     $('#field-name-discharge-funnel li, #btnAdd, #btnDel, #btnFront, #btnSide, .field-spout, .step-submit, #sidebar, #btnPrint, #btnEmail,#btnClose, #btnContinue, .quote-summary, #hidden-accessories-page, #machine-title, #quote-summary, #sending').removeClass('hidden');
     // Check the fallback discharge funnel field
@@ -247,6 +247,7 @@ $(document).ready(function() {
 			$('#smwh').parent('li').hide();
 			$('#stwh').parent('li').hide();
 			$('#lrgwh').parent('li').hide();
+			$('#lrgwh2').parent('li').hide();
 			$('.wh5').hide();
 			$('.fu6').hide();
 		}
@@ -257,6 +258,7 @@ $(document).ready(function() {
 		if ($(this).is('#step-1-pager .button.next') && $('#s5').hasClass('active')) {
 			$('.wh5').show();
 			$('.not-wh5').hide();
+			defaultHopperS5();
 		}
 		if ($(this).is('#step-1-pager .button.next') && $('#s6').hasClass('active')) {
 			defaultHopperS6();
@@ -266,10 +268,16 @@ $(document).ready(function() {
 		if ($(this).is('#step-1-pager .button.next') && $('#s7').hasClass('active')) {
 			defaultHopperS4();
 			$('#stwh').parent('li').show();
-			$('#lrgwh').parent('li').show();
+			$('#lrgwh2').parent('li').show();
 		}
 		if ($(this).is('#step-2-pager .button.next') && $('#s6').hasClass('active')) {
 			defaultFunnelS6();
+		}
+		if ($(this).is('#step-2-pager .button.next') && $('#s6').hasClass('active')) {
+			defaultFunnelS6();
+		}
+		if ($(this).is('#step-4-pager .button.next') && $('#s6').hasClass('active')) {
+			defaultSpoutS6();
 		}
     });
 
@@ -310,6 +318,7 @@ $(document).ready(function() {
 			$('#lrgwh').parent('li').hide();
 			$('.wh5').hide();
 			$('.fu6').hide();
+			$('.s6-sp').hide();
 		}
 		// Select the correct Weigh Hopper(s) for each machine
 		if (stepValue === "#step-2" && $('#s4').hasClass('active')) {
@@ -317,6 +326,7 @@ $(document).ready(function() {
 			$('#lrgwh').parent('li').show();
 		}
 		if (stepValue === "#step-2" && $('#s5').hasClass('active')) {
+			defaultHopperS5();
 			$('.wh5').show();
 			$('.not-wh5').hide();
 		}
@@ -333,10 +343,21 @@ $(document).ready(function() {
 		if (stepValue === "#step-3" && $('#s6').hasClass('active')) {
 			defaultFunnelS6();
 		}
+		// Don't show Spouts for S6 
+		if (stepValue === "#step-4" && $('#s6').hasClass('active')) {
+			defaultSpoutS6();
+		}
+
+		
+		
     });
 	
 	function defaultHopperS4 () {
 		$('#stwh').prop('checked', true).trigger('change');
+	}
+	
+	function defaultHopperS5 () {
+		$('#no-wh').prop('checked', true).trigger('change');
 	}
 	
 	function defaultHopperS6 () {
@@ -346,6 +367,11 @@ $(document).ready(function() {
 	function defaultFunnelS6 () {
 		$('#discharge-cht').prop('checked', true).trigger('change');
 		$('.fu6').show();
+	}
+	function defaultSpoutS6 () {
+		$('.not-s6').hide();
+			$('#field-name-spout').hide();
+			$('.s6-sp').show();
 	}
     
     // Display Base Price as title on the front page and Price as Configured on every other page
@@ -427,6 +453,20 @@ $(document).ready(function() {
 								$dischargeFunnel.find($('input')).prop('checked', false);
 							// Check which weigh hopper is being selected:
 							if (machine.weighHopper.id == 'stwh') {
+								// Select default radio input for selected discharge funnel:
+									var $defaultFunnel = $('#small-std-fnl')
+									$defaultFunnel.prop('checked', true);
+								// Recalculate total for default discharge funnel:	
+									calculateTotal($defaultFunnel);
+								// Get data for discharge funnel:
+									$defaultFunnelData = $defaultFunnel.siblings('label')
+								// Assign properties to the machine.dischargeFunnel object
+									machine.dischargeFunnel.id = $defaultFunnel.attr('id');
+									machine.dischargeFunnel.name = $defaultFunnelData.find('.name').text();
+									machine.dischargeFunnel.description = $.trim($defaultFunnelData.find('.description').text())//.trim();
+									machine.dischargeFunnel.price = $defaultFunnelData.find('.amount').text();
+							}
+							else if (machine.weighHopper.id == 'no-wh') {
 								// Select default radio input for selected discharge funnel:
 									var $defaultFunnel = $('#small-std-fnl')
 									$defaultFunnel.prop('checked', true);
@@ -522,177 +562,177 @@ $(document).ready(function() {
     /*
      *  'Select spouts' page
      */
-
-    // Calculate the size of the spout based on the container
-    $spout.on('click', '.calculate', function() {
-        var num = $('fieldset.field-spout').length, 
+	
+	// Calculate the size of the spout based on the container
+	$spout.on('click', '.calculate', function() {
+		var num = $('fieldset.field-spout').length, 
 			$spoutContainer = $(this).closest('fieldset'), 
 			spoutTitle = $.trim($spoutContainer.find('legend').text())//.trim(),
-        // The selected spout type
+		// The selected spout type
 			$spoutSelected = $spoutContainer.find('.field-name-spout-type input:checked'), 
 			spoutSelectedVal = $spoutSelected.val(), 
 			spoutSelectedTitle = $spoutSelected.next('label').find('h4').text(),
-        // Spout dimension values
+		// Spout dimension values
 			dimensionFieldWidth = parseFloat($spoutContainer.find('.width input').val()), 
 			dimensionFieldD1 = parseFloat($spoutContainer.find('.d1 input').val()), 
 			dimensionFieldD2 = parseFloat($spoutContainer.find('.d2 input').val()), 
 			dimensionFieldDiameter = $spoutContainer.find('.diameter input').val(), 
 			spoutSize = null,
-        // Visisble dimension fields
+		// Visisble dimension fields
 			$dimensionFieldsVisible = $spoutContainer.find('.field-type-textfield input').filter(":visible");
-        // If the fields are valid, calculate the spout size
-        if ($dimensionFieldsVisible.valid()) {
-            switch (spoutSelectedVal) {
-                case 'flat-bag':
-                    var containerDiameter = dimensionFieldWidth * 2 / Math.PI, spoutSize = nearestSpout(containerDiameter);
-                    break;
-                case 'four-sided-bag':
-                    var containerDiameter = (dimensionFieldD1 + dimensionFieldD2) * 2 / Math.PI, spoutSize = nearestSpout(containerDiameter);
-                    break;
-                case 'can-jar':
-                    $.each(availableSpouts, function() {
-                        if (spoutSize == null || dimensionFieldDiameter - this >= 0.125) {
-                            spoutSize = this;
-                        }
-                    });
-                    break;
-            }
-            spoutSize = parseFloat(spoutSize);
-           // Display a warning if the spout size is the same as an existing one else run spoutValid()
-           var calculatedSpoutSizes = [];
-           $('.spout-calculation .spout-size').each(function(){
-            	calculatedSpoutSizes.push(parseFloat($.trim($(this).text())));
-           });
-            	if (calculatedSpoutSizes.length !== 0 && $.inArray(spoutSize, calculatedSpoutSizes) !== -1) {
-            		$spoutContainer.find('.warning').show().find('.calculatedSpoutSize').text(spoutSize);
-            	} else {
-            		spoutValid(num, $spoutContainer, spoutTitle, spoutSize);
-            	}
-        }
-    });
-    
-    // Find out what the nearest spout is to the calculated spout size
-    function nearestSpout(containerDiameter) {
-        var closest = null, calculatedSpoutSize = Math.round(containerDiameter * 0.72 * 1000) / 1000;
-        $.each(availableSpouts, function() {
-            if (closest == null || Math.abs(this - calculatedSpoutSize) < Math.abs(closest - calculatedSpoutSize)) {
-                closest = this;
-            }
-        });
-        return closest;
-    }
-    
-    function spoutValid(num, $spoutContainer, spoutTitle, spoutSize) {
-    	// Hide invalid warning message
-    	$spoutContainer.find('.warning').hide();
-    	// Show add button when the number of fields is less that 3
-        if (num < 3) {
-            $btnAdd.show();
-        }
-        // Slide the fieldset up and display the results and edit button
-        $spoutContainer.slideUp('fast', function() {    
-        	$spoutContainer.after('<p class="spout-calculation"><span class="spoutNum">' + spoutTitle + '</span>: <span class="spout-size">' + spoutSize + '</span>"<button type="button" class="btnRemove" value="Remove spout">Remove</button><button type="button" class="btnEdit" value="Edit spout">Edit</button></p>');
-        });
-        // Show delete button
-        $btnDel.show().prop('disabled', false);
-        // Adjust the grand total
-        grandTotal += spoutPrice;
-        $grandTotalContainer.html(grandTotal);
-        // Show the spout image
-        if ($spoutImage.hasClass('hidden')) {
-        	$spoutImage.removeClass('hidden');
+		// If the fields are valid, calculate the spout size
+		if ($dimensionFieldsVisible.valid()) {
+			switch (spoutSelectedVal) {
+				case 'flat-bag':
+					var containerDiameter = dimensionFieldWidth * 2 / Math.PI, spoutSize = nearestSpout(containerDiameter);
+					break;
+				case 'four-sided-bag':
+					var containerDiameter = (dimensionFieldD1 + dimensionFieldD2) * 2 / Math.PI, spoutSize = nearestSpout(containerDiameter);
+					break;
+				case 'can-jar':
+					$.each(availableSpouts, function() {
+						if (spoutSize == null || dimensionFieldDiameter - this >= 0.125) {
+							spoutSize = this;
+						}
+					});
+					break;
+			}
+			spoutSize = parseFloat(spoutSize);
+		   // Display a warning if the spout size is the same as an existing one else run spoutValid()
+		   var calculatedSpoutSizes = [];
+		   $('.spout-calculation .spout-size').each(function(){
+				calculatedSpoutSizes.push(parseFloat($.trim($(this).text())));
+		   });
+				if (calculatedSpoutSizes.length !== 0 && $.inArray(spoutSize, calculatedSpoutSizes) !== -1) {
+					$spoutContainer.find('.warning').show().find('.calculatedSpoutSize').text(spoutSize);
+				} else {
+					spoutValid(num, $spoutContainer, spoutTitle, spoutSize);
+				}
+		}
+	});
+	
+	// Find out what the nearest spout is to the calculated spout size
+	function nearestSpout(containerDiameter) {
+		var closest = null, calculatedSpoutSize = Math.round(containerDiameter * 0.72 * 1000) / 1000;
+		$.each(availableSpouts, function() {
+			if (closest == null || Math.abs(this - calculatedSpoutSize) < Math.abs(closest - calculatedSpoutSize)) {
+				closest = this;
+			}
+		});
+		return closest;
+	}
+	
+	function spoutValid(num, $spoutContainer, spoutTitle, spoutSize) {
+		// Hide invalid warning message
+		$spoutContainer.find('.warning').hide();
+		// Show add button when the number of fields is less that 3
+		if (num < 3) {
+			$btnAdd.show();
+		}
+		// Slide the fieldset up and display the results and edit button
+		$spoutContainer.slideUp('fast', function() {    
+			$spoutContainer.after('<p class="spout-calculation"><span class="spoutNum">' + spoutTitle + '</span>: <span class="spout-size">' + spoutSize + '</span>"<button type="button" class="btnRemove" value="Remove spout">Remove</button><button type="button" class="btnEdit" value="Edit spout">Edit</button></p>');
+		});
+		// Show delete button
+		$btnDel.show().prop('disabled', false);
+		// Adjust the grand total
+		grandTotal += spoutPrice;
+		$grandTotalContainer.html(grandTotal);
+		// Show the spout image
+		if ($spoutImage.hasClass('hidden')) {
+			$spoutImage.removeClass('hidden');
 			$machineImage.removeClass('no-spout');
 			$machineImage.addClass('spout');
-        }
-       }
-    
-    // Buttons for adding, removing and editing spouts
-    
-    // Add button
-    $btnAdd.click(function() {
-        // Find out the amount of existing fields and add the next number
-        var num = $('fieldset.field-spout').length, newNum = +num + 1,
-        // The numeric ID of the new input field being added
-        newSpoutID = 'spout' + newNum, newSpoutIDUpper = newSpoutID.capitalise(), newSpoutTypeID = "type" + newSpoutIDUpper,
-        // Create the new element via clone() give it the new ID using newNum value
-        $newElem = $('#spout' + num).clone().attr('id', newSpoutID);
-        // Manipulate the name/id values of the spout type inputs inside the new element
-        spoutNumber($newElem,newNum,newSpoutID,newSpoutIDUpper,newSpoutTypeID);
-        // Show spout type fields and reset
-        $newElem.find('.field-name-spout-type').show().find('input').prop('checked', false).removeClass('active');
-        // Reset the field descriptions
-        $newElem.find('.description').show().find('p').hide().filter('.spout-selection').show();
-        // Reset the dimension fields
-        $newElem.find('.field-name-dimensions li').hide().find('input').prop('disabled', false).val("");
-        // Hide container shape images
-        $newElem.find('.container-shape-images > *').hide();
-        // Remove spout calculation result and hide the calculate button
-        $newElem.find('.spout-calculation').remove();
-        $newElem.find('.calculate').hide();
-        $newElem.find('fieldset').slideDown('fast');
-        // Insert the new element after the last spout
-        $('#spout' + num).after($newElem);
-        // enable the "remove" button and hide the 'add'
-        // button
-        $btnDel.show().prop('disabled', false);
-        $btnAdd.hide();
-    });
+		}
+	   }
+	
+	// Buttons for adding, removing and editing spouts
+	
+	// Add button
+	$btnAdd.click(function() {
+		// Find out the amount of existing fields and add the next number
+		var num = $('fieldset.field-spout').length, newNum = +num + 1,
+		// The numeric ID of the new input field being added
+		newSpoutID = 'spout' + newNum, newSpoutIDUpper = newSpoutID.capitalise(), newSpoutTypeID = "type" + newSpoutIDUpper,
+		// Create the new element via clone() give it the new ID using newNum value
+		$newElem = $('#spout' + num).clone().attr('id', newSpoutID);
+		// Manipulate the name/id values of the spout type inputs inside the new element
+		spoutNumber($newElem,newNum,newSpoutID,newSpoutIDUpper,newSpoutTypeID);
+		// Show spout type fields and reset
+		$newElem.find('.field-name-spout-type').show().find('input').prop('checked', false).removeClass('active');
+		// Reset the field descriptions
+		$newElem.find('.description').show().find('p').hide().filter('.spout-selection').show();
+		// Reset the dimension fields
+		$newElem.find('.field-name-dimensions li').hide().find('input').prop('disabled', false).val("");
+		// Hide container shape images
+		$newElem.find('.container-shape-images > *').hide();
+		// Remove spout calculation result and hide the calculate button
+		$newElem.find('.spout-calculation').remove();
+		$newElem.find('.calculate').hide();
+		$newElem.find('fieldset').slideDown('fast');
+		// Insert the new element after the last spout
+		$('#spout' + num).after($newElem);
+		// enable the "remove" button and hide the 'add'
+		// button
+		$btnDel.show().prop('disabled', false);
+		$btnAdd.hide();
+	});
 
-    // Remove button
-    $('#field-name-spout').on('click', '.btnRemove', function() {
-    	var num = $('fieldset.field-spout').length, 
+	// Remove button
+	$('#field-name-spout').on('click', '.btnRemove', function() {
+		var num = $('fieldset.field-spout').length, 
 			$spoutField = $("#spout" + num), 
 			$spoutWrapper = $(this).closest('.spout-wrapper'), 
 			$spoutFieldset = $spoutWrapper.find('fieldset');
-    	if (num == 1) {
-        	$spoutField.find('fieldset').slideDown().find('.calculate').hide();
-            $spoutField.find('.field-name-spout-type').show().find('input').removeClass('active').prop('checked', false); 
-            $spoutField.find('.instructions').show().find('p').hide().filter('.spout-selection').show();
-            $spoutField.find('.field-name-dimensions,.container-shape-images').show();
-        	$spoutField.find('.field-name-dimensions li').hide().find('input').prop('disabled', false).val("");
-        	$spoutField.find('.container-shape-images > *').hide();
-        	$spoutField.find('.spout-calculation').remove();
-            $btnAdd.hide();
-            $btnDel.hide();
-            $spoutImage.addClass('hidden');
+		if (num == 1) {
+			$spoutField.find('fieldset').slideDown().find('.calculate').hide();
+			$spoutField.find('.field-name-spout-type').show().find('input').removeClass('active').prop('checked', false); 
+			$spoutField.find('.instructions').show().find('p').hide().filter('.spout-selection').show();
+			$spoutField.find('.field-name-dimensions,.container-shape-images').show();
+			$spoutField.find('.field-name-dimensions li').hide().find('input').prop('disabled', false).val("");
+			$spoutField.find('.container-shape-images > *').hide();
+			$spoutField.find('.spout-calculation').remove();
+			$btnAdd.hide();
+			$btnDel.hide();
+			$spoutImage.addClass('hidden');
 			$machineImage.removeClass('spout');
-        } else {
-        // Show the 'add another spout' button
-        $btnAdd.show();
-    	// Delete the spout
-    	$spoutWrapper.remove();
-    	// Reset the ID and label numbering for the remaining fields
-    	$('.spout-wrapper').each(function(index) {
-    		var $newElem = $(this); newNum = index + 1, newSpoutID = 'spout' + newNum, newSpoutIDUpper = newSpoutID.capitalise(), newSpoutTypeID = "type" + newSpoutIDUpper;
-    		spoutNumber($newElem,newNum,newSpoutID,newSpoutIDUpper,newSpoutTypeID);
-    		$newElem.find('.spout-calculation .spoutNum').text('Spout ' + newNum);
-    	});
-        }
-    	// Adjust the spout price
-        grandTotal -= spoutPrice;
-        $grandTotalContainer.html(grandTotal);
-        // Show the "add" button if the 3rd spout is being removed
-        if (num == 3)
-            $btnAdd.show();
-    });
-    
-    function spoutNumber($newElem,newNum,newSpoutID,newSpoutIDUpper,newSpoutTypeID) {
-    	$newElem.attr('id', 'spout' + newNum).find('legend').html('Spout ' + newNum).next().find('input').attr({
-            "id" : function(arr) {
-                return "type" + (arr + 1) + newSpoutIDUpper;
-            },
-            'name' : newSpoutTypeID
-        }).next().attr('for', function(arr) {
-            return "type" + (arr + 1) + newSpoutIDUpper;
-        });
+		} else {
+		// Show the 'add another spout' button
+		$btnAdd.show();
+		// Delete the spout
+		$spoutWrapper.remove();
+		// Reset the ID and label numbering for the remaining fields
+		$('.spout-wrapper').each(function(index) {
+			var $newElem = $(this); newNum = index + 1, newSpoutID = 'spout' + newNum, newSpoutIDUpper = newSpoutID.capitalise(), newSpoutTypeID = "type" + newSpoutIDUpper;
+			spoutNumber($newElem,newNum,newSpoutID,newSpoutIDUpper,newSpoutTypeID);
+			$newElem.find('.spout-calculation .spoutNum').text('Spout ' + newNum);
+		});
+		}
+		// Adjust the spout price
+		grandTotal -= spoutPrice;
+		$grandTotalContainer.html(grandTotal);
+		// Show the "add" button if the 3rd spout is being removed
+		if (num == 3)
+			$btnAdd.show();
+	});
+	
+	function spoutNumber($newElem,newNum,newSpoutID,newSpoutIDUpper,newSpoutTypeID) {
+		$newElem.attr('id', 'spout' + newNum).find('legend').html('Spout ' + newNum).next().find('input').attr({
+			"id" : function(arr) {
+				return "type" + (arr + 1) + newSpoutIDUpper;
+			},
+			'name' : newSpoutTypeID
+		}).next().attr('for', function(arr) {
+			return "type" + (arr + 1) + newSpoutIDUpper;
+		});
 		$newElem.find('.field-name-dimensions li input').attr('name', function(index, attr) {
-            attr = attr.substring(0, attr.length - 1);
-        	return attr + newNum;
-        });
-    }
-    
-    // Edit button
-    $('#field-name-spout').on('click', '.btnEdit', function() {
+			attr = attr.substring(0, attr.length - 1);
+			return attr + newNum;
+		});
+	}
+	
+	// Edit button
+	$('#field-name-spout').on('click', '.btnEdit', function() {
 		// Get spout wrapper and related form in objects:
 			var $spoutWrapper = $(this).closest('.spout-wrapper'), 
 				$spoutFieldset = $spoutWrapper.find('fieldset');
@@ -703,7 +743,7 @@ $(document).ready(function() {
 			$grandTotalContainer.html(grandTotal);
 		//Show add button:
 			$btnAdd.hide();
-    });
+	});
     
     /*
      *  Hidden accessories page
