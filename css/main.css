@@ -330,7 +330,7 @@ form#logical-machines-quote-generator {
 /* S4 Main Image */
 .s4 .machine-bg {
 	width: 254px;
-	height: 455px;
+	height: 460px;
 	background-position: -10px -10px;
 	top: 5px;
 	left: 3px;
@@ -409,7 +409,7 @@ form#logical-machines-quote-generator {
 /* S5 Main Image */
 .s5.front .machine-bg {
 	width: 254px;
-	height: 455px;
+	height: 480px;
 	background-position: -10px -10px;
 	top: 5px;
 	left: 3px;
@@ -498,7 +498,7 @@ form#logical-machines-quote-generator {
 /* S7 Main Image */
 .s7.front .machine-bg {
 	width: 254px;
-	height: 455px;
+	height: 463px;
 	background-position: -10px -9px;
 	top: 5px;
 	left: 3px;
